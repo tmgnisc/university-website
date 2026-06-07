@@ -11,9 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import logoImg from "@/assets/18.png";
 import heroImg from "@/assets/hero-campus.jpg";
 import progAi from "@/assets/prog-ai.jpg";
-import progCyber from "@/assets/prog-cyber.jpg";
 import progEdtech from "@/assets/prog-edtech.jpg";
-import progLms from "@/assets/prog-lms.jpg";
 import researchImg from "@/assets/research.jpg";
 import studentLifeImg from "@/assets/student-life.jpg";
 import campusImg from "@/assets/campus.jpg";
@@ -226,7 +224,7 @@ export function Ticker() {
 }
 
 export function Search_() {
-  const filters = ["BIT", "B.Tech Ed IT", "AI Labs", "Scholarships"];
+  const filters = ["BIT", "B.Tech Ed IT"];
   return (
     <section className="max-w-7xl mx-auto px-6 lg:px-10 py-8 md:py-10">
       <Reveal>
@@ -234,7 +232,7 @@ export function Search_() {
           <div className="flex flex-col md:flex-row gap-4 items-stretch">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
-              <Input className="h-14 pl-12 rounded-2xl text-base" placeholder="Search computing, technology, or management programs..." />
+              <Input className="h-14 pl-12 rounded-2xl text-base" placeholder="Search BIT or B.Tech Ed IT programs..." />
             </div>
             <Button className="h-14 rounded-2xl px-8 bg-primary text-primary-foreground">Search</Button>
           </div>
@@ -253,10 +251,8 @@ export function Search_() {
 }
 
 const programs = [
-  { img: progAi, tag: "Software & AI Focus", title: "BIT — Bachelor in Information Technology", desc: "Build the next generation of software, AI systems and intelligent platforms." },
-  { img: progCyber, tag: "Cybersecurity & Data Analyst", title: "Specialization in Security & Analytics", desc: "Defend digital infrastructure and turn raw data into actionable intelligence." },
-  { img: progEdtech, tag: "Educational Technology Focus", title: "B.Tech Ed IT — Technology in Education", desc: "Equip educators with cutting-edge tools to reshape modern classrooms." },
-  { img: progLms, tag: "LMS & EdTech Innovation", title: "Learning Platforms & EdTech R&D", desc: "Design, deploy and study scalable learning management systems." },
+  { img: progAi, tag: "KU Affiliated", title: "BIT — Bachelor in Information Technology", desc: "Build the next generation of software, AI systems and intelligent platforms." },
+  { img: progEdtech, tag: "KU Affiliated", title: "B.Tech Ed IT — Technology in Education", desc: "Equip educators with cutting-edge tools to reshape modern classrooms." },
 ];
 
 export function Programs() {
@@ -268,7 +264,7 @@ export function Programs() {
           <h2 className="mt-3 text-3xl md:text-5xl font-semibold">Future-ready degrees, designed with industry</h2>
           <p className="mt-4 text-muted-foreground text-lg">Affiliated to Kathmandu University. Built for global outcomes.</p>
         </Reveal>
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {programs.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
               <article className="group rounded-3xl overflow-hidden bg-card border border-border shadow-xl shadow-primary/5 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/15 h-full flex flex-col">
@@ -618,7 +614,7 @@ export function Lead() {
                   <Input required type="tel" placeholder="Phone" className="h-12 rounded-xl" />
                   <Input required type="email" placeholder="Email" className="h-12 rounded-xl" />
                 </div>
-                <Input required placeholder="Interested program (e.g. BIT)" className="h-12 rounded-xl" />
+                <Input required placeholder="Interested program (BIT or B.Tech Ed IT)" className="h-12 rounded-xl" />
                 <Textarea required placeholder="Your message" rows={4} className="rounded-xl" />
                 <Button type="submit" size="lg" className="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 h-12">
                   Submit Inquiry <ArrowRight className="ml-1 size-4" />
