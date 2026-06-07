@@ -3,6 +3,7 @@ import {
   Header, Hero, Ticker, Search_, Programs, NextSteps, Research,
   WhatsNew, Events, Support, Vision, Mosaic, Lead, Footer, FloatingCTAs,
 } from "@/components/sections/site";
+import { MaintenanceGuard } from "@/components/MaintenanceGuard";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,7 +36,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <>
+    <MaintenanceGuard>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:rounded-full">Skip to content</a>
       <Header />
       <main id="main">
@@ -54,6 +55,6 @@ function Index() {
       </main>
       <Footer />
       <FloatingCTAs />
-    </>
+    </MaintenanceGuard>
   );
 }

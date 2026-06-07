@@ -15,7 +15,6 @@ import progCyber from "@/assets/prog-cyber.jpg";
 import progEdtech from "@/assets/prog-edtech.jpg";
 import progLms from "@/assets/prog-lms.jpg";
 import researchImg from "@/assets/research.jpg";
-import chairmanImg from "@/assets/chairman.jpg";
 import studentLifeImg from "@/assets/student-life.jpg";
 import campusImg from "@/assets/campus.jpg";
 import smartClass from "@/assets/smart-classroom.jpg";
@@ -158,12 +157,16 @@ export function Hero() {
           loop
           muted
           playsInline
-          className="size-full object-cover"
+          className="size-full object-cover scale-105"
           poster={heroImg}
         >
           <source src="https://www.durham.ac.uk/media/durham-university/homepage/headers/UG-Open-days-HP-banner-05_24v2.mp4" type="video/mp4" />
         </video>
       </motion.div>
+      <div
+        className="absolute inset-0 z-[1] bg-black/40 backdrop-blur-[2px] bg-gradient-to-b from-black/50 via-black/30 to-black/55"
+        aria-hidden
+      />
       <motion.div
         initial="hidden" animate="show"
         variants={{ show: { transition: { staggerChildren: 0.12 } } }}
@@ -173,8 +176,7 @@ export function Hero() {
           Kathmandu University Affiliated Programs
         </motion.p>
         <motion.h1 variants={fadeUp} className="mt-4 text-4xl sm:text-5xl lg:text-7xl font-semibold leading-[1.05] max-w-5xl">
-          WhiteHouse Education Foundation &<br />
-          College of Business & Technology
+          Whitehouse College of Business & Technology
         </motion.h1>
         <motion.p variants={fadeUp} className="mt-6 text-lg lg:text-xl text-white/75 max-w-2xl">
           Empowering future innovators, technologists & leaders through world-class academic pathways rooted in Eastern Nepal.
@@ -375,16 +377,22 @@ export function WhatsNew() {
         <Reveal delay={0.05}>
           <div className="mt-12 grid lg:grid-cols-[1fr_2fr] gap-10 items-center rounded-3xl bg-white/5 border border-white/10 p-8 lg:p-12 backdrop-blur">
             <div className="flex justify-center">
-              <div className="relative">
-                <div className="absolute -inset-2 rounded-full border-2 border-white/40" />
-                <img src={chairmanImg} alt="Chairman" loading="lazy" className="size-56 lg:size-64 rounded-full object-cover" />
+              <div className="relative w-56 lg:w-72 aspect-[3/4] overflow-hidden rounded-2xl border-2 border-white/40 shadow-lg">
+                <img
+                  src="https://ik.imagekit.io/qn3m81dsk/university/president%201.jpg"
+                  alt="Yuvraj Sharma, President"
+                  loading="lazy"
+                  className="size-full object-cover object-top"
+                />
               </div>
             </div>
             <div>
-              <span className="text-xs uppercase tracking-[0.18em] text-white/80">From the Chairman</span>
+              <span className="text-xs uppercase tracking-[0.18em] text-white/80">From the President</span>
               <p className="mt-3 text-xl lg:text-2xl font-display leading-snug">
                 "Our mission is to nurture an academic ecosystem where Eastern Nepal's brightest minds engineer the future — with integrity, excellence and global ambition."
               </p>
+              <p className="mt-4 text-sm font-semibold text-white/90">Yuvraj Sharma</p>
+              <p className="text-xs text-white/60">President</p>
               <Button className="mt-7 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">Read Full Message <ArrowRight className="ml-1 size-4" /></Button>
             </div>
           </div>
