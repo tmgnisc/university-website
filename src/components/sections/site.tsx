@@ -1,0 +1,681 @@
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import {
+  Menu, X, Search, ArrowRight, FileText, GraduationCap, MessageSquare, MapPin,
+  Play, Calendar, Clock, Phone, Mail, ChevronRight, Sparkles, Cpu, Shield,
+  BookOpen, Users, Award, Briefcase, Laptop, HeartHandshake, Quote, MessageCircle,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import logoImg from "@/assets/18.png";
+import heroImg from "@/assets/hero-campus.jpg";
+import progAi from "@/assets/prog-ai.jpg";
+import progCyber from "@/assets/prog-cyber.jpg";
+import progEdtech from "@/assets/prog-edtech.jpg";
+import progLms from "@/assets/prog-lms.jpg";
+import researchImg from "@/assets/research.jpg";
+import chairmanImg from "@/assets/chairman.jpg";
+import studentLifeImg from "@/assets/student-life.jpg";
+import campusImg from "@/assets/campus.jpg";
+import smartClass from "@/assets/smart-classroom.jpg";
+import aiLab from "@/assets/ai-lab.jpg";
+import campusTour from "@/assets/campus-tour.jpg";
+
+const NAV = ["Home","About","Programs","Admissions","Scholarships","Campus Life","Research","Contact"];
+const NAV_IDS = NAV.map((n) => n.toLowerCase().replace(/ /g, "-"));
+
+const navLinkClass = (active: boolean) =>
+  `relative text-sm font-medium transition-colors ${
+    active
+      ? "text-primary font-semibold after:absolute after:-bottom-1 after:inset-x-0 after:h-0.5 after:rounded-full after:bg-primary"
+      : "text-black hover:text-black/70"
+  }`;
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
+};
+
+function Reveal({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  return (
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ delay }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("home");
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = NAV_IDS.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-20% 0px -60% 0px", threshold: [0, 0.25, 0.5] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <header
+      className={`fixed top-0 inset-x-0 z-50 bg-white transition-all duration-300 ${
+        scrolled ? "shadow-md border-b border-border" : "border-b border-border/60"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+        <a href="#home" className="flex items-center">
+          <img src={logoImg} alt="WhiteHouse Education Foundation" className="h-14 w-auto" width={56} height={56} />
+        </a>
+        <nav className="hidden lg:flex items-center gap-8">
+          {NAV.map((n) => {
+            const id = n.toLowerCase().replace(/ /g, "-");
+            return (
+              <a key={n} href={`#${id}`} className={navLinkClass(active === id)}>
+                {n}
+              </a>
+            );
+          })}
+        </nav>
+        <div className="flex items-center gap-3">
+          <Button className="hidden sm:inline-flex bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-full px-5">
+            Apply Now
+          </Button>
+          <button onClick={() => setOpen(true)} aria-label="Open menu" className="lg:hidden text-black hover:text-black/70 transition-colors">
+            <Menu className="size-6" />
+          </button>
+        </div>
+      </div>
+      {open && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} />
+          <motion.aside
+            initial={{ x: "100%" }} animate={{ x: 0 }}
+            className="absolute right-0 top-0 h-full w-80 bg-white border-l border-border p-6 flex flex-col gap-6"
+          >
+            <div className="flex justify-end">
+              <button onClick={() => setOpen(false)} aria-label="Close menu" className="text-black hover:text-black/70 transition-colors">
+                <X className="size-6" />
+              </button>
+            </div>
+            {NAV.map((n) => {
+              const id = n.toLowerCase().replace(/ /g, "-");
+              return (
+                <a
+                  key={n}
+                  href={`#${id}`}
+                  onClick={() => setOpen(false)}
+                  className={`text-lg border-b border-border pb-3 transition-colors ${
+                    active === id ? "text-primary font-semibold" : "text-black hover:text-black/70"
+                  }`}
+                >
+                  {n}
+                </a>
+              );
+            })}
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full mt-4">Apply Now</Button>
+          </motion.aside>
+        </div>
+      )}
+    </header>
+  );
+}
+
+export function Hero() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  return (
+    <section id="home" ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-black">
+      <motion.div style={{ y }} className="absolute inset-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="size-full object-cover"
+          poster={heroImg}
+        >
+          <source src="https://www.durham.ac.uk/media/durham-university/homepage/headers/UG-Open-days-HP-banner-05_24v2.mp4" type="video/mp4" />
+        </video>
+      </motion.div>
+      <motion.div
+        initial="hidden" animate="show"
+        variants={{ show: { transition: { staggerChildren: 0.12 } } }}
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-32 text-white drop-shadow-md"
+      >
+        <motion.p variants={fadeUp} className="text-sm font-medium text-white/90">
+          Kathmandu University Affiliated Programs
+        </motion.p>
+        <motion.h1 variants={fadeUp} className="mt-4 text-4xl sm:text-5xl lg:text-7xl font-semibold leading-[1.05] max-w-5xl">
+          WhiteHouse Education Foundation &<br />
+          College of Business & Technology
+        </motion.h1>
+        <motion.p variants={fadeUp} className="mt-6 text-lg lg:text-xl text-white/75 max-w-2xl">
+          Empowering future innovators, technologists & leaders through world-class academic pathways rooted in Eastern Nepal.
+        </motion.p>
+        <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-4">
+          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full font-semibold px-7 h-12">
+            Explore Programs <ArrowRight className="ml-1 size-4" />
+          </Button>
+          <Button size="lg" variant="outline" className="rounded-full px-7 h-12 border-white/30 bg-white/5 text-white hover:bg-white/10 hover:text-white">
+            Scholarship Information
+          </Button>
+          <a href="#tour" className="text-sm text-white/80 hover:text-white inline-flex items-center gap-1.5 underline-offset-4 hover:underline">
+            <Play className="size-4" /> Virtual Campus Tour
+          </a>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
+
+const TICKER_ITEMS = [
+  "KU Affiliated Admissions Open 2026",
+  "Scholarship Applications Available",
+  "Orientation Program Notice",
+  "Hackathon Registration Now Live",
+];
+
+function TickerMarquee() {
+  const row = [...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS];
+  return (
+    <div className="flex whitespace-nowrap animate-marquee py-3 font-medium">
+      {row.map((t, i) => (
+        <span key={i} className="mx-8 inline-flex items-center gap-3 text-sm uppercase tracking-wider">
+          <span className="size-1.5 rounded-full bg-black" /> {t}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+export function Ticker() {
+  return (
+    <div className="relative z-10 bg-secondary text-black border-y border-border overflow-hidden">
+      <TickerMarquee />
+    </div>
+  );
+}
+
+export function Search_() {
+  const filters = ["BIT", "B.Tech Ed IT", "AI Labs", "Scholarships"];
+  return (
+    <section className="max-w-7xl mx-auto px-6 lg:px-10 py-8 md:py-10">
+      <Reveal>
+        <div className="rounded-3xl bg-card border border-border shadow-xl shadow-primary/10 p-6 md:p-8">
+          <div className="flex flex-col md:flex-row gap-4 items-stretch">
+            <div className="relative flex-1">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
+              <Input className="h-14 pl-12 rounded-2xl text-base" placeholder="Search computing, technology, or management programs..." />
+            </div>
+            <Button className="h-14 rounded-2xl px-8 bg-primary text-primary-foreground">Search</Button>
+          </div>
+          <div className="mt-5 flex flex-wrap gap-2">
+            <span className="text-xs text-muted-foreground uppercase tracking-wider mr-2 self-center">Quick filters:</span>
+            {filters.map((f) => (
+              <button key={f} className="px-4 py-1.5 rounded-full text-sm border border-border bg-secondary hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300">
+                {f}
+              </button>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+const programs = [
+  { img: progAi, tag: "Software & AI Focus", title: "BIT — Bachelor in Information Technology", desc: "Build the next generation of software, AI systems and intelligent platforms." },
+  { img: progCyber, tag: "Cybersecurity & Data Analyst", title: "Specialization in Security & Analytics", desc: "Defend digital infrastructure and turn raw data into actionable intelligence." },
+  { img: progEdtech, tag: "Educational Technology Focus", title: "B.Tech Ed IT — Technology in Education", desc: "Equip educators with cutting-edge tools to reshape modern classrooms." },
+  { img: progLms, tag: "LMS & EdTech Innovation", title: "Learning Platforms & EdTech R&D", desc: "Design, deploy and study scalable learning management systems." },
+];
+
+export function Programs() {
+  return (
+    <section id="programs" className="py-20 md:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <Reveal className="max-w-3xl">
+          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">Programs</span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-semibold">Future-ready degrees, designed with industry</h2>
+          <p className="mt-4 text-muted-foreground text-lg">Affiliated to Kathmandu University. Built for global outcomes.</p>
+        </Reveal>
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {programs.map((p, i) => (
+            <Reveal key={p.title} delay={i * 0.08}>
+              <article className="group rounded-3xl overflow-hidden bg-card border border-border shadow-xl shadow-primary/5 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/15 h-full flex flex-col">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img src={p.img} alt={p.title} loading="lazy" className="size-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground font-semibold">{p.tag}</span>
+                  <h3 className="mt-2 font-semibold text-lg leading-snug">{p.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground flex-1">{p.desc}</p>
+                  <a href="#" className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-black group-hover:text-black/70 transition-colors">
+                    Learn more <ArrowRight className="size-4" />
+                  </a>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const steps = [
+  { icon: FileText, title: "Admission Process", desc: "Eligibility, deadlines & documents." },
+  { icon: GraduationCap, title: "Scholarship Schemes", desc: "Up to 75% merit-based aid." },
+  { icon: MessageSquare, title: "Academic Inquiry", desc: "Talk to our admissions team." },
+  { icon: MapPin, title: "Damak Campus", desc: "Visit & explore our facilities." },
+];
+
+export function NextSteps() {
+  return (
+    <section id="admissions" className="py-20 md:py-28 bg-secondary">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <Reveal>
+          <h2 className="text-3xl md:text-5xl font-semibold text-center max-w-3xl mx-auto">Your next academic step</h2>
+        </Reveal>
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {steps.map((s, i) => (
+            <Reveal key={s.title} delay={i * 0.08}>
+              <div className="group rounded-3xl bg-card border border-border p-7 h-full transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/30">
+                <div className="size-12 rounded-2xl bg-primary text-primary-foreground grid place-items-center group-hover:bg-primary/90 transition-colors">
+                  <s.icon className="size-5" />
+                </div>
+                <h3 className="mt-5 font-semibold text-lg">{s.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
+                <ChevronRight className="mt-5 size-5 text-muted-foreground group-hover:text-black group-hover:translate-x-1 transition-all" />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Research() {
+  return (
+    <section id="research" className="py-20 md:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <Reveal>
+          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">Research</span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-semibold leading-tight">Research & Innovation Ecosystem</h2>
+          <p className="mt-5 text-muted-foreground text-lg">
+            Hands-on labs in AI, Robotics, IoT and applied innovation — preparing students to solve real-world problems alongside industry mentors.
+          </p>
+          <div className="mt-8 grid grid-cols-2 gap-4">
+            {[
+              { icon: Cpu, label: "AI & ML" },
+              { icon: Sparkles, label: "Robotics" },
+              { icon: Shield, label: "IoT Systems" },
+              { icon: BookOpen, label: "Innovation Labs" },
+            ].map((x) => (
+              <div key={x.label} className="rounded-2xl border border-border p-4 flex items-center gap-3 bg-card">
+                <div className="size-10 rounded-xl bg-muted text-black grid place-items-center"><x.icon className="size-5" /></div>
+                <span className="font-medium">{x.label}</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="relative">
+            <div className="absolute -inset-3 rounded-3xl border border-primary/30" />
+            <img src={researchImg} alt="AI Robotics & IoT Innovation" loading="lazy" className="relative rounded-3xl w-full aspect-[4/3] object-cover shadow-2xl shadow-primary/20" />
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+const news = [
+  { tag: "Hackathon", title: "48-hour AI Hackathon ignites student innovation" },
+  { tag: "Workshop", title: "Hands-on Industrial IoT workshop with mentors" },
+  { tag: "Seminar", title: "Future of EdTech: keynote by KU faculty" },
+];
+
+export function WhatsNew() {
+  return (
+    <section id="about" className="py-20 md:py-28 bg-navy-deep text-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <Reveal>
+          <span className="text-xs uppercase tracking-[0.2em] text-white/80">What's New</span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-semibold">Leadership & latest updates</h2>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <div className="mt-12 grid lg:grid-cols-[1fr_2fr] gap-10 items-center rounded-3xl bg-white/5 border border-white/10 p-8 lg:p-12 backdrop-blur">
+            <div className="flex justify-center">
+              <div className="relative">
+                <div className="absolute -inset-2 rounded-full border-2 border-white/40" />
+                <img src={chairmanImg} alt="Chairman" loading="lazy" className="size-56 lg:size-64 rounded-full object-cover" />
+              </div>
+            </div>
+            <div>
+              <span className="text-xs uppercase tracking-[0.18em] text-white/80">From the Chairman</span>
+              <p className="mt-3 text-xl lg:text-2xl font-display leading-snug">
+                "Our mission is to nurture an academic ecosystem where Eastern Nepal's brightest minds engineer the future — with integrity, excellence and global ambition."
+              </p>
+              <Button className="mt-7 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">Read Full Message <ArrowRight className="ml-1 size-4" /></Button>
+            </div>
+          </div>
+        </Reveal>
+        <div className="mt-10 grid md:grid-cols-3 gap-6">
+          {news.map((n, i) => (
+            <Reveal key={n.title} delay={i * 0.08}>
+              <article className="group rounded-3xl bg-white/5 border border-white/10 p-7 h-full transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:border-white/30">
+                <span className="text-[11px] uppercase tracking-[0.18em] text-white/80 font-semibold">{n.tag}</span>
+                <h3 className="mt-3 font-semibold text-lg leading-snug">{n.title}</h3>
+                <a href="#" className="mt-5 inline-flex items-center gap-1 text-sm text-white/80 group-hover:text-white">Read more <ArrowRight className="size-4" /></a>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const events = [
+  { title: "Orientation Program 2026", date: "Jan 12, 2026", time: "9:00 AM", img: campusImg },
+  { title: "Guest Lecture: AI Ethics", date: "Jan 20, 2026", time: "2:00 PM", img: aiLab },
+  { title: "Tech Bootcamp — Web3", date: "Feb 04, 2026", time: "10:00 AM", img: progAi },
+  { title: "Inter-college Sports Week", date: "Feb 18, 2026", time: "All Day", img: studentLifeImg },
+];
+
+export function Events() {
+  return (
+    <section className="py-20 md:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <Reveal className="flex items-end justify-between flex-wrap gap-6">
+          <div>
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Events</span>
+            <h2 className="mt-3 text-3xl md:text-5xl font-semibold">Upcoming on campus</h2>
+          </div>
+          <a href="#" className="text-sm font-medium inline-flex items-center gap-1.5">All events <ArrowRight className="size-4" /></a>
+        </Reveal>
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {events.map((e, i) => (
+            <Reveal key={e.title} delay={i * 0.08}>
+              <article className="group rounded-3xl bg-card border border-border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10 h-full flex flex-col">
+                <div className="aspect-video overflow-hidden">
+                  <img src={e.img} alt={e.title} loading="lazy" className="size-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                    <span className="inline-flex items-center gap-1"><Calendar className="size-3.5" />{e.date}</span>
+                    <span className="inline-flex items-center gap-1"><Clock className="size-3.5" />{e.time}</span>
+                  </div>
+                  <h3 className="mt-3 font-semibold leading-snug flex-1">{e.title}</h3>
+                  <a href="#" className="mt-4 text-sm font-medium text-black inline-flex items-center gap-1 group-hover:text-black/70">View Details <ArrowRight className="size-4" /></a>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const supports = [
+  { icon: Briefcase, title: "Paid Internships", value: 92, desc: "Industry placements with stipends." },
+  { icon: Laptop, title: "Laptop Installment Plan", value: 100, desc: "Flexible monthly EMI for every student." },
+  { icon: HeartHandshake, title: "Counseling Services", value: 80, desc: "Mental health & academic guidance." },
+];
+
+export function Support() {
+  return (
+    <section id="campus-life" className="py-20 md:py-28 bg-secondary">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <Reveal>
+          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Student Support</span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-semibold leading-tight">Beyond the classroom — we back every student</h2>
+          <div className="mt-8 space-y-5">
+            {supports.map((s) => (
+              <div key={s.title} className="rounded-2xl bg-card border border-border p-5">
+                <div className="flex items-start gap-4">
+                  <div className="size-11 rounded-xl bg-muted text-black grid place-items-center shrink-0"><s.icon className="size-5" /></div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between gap-3">
+                      <h3 className="font-semibold">{s.title}</h3>
+                      <span className="text-sm text-muted-foreground">{s.value}%</span>
+                    </div>
+                    <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
+                    <div className="mt-3 h-1.5 bg-border rounded-full overflow-hidden">
+                      <motion.div initial={{ width: 0 }} whileInView={{ width: `${s.value}%` }} viewport={{ once: true }} transition={{ duration: 1.2, ease: "easeOut" }} className="h-full bg-primary" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <img src={studentLifeImg} alt="Student life — clubs & hackathons" loading="lazy" className="rounded-3xl w-full aspect-[4/5] object-cover shadow-2xl shadow-primary/10" />
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function Vision() {
+  return (
+    <section id="tour" className="py-20 md:py-28 bg-navy-deep text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(134,0,29,0.15),transparent_60%)]" />
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative">
+        <Reveal>
+          <div className="relative rounded-3xl overflow-hidden cyan-glow">
+            <img src={campusTour} alt="Virtual campus tour" loading="lazy" className="w-full aspect-video object-cover" />
+            <div className="absolute inset-0 bg-navy-deep/40 grid place-items-center">
+              <button className="size-20 rounded-full bg-primary text-primary-foreground grid place-items-center cyan-glow hover:scale-110 transition-transform" aria-label="Play tour">
+                <Play className="size-8 fill-current" />
+              </button>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <Quote className="size-10 text-white/80" />
+          <p className="mt-4 text-2xl md:text-3xl font-display leading-snug">
+            To establish a future-focused academic ecosystem in Eastern Nepal.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-2">
+            {["Integrity","Excellence","Innovation","Inclusiveness","Leadership"].map((v) => (
+              <span key={v} className="px-4 py-2 rounded-full border border-white/30 bg-white/10 text-white text-sm">{v}</span>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function Mosaic() {
+  return (
+    <section className="py-20 md:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <Reveal>
+          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">By the numbers</span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-semibold max-w-3xl">A campus built for ambition</h2>
+        </Reveal>
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px] gap-4">
+          <div className="row-span-2 col-span-2 rounded-3xl overflow-hidden relative group">
+            <img src={campusImg} alt="Campus infrastructure" loading="lazy" className="size-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/20 to-transparent p-6 flex items-end text-white">
+              <div>
+                <div className="text-xs uppercase tracking-widest text-white/80">Campus Infrastructure</div>
+                <div className="font-display text-2xl mt-1">Modern facilities, built for learning</div>
+              </div>
+            </div>
+          </div>
+          <div className="rounded-3xl bg-navy-deep text-white p-6 flex flex-col justify-between">
+            <span className="text-xs uppercase tracking-widest text-white/80">Mentors & Tie-ups</span>
+            <div>
+              <div className="text-5xl font-display font-semibold text-white">150+</div>
+              <div className="text-sm text-white/70 mt-1">Industry partners</div>
+            </div>
+          </div>
+          <div className="rounded-3xl bg-primary text-primary-foreground p-6 flex flex-col justify-between">
+            <span className="text-xs uppercase tracking-widest">Affiliation</span>
+            <div>
+              <div className="text-2xl font-display font-semibold">Kathmandu University</div>
+              <div className="text-sm opacity-80 mt-1">Officially affiliated programs</div>
+            </div>
+          </div>
+          <div className="rounded-3xl overflow-hidden relative group">
+            <img src={smartClass} alt="Smart classroom" loading="lazy" className="size-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-navy-deep/60 p-5 flex items-end text-white">
+              <span className="font-medium">Smart Classrooms</span>
+            </div>
+          </div>
+          <div className="rounded-3xl overflow-hidden relative group">
+            <img src={aiLab} alt="AI labs" loading="lazy" className="size-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-navy-deep/60 p-5 flex items-end text-white">
+              <span className="font-medium">AI Innovation Labs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Lead() {
+  const [sent, setSent] = useState(false);
+  return (
+    <section id="contact" className="py-20 md:py-28 bg-secondary">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <Reveal>
+          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Request Information</span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-semibold">Talk to admissions</h2>
+          <p className="mt-4 text-muted-foreground text-lg">Tell us a little about you and we'll be in touch with personalised guidance.</p>
+          <div className="mt-8 space-y-4">
+            <div className="flex items-center gap-3"><MapPin className="size-5 text-black" /><span>Damak, Jhapa, Nepal</span></div>
+            <div className="flex items-center gap-3"><Phone className="size-5 text-black" /><span>01-5199456 / 57</span></div>
+            <div className="flex items-center gap-3"><Mail className="size-5 text-black" /><span>info@whitehouseeducation.edu.np</span></div>
+          </div>
+          <div className="mt-8 rounded-3xl overflow-hidden border border-border aspect-[5/3] bg-card">
+            <iframe
+              title="Damak campus map"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=87.6857%2C26.6586%2C87.7257%2C26.6986&layer=mapnik"
+              className="size-full"
+              loading="lazy"
+            />
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <form
+            onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+            className="rounded-3xl bg-card border border-border p-8 shadow-xl shadow-primary/10 space-y-4"
+          >
+            {sent ? (
+              <div className="py-10 text-center">
+                <div className="size-14 rounded-full bg-primary text-primary-foreground grid place-items-center mx-auto"><HeartHandshake className="size-7" /></div>
+                <h3 className="mt-5 text-2xl font-display">Thank you.</h3>
+                <p className="mt-2 text-muted-foreground">Our admissions team will contact you shortly.</p>
+              </div>
+            ) : (
+              <>
+                <Input required placeholder="Full name" className="h-12 rounded-xl" />
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <Input required type="tel" placeholder="Phone" className="h-12 rounded-xl" />
+                  <Input required type="email" placeholder="Email" className="h-12 rounded-xl" />
+                </div>
+                <Input required placeholder="Interested program (e.g. BIT)" className="h-12 rounded-xl" />
+                <Textarea required placeholder="Your message" rows={4} className="rounded-xl" />
+                <Button type="submit" size="lg" className="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 h-12">
+                  Submit Inquiry <ArrowRight className="ml-1 size-4" />
+                </Button>
+                <p className="text-xs text-muted-foreground text-center">We respect your privacy. No spam, ever.</p>
+              </>
+            )}
+          </form>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function Footer() {
+  const cols = [
+    { h: "Community", items: ["Board Members","Advisors","Faculty","Administration","International"] },
+    { h: "About", items: ["KU Affiliation","Industry Exposure","Publications","Legacy","Governance"] },
+    { h: "Vision", items: ["Mission","Values","Strategy","Reports"] },
+    { h: "Research", items: ["AI Labs","IoT Labs","Innovation Centers","Publications"] },
+    { h: "Contact", items: ["Inquiry Form","Social Links","WhatsApp","Visit Campus"] },
+  ];
+  return (
+    <footer className="bg-navy-deep text-white/80">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 grid md:grid-cols-2 lg:grid-cols-6 gap-10">
+        <div className="lg:col-span-1">
+          <a href="#home" className="inline-flex">
+            <img src={logoImg} alt="WhiteHouse Education Foundation" className="h-16 w-auto" width={64} height={64} />
+          </a>
+          <p className="mt-5 text-sm text-white/60">Building Eastern Nepal's future-focused academic ecosystem.</p>
+        </div>
+        {cols.map((c) => (
+          <div key={c.h}>
+            <h4 className="text-sm font-semibold text-white uppercase tracking-wider">{c.h}</h4>
+            <ul className="mt-4 space-y-2 text-sm">
+              {c.items.map((i) => (<li key={i}><a href="#" className="hover:text-white transition-colors">{i}</a></li>))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div className="border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-6 flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-white/60">
+          <span>© {new Date().getFullYear()} WhiteHouse Education Foundation. All rights reserved.</span>
+          <span>Damak, Jhapa, Nepal · 01-5199456 / 57 · info@whitehouseeducation.edu.np</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export function FloatingCTAs() {
+  return (
+    <>
+      <a
+        href="https://wa.me/9779800000000"
+        target="_blank" rel="noreferrer"
+        aria-label="Chat on WhatsApp"
+        className="fixed bottom-6 right-6 z-40 size-14 rounded-full bg-primary text-primary-foreground grid place-items-center shadow-2xl shadow-primary/40 hover:scale-110 transition-transform"
+      >
+        <MessageCircle className="size-6" />
+      </a>
+      <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 p-3 bg-navy-deep/95 backdrop-blur border-t border-white/10 flex gap-2">
+        <Button className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full">Apply Now</Button>
+        <Button variant="outline" className="flex-1 rounded-full border-white/30 bg-transparent text-white hover:bg-white/10">Inquiry</Button>
+      </div>
+    </>
+  );
+}
