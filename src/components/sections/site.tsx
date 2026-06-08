@@ -9,6 +9,7 @@ import { ChatWidget } from "@/components/chat/ChatWidget";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 import logoImg from "@/assets/18.png";
 import heroImg from "@/assets/hero-campus.jpg";
 import progAi from "@/assets/prog-ai.jpg";
@@ -22,6 +23,19 @@ import campusTour from "@/assets/campus-tour.jpg";
 
 const NAV = ["Home","About","Programs","Admissions","Scholarships","Campus Life","Research","Contact"];
 const NAV_IDS = NAV.map((n) => n.toLowerCase().replace(/ /g, "-"));
+
+const LAYOUT = {
+  section: "py-16 md:py-24",
+  container: "max-w-7xl mx-auto px-6 lg:px-10",
+  contentGap: "mt-10",
+  gridGap: "gap-6",
+  splitGap: "gap-10 lg:gap-12",
+  cardPadding: "p-6",
+} as const;
+
+function SectionContainer({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <div className={cn(LAYOUT.container, className)}>{children}</div>;
+}
 
 const navLinkClass = (active: boolean) =>
   `relative text-sm font-medium transition-colors ${
@@ -86,7 +100,7 @@ export function Header() {
         scrolled ? "shadow-md border-b border-border" : "border-b border-border/60"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+      <div className={cn(LAYOUT.container, "h-20 flex items-center justify-between")}>
         <a href="#home" className="flex items-center">
           <img src={logoImg} alt="WhiteHouse Education Foundation" className="h-14 w-auto" width={56} height={56} />
         </a>
@@ -169,7 +183,7 @@ export function Hero() {
       <motion.div
         initial="hidden" animate="show"
         variants={{ show: { transition: { staggerChildren: 0.12 } } }}
-        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-32 text-white drop-shadow-md"
+        className={cn(LAYOUT.container, "relative z-10 py-32 text-white drop-shadow-md")}
       >
         <motion.p variants={fadeUp} className="text-sm font-medium text-white/90">
           Kathmandu University Affiliated Programs
@@ -227,9 +241,10 @@ export function Ticker() {
 export function Search_() {
   const filters = ["BIT", "B.Tech Ed IT"];
   return (
-    <section className="max-w-7xl mx-auto px-6 lg:px-10 py-8 md:py-10">
+    <section className={LAYOUT.section}>
+      <SectionContainer>
       <Reveal>
-        <div className="rounded-3xl bg-card border border-border shadow-xl shadow-primary/10 p-6 md:p-8">
+        <div className={cn("rounded-3xl bg-card border border-border shadow-xl shadow-primary/10", LAYOUT.cardPadding)}>
           <div className="flex flex-col md:flex-row gap-4 items-stretch">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
@@ -247,6 +262,7 @@ export function Search_() {
           </div>
         </div>
       </Reveal>
+      </SectionContainer>
     </section>
   );
 }
@@ -258,25 +274,25 @@ const programs = [
 
 export function Programs() {
   return (
-    <section id="programs" className="py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section id="programs" className={LAYOUT.section}>
+      <SectionContainer>
         <Reveal className="max-w-3xl">
           <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">Programs</span>
           <h2 className="mt-3 text-3xl md:text-5xl font-semibold">Future-ready degrees, designed with industry</h2>
           <p className="mt-4 text-muted-foreground text-lg">Affiliated to Kathmandu University. Built for global outcomes.</p>
         </Reveal>
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className={cn(LAYOUT.contentGap, "grid grid-cols-1 md:grid-cols-2 w-full", LAYOUT.gridGap)}>
           {programs.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
               <article className="group rounded-3xl overflow-hidden bg-card border border-border shadow-xl shadow-primary/5 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/15 h-full flex flex-col">
                 <div className="aspect-[4/3] overflow-hidden">
                   <img src={p.img} alt={p.title} loading="lazy" className="size-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 </div>
-                <div className="p-6 flex-1 flex flex-col">
+                <div className={cn(LAYOUT.cardPadding, "flex-1 flex flex-col")}>
                   <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground font-semibold">{p.tag}</span>
                   <h3 className="mt-2 font-semibold text-lg leading-snug">{p.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground flex-1">{p.desc}</p>
-                  <a href="#" className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-black group-hover:text-black/70 transition-colors">
+                  <a href="#" className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-black group-hover:text-black/70 transition-colors">
                     Learn more <ArrowRight className="size-4" />
                   </a>
                 </div>
@@ -284,7 +300,7 @@ export function Programs() {
             </Reveal>
           ))}
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 }
@@ -298,48 +314,50 @@ const steps = [
 
 export function NextSteps() {
   return (
-    <section id="admissions" className="py-20 md:py-28 bg-secondary">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section id="admissions" className={cn(LAYOUT.section, "bg-secondary")}>
+      <SectionContainer>
         <Reveal>
           <h2 className="text-3xl md:text-5xl font-semibold text-center max-w-3xl mx-auto">Your next academic step</h2>
         </Reveal>
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className={cn(LAYOUT.contentGap, "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4", LAYOUT.gridGap)}>
           {steps.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.08}>
-              <div className="group rounded-3xl bg-card border border-border p-7 h-full transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/30">
+              <div className={cn("group rounded-3xl bg-card border border-border h-full transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/30", LAYOUT.cardPadding)}>
                 <div className="size-12 rounded-2xl bg-primary text-primary-foreground grid place-items-center group-hover:bg-primary/90 transition-colors">
                   <s.icon className="size-5" />
                 </div>
-                <h3 className="mt-5 font-semibold text-lg">{s.title}</h3>
+                <h3 className="mt-5 flex items-center gap-1 font-semibold text-lg">
+                  {s.title}
+                  <ChevronRight className="size-5 shrink-0 text-muted-foreground transition-all group-hover:translate-x-1 group-hover:text-black" />
+                </h3>
                 <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
-                <ChevronRight className="mt-5 size-5 text-muted-foreground group-hover:text-black group-hover:translate-x-1 transition-all" />
               </div>
             </Reveal>
           ))}
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 }
 
 export function Research() {
   return (
-    <section id="research" className="py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section id="research" className={LAYOUT.section}>
+      <SectionContainer className={cn("grid lg:grid-cols-2 items-center", LAYOUT.splitGap)}>
         <Reveal>
           <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">Research</span>
           <h2 className="mt-3 text-3xl md:text-5xl font-semibold leading-tight">Research & Innovation Ecosystem</h2>
-          <p className="mt-5 text-muted-foreground text-lg">
+          <p className="mt-4 text-muted-foreground text-lg">
             Hands-on labs in AI, Robotics, IoT and applied innovation — preparing students to solve real-world problems alongside industry mentors.
           </p>
-          <div className="mt-8 grid grid-cols-2 gap-4">
+          <div className={cn(LAYOUT.contentGap, "grid grid-cols-2", LAYOUT.gridGap)}>
             {[
               { icon: Cpu, label: "AI & ML" },
               { icon: Sparkles, label: "Robotics" },
               { icon: Shield, label: "IoT Systems" },
               { icon: BookOpen, label: "Innovation Labs" },
             ].map((x) => (
-              <div key={x.label} className="rounded-2xl border border-border p-4 flex items-center gap-3 bg-card">
+              <div key={x.label} className={cn("rounded-2xl border border-border flex items-center gap-3 bg-card", LAYOUT.cardPadding)}>
                 <div className="size-10 rounded-xl bg-muted text-black grid place-items-center"><x.icon className="size-5" /></div>
                 <span className="font-medium">{x.label}</span>
               </div>
@@ -352,7 +370,7 @@ export function Research() {
             <img src={researchImg} alt="AI Robotics & IoT Innovation" loading="lazy" className="relative rounded-3xl w-full aspect-[4/3] object-cover shadow-2xl shadow-primary/20" />
           </div>
         </Reveal>
-      </div>
+      </SectionContainer>
     </section>
   );
 }
@@ -365,14 +383,14 @@ const news = [
 
 export function WhatsNew() {
   return (
-    <section id="about" className="py-20 md:py-28 bg-navy-deep text-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section id="about" className={cn(LAYOUT.section, "bg-navy-deep text-white")}>
+      <SectionContainer>
         <Reveal>
           <span className="text-xs uppercase tracking-[0.2em] text-white/80">What's New</span>
           <h2 className="mt-3 text-3xl md:text-5xl font-semibold">Leadership & latest updates</h2>
         </Reveal>
         <Reveal delay={0.05}>
-          <div className="mt-12 grid lg:grid-cols-[1fr_2fr] gap-10 items-center rounded-3xl bg-white/5 border border-white/10 p-8 lg:p-12 backdrop-blur">
+          <div className={cn(LAYOUT.contentGap, "grid lg:grid-cols-[1fr_2fr] items-center rounded-3xl bg-white/5 border border-white/10 backdrop-blur", LAYOUT.splitGap, LAYOUT.cardPadding)}>
             <div className="flex justify-center">
               <div className="relative w-56 lg:w-72 aspect-[3/4] overflow-hidden rounded-2xl border-2 border-white/40 shadow-lg">
                 <img
@@ -390,22 +408,22 @@ export function WhatsNew() {
               </p>
               <p className="mt-4 text-sm font-semibold text-white/90">Yuvraj Sharma</p>
               <p className="text-xs text-white/60">President</p>
-              <Button className="mt-7 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">Read Full Message <ArrowRight className="ml-1 size-4" /></Button>
+              <Button className="mt-6 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">Read Full Message <ArrowRight className="ml-1 size-4" /></Button>
             </div>
           </div>
         </Reveal>
-        <div className="mt-10 grid md:grid-cols-3 gap-6">
+        <div className={cn(LAYOUT.contentGap, "grid md:grid-cols-3", LAYOUT.gridGap)}>
           {news.map((n, i) => (
             <Reveal key={n.title} delay={i * 0.08}>
-              <article className="group rounded-3xl bg-white/5 border border-white/10 p-7 h-full transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:border-white/30">
+              <article className={cn("group rounded-3xl bg-white/5 border border-white/10 h-full transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:border-white/30", LAYOUT.cardPadding)}>
                 <span className="text-[11px] uppercase tracking-[0.18em] text-white/80 font-semibold">{n.tag}</span>
                 <h3 className="mt-3 font-semibold text-lg leading-snug">{n.title}</h3>
-                <a href="#" className="mt-5 inline-flex items-center gap-1 text-sm text-white/80 group-hover:text-white">Read more <ArrowRight className="size-4" /></a>
+                <a href="#" className="mt-4 inline-flex items-center gap-1 text-sm text-white/80 group-hover:text-white">Read more <ArrowRight className="size-4" /></a>
               </article>
             </Reveal>
           ))}
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 }
@@ -419,8 +437,8 @@ const events = [
 
 export function Events() {
   return (
-    <section className="py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section className={LAYOUT.section}>
+      <SectionContainer>
         <Reveal className="flex items-end justify-between flex-wrap gap-6">
           <div>
             <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Events</span>
@@ -428,14 +446,14 @@ export function Events() {
           </div>
           <a href="#" className="text-sm font-medium inline-flex items-center gap-1.5">All events <ArrowRight className="size-4" /></a>
         </Reveal>
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className={cn(LAYOUT.contentGap, "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4", LAYOUT.gridGap)}>
           {events.map((e, i) => (
             <Reveal key={e.title} delay={i * 0.08}>
               <article className="group rounded-3xl bg-card border border-border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10 h-full flex flex-col">
                 <div className="aspect-video overflow-hidden">
                   <img src={e.img} alt={e.title} loading="lazy" className="size-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
-                <div className="p-6 flex-1 flex flex-col">
+                <div className={cn(LAYOUT.cardPadding, "flex-1 flex flex-col")}>
                   <div className="flex items-center gap-4 text-xs text-muted-foreground">
                     <span className="inline-flex items-center gap-1"><Calendar className="size-3.5" />{e.date}</span>
                     <span className="inline-flex items-center gap-1"><Clock className="size-3.5" />{e.time}</span>
@@ -447,7 +465,7 @@ export function Events() {
             </Reveal>
           ))}
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 }
@@ -460,14 +478,14 @@ const supports = [
 
 export function Support() {
   return (
-    <section id="campus-life" className="py-20 md:py-28 bg-secondary">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section id="campus-life" className={cn(LAYOUT.section, "bg-secondary")}>
+      <SectionContainer className={cn("grid lg:grid-cols-2 items-center", LAYOUT.splitGap)}>
         <Reveal>
           <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Student Support</span>
           <h2 className="mt-3 text-3xl md:text-5xl font-semibold leading-tight">Beyond the classroom — we back every student</h2>
-          <div className="mt-8 space-y-5">
+          <div className={cn(LAYOUT.contentGap, "space-y-4")}>
             {supports.map((s) => (
-              <div key={s.title} className="rounded-2xl bg-card border border-border p-5">
+              <div key={s.title} className={cn("rounded-2xl bg-card border border-border", LAYOUT.cardPadding)}>
                 <div className="flex items-start gap-4">
                   <div className="size-11 rounded-xl bg-muted text-black grid place-items-center shrink-0"><s.icon className="size-5" /></div>
                   <div className="flex-1">
@@ -488,16 +506,16 @@ export function Support() {
         <Reveal delay={0.1}>
           <img src={studentLifeImg} alt="Student life — clubs & hackathons" loading="lazy" className="rounded-3xl w-full aspect-[4/5] object-cover shadow-2xl shadow-primary/10" />
         </Reveal>
-      </div>
+      </SectionContainer>
     </section>
   );
 }
 
 export function Vision() {
   return (
-    <section id="tour" className="py-20 md:py-28 bg-navy-deep text-white relative overflow-hidden">
+    <section id="tour" className={cn(LAYOUT.section, "bg-navy-deep text-white relative overflow-hidden")}>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(134,0,29,0.15),transparent_60%)]" />
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative">
+      <SectionContainer className={cn("grid lg:grid-cols-2 items-center relative", LAYOUT.splitGap)}>
         <Reveal>
           <div className="relative rounded-3xl overflow-hidden cyan-glow">
             <img src={campusTour} alt="Virtual campus tour" loading="lazy" className="w-full aspect-video object-cover" />
@@ -513,43 +531,43 @@ export function Vision() {
           <p className="mt-4 text-2xl md:text-3xl font-display leading-snug">
             To establish a future-focused academic ecosystem in Eastern Nepal.
           </p>
-          <div className="mt-8 flex flex-wrap gap-2">
+          <div className={cn(LAYOUT.contentGap, "flex flex-wrap gap-2")}>
             {["Integrity","Excellence","Innovation","Inclusiveness","Leadership"].map((v) => (
               <span key={v} className="px-4 py-2 rounded-full border border-white/30 bg-white/10 text-white text-sm">{v}</span>
             ))}
           </div>
         </Reveal>
-      </div>
+      </SectionContainer>
     </section>
   );
 }
 
 export function Mosaic() {
   return (
-    <section className="py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section className={LAYOUT.section}>
+      <SectionContainer>
         <Reveal>
           <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">By the numbers</span>
           <h2 className="mt-3 text-3xl md:text-5xl font-semibold max-w-3xl">A campus built for ambition</h2>
         </Reveal>
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px] gap-4">
+        <div className={cn(LAYOUT.contentGap, "grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px]", LAYOUT.gridGap)}>
           <div className="row-span-2 col-span-2 rounded-3xl overflow-hidden relative group">
             <img src={campusImg} alt="Campus infrastructure" loading="lazy" className="size-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/20 to-transparent p-6 flex items-end text-white">
+            <div className={cn("absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/20 to-transparent flex items-end text-white", LAYOUT.cardPadding)}>
               <div>
                 <div className="text-xs uppercase tracking-widest text-white/80">Campus Infrastructure</div>
                 <div className="font-display text-2xl mt-1">Modern facilities, built for learning</div>
               </div>
             </div>
           </div>
-          <div className="rounded-3xl bg-navy-deep text-white p-6 flex flex-col justify-between">
+          <div className={cn("rounded-3xl bg-navy-deep text-white flex flex-col justify-between", LAYOUT.cardPadding)}>
             <span className="text-xs uppercase tracking-widest text-white/80">Mentors & Tie-ups</span>
             <div>
               <div className="text-5xl font-display font-semibold text-white">150+</div>
               <div className="text-sm text-white/70 mt-1">Industry partners</div>
             </div>
           </div>
-          <div className="rounded-3xl bg-primary text-primary-foreground p-6 flex flex-col justify-between">
+          <div className={cn("rounded-3xl bg-primary text-primary-foreground flex flex-col justify-between", LAYOUT.cardPadding)}>
             <span className="text-xs uppercase tracking-widest">Affiliation</span>
             <div>
               <div className="text-2xl font-display font-semibold">Kathmandu University</div>
@@ -558,18 +576,18 @@ export function Mosaic() {
           </div>
           <div className="rounded-3xl overflow-hidden relative group">
             <img src={smartClass} alt="Smart classroom" loading="lazy" className="size-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div className="absolute inset-0 bg-navy-deep/60 p-5 flex items-end text-white">
+            <div className={cn("absolute inset-0 bg-navy-deep/60 flex items-end text-white", LAYOUT.cardPadding)}>
               <span className="font-medium">Smart Classrooms</span>
             </div>
           </div>
           <div className="rounded-3xl overflow-hidden relative group">
             <img src={aiLab} alt="AI labs" loading="lazy" className="size-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div className="absolute inset-0 bg-navy-deep/60 p-5 flex items-end text-white">
+            <div className={cn("absolute inset-0 bg-navy-deep/60 flex items-end text-white", LAYOUT.cardPadding)}>
               <span className="font-medium">AI Innovation Labs</span>
             </div>
           </div>
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 }
@@ -577,18 +595,18 @@ export function Mosaic() {
 export function Lead() {
   const [sent, setSent] = useState(false);
   return (
-    <section id="contact" className="py-20 md:py-28 bg-secondary">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16">
+    <section id="contact" className={cn(LAYOUT.section, "bg-secondary")}>
+      <SectionContainer className={cn("grid lg:grid-cols-2", LAYOUT.splitGap)}>
         <Reveal>
           <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Request Information</span>
           <h2 className="mt-3 text-3xl md:text-5xl font-semibold">Talk to admissions</h2>
           <p className="mt-4 text-muted-foreground text-lg">Tell us a little about you and we'll be in touch with personalised guidance.</p>
-          <div className="mt-8 space-y-4">
+          <div className={cn(LAYOUT.contentGap, "space-y-4")}>
             <div className="flex items-center gap-3"><MapPin className="size-5 text-black" /><span>Damak, Jhapa, Nepal</span></div>
             <div className="flex items-center gap-3"><Phone className="size-5 text-black" /><span>01-5199456 / 57</span></div>
             <div className="flex items-center gap-3"><Mail className="size-5 text-black" /><span>info@whitehouseeducation.edu.np</span></div>
           </div>
-          <div className="mt-8 rounded-3xl overflow-hidden border border-border aspect-[5/3] bg-card">
+          <div className={cn(LAYOUT.contentGap, "rounded-3xl overflow-hidden border border-border aspect-[5/3] bg-card")}>
             <iframe
               title="Damak campus map"
               src="https://www.openstreetmap.org/export/embed.html?bbox=87.6857%2C26.6586%2C87.7257%2C26.6986&layer=mapnik"
@@ -600,7 +618,7 @@ export function Lead() {
         <Reveal delay={0.1}>
           <form
             onSubmit={(e) => { e.preventDefault(); setSent(true); }}
-            className="rounded-3xl bg-card border border-border p-8 shadow-xl shadow-primary/10 space-y-4"
+            className={cn("rounded-3xl bg-card border border-border shadow-xl shadow-primary/10 space-y-4", LAYOUT.cardPadding)}
           >
             {sent ? (
               <div className="py-10 text-center">
@@ -625,7 +643,7 @@ export function Lead() {
             )}
           </form>
         </Reveal>
-      </div>
+      </SectionContainer>
     </section>
   );
 }
@@ -640,7 +658,7 @@ export function Footer() {
   ];
   return (
     <footer className="bg-navy-deep text-white/80">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 grid md:grid-cols-2 lg:grid-cols-6 gap-10">
+      <SectionContainer className={cn(LAYOUT.section, "grid md:grid-cols-2 lg:grid-cols-6", LAYOUT.gridGap)}>
         <div className="lg:col-span-1">
           <a href="#home" className="inline-flex">
             <img src={logoImg} alt="WhiteHouse Education Foundation" className="h-16 w-auto" width={64} height={64} />
@@ -655,12 +673,12 @@ export function Footer() {
             </ul>
           </div>
         ))}
-      </div>
+      </SectionContainer>
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-6 flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-white/60">
+        <SectionContainer className="py-6 flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-white/60">
           <span>© {new Date().getFullYear()} WhiteHouse Education Foundation. All rights reserved.</span>
           <span>Damak, Jhapa, Nepal · 01-5199456 / 57 · info@whitehouseeducation.edu.np</span>
-        </div>
+        </SectionContainer>
       </div>
     </footer>
   );

@@ -2,7 +2,7 @@
   "botName": "WH Assistant",
   "status": "Online",
   "welcomeMessage": "Hello! 👋 Welcome to WhiteHouse Education Foundation. I'm here to help you with admissions, programs, scholarships, campus life, and more. How can I assist you today?",
-  "fallbackMessage": "We're currently building our chatbot and it will be available soon! 🚀 For immediate help, please contact us at info@whitehouseeducation.edu.np or call 01-5199456 / 57. Thank you for your patience!",
+  "fallbackMessage": "We're currently building our chatbot and it will be available soon! For immediate help, please contact us at info@whitehouseeducation.edu.np or call 01-5199456 / 57. Thank you for your patience!",
   "quickQuestions": [
     "How do I apply?",
     "What programs are offered?",
