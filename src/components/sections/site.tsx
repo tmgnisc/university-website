@@ -10,7 +10,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import logoImg from "@/assets/18.png";
+const NAV_LOGO = "https://ik.imagekit.io/qn3m81dsk/university/Address%20(2).png";
+const FOOTER_LOGO = "https://ik.imagekit.io/qn3m81dsk/university/Address%20(1).png";
 import heroImg from "@/assets/hero-campus.jpg";
 import progAi from "@/assets/prog-ai.jpg";
 import progEdtech from "@/assets/prog-edtech.jpg";
@@ -100,9 +101,9 @@ export function Header() {
         scrolled ? "shadow-md border-b border-border" : "border-b border-border/60"
       }`}
     >
-      <div className={cn(LAYOUT.container, "h-20 flex items-center justify-between")}>
+      <div className={cn(LAYOUT.container, "h-22 flex items-center justify-between")}>
         <a href="#home" className="flex items-center">
-          <img src={logoImg} alt="WhiteHouse Education Foundation" className="h-14 w-auto" width={56} height={56} />
+          <img src={NAV_LOGO} alt="WCBT Damak Campus" className="h-[4.5rem] w-auto sm:h-22" />
         </a>
         <nav className="hidden lg:flex items-center gap-8">
           {NAV.map((n) => {
@@ -661,7 +662,7 @@ export function Footer() {
       <SectionContainer className={cn(LAYOUT.section, "grid md:grid-cols-2 lg:grid-cols-6", LAYOUT.gridGap)}>
         <div className="lg:col-span-1">
           <a href="#home" className="inline-flex">
-            <img src={logoImg} alt="WhiteHouse Education Foundation" className="h-16 w-auto" width={64} height={64} />
+            <img src={FOOTER_LOGO} alt="WCBT Damak Campus" className="h-20 w-auto sm:h-24" />
           </a>
           <p className="mt-5 text-sm text-white/60">Building Eastern Nepal's future-focused academic ecosystem.</p>
         </div>
