@@ -119,16 +119,34 @@ function QuickQuestions({ onSelect }: { onSelect: (question: string) => void }) 
   );
 }
 
+function TypingIndicator() {
+  return (
+    <div className="flex gap-2">
+      <div className="mt-1 grid size-7 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+        <Bot className="size-3.5" />
+      </div>
+      <div className="rounded-2xl rounded-tl-md bg-white px-4 py-3 shadow-sm">
+        <div className="flex gap-1">
+          <span className="size-1.5 animate-bounce rounded-full bg-muted-foreground/50 [animation-delay:0ms]" />
+          <span className="size-1.5 animate-bounce rounded-full bg-muted-foreground/50 [animation-delay:150ms]" />
+          <span className="size-1.5 animate-bounce rounded-full bg-muted-foreground/50 [animation-delay:300ms]" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
+  const [typing, setTyping] = useState(false);
   const [messages, setMessages] = useState<Message[]>([createWelcomeMessage()]);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, open]);
+  }, [messages, open, typing]);
 
   useEffect(() => {
     if (open) {
@@ -139,18 +157,33 @@ export function ChatWidget() {
 
   const sendMessage = (text: string) => {
     const trimmed = text.trim();
-    if (!trimmed) return;
+    if (!trimmed || typing) return;
 
+    const id = Date.now();
     setMessages((prev) => [
       ...prev,
       {
-        id: `user-${Date.now()}`,
+        id: `user-${id}`,
         role: "user",
         text: trimmed,
         time: formatTime(),
       },
     ]);
     setInput("");
+    setTyping(true);
+
+    setTimeout(() => {
+      setTyping(false);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `bot-${id}`,
+          role: "bot",
+          text: chatbotData.fallbackMessage,
+          time: formatTime(),
+        },
+      ]);
+    }, 900);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -237,6 +270,7 @@ export function ChatWidget() {
                     </div>
                   </div>
                 ))}
+                {typing && <TypingIndicator />}
                 <div ref={bottomRef} />
               </div>
             </ScrollArea>
