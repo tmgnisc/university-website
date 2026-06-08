@@ -1,19 +1,334 @@
 {
   "botName": "WH Assistant",
   "status": "Online",
-  "welcomeMessage": "Hello! 👋 Welcome to WhiteHouse Education Foundation. I'm here to help you with admissions, programs, scholarships, campus life, and more. How can I assist you today?",
-  "fallbackMessage": "We're currently building our chatbot and it will be available soon! For immediate help, please contact us at info@whitehouseeducation.edu.np or call 01-5199456 / 57. Thank you for your patience!",
+  "welcomeMessage": "Hello! Welcome to WhiteHouse Education Foundation. I'm here to help you with admissions, programs, scholarships, campus life, and more. How can I assist you today?",
+  "fallbackMessage": "I couldn't find a specific answer to that. Please contact us at info@whitehouseeducation.edu.np or call 01-5199456 / 57. You can also reach us at 9801268585.",
+  "offTopicMessage": "I'm here to help with questions about WhiteHouse College of Business & Technology (WCBT) only — such as programs, admissions, fees, scholarships, campus facilities, eligibility, and contact details.\n\nPlease ask something related to the college or our courses.",
+  "domainKeywords": [
+    "college", "university", "course", "courses", "education", "student", "students", "study", "enroll", "enrollment", "degree", "academic", "campus", "admission", "admissions", "wcbt", "wef", "whitehouse", "bit", "btech", "scholarship", "fee", "fees", "tuition", "program", "programs", "damak", "jhapa", "ku", "kathmandu", "hostel", "library", "lab", "internship", "career", "apply", "eligibility", "semester", "faculty", "exam", "entrance"
+  ],
   "quickQuestions": [
-    "How do I apply?",
+    "What is WCBT?",
     "What programs are offered?",
-    "Admission requirements",
+    "How can I apply?",
     "Scholarship information",
-    "Tuition & fees",
+    "BIT fee structure",
     "Campus location",
     "Contact details",
-    "Office hours",
-    "KU affiliation",
-    "Hostel facilities"
+    "What is BIT?",
+    "Career opportunities",
+    "Campus facilities"
   ],
-  "entries": []
+  "entries": [
+    {
+      "id": "g1",
+      "question": "Hello",
+      "priority": 50,
+      "keywords": ["hi", "hello", "hey", "hii", "helo", "good morning", "good afternoon", "good evening", "namaste", "namaskar", "greetings"],
+      "answer": "Hello! Welcome to WhiteHouse College of Business & Technology (WCBT). I can help you with programs, admissions, fees, scholarships, campus facilities, and more.\n\nWhat would you like to know?"
+    },
+    {
+      "id": "g2",
+      "question": "Thank you",
+      "priority": 50,
+      "keywords": ["thank you", "thanks", "thankyou", "thx", "appreciate it", "much appreciated", "dhanyabad"],
+      "answer": "You're welcome! If you have more questions about WCBT, admissions, or our programs, feel free to ask anytime."
+    },
+    {
+      "id": "g3",
+      "question": "Goodbye",
+      "priority": 50,
+      "keywords": ["bye", "goodbye", "good bye", "see you", "see ya", "take care", "later"],
+      "answer": "Goodbye! Thank you for visiting WCBT. We hope to see you on campus soon.\n\nFor admissions help: info@whitehouseeducation.edu.np | 01-5199456 / 57"
+    },
+    {
+      "id": "g4",
+      "question": "What can you help me with?",
+      "priority": 50,
+      "keywords": ["what can you do", "how can you help", "help me", "need help", "what do you know", "your capabilities", "assist me", "support"],
+      "answer": "I can help you with information about:\n• WCBT & WEF overview\n• Programs (BIT & B.Tech Ed IT)\n• Admissions & eligibility\n• Fees & scholarships\n• Campus facilities & student life\n• Careers & internships\n• Contact details\n\nTry asking a question or tap a quick question below!"
+    },
+    {
+      "id": "g5",
+      "question": "Who are you?",
+      "priority": 50,
+      "keywords": ["who are you", "what are you", "your name", "are you a bot", "are you human", "chatbot"],
+      "answer": "I'm WH Assistant, the virtual help desk for WhiteHouse College of Business & Technology (WCBT). I'm here to answer your questions about our college, programs, and admissions."
+    },
+    {
+      "id": "g6",
+      "question": "How are you?",
+      "priority": 40,
+      "keywords": ["how are you", "how r u", "how do you do", "are you fine"],
+      "answer": "I'm doing great, thank you for asking! I'm ready to help you learn more about WCBT.\n\nWould you like to know about our programs, admissions, or campus?"
+    },
+    {
+      "id": "g7",
+      "question": "Okay",
+      "priority": 30,
+      "keywords": ["ok", "okay", "alright", "got it", "understood"],
+      "answer": "Glad that helped! Feel free to ask if you need anything else about WCBT — programs, fees, scholarships, or how to apply."
+    },
+    {
+      "id": "g8",
+      "question": "Sorry",
+      "priority": 30,
+      "keywords": ["sorry", "my bad", "apologies"],
+      "answer": "No worries at all! How can I help you with WCBT today?"
+    },
+    {
+      "id": "g9",
+      "question": "I want more information",
+      "priority": 40,
+      "keywords": ["more info", "more information", "tell me more", "learn more", "details please", "give me details", "i want to know"],
+      "answer": "I'd be happy to share more! You can ask about:\n• BIT or B.Tech Ed IT programs\n• Admission steps & eligibility\n• Fees & scholarships\n• Campus facilities in Damak\n• Career paths after graduation\n\nWhat topic interests you most?"
+    },
+    {
+      "id": "g10",
+      "question": "Is anyone available to talk?",
+      "priority": 40,
+      "keywords": ["talk to someone", "speak to someone", "human agent", "real person", "call me", "callback", "representative", "admissions officer"],
+      "answer": "For personal assistance, please contact our admissions team:\nPhone: 01-5199456 / 57\nMobile: 9801268585\nEmail: info@whitehouseeducation.edu.np\n\nOur team will be happy to guide you!"
+    },
+    {
+      "id": "q1",
+      "question": "What is WhiteHouse College of Business & Technology (WCBT)?",
+      "keywords": ["what is wcbt", "about wcbt", "whitehouse college", "whitehouse college of business", "wcbt", "business and technology"],
+      "answer": "WhiteHouse College of Business & Technology (WCBT) is a higher education institution established under WhiteHouse Education Foundation (WEF) with a vision to provide quality, technology-driven, industry-oriented education in Eastern Nepal.\n\nThe college aims to become a leading center for Information Technology, Innovation, Research, Entrepreneurship, and Digital Transformation."
+    },
+    {
+      "id": "q2",
+      "question": "What is WhiteHouse Education Foundation (WEF)?",
+      "keywords": ["what is wef", "whitehouse education foundation", "wef", "education foundation"],
+      "answer": "WhiteHouse Education Foundation (WEF) is an educational organization dedicated to academic excellence, innovation, research, skill development, and community engagement.\n\nWEF promotes quality education through schools, colleges, research initiatives, professional training, and industry collaboration."
+    },
+    {
+      "id": "q3",
+      "question": "Where is WCBT located?",
+      "keywords": ["where is wcbt", "location", "address", "campus location", "damak", "jhapa", "where located", "google map", "sbss", "siddhartha boarding"],
+      "answer": "WCBT operates from the Siddhartha Boarding Secondary School (SBSS) premises located in Damak, Jhapa, Nepal.\n\nAddress: Damak, Jhapa, Nepal\nPhone: 01-5199456 / 57\nEmail: info@whitehouseeducation.edu.np"
+    },
+    {
+      "id": "q4",
+      "question": "Why should I choose WCBT?",
+      "keywords": ["why choose wcbt", "why wcbt", "why should i choose", "benefits of wcbt", "advantages"],
+      "answer": "Students choose WCBT because of:\n• Kathmandu University-affiliated programs\n• Technology-focused education\n• Industry-oriented curriculum\n• Modern learning environment\n• Computer laboratories\n• Digital learning systems\n• Career counseling support\n• Internship and industry exposure\n• Research and innovation culture\n• Affordable access to quality education in Eastern Nepal"
+    },
+    {
+      "id": "q5",
+      "question": "What programs are offered?",
+      "keywords": ["what programs", "programs offered", "courses offered", "degrees offered", "available programs", "study programs", "which course", "which program", "what can i study", "subjects offered"],
+      "answer": "Current Programs:\n• Bachelor in Information Technology (BIT)\n• Bachelor of Technology in Educational Information Technology (B.Tech Ed IT)\n\nFuture Programs may include:\n• BHI\n• BIM\n• BBA\n• MBA\n• AI and Data Science Programs\n• Professional Certifications"
+    },
+    {
+      "id": "q6",
+      "question": "What is BIT?",
+      "keywords": ["what is bit", "about bit", "bachelor in information technology", "bit program", "bit course"],
+      "answer": "Bachelor in Information Technology (BIT) is a technology-focused undergraduate program designed to develop expertise in:\n• Programming\n• Software Development\n• Database Systems\n• Networking\n• Cybersecurity\n• Cloud Computing\n• Artificial Intelligence\n• Web and Mobile Development"
+    },
+    {
+      "id": "q7",
+      "question": "What is B.Tech Ed IT?",
+      "keywords": ["what is b.tech ed it", "btech ed it", "b.tech ed it", "educational information technology", "ed tech it", "technology in education"],
+      "answer": "Bachelor of Technology in Educational Information Technology (B.Tech Ed IT) combines technology and education.\n\nThe program prepares graduates for careers in:\n• Educational Technology\n• Digital Learning Design\n• E-Learning Systems\n• Instructional Design\n• Learning Management Systems\n• Educational Research\n• ICT in Education"
+    },
+    {
+      "id": "q8",
+      "question": "Who can apply for BIT?",
+      "keywords": ["who can apply for bit", "bit eligibility", "bit requirements", "apply for bit", "bit admission requirements", "grade xii bit"],
+      "answer": "Students who have completed Grade XII or equivalent qualifications recognized by Kathmandu University and meet KU eligibility requirements may apply for BIT.\n\nFor detailed requirements, please contact admissions or refer to Kathmandu University's official eligibility criteria."
+    },
+    {
+      "id": "q9",
+      "question": "Who can apply for B.Tech Ed IT?",
+      "keywords": ["who can apply for b.tech", "btech ed it eligibility", "b.tech ed it requirements", "apply for b.tech ed it", "grade xii b.tech"],
+      "answer": "Students who have completed Grade XII or equivalent qualifications recognized by Kathmandu University may apply for B.Tech Ed IT, subject to program eligibility requirements.\n\nFor official eligibility details, please contact the admissions office."
+    },
+    {
+      "id": "q10",
+      "question": "How can I apply?",
+      "keywords": ["how to apply", "how can i apply", "application process", "admission process", "apply now", "admission steps", "register", "registration", "enroll", "enrollment process", "join wcbt"],
+      "answer": "The admission process generally includes:\n1. Application Submission\n2. Entrance Examination\n3. Interview (if applicable)\n4. Admission Confirmation\n5. Fee Payment\n6. Enrollment\n\nContact us at info@whitehouseeducation.edu.np or 01-5199456 / 57 for the latest admission guidance."
+    },
+    {
+      "id": "q11",
+      "question": "Is there an entrance examination?",
+      "keywords": ["entrance exam", "entrance examination", "admission test", "entrance test", "ku entrance"],
+      "answer": "Yes. Admissions are conducted according to Kathmandu University admission procedures and requirements.\n\nSpecific details are announced during the admission cycle. Please contact admissions for the latest information."
+    },
+    {
+      "id": "q12",
+      "question": "When will admissions open?",
+      "keywords": ["when admissions open", "admission open", "admissions date", "intake date", "when to apply", "admission cycle"],
+      "answer": "Admissions generally open before each academic intake.\n\nFor the latest updates, contact:\nPhone: 01-5199456 / 57\nMobile: 9801268585\nEmail: info@whitehouseeducation.edu.np\nWebsite: whitehouseeducation.edu.np"
+    },
+    {
+      "id": "q13",
+      "question": "What is the fee structure for BIT?",
+      "keywords": ["bit fee", "bit fees", "bit fee structure", "bit tuition", "bit cost", "bit price", "960000", "9,60,000"],
+      "answer": "Approximate Program Fee for BIT:\nNPR 9,60,000 for the complete four-year program.\n\nStudents should verify the latest fee structure during admission, as fees are subject to approval and periodic revision."
+    },
+    {
+      "id": "q14",
+      "question": "What is the fee structure for B.Tech Ed IT?",
+      "keywords": ["b.tech ed it fee", "btech fee", "b.tech fee structure", "b.tech tuition", "b.tech cost", "642000", "6,42,000"],
+      "answer": "Approximate Program Fee for B.Tech Ed IT:\nNPR 6,42,000 for the complete four-year program.\n\nOfficial fees are subject to approval and periodic revision. Please confirm during admission."
+    },
+    {
+      "id": "q15",
+      "question": "Are scholarships available?",
+      "keywords": ["scholarship", "scholarships", "financial aid", "merit scholarship", "need based scholarship", "fee waiver", "discount", "free study", "funding", "grant"],
+      "answer": "Yes. Scholarship schemes may include:\n• Merit Scholarships\n• Need-Based Scholarships\n• Institutional Scholarships\n• Special Category Scholarships\n• Partner Organization Scholarships\n\nDetails are announced annually. Contact admissions for current scholarship information."
+    },
+    {
+      "id": "q16",
+      "question": "What facilities are available?",
+      "keywords": ["facilities", "campus facilities", "infrastructure", "amenities", "what facilities", "college facilities"],
+      "answer": "Students will have access to:\n• Modern Classrooms\n• Computer Labs\n• Library\n• Digital Resources\n• Conference Hall\n• Cafeteria\n• Sports Facilities\n• Counseling Services\n• Student Clubs\n• Parking Facilities\n• Internet Connectivity"
+    },
+    {
+      "id": "q17",
+      "question": "Is there a library?",
+      "keywords": ["library", "books", "digital resources", "e-books", "journals"],
+      "answer": "Yes. The library includes:\n• Physical Books\n• Reference Materials\n• Journals\n• Digital Resources\n• E-books\n• Research Materials"
+    },
+    {
+      "id": "q18",
+      "question": "Are computer labs available?",
+      "keywords": ["computer lab", "computer labs", "it lab", "labs available", "laboratory"],
+      "answer": "Yes. Dedicated computer laboratories are being developed to support both BIT and B.Tech Ed IT programs."
+    },
+    {
+      "id": "q19",
+      "question": "Will students receive internship opportunities?",
+      "keywords": ["internship", "internships", "industry exposure", "workplace learning", "placement support"],
+      "answer": "WCBT aims to establish partnerships with industry organizations to facilitate internships, projects, and workplace learning opportunities."
+    },
+    {
+      "id": "q20",
+      "question": "What career opportunities are available after BIT?",
+      "keywords": ["career after bit", "bit career", "jobs after bit", "bit job opportunities", "bit employment"],
+      "answer": "Graduates may work as:\n• Software Developer\n• System Analyst\n• Network Administrator\n• Cloud Engineer\n• AI Developer\n• Cybersecurity Specialist\n• Database Administrator\n• IT Consultant\n• Entrepreneur"
+    },
+    {
+      "id": "q21",
+      "question": "What career opportunities are available after B.Tech Ed IT?",
+      "keywords": ["career after b.tech", "b.tech ed it career", "jobs after b.tech", "edtech career", "education technology jobs"],
+      "answer": "Graduates may work as:\n• Educational Technologist\n• LMS Administrator\n• Instructional Designer\n• E-Learning Specialist\n• ICT Trainer\n• Educational Researcher\n• Academic Technology Coordinator"
+    },
+    {
+      "id": "q22",
+      "question": "Are there clubs and student activities?",
+      "keywords": ["clubs", "student activities", "student life", "extracurricular", "student clubs", "cultural programs"],
+      "answer": "Yes. Planned student engagement includes:\n• IT Club\n• Robotics Club\n• Innovation Club\n• Research Club\n• Sports Activities\n• Cultural Programs\n• Workshops\n• Hackathons\n• Community Service Projects"
+    },
+    {
+      "id": "q23",
+      "question": "Does WCBT organize hackathons?",
+      "keywords": ["hackathon", "hackathons", "coding competition", "innovation challenge", "tech events"],
+      "answer": "Yes. Hackathons, coding competitions, innovation challenges, workshops, and technology events are planned as part of student development activities."
+    },
+    {
+      "id": "q24",
+      "question": "Is the campus safe?",
+      "keywords": ["campus safe", "safety", "security", "fire safety", "emergency", "hygiene", "student safety"],
+      "answer": "Student safety is a priority. The institution is implementing:\n• Fire Safety Measures\n• Emergency Exit Plans\n• Structural Safety Compliance\n• Drinking Water Safety Measures\n• Sanitation and Hygiene Standards\n• First Aid Facilities"
+    },
+    {
+      "id": "q25",
+      "question": "How can I contact WCBT?",
+      "keywords": ["contact", "contact details", "phone number", "email", "reach wcbt", "get in touch", "office contact", "mobile number", "website", "call", "email address", "phone"],
+      "answer": "You can contact WCBT at:\nPhone: 01-5199456 / 57\nMobile: 9801268585\nEmail: info@whitehouseeducation.edu.np\nWebsite: whitehouseeducation.edu.np\nLocation: Damak, Jhapa, Nepal"
+    },
+    {
+      "id": "q26",
+      "question": "Why should parents trust WCBT?",
+      "keywords": ["parents trust", "parent faq", "why parents", "trust wcbt", "for parents"],
+      "answer": "Parents trust WCBT because it combines:\n• Educational Legacy\n• Industry-Relevant Programs\n• Technology-Driven Learning\n• Student Support Services\n• Career-Oriented Education\n• Academic Quality Standards\n• Focus on Employability"
+    },
+    {
+      "id": "q27",
+      "question": "How does WCBT support student success?",
+      "keywords": ["student success", "student support", "mentoring", "career guidance", "counseling", "academic mentoring"],
+      "answer": "The college provides:\n• Academic Mentoring\n• Counseling Services\n• Workshops and Seminars\n• Career Guidance\n• Internship Support\n• Industry Exposure\n• Project-Based Learning"
+    },
+    {
+      "id": "q28",
+      "question": "What are the tuition and fees?",
+      "keywords": ["tuition", "fee structure", "fees", "how much", "cost of study", "tuition fees", "program cost"],
+      "answer": "Approximate program fees:\n• BIT: NPR 9,60,000 for the complete four-year program\n• B.Tech Ed IT: NPR 6,42,000 for the complete four-year program\n\nFees are subject to approval and periodic revision. Please verify the latest structure during admission."
+    },
+    {
+      "id": "q29",
+      "question": "What career opportunities are available?",
+      "keywords": ["career opportunities", "job opportunities", "careers", "employment", "jobs after graduation"],
+      "answer": "After BIT, graduates may work as Software Developer, System Analyst, Network Administrator, Cloud Engineer, AI Developer, Cybersecurity Specialist, and more.\n\nAfter B.Tech Ed IT, graduates may work as Educational Technologist, LMS Administrator, Instructional Designer, E-Learning Specialist, ICT Trainer, and more.\n\nAsk about BIT or B.Tech Ed IT for a detailed career list."
+    },
+    {
+      "id": "q30",
+      "question": "Is WCBT affiliated with Kathmandu University?",
+      "keywords": ["ku affiliation", "kathmandu university", "ku affiliated", "affiliation", "affiliated college"],
+      "answer": "Yes. WCBT offers Kathmandu University-affiliated programs including BIT and B.Tech Ed IT, designed to meet KU academic standards with a technology-focused, industry-oriented approach."
+    },
+    {
+      "id": "q31",
+      "question": "Is hostel accommodation available?",
+      "keywords": ["hostel", "hostel facilities", "accommodation", "boarding", "stay", "residence", "where to stay", "living", "dormitory", "room"],
+      "answer": "Hostel and accommodation details are shared during the admission process. For the latest availability and facilities, please contact admissions at 01-5199456 / 57 or info@whitehouseeducation.edu.np."
+    },
+    {
+      "id": "q32",
+      "question": "What are the office hours?",
+      "keywords": ["office hours", "opening hours", "working hours", "when open", "office time", "visit office", "open time", "closing time"],
+      "answer": "For current office hours and visit timings, please contact:\nPhone: 01-5199456 / 57\nEmail: info@whitehouseeducation.edu.np\n\nOur team will share the latest schedule."
+    },
+    {
+      "id": "q33",
+      "question": "How long is the program?",
+      "keywords": ["how long", "program duration", "course duration", "how many years", "years of study", "four year", "4 year", "semester"],
+      "answer": "Both BIT and B.Tech Ed IT are four-year undergraduate programs under Kathmandu University affiliation.\n\nFor semester-wise structure details, contact the admissions office."
+    },
+    {
+      "id": "q34",
+      "question": "What documents are required for admission?",
+      "keywords": ["documents required", "required documents", "documents needed", "what documents", "papers needed", "certificate", "transcript", "marksheet"],
+      "answer": "Admission documents typically include academic certificates, transcripts/marksheets, identification documents, and other materials as per Kathmandu University and WCBT admission guidelines.\n\nContact admissions for the complete checklist for the current intake."
+    },
+    {
+      "id": "q35",
+      "question": "Can I visit the campus?",
+      "keywords": ["visit campus", "campus visit", "campus tour", "open day", "open house", "see campus", "tour", "visit college"],
+      "answer": "Yes! Prospective students and parents are welcome to visit WCBT in Damak, Jhapa.\n\nPlease contact us in advance to schedule a campus visit:\nPhone: 01-5199456 / 57\nEmail: info@whitehouseeducation.edu.np"
+    },
+    {
+      "id": "q36",
+      "question": "What is the eligibility for admission?",
+      "keywords": ["eligibility", "eligible", "requirements", "who can join", "qualification", "plus two", "plus 2", "grade 12", "grade xii", "intermediate"],
+      "answer": "Generally, students who have completed Grade XII (Plus 2) or equivalent qualifications recognized by Kathmandu University may apply for BIT and B.Tech Ed IT, subject to program-specific requirements.\n\nContact admissions for the latest eligibility criteria."
+    },
+    {
+      "id": "q37",
+      "question": "Does WCBT offer online or distance learning?",
+      "keywords": ["online class", "online classes", "distance learning", "remote learning", "virtual class", "study online", "online program"],
+      "answer": "WCBT focuses on technology-driven, campus-based learning with modern digital tools and resources. For current learning mode details, please contact the admissions office."
+    },
+    {
+      "id": "q38",
+      "question": "Is there a cafeteria or food facility?",
+      "keywords": ["cafeteria", "canteen", "food", "lunch", "meal", "dining", "eat"],
+      "answer": "Yes. Cafeteria facilities are part of the planned campus amenities for students at WCBT."
+    },
+    {
+      "id": "q39",
+      "question": "Are sports facilities available?",
+      "keywords": ["sports", "sport facilities", "games", "football", "basketball", "athletics", "gym"],
+      "answer": "Yes. Sports facilities are available as part of student life and campus amenities at WCBT, alongside clubs, cultural programs, and other activities."
+    },
+    {
+      "id": "q40",
+      "question": "How is WCBT different from other colleges?",
+      "keywords": ["different from other", "why better", "unique", "what makes different", "compare", "comparison", "better than"],
+      "answer": "WCBT stands out with:\n• Kathmandu University affiliation\n• Strong focus on IT & educational technology\n• Industry-oriented curriculum\n• Innovation & research culture\n• Career support & internship focus\n• Quality education access in Eastern Nepal"
+    }
+  ]
 }

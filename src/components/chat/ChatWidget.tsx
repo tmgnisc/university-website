@@ -6,6 +6,9 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import chatbotData from "@/data/chatbot.json";
+import { findChatbotAnswer, type ChatbotData } from "@/lib/chatbot";
+
+const chatbot = chatbotData as ChatbotData;
 
 type Message = {
   id: string;
@@ -22,7 +25,7 @@ function createWelcomeMessage(): Message {
   return {
     id: "welcome",
     role: "bot",
-    text: chatbotData.welcomeMessage,
+    text: chatbot.welcomeMessage,
     time: formatTime(),
   };
 }
@@ -59,7 +62,7 @@ function QuickQuestions({ onSelect }: { onSelect: (question: string) => void }) 
     });
   };
 
-  if (!chatbotData.quickQuestions.length) return null;
+  if (!chatbot.quickQuestions.length) return null;
 
   return (
     <div className="border-t border-border/50 bg-background px-3 py-2.5">
@@ -103,7 +106,7 @@ function QuickQuestions({ onSelect }: { onSelect: (question: string) => void }) 
           ref={scrollRef}
           className="flex gap-2 overflow-x-auto scroll-smooth px-0.5 pb-0.5 [scrollbar-width:none] snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
         >
-          {chatbotData.quickQuestions.map((question) => (
+          {chatbot.quickQuestions.map((question) => (
             <button
               key={question}
               type="button"
@@ -179,7 +182,13 @@ export function ChatWidget() {
         {
           id: `bot-${id}`,
           role: "bot",
-          text: chatbotData.fallbackMessage,
+          text: findChatbotAnswer(
+            trimmed,
+            chatbot.entries,
+            chatbot.fallbackMessage,
+            chatbot.offTopicMessage,
+            chatbot.domainKeywords,
+          ),
           time: formatTime(),
         },
       ]);
@@ -214,10 +223,10 @@ export function ChatWidget() {
                 <Bot className="size-5" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="truncate font-semibold leading-tight">{chatbotData.botName}</p>
+                <p className="truncate font-semibold leading-tight">{chatbot.botName}</p>
                 <p className="flex items-center gap-1.5 text-xs text-white/70">
                   <span className="size-1.5 rounded-full bg-emerald-400" />
-                  {chatbotData.status}
+                  {chatbot.status}
                 </p>
               </div>
               <button
@@ -253,7 +262,7 @@ export function ChatWidget() {
                         className={cn(
                           "rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed shadow-sm",
                           msg.role === "bot"
-                            ? "rounded-tl-md bg-white text-foreground"
+                            ? "rounded-tl-md bg-white text-foreground whitespace-pre-line"
                             : "rounded-tr-md bg-primary text-primary-foreground",
                         )}
                       >
