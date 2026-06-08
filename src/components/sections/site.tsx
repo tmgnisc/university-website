@@ -3,8 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import {
   Menu, X, Search, ArrowRight, FileText, GraduationCap, MessageSquare, MapPin,
   Play, Calendar, Clock, Phone, Mail, ChevronRight, Sparkles, Cpu, Shield,
-  BookOpen, Users, Award, Briefcase, Laptop, HeartHandshake, Quote, MessageCircle,
+  BookOpen, Users, Award, Briefcase, Laptop, HeartHandshake, Quote,
 } from "lucide-react";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -668,14 +669,7 @@ export function Footer() {
 export function FloatingCTAs() {
   return (
     <>
-      <a
-        href="https://wa.me/9779800000000"
-        target="_blank" rel="noreferrer"
-        aria-label="Chat on WhatsApp"
-        className="fixed bottom-6 right-6 z-40 size-14 rounded-full bg-primary text-primary-foreground grid place-items-center shadow-2xl shadow-primary/40 hover:scale-110 transition-transform"
-      >
-        <MessageCircle className="size-6" />
-      </a>
+      <ChatWidget />
       <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 p-3 bg-navy-deep/95 backdrop-blur border-t border-white/10 flex gap-2">
         <Button className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full">Apply Now</Button>
         <Button variant="outline" className="flex-1 rounded-full border-white/30 bg-transparent text-white hover:bg-white/10">Inquiry</Button>

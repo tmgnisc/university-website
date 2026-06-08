@@ -17,6 +17,7 @@ export function MaintenanceGuard({ children }: { children: ReactNode }) {
     };
 
     const onSubmit = (event: SubmitEvent) => {
+      if (shouldAllowInteraction(event.target)) return;
       event.preventDefault();
       event.stopPropagation();
       redirect();
