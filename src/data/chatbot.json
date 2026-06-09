@@ -93,6 +93,8 @@
     {
       "id": "q1",
       "question": "What is WhiteHouse College of Business & Technology (WCBT)?",
+      "topic": "WCBT (WhiteHouse College of Business & Technology)",
+      "matchWords": ["wcbt", "whitehouse"],
       "keywords": ["what is wcbt", "about wcbt", "whitehouse college", "whitehouse college of business", "wcbt", "business and technology"],
       "answer": "WhiteHouse College of Business & Technology (WCBT) is a higher education institution established under WhiteHouse Education Foundation (WEF) with a vision to provide quality, technology-driven, industry-oriented education in Eastern Nepal.\n\nThe college aims to become a leading center for Information Technology, Innovation, Research, Entrepreneurship, and Digital Transformation."
     },
@@ -105,6 +107,8 @@
     {
       "id": "q3",
       "question": "Where is WCBT located?",
+      "topic": "WCBT campus location",
+      "matchWords": ["location", "address", "damak", "jhapa", "campus"],
       "keywords": ["where is wcbt", "location", "address", "campus location", "damak", "jhapa", "where located", "google map", "sbss", "siddhartha boarding"],
       "answer": "WCBT operates from the Siddhartha Boarding Secondary School (SBSS) premises located in Damak, Jhapa, Nepal.\n\nAddress: Damak, Jhapa, Nepal\nPhone: 01-5199456 / 57\nEmail: info@whitehouseeducation.edu.np"
     },
@@ -117,12 +121,16 @@
     {
       "id": "q5",
       "question": "What programs are offered?",
+      "topic": "programs offered at WCBT",
+      "matchWords": ["programs", "program", "courses", "course", "degrees"],
       "keywords": ["what programs", "programs offered", "courses offered", "degrees offered", "available programs", "study programs", "which course", "which program", "what can i study", "subjects offered"],
       "answer": "Current Programs:\n• Bachelor in Information Technology (BIT)\n• Bachelor of Technology in Educational Information Technology (B.Tech Ed IT)\n\nFuture Programs may include:\n• BHI\n• BIM\n• BBA\n• MBA\n• AI and Data Science Programs\n• Professional Certifications"
     },
     {
       "id": "q6",
       "question": "What is BIT?",
+      "topic": "the BIT program",
+      "matchWords": ["bit"],
       "keywords": ["what is bit", "about bit", "bachelor in information technology", "bit program", "bit course"],
       "answer": "Bachelor in Information Technology (BIT) is a technology-focused undergraduate program designed to develop expertise in:\n• Programming\n• Software Development\n• Database Systems\n• Networking\n• Cybersecurity\n• Cloud Computing\n• Artificial Intelligence\n• Web and Mobile Development"
     },
@@ -147,6 +155,8 @@
     {
       "id": "q10",
       "question": "How can I apply?",
+      "topic": "the application process",
+      "matchWords": ["apply", "application", "admission", "register", "enroll"],
       "keywords": ["how to apply", "how can i apply", "application process", "admission process", "apply now", "admission steps", "register", "registration", "enroll", "enrollment process", "join wcbt"],
       "answer": "The admission process generally includes:\n1. Application Submission\n2. Entrance Examination\n3. Interview (if applicable)\n4. Admission Confirmation\n5. Fee Payment\n6. Enrollment\n\nContact us at info@whitehouseeducation.edu.np or 01-5199456 / 57 for the latest admission guidance."
     },
@@ -165,6 +175,8 @@
     {
       "id": "q13",
       "question": "What is the fee structure for BIT?",
+      "topic": "BIT fee structure",
+      "matchWords": ["fee", "fees", "tuition", "cost"],
       "keywords": ["bit fee", "bit fees", "bit fee structure", "bit tuition", "bit cost", "bit price", "960000", "9,60,000"],
       "answer": "Approximate Program Fee for BIT:\nNPR 9,60,000 for the complete four-year program.\n\nStudents should verify the latest fee structure during admission, as fees are subject to approval and periodic revision."
     },
@@ -177,6 +189,8 @@
     {
       "id": "q15",
       "question": "Are scholarships available?",
+      "topic": "scholarships",
+      "matchWords": ["scholarship", "scholarships", "financial"],
       "keywords": ["scholarship", "scholarships", "financial aid", "merit scholarship", "need based scholarship", "fee waiver", "discount", "free study", "funding", "grant"],
       "answer": "Yes. Scholarship schemes may include:\n• Merit Scholarships\n• Need-Based Scholarships\n• Institutional Scholarships\n• Special Category Scholarships\n• Partner Organization Scholarships\n\nDetails are announced annually. Contact admissions for current scholarship information."
     },
@@ -237,6 +251,8 @@
     {
       "id": "q25",
       "question": "How can I contact WCBT?",
+      "topic": "contact information",
+      "matchWords": ["contact", "phone", "email", "call", "mobile"],
       "keywords": ["contact", "contact details", "phone number", "email", "reach wcbt", "get in touch", "office contact", "mobile number", "website", "call", "email address", "phone"],
       "answer": "You can contact WCBT at:\nPhone: 01-5199456 / 57\nMobile: 9801268585\nEmail: info@whitehouseeducation.edu.np\nWebsite: whitehouseeducation.edu.np\nLocation: Damak, Jhapa, Nepal"
     },

@@ -187,7 +187,7 @@ export function Hero() {
         className={cn(LAYOUT.container, "relative z-10 py-32 text-white drop-shadow-md")}
       >
         <motion.p variants={fadeUp} className="text-sm font-medium text-white/90">
-          Kathmandu University Affiliated Programs
+          Kathmandu University Affiliated
         </motion.p>
         <motion.h1 variants={fadeUp} className="mt-4 text-4xl sm:text-5xl lg:text-7xl font-semibold leading-[1.05] max-w-5xl">
           Whitehouse College of Business & Technology
@@ -236,6 +236,29 @@ export function Ticker() {
     <div className="relative z-10 bg-secondary text-black border-y border-border overflow-hidden">
       <TickerMarquee />
     </div>
+  );
+}
+
+export function AffiliationBanner() {
+  return (
+    <section className="relative z-10 bg-primary text-primary-foreground">
+      <SectionContainer className="py-8 md:py-10">
+        <Reveal>
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider mb-4">
+              <Award className="size-4" />
+              In Partnership with Kathmandu University
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
+              WCBT - Damak Campus
+            </h2>
+            <p className="mt-3 text-sm sm:text-base text-primary-foreground/85 max-w-2xl mx-auto">
+              (Under the Management of WhiteHouse Education Foundation)
+            </p>
+          </div>
+        </Reveal>
+      </SectionContainer>
+    </section>
   );
 }
 

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  Header, Hero, Ticker, Search_, Programs, NextSteps, Research,
+  Header, Hero, Ticker, AffiliationBanner, Search_, Programs, NextSteps, Research,
   WhatsNew, Events, Support, Vision, Mosaic, Lead, Footer, FloatingCTAs,
 } from "@/components/sections/site";
 import { MaintenanceGuard } from "@/components/MaintenanceGuard";
@@ -42,6 +42,7 @@ function Index() {
       <main id="main">
         <Hero />
         <Ticker />
+        <AffiliationBanner />
         <Search_ />
         <Programs />
         <NextSteps />
