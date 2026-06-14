@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
+import { Link, useLocation } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
   Menu, X, Search, ArrowRight, FileText, GraduationCap, MessageSquare, MapPin,
@@ -24,6 +25,23 @@ import campusTour from "@/assets/campus-tour.jpg";
 
 const NAV = ["Home","About","Programs","Admissions","Scholarships","Campus Life","Research","Contact"];
 const NAV_IDS = NAV.map((n) => n.toLowerCase().replace(/ /g, "-"));
+const NAV_ROUTES: Record<string, string> = {
+  Home: "/",
+  About: "/about",
+  Programs: "/programs",
+};
+
+function navHref(n: string) {
+  return NAV_ROUTES[n] ?? `/#${n.toLowerCase().replace(/ /g, "-")}`;
+}
+
+function isNavItemActive(n: string, pathname: string, activeSection: string) {
+  if (n === "Home") return pathname === "/" && activeSection === "home";
+  if (n === "About") return pathname === "/about";
+  if (n === "Programs") return pathname === "/programs";
+  const id = n.toLowerCase().replace(/ /g, "-");
+  return pathname === "/" && activeSection === id;
+}
 
 const LAYOUT = {
   section: "py-16 md:py-24",
@@ -69,6 +87,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -102,14 +121,23 @@ export function Header() {
       }`}
     >
       <div className={cn(LAYOUT.container, "h-22 flex items-center justify-between")}>
-        <a href="#home" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img src={NAV_LOGO} alt="WCBT Damak Campus" className="h-[4.5rem] w-auto sm:h-22" />
-        </a>
+        </Link>
         <nav className="hidden lg:flex items-center gap-8">
           {NAV.map((n) => {
-            const id = n.toLowerCase().replace(/ /g, "-");
+            const href = navHref(n);
+            const activeLink = isNavItemActive(n, pathname, active);
+            const className = navLinkClass(activeLink);
+            if (NAV_ROUTES[n]) {
+              return (
+                <Link key={n} to={href} className={className}>
+                  {n}
+                </Link>
+              );
+            }
             return (
-              <a key={n} href={`#${id}`} className={navLinkClass(active === id)}>
+              <a key={n} href={href} className={className}>
                 {n}
               </a>
             );
@@ -137,16 +165,20 @@ export function Header() {
               </button>
             </div>
             {NAV.map((n) => {
-              const id = n.toLowerCase().replace(/ /g, "-");
+              const href = navHref(n);
+              const activeLink = isNavItemActive(n, pathname, active);
+              const className = `text-lg border-b border-border pb-3 transition-colors ${
+                activeLink ? "text-primary font-semibold" : "text-black hover:text-black/70"
+              }`;
+              if (NAV_ROUTES[n]) {
+                return (
+                  <Link key={n} to={href} onClick={() => setOpen(false)} className={className}>
+                    {n}
+                  </Link>
+                );
+              }
               return (
-                <a
-                  key={n}
-                  href={`#${id}`}
-                  onClick={() => setOpen(false)}
-                  className={`text-lg border-b border-border pb-3 transition-colors ${
-                    active === id ? "text-primary font-semibold" : "text-black hover:text-black/70"
-                  }`}
-                >
+                <a key={n} href={href} onClick={() => setOpen(false)} className={className}>
                   {n}
                 </a>
               );
@@ -187,10 +219,10 @@ export function Hero() {
         className={cn(LAYOUT.container, "relative z-10 py-32 text-white drop-shadow-md")}
       >
         <motion.p variants={fadeUp} className="text-sm font-medium text-white/90">
-          Kathmandu University Affiliated
+          In Partnership with Kathmandu University
         </motion.p>
         <motion.h1 variants={fadeUp} className="mt-4 text-4xl sm:text-5xl lg:text-7xl font-semibold leading-[1.05] max-w-5xl">
-          Whitehouse College of Business & Technology
+          WhiteHouse College of Business & Technology
         </motion.h1>
         <motion.p variants={fadeUp} className="mt-6 text-lg lg:text-xl text-white/75 max-w-2xl">
           Empowering future innovators, technologists & leaders through world-class academic pathways rooted in Eastern Nepal.
