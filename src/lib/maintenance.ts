@@ -1,6 +1,13 @@
 export const MAINTENANCE_PATH = "/maintenance";
 
-const ALLOWED_LINKS = new Set(["/", "/maintenance", "#home", "#main"]);
+const ALLOWED_LINKS = new Set([
+  "/",
+  "/about",
+  "/programs",
+  "/maintenance",
+  "#home",
+  "#main",
+]);
 
 export function shouldAllowInteraction(target: EventTarget | null): boolean {
   if (!(target instanceof Element)) return true;
@@ -12,6 +19,8 @@ export function shouldAllowInteraction(target: EventTarget | null): boolean {
     const href = anchor.getAttribute("href")?.trim() ?? "";
     if (ALLOWED_LINKS.has(href)) return true;
     if (href.startsWith("/maintenance")) return true;
+    if (href === "/about" || href.startsWith("/about/") || href.startsWith("/about?")) return true;
+    if (href === "/programs" || href.startsWith("/programs/") || href.startsWith("/programs?")) return true;
     return false;
   }
 
