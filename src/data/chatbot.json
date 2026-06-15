@@ -5,7 +5,7 @@
   "fallbackMessage": "I couldn't find a specific answer to that. Please contact us at info@whitehouseeducation.edu.np or call 01-5199456 / 57. You can also reach us at 9801268585.",
   "offTopicMessage": "I'm here to help with questions about WhiteHouse College of Business & Technology (WCBT) only — such as programs, admissions, fees, scholarships, campus facilities, eligibility, and contact details.\n\nPlease ask something related to the college or our courses.",
   "domainKeywords": [
-    "college", "university", "course", "courses", "education", "student", "students", "study", "enroll", "enrollment", "degree", "academic", "campus", "admission", "admissions", "wcbt", "wef", "whitehouse", "bit", "btech", "scholarship", "fee", "fees", "tuition", "program", "programs", "damak", "jhapa", "ku", "kathmandu", "hostel", "library", "lab", "internship", "career", "apply", "eligibility", "semester", "faculty", "exam", "entrance"
+    "college", "university", "course", "courses", "education", "student", "students", "study", "enroll", "enrollment", "degree", "academic", "campus", "admission", "admissions", "wcbt", "wef", "whitehouse", "bit", "btech", "scholarship", "fee", "fees", "tuition", "program", "programs", "jhapa", "ku", "kathmandu", "hostel", "library", "lab", "internship", "career", "apply", "eligibility", "semester", "faculty", "exam", "entrance"
   ],
   "quickQuestions": [
     "What is WCBT?",
@@ -81,7 +81,7 @@
       "question": "I want more information",
       "priority": 40,
       "keywords": ["more info", "more information", "tell me more", "learn more", "details please", "give me details", "i want to know"],
-      "answer": "I'd be happy to share more! You can ask about:\n• BIT or B.Tech Ed IT programs\n• Admission steps & eligibility\n• Fees & scholarships\n• Campus facilities in Damak\n• Career paths after graduation\n\nWhat topic interests you most?"
+      "answer": "I'd be happy to share more! You can ask about:\n• BIT or B.Tech Ed IT programs\n• Admission steps & eligibility\n• Fees & scholarships\n• Campus facilities in Jhapa\n• Career paths after graduation\n\nWhat topic interests you most?"
     },
     {
       "id": "g10",
@@ -108,9 +108,9 @@
       "id": "q3",
       "question": "Where is WCBT located?",
       "topic": "WCBT campus location",
-      "matchWords": ["location", "address", "damak", "jhapa", "campus"],
-      "keywords": ["where is wcbt", "location", "address", "campus location", "damak", "jhapa", "where located", "google map", "sbss", "siddhartha boarding"],
-      "answer": "WCBT operates from the Siddhartha Boarding Secondary School (SBSS) premises located in Damak, Jhapa, Nepal.\n\nAddress: Damak, Jhapa, Nepal\nPhone: 01-5199456 / 57\nEmail: info@whitehouseeducation.edu.np"
+      "matchWords": ["location", "address", "jhapa", "campus"],
+      "keywords": ["where is wcbt", "location", "address", "campus location", "jhapa", "where located", "google map", "sbss", "siddhartha boarding"],
+      "answer": "WCBT operates from the Siddhartha Boarding Secondary School (SBSS) premises located in Jhapa, Nepal.\n\nAddress: Jhapa, Nepal\nPhone: 01-5199456 / 57\nEmail: info@whitehouseeducation.edu.np"
     },
     {
       "id": "q4",
@@ -254,7 +254,7 @@
       "topic": "contact information",
       "matchWords": ["contact", "phone", "email", "call", "mobile"],
       "keywords": ["contact", "contact details", "phone number", "email", "reach wcbt", "get in touch", "office contact", "mobile number", "website", "call", "email address", "phone"],
-      "answer": "You can contact WCBT at:\nPhone: 01-5199456 / 57\nMobile: 9801268585\nEmail: info@whitehouseeducation.edu.np\nWebsite: whitehouseeducation.edu.np\nLocation: Damak, Jhapa, Nepal"
+      "answer": "You can contact WCBT at:\nPhone: 01-5199456 / 57\nMobile: 9801268585\nEmail: info@whitehouseeducation.edu.np\nWebsite: whitehouseeducation.edu.np\nLocation: Jhapa, Nepal"
     },
     {
       "id": "q26",
@@ -314,7 +314,7 @@
       "id": "q35",
       "question": "Can I visit the campus?",
       "keywords": ["visit campus", "campus visit", "campus tour", "open day", "open house", "see campus", "tour", "visit college"],
-      "answer": "Yes! Prospective students and parents are welcome to visit WCBT in Damak, Jhapa.\n\nPlease contact us in advance to schedule a campus visit:\nPhone: 01-5199456 / 57\nEmail: info@whitehouseeducation.edu.np"
+      "answer": "Yes! Prospective students and parents are welcome to visit WCBT in Jhapa.\n\nPlease contact us in advance to schedule a campus visit:\nPhone: 01-5199456 / 57\nEmail: info@whitehouseeducation.edu.np"
     },
     {
       "id": "q36",

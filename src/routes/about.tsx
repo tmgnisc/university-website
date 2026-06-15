@@ -15,9 +15,9 @@ import { PageShell } from "@/components/sections/page-shell";
 
 const ABOUT_BENTO: BentoItem[] = [
   {
-    title: "Damak Campus",
+    title: "Jhapa Campus",
     description: "A purpose-built learning environment in the heart of Jhapa, Eastern Nepal.",
-    image: "https://placehold.co/700x500/86001d/ffffff?text=Damak+Campus",
+    image: "https://placehold.co/700x500/86001d/ffffff?text=Jhapa+Campus",
     badge: "Location",
     className: "sm:col-span-2 lg:col-span-2",
   },
@@ -73,13 +73,13 @@ const MILESTONES = [
   },
   {
     year: "2018",
-    title: "WCBT Damak Campus opens",
-    description: "The Damak campus launches with a focus on business and technology programs for the region.",
+    title: "WCBT Jhapa Campus opens",
+    description: "The Jhapa campus launches with a focus on business and technology programs for the region.",
   },
   {
     year: "2021",
     title: "Kathmandu University partnership",
-    description: "Formal academic partnership brings KU-affiliated BIT and B.Tech Ed IT programs to Damak.",
+    description: "Formal academic partnership brings KU-affiliated BIT and B.Tech Ed IT programs to Jhapa.",
   },
   {
     year: "2026",
@@ -116,9 +116,9 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Learn about WCBT Damak Campus, our partnership with Kathmandu University, and the WhiteHouse Education Foundation mission.",
+          "Learn about WCBT Jhapa Campus, our partnership with Kathmandu University, and the WhiteHouse Education Foundation mission.",
       },
-      { property: "og:title", content: "About WCBT Damak Campus" },
+      { property: "og:title", content: "About WCBT Jhapa Campus" },
       { property: "og:description", content: "Discover our story, mission, and academic partnership in Eastern Nepal." },
     ],
     links: [{ rel: "canonical", href: "/about" }],
@@ -132,13 +132,13 @@ function AboutPage() {
       <PageHero
         eyebrow="About WCBT"
         title="WhiteHouse College of Business & Technology"
-        description="WCBT Damak Campus is in partnership with Kathmandu University, managed by WhiteHouse Education Foundation — empowering students across Eastern Nepal with future-ready education."
+        description="WCBT Jhapa Campus is in partnership with Kathmandu University, managed by WhiteHouse Education Foundation — empowering students across Eastern Nepal with future-ready education."
       />
 
       <SplitSection
         eyebrow="Mission"
         title="Empowering Eastern Nepal through technology education"
-        description="We exist to make world-class business and technology education accessible in Damak — nurturing innovators, educators, and leaders who can compete nationally and contribute locally."
+        description="We exist to make world-class business and technology education accessible in Jhapa — nurturing innovators, educators, and leaders who can compete nationally and contribute locally."
         image="https://placehold.co/800x600/86001d/ffffff?text=Mission"
         bullets={[
           "Deliver KU-partnered programs with academic rigor and practical relevance",
@@ -177,7 +177,7 @@ function AboutPage() {
       <PageSection
         eyebrow="Campus at a glance"
         title="Where learning meets community"
-        description="Explore the spaces, people, and partnerships that make WCBT Damak Campus a vibrant place to study."
+        description="Explore the spaces, people, and partnerships that make WCBT Jhapa Campus a vibrant place to study."
         className="bg-muted/30"
       >
         <BentoGrid items={ABOUT_BENTO} />
@@ -203,7 +203,7 @@ function AboutPage() {
       <PageSection
         eyebrow="Governance"
         title="Managed with accountability and care"
-        description="WCBT Damak Campus operates under WhiteHouse Education Foundation, with transparent governance, academic oversight, and a student-first approach to decision making."
+        description="WCBT Jhapa Campus operates under WhiteHouse Education Foundation, with transparent governance, academic oversight, and a student-first approach to decision making."
       >
         <div className="grid md:grid-cols-2 gap-6">
           <div className="rounded-3xl border border-border bg-card p-8">
@@ -224,7 +224,7 @@ function AboutPage() {
       </PageSection>
 
       <CtaBand
-        title="Visit WCBT Damak Campus"
+        title="Visit WCBT Jhapa Campus"
         description="Schedule a campus tour, meet our admissions team, and see how we're building Eastern Nepal's future-focused academic ecosystem."
         primaryLabel="Schedule a Visit"
         secondaryLabel="Contact Us"

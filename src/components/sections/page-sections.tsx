@@ -447,7 +447,7 @@ export function CtaBand({
   secondaryLabel?: string;
 }) {
   return (
-    <section className="py-16 md:py-20 bg-navy-deep text-white">
+    <section className="py-16 md:py-20 bg-navy-deep text-white border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
         <motion.div
           variants={fadeUp}
@@ -502,6 +502,125 @@ export function ProgramQuickLinks({
             </span>
           </div>
         </motion.a>
+      ))}
+    </div>
+  );
+}
+
+export function FaqList({ items }: { items: { question: string; answer: string }[] }) {
+  return (
+    <div className="grid gap-4 max-w-3xl">
+      {items.map((item, i) => (
+        <motion.details
+          key={item.question}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ delay: i * 0.05 }}
+          className="group rounded-2xl border border-border bg-card p-5 open:shadow-sm"
+        >
+          <summary className="cursor-pointer font-semibold list-none flex items-center justify-between gap-4">
+            {item.question}
+            <span className="text-primary text-xl leading-none group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{item.answer}</p>
+        </motion.details>
+      ))}
+    </div>
+  );
+}
+
+export function ContactSection() {
+  return (
+    <section className="py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-10 lg:gap-14">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+        >
+          <span className="text-xs uppercase tracking-[0.2em] text-primary font-semibold">Get in touch</span>
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">We&apos;re here to help</h2>
+          <p className="mt-4 text-muted-foreground text-lg leading-relaxed">
+            Reach out for admissions, scholarships, campus visits, or general inquiries. Our team typically responds within one business day.
+          </p>
+          <div className="mt-8 space-y-4 text-sm">
+            <p><span className="font-semibold text-foreground">Address:</span> Jhapa, Nepal</p>
+            <p><span className="font-semibold text-foreground">Phone:</span> 01-5199456 / 57</p>
+            <p><span className="font-semibold text-foreground">Mobile:</span> 9801268585</p>
+            <p><span className="font-semibold text-foreground">Email:</span> info@whitehouseeducation.edu.np</p>
+          </div>
+          <div className="mt-8 rounded-3xl overflow-hidden border border-border aspect-[5/3]">
+            <img
+              src="https://placehold.co/800x480/86001d/ffffff?text=Campus+Map"
+              alt=""
+              className="size-full object-cover"
+            />
+          </div>
+        </motion.div>
+        <motion.form
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ delay: 0.1 }}
+          onSubmit={(e) => e.preventDefault()}
+          className="rounded-3xl border border-border bg-card p-6 md:p-8 shadow-xl shadow-primary/5 space-y-4"
+        >
+          <div>
+            <label className="text-sm font-medium">Full name</label>
+            <input className="mt-1.5 w-full h-12 rounded-xl border border-input bg-background px-4 text-sm" placeholder="Your name" />
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label className="text-sm font-medium">Phone</label>
+              <input className="mt-1.5 w-full h-12 rounded-xl border border-input bg-background px-4 text-sm" placeholder="98XXXXXXXX" />
+            </div>
+            <div>
+              <label className="text-sm font-medium">Email</label>
+              <input type="email" className="mt-1.5 w-full h-12 rounded-xl border border-input bg-background px-4 text-sm" placeholder="you@email.com" />
+            </div>
+          </div>
+          <div>
+            <label className="text-sm font-medium">Subject</label>
+            <input className="mt-1.5 w-full h-12 rounded-xl border border-input bg-background px-4 text-sm" placeholder="Admissions, scholarships, campus visit..." />
+          </div>
+          <div>
+            <label className="text-sm font-medium">Message</label>
+            <textarea rows={4} className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm" placeholder="How can we help you?" />
+          </div>
+          <Button type="submit" size="lg" className="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 h-12">
+            Send Message <ArrowRight className="ml-1 size-4" />
+          </Button>
+        </motion.form>
+      </div>
+    </section>
+  );
+}
+
+export function DeadlineGrid({
+  items,
+}: {
+  items: { date: string; title: string; description: string }[];
+}) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {items.map((item, i) => (
+        <motion.article
+          key={item.title}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ delay: i * 0.06 }}
+          className="rounded-3xl border border-border bg-card p-6"
+        >
+          <p className="text-sm font-semibold text-primary">{item.date}</p>
+          <h3 className="mt-2 text-lg font-semibold">{item.title}</h3>
+          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+        </motion.article>
       ))}
     </div>
   );

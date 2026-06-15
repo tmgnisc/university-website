@@ -29,6 +29,11 @@ const NAV_ROUTES: Record<string, string> = {
   Home: "/",
   About: "/about",
   Programs: "/programs",
+  Admissions: "/admissions",
+  Scholarships: "/scholarships",
+  "Campus Life": "/campus-life",
+  Research: "/research",
+  Contact: "/contact",
 };
 
 function navHref(n: string) {
@@ -36,9 +41,11 @@ function navHref(n: string) {
 }
 
 function isNavItemActive(n: string, pathname: string, activeSection: string) {
-  if (n === "Home") return pathname === "/" && activeSection === "home";
-  if (n === "About") return pathname === "/about";
-  if (n === "Programs") return pathname === "/programs";
+  const route = NAV_ROUTES[n];
+  if (route) {
+    if (n === "Home") return pathname === "/" && activeSection === "home";
+    return pathname === route;
+  }
   const id = n.toLowerCase().replace(/ /g, "-");
   return pathname === "/" && activeSection === id;
 }
@@ -122,7 +129,7 @@ export function Header() {
     >
       <div className={cn(LAYOUT.container, "h-22 flex items-center justify-between")}>
         <Link to="/" className="flex items-center">
-          <img src={NAV_LOGO} alt="WCBT Damak Campus" className="h-[4.5rem] w-auto sm:h-22" />
+          <img src={NAV_LOGO} alt="WCBT Jhapa Campus" className="h-[4.5rem] w-auto sm:h-22" />
         </Link>
         <nav className="hidden lg:flex items-center gap-8">
           {NAV.map((n) => {
@@ -282,7 +289,7 @@ export function AffiliationBanner() {
               In Partnership with Kathmandu University
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
-              WCBT - Damak Campus
+              WCBT - Jhapa Campus
             </h2>
             <p className="mt-3 text-sm sm:text-base text-primary-foreground/85 max-w-2xl mx-auto">
               (Under the Management of WhiteHouse Education Foundation)
@@ -365,7 +372,7 @@ const steps = [
   { icon: FileText, title: "Admission Process", desc: "Eligibility, deadlines & documents." },
   { icon: GraduationCap, title: "Scholarship Schemes", desc: "Up to 75% merit-based aid." },
   { icon: MessageSquare, title: "Academic Inquiry", desc: "Talk to our admissions team." },
-  { icon: MapPin, title: "Damak Campus", desc: "Visit & explore our facilities." },
+  { icon: MapPin, title: "Jhapa Campus", desc: "Visit & explore our facilities." },
 ];
 
 export function NextSteps() {
@@ -658,13 +665,13 @@ export function Lead() {
           <h2 className="mt-3 text-3xl md:text-5xl font-semibold">Talk to admissions</h2>
           <p className="mt-4 text-muted-foreground text-lg">Tell us a little about you and we'll be in touch with personalised guidance.</p>
           <div className={cn(LAYOUT.contentGap, "space-y-4")}>
-            <div className="flex items-center gap-3"><MapPin className="size-5 text-black" /><span>Damak, Jhapa, Nepal</span></div>
+            <div className="flex items-center gap-3"><MapPin className="size-5 text-black" /><span>Jhapa, Nepal</span></div>
             <div className="flex items-center gap-3"><Phone className="size-5 text-black" /><span>01-5199456 / 57</span></div>
             <div className="flex items-center gap-3"><Mail className="size-5 text-black" /><span>info@whitehouseeducation.edu.np</span></div>
           </div>
           <div className={cn(LAYOUT.contentGap, "rounded-3xl overflow-hidden border border-border aspect-[5/3] bg-card")}>
             <iframe
-              title="Damak campus map"
+              title="Jhapa campus map"
               src="https://www.openstreetmap.org/export/embed.html?bbox=87.6857%2C26.6586%2C87.7257%2C26.6986&layer=mapnik"
               className="size-full"
               loading="lazy"
@@ -713,11 +720,11 @@ export function Footer() {
     { h: "Contact", items: ["Inquiry Form","Social Links","WhatsApp","Visit Campus"] },
   ];
   return (
-    <footer className="bg-navy-deep text-white/80">
+    <footer className="bg-navy-deep text-white/80 border-t border-white/10">
       <SectionContainer className={cn(LAYOUT.section, "grid md:grid-cols-2 lg:grid-cols-6", LAYOUT.gridGap)}>
         <div className="lg:col-span-1">
           <a href="#home" className="inline-flex">
-            <img src={FOOTER_LOGO} alt="WCBT Damak Campus" className="h-20 w-auto sm:h-24" />
+            <img src={FOOTER_LOGO} alt="WCBT Jhapa Campus" className="h-20 w-auto sm:h-24" />
           </a>
           <p className="mt-5 text-sm text-white/60">Building Eastern Nepal's future-focused academic ecosystem.</p>
         </div>
@@ -733,7 +740,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <SectionContainer className="py-6 flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-white/60">
           <span>© {new Date().getFullYear()} WhiteHouse Education Foundation. All rights reserved.</span>
-          <span>Damak, Jhapa, Nepal · 01-5199456 / 57 · info@whitehouseeducation.edu.np</span>
+          <span>Jhapa, Nepal · 01-5199456 / 57 · info@whitehouseeducation.edu.np</span>
         </SectionContainer>
       </div>
     </footer>

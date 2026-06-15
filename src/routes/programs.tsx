@@ -98,7 +98,7 @@ export const Route = createFileRoute("/programs")({
       {
         name: "description",
         content:
-          "Explore BIT and B.Tech Ed IT programs at WCBT Damak Campus — Kathmandu University partnered degrees in Damak, Nepal.",
+          "Explore BIT and B.Tech Ed IT programs at WCBT Jhapa Campus — Kathmandu University partnered degrees in Jhapa, Nepal.",
       },
       { property: "og:title", content: "Academic Programs at WCBT" },
       { property: "og:description", content: "BIT and B.Tech Ed IT — modern technology programs in Eastern Nepal." },
@@ -215,7 +215,7 @@ function ProgramsPage() {
       <PageSection
         eyebrow="Admissions"
         title="How to apply"
-        description="Admissions are open for the upcoming intake. Follow these steps to begin your application at WCBT Damak Campus."
+        description="Admissions are open for the upcoming intake. Follow these steps to begin your application at WCBT Jhapa Campus."
         className="bg-muted/30"
       >
         <StepGrid steps={ADMISSION_STEPS} />
@@ -231,7 +231,7 @@ function ProgramsPage() {
 
       <CtaBand
         title="Ready to start your application?"
-        description="Join WCBT Damak Campus and earn a Kathmandu University partnered degree in BIT or B.Tech Ed IT."
+        description="Join WCBT Jhapa Campus and earn a Kathmandu University partnered degree in BIT or B.Tech Ed IT."
         primaryLabel="Apply Now"
         secondaryLabel="Download Brochure"
       />

@@ -9,7 +9,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "WhiteHouse College of Business & Technology — KU Affiliated IT College in Nepal" },
-      { name: "description", content: "WhiteHouse College of Business & Technology — Kathmandu University affiliated BIT and B.Tech Ed IT programs in Damak, Nepal." },
+      { name: "description", content: "WhiteHouse College of Business & Technology — Kathmandu University affiliated BIT and B.Tech Ed IT programs in Jhapa, Nepal." },
       { name: "keywords", content: "WhiteHouse College, WhiteHouse Education Foundation, BIT Nepal, B.Tech Education IT, Kathmandu University Affiliated College, IT College in Nepal, Technology Education Nepal" },
       { property: "og:title", content: "WhiteHouse College of Business & Technology" },
       { property: "og:description", content: "Empowering future innovators, technologists and leaders. KU affiliated programs in Eastern Nepal." },
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
         "@type": "CollegeOrUniversity",
         name: "WhiteHouse College of Business & Technology",
         url: "/",
-        address: { "@type": "PostalAddress", addressLocality: "Damak", addressRegion: "Jhapa", addressCountry: "NP" },
+        address: { "@type": "PostalAddress", addressLocality: "Jhapa", addressRegion: "Jhapa", addressCountry: "NP" },
         telephone: "01-5199456",
         email: "info@whitehouseeducation.edu.np",
       }),
