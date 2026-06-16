@@ -31,7 +31,7 @@ const FACILITIES_BENTO: BentoItem[] = [
   {
     title: "Smart Classrooms",
     description: "Interactive displays and collaborative tools for modern teaching.",
-    image: "https://placehold.co/500x400",
+    image: "https://ik.imagekit.io/qn3m81dsk/university/clz%203.jpg?updatedAt=1781585489415",
     className: "lg:col-span-1",
   },
   {
