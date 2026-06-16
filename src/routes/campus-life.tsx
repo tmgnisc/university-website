@@ -17,7 +17,7 @@ const CAMPUS_BENTO: BentoItem[] = [
   {
     title: "Student Lounge",
     description: "Relaxed spaces to study, collaborate, and connect between classes.",
-    image: "https://placehold.co/700x500/86001d/ffffff?text=Student+Lounge",
+    image: "https://placehold.co/700x500",
     className: "sm:col-span-2 lg:col-span-2",
   },
   {
@@ -30,25 +30,25 @@ const CAMPUS_BENTO: BentoItem[] = [
   {
     title: "Cafeteria",
     description: "Affordable meals and refreshments throughout the academic day.",
-    image: "https://placehold.co/500x400/4d0012/ffffff?text=Cafeteria",
+    image: "https://placehold.co/500x400",
     className: "lg:col-span-1",
   },
   {
     title: "Annual Fest",
     description: "Culture, music, hackathons, and sports come together each spring.",
-    image: "https://placehold.co/700x500/86001d/ffffff?text=Campus+Fest",
+    image: "https://placehold.co/700x500",
     badge: "Events",
     className: "sm:col-span-2 lg:col-span-2",
   },
 ];
 
 const CLUBS = [
-  { title: "Coding Club", description: "Weekly meetups, competitive programming, and open-source contributions.", image: "https://placehold.co/500x300/86001d/ffffff?text=Coding+Club" },
-  { title: "Robotics Society", description: "Build and compete with robots — from line followers to autonomous projects.", image: "https://placehold.co/500x300/4d0012/ffffff?text=Robotics" },
-  { title: "Ed-Tech Circle", description: "Explore digital tools, LMS platforms, and classroom innovation.", image: "https://placehold.co/500x300/86001d/ffffff?text=EdTech" },
-  { title: "Photography & Media", description: "Capture campus life and produce content for college channels.", image: "https://placehold.co/500x300/4d0012/ffffff?text=Media" },
-  { title: "Sports Association", description: "Football, cricket, basketball, and inter-college tournaments.", image: "https://placehold.co/500x300/86001d/ffffff?text=Sports" },
-  { title: "Community Outreach", description: "Tech literacy workshops and volunteer programs in local schools.", image: "https://placehold.co/500x300/4d0012/ffffff?text=Outreach" },
+  { title: "Coding Club", description: "Weekly meetups, competitive programming, and open-source contributions.", image: "https://placehold.co/500x300" },
+  { title: "Robotics Society", description: "Build and compete with robots — from line followers to autonomous projects.", image: "https://placehold.co/500x300" },
+  { title: "Ed-Tech Circle", description: "Explore digital tools, LMS platforms, and classroom innovation.", image: "https://placehold.co/500x300" },
+  { title: "Photography & Media", description: "Capture campus life and produce content for college channels.", image: "https://placehold.co/500x300" },
+  { title: "Sports Association", description: "Football, cricket, basketball, and inter-college tournaments.", image: "https://placehold.co/500x300" },
+  { title: "Community Outreach", description: "Tech literacy workshops and volunteer programs in local schools.", image: "https://placehold.co/500x300" },
 ];
 
 const EVENTS = [
@@ -62,34 +62,34 @@ const CAMPUS_GALLERY: BentoItem[] = [
   {
     title: "Campus Festivities",
     description: "Live performances, cultural nights, and student celebrations from across the year.",
-    image: "https://placehold.co/700x500/86001d/ffffff?text=Festivities",
+    image: "https://placehold.co/700x500",
     className: "sm:col-span-2 lg:col-span-2",
   },
   {
     title: "Study Spaces",
     description: "Quiet corners and collaborative zones where students focus, create, and connect.",
-    image: "https://placehold.co/500x400/4d0012/ffffff?text=Study+Spaces",
+    image: "https://placehold.co/500x400",
   },
   {
     title: "Sports Spirit",
     description: "Team matches, fitness sessions, and outdoor games keep the campus active.",
-    image: "https://placehold.co/500x400/86001d/ffffff?text=Sports",
+    image: "https://placehold.co/500x400",
     className: "lg:col-span-2",
   },
   {
     title: "Creative Labs",
     description: "Workshops, media projects, and innovation challenges in every semester.",
-    image: "https://placehold.co/500x300/4d0012/ffffff?text=Creative+Labs",
+    image: "https://placehold.co/500x300",
   },
   {
     title: "Team Projects",
     description: "Collaborative student work that bridges classroom learning with real-world impact.",
-    image: "https://placehold.co/500x300/86001d/ffffff?text=Team+Projects",
+    image: "https://placehold.co/500x300",
   },
   {
     title: "Campus Evenings",
     description: "Friendly social spaces and events that bring students together after classes.",
-    image: "https://placehold.co/500x300/4d0012/ffffff?text=Evenings",
+    image: "https://placehold.co/500x300",
   },
 ];
 
@@ -111,7 +111,9 @@ function CampusLifePage() {
         eyebrow="Campus Life"
         title="More than classrooms"
         description="At WCBT, learning extends beyond lectures — through clubs, events, sports, and a vibrant student community in Jhapa."
+        image="https://ik.imagekit.io/qn3m81dsk/university/clz%202.jpg"
       />
+      
 
       <HighlightBand
         badge="Student Community"
@@ -140,7 +142,7 @@ function CampusLifePage() {
         eyebrow="Student experience"
         title="A balanced college life"
         description="We encourage students to pursue passions beyond academics — whether that's competitive coding, sports, creative arts, or community service."
-        image="https://placehold.co/800x600/86001d/ffffff?text=Student+Life"
+        image="https://placehold.co/800x600"
         bullets={[
           "Active clubs for every interest and skill level",
           "Regular workshops, hackathons, and cultural events",
@@ -177,7 +179,7 @@ function CampusLifePage() {
         eyebrow="Housing"
         title="Living near campus"
         description="While WCBT does not operate on-campus hostels, our team helps students find safe, affordable accommodation options in Jhapa with easy access to campus."
-        image="https://placehold.co/800x600/4d0012/ffffff?text=Accommodation"
+        image="https://placehold.co/800x600"
         imageLeft
         bullets={[
           "Recommended lodging list updated each intake",

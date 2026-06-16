@@ -3,6 +3,7 @@ import type { LucideIcon } from "lucide-react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 const fadeUp = {
@@ -380,26 +381,45 @@ export function ProgramCompare({
 export function StepGrid({
   steps,
 }: {
-  steps: { step: string; title: string; description: string }[];
+  steps: { step: string; title: string; description: string; hint?: string }[];
 }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-      {steps.map((s, i) => (
-        <motion.article
-          key={s.step}
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ delay: i * 0.06 }}
-          className="rounded-3xl border border-border bg-card p-6"
-        >
-          <span className="text-3xl font-bold text-primary/30">{s.step}</span>
-          <h3 className="mt-3 font-semibold">{s.title}</h3>
-          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.description}</p>
-        </motion.article>
-      ))}
-    </div>
+    <TooltipProvider>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {steps.map((s, i) => (
+          <motion.article
+            key={s.step}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ delay: i * 0.06 }}
+            className="rounded-3xl border border-border bg-card p-6"
+          >
+            <span className="text-3xl font-bold text-primary/30">{s.step}</span>
+            <div className="mt-3 flex items-start gap-2">
+              <h3 className="font-semibold">{s.title}</h3>
+              {s.hint ? (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button
+                      type="button"
+                      className="rounded-full border border-border bg-muted/10 px-2 py-1 text-xs font-semibold text-muted-foreground hover:bg-muted"
+                    >
+                      i
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" className="max-w-xs text-left">
+                    {s.hint}
+                  </TooltipContent>
+                </Tooltip>
+              ) : null}
+            </div>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.description}</p>
+          </motion.article>
+        ))}
+      </div>
+    </TooltipProvider>
   );
 }
 
@@ -548,13 +568,13 @@ export function ContactSection() {
           </p>
           <div className="mt-8 space-y-4 text-sm">
             <p><span className="font-semibold text-foreground">Address:</span> Jhapa, Nepal</p>
-            <p><span className="font-semibold text-foreground">Phone:</span> 01-5199456 / 57</p>
+            <p><span className="font-semibold text-foreground">Phone:</span> 9801268585</p>
             <p><span className="font-semibold text-foreground">Mobile:</span> 9801268585</p>
             <p><span className="font-semibold text-foreground">Email:</span> info@whitehouseeducation.edu.np</p>
           </div>
           <div className="mt-8 rounded-3xl overflow-hidden border border-border aspect-[5/3]">
             <img
-              src="https://placehold.co/800x480/86001d/ffffff?text=Campus+Map"
+              src="https://placehold.co/800x480"
               alt=""
               className="size-full object-cover"
             />

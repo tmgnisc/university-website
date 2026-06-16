@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 
 import { BentoGrid, PageHero, type BentoItem } from "@/components/sections/bento";
 import {
@@ -17,7 +18,7 @@ const FACILITIES_BENTO: BentoItem[] = [
   {
     title: "AI & Innovation Lab",
     description: "Experiment with machine learning, robotics, and prototype development.",
-    image: "https://placehold.co/600x450/86001d/ffffff?text=AI+Lab",
+    image: "https://placehold.co/600x450",
     className: "lg:col-span-2",
   },
   {
@@ -30,7 +31,7 @@ const FACILITIES_BENTO: BentoItem[] = [
   {
     title: "Smart Classrooms",
     description: "Interactive displays and collaborative tools for modern teaching.",
-    image: "https://placehold.co/500x400/4d0012/ffffff?text=Classroom",
+    image: "https://placehold.co/500x400",
     className: "lg:col-span-1",
   },
   {
@@ -52,7 +53,12 @@ const COMPARE_ROWS = [
 ];
 
 const ADMISSION_STEPS = [
-  { step: "01", title: "Check eligibility", description: "Review academic requirements for +2 or equivalent qualifications in relevant streams." },
+  {
+    step: "01",
+    title: "Check eligibility",
+    description: "Review academic requirements for +2 or equivalent qualifications in relevant streams.",
+    hint: "Eligibility generally requires +2 or equivalent. BIT suits students strong in maths and technology, while B.Tech Ed IT is ideal for those focused on education technology and instructional design.",
+  },
   { step: "02", title: "Submit application", description: "Complete the online form with transcripts, identification, and program preference." },
   { step: "03", title: "Entrance assessment", description: "Attend the admission test and interview scheduled by the admissions office." },
   { step: "04", title: "Enrollment", description: "Confirm your seat, complete fee payment, and join orientation week." },
@@ -62,34 +68,58 @@ const CAREER_PATHS = [
   {
     title: "Software Developer",
     description: "Build web and mobile applications for startups, enterprises, and government projects.",
-    image: "https://placehold.co/500x300/86001d/ffffff?text=Developer",
+    image: "https://placehold.co/500x300",
   },
   {
     title: "IT Support & Systems Admin",
     description: "Manage networks, cloud infrastructure, and enterprise systems for organizations.",
-    image: "https://placehold.co/500x300/4d0012/ffffff?text=IT+Admin",
+    image: "https://placehold.co/500x300",
   },
   {
     title: "Ed-Tech Specialist",
     description: "Design digital curricula and learning platforms for schools and training institutes.",
-    image: "https://placehold.co/500x300/86001d/ffffff?text=EdTech",
+    image: "https://placehold.co/500x300",
   },
   {
     title: "ICT Teacher / Trainer",
     description: "Lead technology classrooms and professional development programs nationwide.",
-    image: "https://placehold.co/500x300/4d0012/ffffff?text=Teacher",
+    image: "https://placehold.co/500x300",
   },
   {
     title: "Data & AI Analyst",
     description: "Turn data into insights for business, research, and public-sector innovation.",
-    image: "https://placehold.co/500x300/86001d/ffffff?text=Data+AI",
+    image: "https://placehold.co/500x300",
   },
   {
     title: "Startup Founder",
     description: "Launch ventures in software, education technology, and digital services.",
-    image: "https://placehold.co/500x300/4d0012/ffffff?text=Startup",
+    image: "https://placehold.co/500x300",
   },
 ];
+
+function CurriculumCard({ title, url }: { title: string; url: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="rounded-2xl bg-card border border-border p-4">
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex-1">
+          <h4 className="text-lg font-semibold">{title}</h4>
+          <p className="text-sm text-muted-foreground mt-1">Official Kathmandu University syllabus (opens in preview).</p>
+        </div>
+        <div>
+          <button type="button" onClick={() => setOpen((s) => !s)} className="text-sm text-primary underline">
+            {open ? "Hide" : "View"}
+          </button>
+        </div>
+      </div>
+      {open && (
+        <div className="mt-4">
+          <iframe src={url} title={title} className="w-full" style={{ height: 600 }} />
+        </div>
+      )}
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/programs")({
   head: () => ({
@@ -115,6 +145,8 @@ function ProgramsPage() {
         eyebrow="Academic Programs"
         title="Future-ready degrees in technology & education"
         description="KU-partnered undergraduate programs designed for careers in software, IT services, and technology-enabled teaching across Nepal and beyond."
+        image="https://placehold.co/900x600"
+        primaryCta={{ label: "View Programs", href: "#programs" }}
       />
 
       <PageSection
@@ -128,13 +160,13 @@ function ProgramsPage() {
               id: "bit",
               title: "BIT — Bachelor in Information Technology",
               summary: "Software engineering, databases, networking, and AI fundamentals for tech careers.",
-              image: "https://placehold.co/500x350/86001d/ffffff?text=BIT",
+              image: "https://placehold.co/500x350",
             },
             {
               id: "btech-ed-it",
               title: "B.Tech Ed IT — Technology in Education",
               summary: "Digital pedagogy, instructional design, and IT integration for modern educators.",
-              image: "https://placehold.co/500x350/4d0012/ffffff?text=B.Tech+Ed+IT",
+              image: "https://placehold.co/500x350",
             },
           ]}
         />
@@ -151,7 +183,7 @@ function ProgramsPage() {
         eyebrow="Program 01"
         title="BIT — Bachelor in Information Technology"
         description="A four-year undergraduate program for students who want to design, build, and maintain software systems. From programming fundamentals to capstone projects, BIT graduates leave with a portfolio that proves their skills."
-        image="https://placehold.co/900x700/86001d/ffffff?text=BIT+Program"
+        image="https://placehold.co/900x700"
         duration="4 Years · 8 Semesters"
         credits="126 Credit Hours"
         highlights={[
@@ -170,12 +202,183 @@ function ProgramsPage() {
         ]}
       />
 
+      <PageSection
+        eyebrow="BIT curriculum"
+        title="BIT — 4-year KU-CIHE curriculum structure"
+        description="Detailed semester and credit breakdown for the Bachelor in Information Technology joint curriculum between Kathmandu University and CIHE."
+        className="bg-muted/30"
+      >
+        <div className="grid gap-8">
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-3xl border border-border bg-card p-6">
+              <h3 className="text-xl font-semibold">Credit categories</h3>
+              <dl className="mt-6 space-y-4 text-sm text-muted-foreground">
+                <div>
+                  <dt className="font-semibold text-foreground">Overview / Broad</dt>
+                  <dd className="mt-1">14 Credits</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-foreground">Maths</dt>
+                  <dd className="mt-1">12 Credits</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-foreground">Management and Communication</dt>
+                  <dd className="mt-1">21 Credits</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-foreground">Core Tech (Hardware)</dt>
+                  <dd className="mt-1">18 Credits</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-foreground">Core Tech (Software)</dt>
+                  <dd className="mt-1">21 Credits</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-foreground">Core Tech (Data and Intelligence)</dt>
+                  <dd className="mt-1">12 Credits</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-foreground">Core Tech (Project)</dt>
+                  <dd className="mt-1">20 Credits</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-foreground">Specialization</dt>
+                  <dd className="mt-1">9 Credits</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-foreground">Total</dt>
+                  <dd className="mt-1 font-semibold">127 Credits</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div className="rounded-3xl border border-border bg-card p-6">
+              <h3 className="text-xl font-semibold">Semester totals</h3>
+              <div className="mt-6 grid gap-3 text-sm text-muted-foreground">
+                {[
+                  ["Year I / Sem I", "16 Credits"],
+                  ["Year I / Sem II", "17 Credits"],
+                  ["Year II / Sem III", "17 Credits"],
+                  ["Year II / Sem IV", "17 Credits"],
+                  ["Year III / Sem V", "17 Credits"],
+                  ["Year III / Sem VI", "17 Credits"],
+                  ["Year IV / Sem VII", "14 Credits"],
+                  ["Year IV / Sem VIII", "12 Credits"],
+                ].map(([label, value]) => (
+                  <div key={label} className="rounded-2xl bg-muted/60 p-4">
+                    <p className="font-medium text-foreground">{label}</p>
+                    <p className="mt-1">{value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-border bg-card p-6">
+            <h3 className="text-xl font-semibold">Course breakdown</h3>
+            <div className="mt-6 space-y-6 text-sm text-muted-foreground">
+              <section>
+                <h4 className="font-semibold text-foreground">Overview / Broad</h4>
+                <ul className="mt-3 space-y-2 list-disc pl-5">
+                  <li>ICT 101 — Introduction to Information System Technology (2 Credits)</li>
+                  <li>System Analysis and Design (3 Credits)</li>
+                  <li>IT Ethics and Information Security (3 Credits)</li>
+                  <li>Computer Graphics and Multimedia (3 Credits)</li>
+                  <li>Digital Economy (3 Credits)</li>
+                </ul>
+              </section>
+
+              <section>
+                <h4 className="font-semibold text-foreground">Maths</h4>
+                <ul className="mt-3 space-y-2 list-disc pl-5">
+                  <li>MATH 101 — Calculus and Linear Algebra (3 Credits)</li>
+                  <li>Mathematics II (3 Credits)</li>
+                  <li>Discrete Mathematics (3 Credits)</li>
+                  <li>Probability and Statistics (3 Credits)</li>
+                </ul>
+              </section>
+
+              <section>
+                <h4 className="font-semibold text-foreground">Management and Communication</h4>
+                <ul className="mt-3 space-y-2 list-disc pl-5">
+                  <li>AIMC 101 — Advanced Communication Skills (3 Credits)</li>
+                  <li>Management Principles (3 Credits)</li>
+                  <li>Marketing Management (3 Credits)</li>
+                  <li>Financial Management and Accounting (3 Credits)</li>
+                  <li>Management Information System (3 Credits)</li>
+                  <li>Organizational Behavior (3 Credits)</li>
+                  <li>Research Seminar (3 Credits)</li>
+                </ul>
+              </section>
+
+              <section>
+                <h4 className="font-semibold text-foreground">Core Tech (Hardware)</h4>
+                <ul className="mt-3 space-y-2 list-disc pl-5">
+                  <li>COM 105 — Digital Logic (3 Credits)</li>
+                  <li>Microprocessor and Assembly Language Programming (3 Credits)</li>
+                  <li>Operating Systems (3 Credits)</li>
+                  <li>Computer Architecture and Design (3 Credits)</li>
+                  <li>Data Communication and Networking (3 Credits)</li>
+                  <li>Cloud Computing (3 Credits)</li>
+                </ul>
+              </section>
+
+              <section>
+                <h4 className="font-semibold text-foreground">Core Tech (Software)</h4>
+                <ul className="mt-3 space-y-2 list-disc pl-5">
+                  <li>COMP 102 — Computer Programming (3 Credits)</li>
+                  <li>Object Oriented Programming (3 Credits)</li>
+                  <li>Data Structures and Algorithms (3 Credits)</li>
+                  <li>Software Engineering (3 Credits)</li>
+                  <li>Mobile Application Development (3 Credits)</li>
+                  <li>Web Application Development (3 Credits)</li>
+                  <li>E-Commerce (3 Credits)</li>
+                </ul>
+              </section>
+
+              <section>
+                <h4 className="font-semibold text-foreground">Core Tech (Data and Intelligence)</h4>
+                <ul className="mt-3 space-y-2 list-disc pl-5">
+                  <li>Database Management System (3 Credits)</li>
+                  <li>Big Data (3 Credits)</li>
+                  <li>Artificial Intelligence (3 Credits)</li>
+                  <li>Deep Learning (3 Credits)</li>
+                </ul>
+              </section>
+
+              <section>
+                <h4 className="font-semibold text-foreground">Core Tech (Project)</h4>
+                <ul className="mt-3 space-y-2 list-disc pl-5">
+                  <li>AISP 121 — Semester Project I (2 Credits)</li>
+                  <li>Project II (2 Credits)</li>
+                  <li>Project III (2 Credits)</li>
+                  <li>Project IV (2 Credits)</li>
+                  <li>Project V (2 Credits)</li>
+                  <li>Project VI (2 Credits)</li>
+                  <li>Project VII (2 Credits)</li>
+                  <li>Internship (6 Credits)</li>
+                </ul>
+              </section>
+
+              <section>
+                <h4 className="font-semibold text-foreground">Specialization</h4>
+                <ul className="mt-3 space-y-2 list-disc pl-5">
+                  <li>Elective I (3 Credits)</li>
+                  <li>Elective II (3 Credits)</li>
+                  <li>Elective III (3 Credits)</li>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </div>
+      </PageSection>
+
       <ProgramSpotlight
         id="btech-ed-it"
         eyebrow="Program 02"
         title="B.Tech Ed IT — Technology in Education"
         description="Designed for future educators and training professionals, this program blends information technology with pedagogy. Graduates lead digital transformation in classrooms, training centers, and educational institutions."
-        image="https://placehold.co/900x700/4d0012/ffffff?text=B.Tech+Ed+IT"
+        image="https://placehold.co/900x700"
         duration="4 Years · 8 Semesters"
         credits="126 Credit Hours"
         imageLeft
@@ -194,6 +397,144 @@ function ProgramsPage() {
           "Education technology consultant",
         ]}
       />
+
+      <PageSection
+        eyebrow="B.Tech Ed overview"
+        title="B.Tech Ed — Bachelor of Technical Education in Information Technology"
+        description="A Kathmandu University program preparing instructors, trainers, and ed-tech specialists with vocational pedagogical skills, occupational IT specialization, and educational research experience."
+        className="bg-muted/30"
+      >
+        <div className="grid gap-10">
+          <div className="grid gap-4">
+            <div className="rounded-3xl border border-border bg-card p-6">
+              <h3 className="text-xl font-semibold">Program structure</h3>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl bg-muted/60 p-4">
+                  <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">Total credits</p>
+                  <p className="mt-2 text-3xl font-semibold">136</p>
+                </div>
+                <div className="rounded-2xl bg-muted/60 p-4">
+                  <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">Core courses</p>
+                  <p className="mt-2 text-2xl font-semibold">18 credits</p>
+                </div>
+                <div className="rounded-2xl bg-muted/60 p-4">
+                  <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">Vocational pedagogy</p>
+                  <p className="mt-2 text-2xl font-semibold">20 credits</p>
+                </div>
+                <div className="rounded-2xl bg-muted/60 p-4">
+                  <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">Occupational specialization</p>
+                  <p className="mt-2 text-2xl font-semibold">80 credits</p>
+                </div>
+                <div className="rounded-2xl bg-muted/60 p-4">
+                  <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">Internship / research</p>
+                  <p className="mt-2 text-2xl font-semibold">18 credits</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-border bg-card p-6">
+              <h3 className="text-xl font-semibold">Program summary</h3>
+              <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+                <li><span className="font-semibold text-foreground">Degree offering institution:</span> Kathmandu University</li>
+                <li><span className="font-semibold text-foreground">Program title:</span> Bachelor of Technical Education in Information Technology</li>
+                <li><span className="font-semibold text-foreground">Specialization:</span> Information Technology</li>
+                <li><span className="font-semibold text-foreground">Degree:</span> Bachelor of Technical Education (Information Technology)</li>
+                <li><span className="font-semibold text-foreground">Program duration:</span> 4 years</li>
+                <li><span className="font-semibold text-foreground">Credits:</span> 136</li>
+                <li><span className="font-semibold text-foreground">Intake size:</span> 30 students</li>
+                <li><span className="font-semibold text-foreground">Implementation:</span> Partnership with relevant institutions across the country</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-border bg-card p-6">
+            <h3 className="text-xl font-semibold">Eligibility & entry requirements</h3>
+            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+              Applicants must have completed Level 5 education under NVQF or a minimum 10+2 / equivalent degree with a CGPA of at least 1.6 or an average of 40% in any discipline.
+            </p>
+            <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+              <li>General Educational Knowledge Test: written objective test covering Mathematics, Science, and English at intermediate / 10+2 / diploma levels; 50% required to qualify.</li>
+              <li>Oral / Occupational Assessment: aptitude, work experience, career goals, presentation skills, and financial readiness; 50% required to qualify.</li>
+            </ul>
+          </div>
+
+          <div className="rounded-3xl border border-border bg-card p-6">
+            <h3 className="text-xl font-semibold">Program aims and outcomes</h3>
+            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+              B.Tech Ed prepares professionals for technical and vocational education careers, equipping them with pedagogical skills, occupational specialization, and the ability to design, implement, and evaluate instructional programs.
+            </p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div>
+                <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Aims</h4>
+                <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                  <li>Demonstrate Level 6 NVQF competencies in technical and vocational education.</li>
+                  <li>Exhibit meaningful knowledge and skills in technical-vocational occupational specialization.</li>
+                  <li>Apply occupational specialization knowledge to problem solving.</li>
+                  <li>Apply vocational pedagogical knowledge and instructional skills.</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Learning outcomes</h4>
+                <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                  <li>Demonstrate foundational knowledge in specialization, general education, and pedagogy.</li>
+                  <li>Apply vocational pedagogical skills in instructional contexts.</li>
+                  <li>Analyze curriculum, assessment, and educational research problems.</li>
+                  <li>Design and evaluate curriculum, pedagogy, assessment, and training approaches.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-border bg-card p-6">
+            <h3 className="text-xl font-semibold">Program rationale</h3>
+            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+              B.Tech Ed is built to meet the growing need for competent technical instructors in Nepal's TVET sector. It blends technical and pedagogical training so graduates can support schools, polytechnics, and vocational training centers.
+            </p>
+            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+              The program prepares professionals to solve real workplace problems, develop learning materials, and contribute to the expansion of quality technical education across the country.
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-border bg-card p-6">
+            <h3 className="text-xl font-semibold">Skills and career prospects</h3>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <div>
+                <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Skills developed</h4>
+                <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                  <li>Curriculum development and instructional design for vocational subjects.</li>
+                  <li>Implementation of experiential learning and continuous assessment.</li>
+                  <li>Use of ICT in teaching and training environments.</li>
+                  <li>Critical thinking, collaboration, communication, and civic skills.</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Career prospects</h4>
+                <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                  <li>TVET instructors and educators</li>
+                  <li>TVET curriculum developers</li>
+                  <li>Instructional designers and training specialists</li>
+                  <li>IT professionals in education, training, and development roles</li>
+                  <li>Master’s level study in TVET, education, management, or technology</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-border bg-card p-6">
+            <h3 className="text-xl font-semibold">Assessment and graduation</h3>
+            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+              The program uses continuous assessment with a competency-based ethos. Practical work is assessed in labs, workplaces, or through portfolios, while theoretical learning is evaluated in written and oral formats.
+            </p>
+            <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+              <li>Theoretical courses: 50% internal, 50% external assessment.</li>
+              <li>Courses with major practical components: 75% internal, 25% external assessment.</li>
+              <li>Fully practical courses: 100% internal assessment followed by viva voce.</li>
+              <li>Graduation requires completion of the full program and a minimum CGPA of 2.00.</li>
+              <li>Program completion must not exceed seven years.</li>
+            </ul>
+          </div>
+        </div>
+      </PageSection>
 
       <PageSection
         eyebrow="Side by side"
@@ -227,6 +568,24 @@ function ProgramsPage() {
         description="Both programs open doors to in-demand careers — in tech companies, schools, startups, and public-sector innovation."
       >
         <CareerGrid items={CAREER_PATHS} />
+      </PageSection>
+
+      <PageSection
+        eyebrow="Curriculum"
+        title="Program syllabi & curriculum"
+        description="View the official Kathmandu University curriculum for each program. Click a card to expand the syllabus preview."
+        className="bg-muted/30"
+      >
+        <div className="grid md:grid-cols-2 gap-6">
+          <CurriculumCard
+            title="BIT — Bachelor in Information Technology (KU)"
+            url="https://cdn.ku.edu.np/OVG_Pheevphyhz_Fgehpgher_Raqbefrq1716863325.cqs/1"
+          />
+          <CurriculumCard
+            title="B.Tech Ed IT — Technology in Education (KU)"
+            url="https://cdn.ku.edu.np/O_Grpu_Rq_Cebtenz_Jrofvgr1690203504.cqs/1"
+          />
+        </div>
       </PageSection>
 
       <CtaBand

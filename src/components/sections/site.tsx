@@ -13,10 +13,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 const NAV_LOGO = "https://ik.imagekit.io/qn3m81dsk/university/Address%20(2).png";
 const FOOTER_LOGO = "https://ik.imagekit.io/qn3m81dsk/university/Address%20(1).png";
-import heroImg from "@/assets/hero-campus.jpg";
+const HOME_HERO_IMAGE = "https://ik.imagekit.io/qn3m81dsk/university/clz%204.jpg";
+const HOME_IMAGE_1 = "https://ik.imagekit.io/qn3m81dsk/university/clz%201.jpg";
+const HOME_IMAGE_2 = "https://ik.imagekit.io/qn3m81dsk/university/clz%202.jpg";
+const HOME_IMAGE_3 = "https://ik.imagekit.io/qn3m81dsk/university/clz%203.jpg";
 import progAi from "@/assets/prog-ai.jpg";
 import progEdtech from "@/assets/prog-edtech.jpg";
-import researchImg from "@/assets/research.jpg";
 import studentLifeImg from "@/assets/student-life.jpg";
 import campusImg from "@/assets/campus.jpg";
 import smartClass from "@/assets/smart-classroom.jpg";
@@ -204,6 +206,7 @@ export function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   return (
     <section id="home" ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-black">
+      <img src={HOME_HERO_IMAGE} alt="" className="absolute inset-0 w-full h-full object-cover -z-20" />
       <motion.div style={{ y }} className="absolute inset-0">
         <video
           autoPlay
@@ -211,7 +214,7 @@ export function Hero() {
           muted
           playsInline
           className="size-full object-cover scale-105"
-          poster={heroImg}
+          poster={HOME_HERO_IMAGE}
         >
           <source src="https://www.durham.ac.uk/media/durham-university/homepage/headers/UG-Open-days-HP-banner-05_24v2.mp4" type="video/mp4" />
         </video>
@@ -235,13 +238,17 @@ export function Hero() {
           Empowering future innovators, technologists & leaders through world-class academic pathways rooted in Eastern Nepal.
         </motion.p>
         <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-4">
-          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full font-semibold px-7 h-12">
-            Explore Programs <ArrowRight className="ml-1 size-4" />
-          </Button>
-          <Button size="lg" variant="outline" className="rounded-full px-7 h-12 border-white/30 bg-white/5 text-white hover:bg-white/10 hover:text-white">
-            Scholarship Information
-          </Button>
-          <a href="#tour" className="text-sm text-white/80 hover:text-white inline-flex items-center gap-1.5 underline-offset-4 hover:underline">
+          <Link to="/programs" className="inline-flex">
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full font-semibold px-7 h-12">
+              Explore Programs <ArrowRight className="ml-1 size-4" />
+            </Button>
+          </Link>
+          <Link to="/scholarships" className="inline-flex">
+            <Button size="lg" variant="outline" className="rounded-full px-7 h-12 border-white/30 bg-white/5 text-white hover:bg-white/10 hover:text-white">
+              Scholarship Information
+            </Button>
+          </Link>
+          <a href="/maintenance" className="text-sm text-white/80 hover:text-white inline-flex items-center gap-1.5 underline-offset-4 hover:underline">
             <Play className="size-4" /> Virtual Campus Tour
           </a>
         </motion.div>
@@ -355,9 +362,6 @@ export function Programs() {
                   <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground font-semibold">{p.tag}</span>
                   <h3 className="mt-2 font-semibold text-lg leading-snug">{p.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground flex-1">{p.desc}</p>
-                  <a href="#" className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-black group-hover:text-black/70 transition-colors">
-                    Learn more <ArrowRight className="size-4" />
-                  </a>
                 </div>
               </article>
             </Reveal>
@@ -430,7 +434,7 @@ export function Research() {
         <Reveal delay={0.1}>
           <div className="relative">
             <div className="absolute -inset-3 rounded-3xl border border-primary/30" />
-            <img src={researchImg} alt="AI Robotics & IoT Innovation" loading="lazy" className="relative rounded-3xl w-full aspect-[4/3] object-cover shadow-2xl shadow-primary/20" />
+            <img src={HOME_IMAGE_1} alt="AI Robotics & IoT Innovation" loading="lazy" className="relative rounded-3xl w-full aspect-[4/3] object-cover shadow-2xl shadow-primary/20" />
           </div>
         </Reveal>
       </SectionContainer>
@@ -666,7 +670,7 @@ export function Lead() {
           <p className="mt-4 text-muted-foreground text-lg">Tell us a little about you and we'll be in touch with personalised guidance.</p>
           <div className={cn(LAYOUT.contentGap, "space-y-4")}>
             <div className="flex items-center gap-3"><MapPin className="size-5 text-black" /><span>Jhapa, Nepal</span></div>
-            <div className="flex items-center gap-3"><Phone className="size-5 text-black" /><span>01-5199456 / 57</span></div>
+            <div className="flex items-center gap-3"><Phone className="size-5 text-black" /><span>9801268585</span></div>
             <div className="flex items-center gap-3"><Mail className="size-5 text-black" /><span>info@whitehouseeducation.edu.np</span></div>
           </div>
           <div className={cn(LAYOUT.contentGap, "rounded-3xl overflow-hidden border border-border aspect-[5/3] bg-card")}>
@@ -740,7 +744,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <SectionContainer className="py-6 flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-white/60">
           <span>© {new Date().getFullYear()} WhiteHouse Education Foundation. All rights reserved.</span>
-          <span>Jhapa, Nepal · 01-5199456 / 57 · info@whitehouseeducation.edu.np</span>
+          <span>Jhapa, Nepal · 9801268585 · info@whitehouseeducation.edu.np</span>
         </SectionContainer>
       </div>
     </footer>

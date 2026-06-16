@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
 
@@ -11,7 +12,7 @@ const fadeUp = {
 export type BentoItem = {
   title: string;
   description: string;
-  image: string;
+  image?: string;
   badge?: string;
   className?: string;
   variant?: "image" | "stat" | "text";
@@ -64,9 +65,6 @@ function BentoCard({ item, delay = 0 }: { item: BentoItem; delay?: number }) {
           <h3 className="text-xl font-semibold">{item.title}</h3>
           <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{item.description}</p>
         </div>
-        <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary">
-          Learn more <ArrowRight className="size-4" />
-        </span>
       </motion.article>
     );
   }
@@ -116,37 +114,94 @@ export function PageHero({
   eyebrow,
   title,
   description,
+  image,
+  primaryCta,
+  secondaryCta,
 }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
-  description: string;
+  description?: string;
+  image?: string;
+  primaryCta?: { label: string; href?: string };
+  secondaryCta?: { label: string; href?: string };
 }) {
+  const sectionClass = image
+    ? "relative pt-28 pb-14 md:pb-20 overflow-hidden border-b border-border"
+    : "pt-28 pb-14 md:pb-20 bg-gradient-to-b from-muted/60 to-background border-b border-border";
+
   return (
-    <section className="pt-32 pb-14 md:pb-20 bg-gradient-to-b from-muted/60 to-background border-b border-border">
+    <section className={sectionClass}>
+      {image && (
+        <div className="absolute inset-0 -z-10 pointer-events-none">
+          <img src={image} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+      )}
+
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-sm font-semibold uppercase tracking-wider text-primary"
-        >
-          {eyebrow}
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.08 }}
-          className="mt-3 text-4xl sm:text-5xl font-bold tracking-tight max-w-3xl"
-        >
-          {title}
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.14 }}
-          className="mt-5 text-lg text-muted-foreground max-w-2xl leading-relaxed"
-        >
-          {description}
-        </motion.p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            {eyebrow && (
+              <p className={image ? "text-sm font-semibold uppercase tracking-wider text-white/90" : "text-sm font-semibold uppercase tracking-wider text-primary"}>{eyebrow}</p>
+            )}
+
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.06 }}
+              className={image ? "mt-3 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight max-w-3xl text-white" : "mt-3 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight max-w-3xl"}
+            >
+              {title}
+            </motion.h1>
+
+            {description && (
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.12 }}
+                className={image ? "mt-5 text-lg text-white/90 max-w-2xl leading-relaxed" : "mt-5 text-lg text-muted-foreground max-w-2xl leading-relaxed"}
+              >
+                {description}
+              </motion.p>
+            )}
+
+            {(primaryCta || secondaryCta) && (
+              <div className="mt-8 flex flex-wrap gap-3">
+                {primaryCta && (
+                  <Button asChild size="lg" className={image ? "rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/95" : "rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/95"}>
+                    <a href={primaryCta.href ?? "#"}>{primaryCta.label} <ArrowRight className="ml-2 size-4" /></a>
+                  </Button>
+                )}
+                {secondaryCta && (
+                  <Button asChild size="lg" variant="outline" className="rounded-full px-6 border-white/20 bg-transparent text-foreground">
+                    <a href={secondaryCta.href ?? "#"}>{secondaryCta.label}</a>
+                  </Button>
+                )}
+              </div>
+            )}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.08 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            {!image && (
+              <div className="rounded-3xl bg-gradient-to-tr from-primary/6 to-primary/2 border border-border p-12 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="h-44 w-44 rounded-xl bg-primary/10 mx-auto mb-4" />
+                  <p className="text-muted-foreground">Featured campus visuals</p>
+                </div>
+              </div>
+            )}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

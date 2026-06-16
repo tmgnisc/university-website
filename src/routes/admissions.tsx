@@ -32,19 +32,24 @@ const REQUIREMENTS_BENTO: BentoItem[] = [
   {
     title: "Entrance Exam",
     description: "Written test covering mathematics, logic, and general aptitude.",
-    image: "https://placehold.co/600x400/86001d/ffffff?text=Entrance+Exam",
+    image: "https://placehold.co/600x400",
     className: "lg:col-span-1",
   },
   {
     title: "Interview Round",
     description: "Shortlisted applicants meet the admissions panel for program fit assessment.",
-    image: "https://placehold.co/600x400/4d0012/ffffff?text=Interview",
+    image: "https://placehold.co/600x400",
     className: "lg:col-span-2",
   },
 ];
 
 const ADMISSION_STEPS = [
-  { step: "01", title: "Review eligibility", description: "Confirm you meet academic requirements for BIT or B.Tech Ed IT before applying." },
+  {
+    step: "01",
+    title: "Review eligibility",
+    description: "Confirm you meet academic requirements for BIT or B.Tech Ed IT before applying.",
+    hint: "Most applicants should have completed +2 or equivalent. BIT is best for students with a strong maths/IT foundation; B.Tech Ed IT welcomes future educators with a technology focus.",
+  },
   { step: "02", title: "Submit application", description: "Fill out the online form with personal details, program choice, and supporting documents." },
   { step: "03", title: "Entrance assessment", description: "Take the admission test and attend the interview on your scheduled date." },
   { step: "04", title: "Receive offer", description: "Successful candidates receive an offer letter with enrollment and fee payment instructions." },
@@ -81,6 +86,9 @@ function AdmissionsPage() {
         eyebrow="Admissions"
         title="Start your journey at WCBT"
         description="Admissions are open for Kathmandu University partnered BIT and B.Tech Ed IT programs. Follow the steps below to apply for the upcoming intake."
+        image="https://placehold.co/900x600"
+        primaryCta={{ label: "Apply Now", href: "/admissions#apply" }}
+        secondaryCta={{ label: "Contact Admissions", href: "/contact" }}
       />
 
       <HighlightBand
@@ -101,7 +109,7 @@ function AdmissionsPage() {
         eyebrow="Eligibility"
         title="Who should apply?"
         description="WCBT welcomes motivated students ready for rigorous, industry-aligned technology education. Whether you aspire to build software or lead digital classrooms, we help you find the right fit."
-        image="https://placehold.co/800x600/86001d/ffffff?text=Eligibility"
+        image="https://placehold.co/800x600"
         bullets={[
           "Completed +2 or equivalent from a recognized board",
           "Minimum academic standing as per KU program requirements",

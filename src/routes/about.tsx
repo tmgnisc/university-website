@@ -17,7 +17,7 @@ const ABOUT_BENTO: BentoItem[] = [
   {
     title: "Jhapa Campus",
     description: "A purpose-built learning environment in the heart of Jhapa, Eastern Nepal.",
-    image: "https://placehold.co/700x500/86001d/ffffff?text=Jhapa+Campus",
+    image: "https://ik.imagekit.io/qn3m81dsk/university/clz%202.jpg",
     badge: "Location",
     className: "sm:col-span-2 lg:col-span-2",
   },
@@ -31,13 +31,13 @@ const ABOUT_BENTO: BentoItem[] = [
   {
     title: "Industry Partners",
     description: "Collaborations that bring internships, mentorship, and placement support.",
-    image: "https://placehold.co/500x400/4d0012/ffffff?text=Partners",
+    image: "https://placehold.co/500x400",
     className: "lg:col-span-1",
   },
   {
     title: "Smart Facilities",
     description: "Labs, libraries, and collaborative spaces designed for active learning.",
-    image: "https://placehold.co/600x400/86001d/ffffff?text=Facilities",
+    image: "https://ik.imagekit.io/qn3m81dsk/university/clz%202.jpg",
     className: "sm:col-span-2 lg:col-span-2",
   },
 ];
@@ -92,19 +92,19 @@ const LEADERSHIP = [
   {
     name: "Dr. Rajesh Sharma",
     role: "Campus Director",
-    image: "https://placehold.co/400x300/86001d/ffffff?text=Director",
+    image: "https://placehold.co/400x300",
     bio: "Leads academic strategy, faculty development, and partnerships with Kathmandu University and industry.",
   },
   {
     name: "Sunita Karki",
     role: "Academic Coordinator",
-    image: "https://placehold.co/400x300/4d0012/ffffff?text=Academic",
+    image: "https://placehold.co/400x300",
     bio: "Oversees curriculum delivery, student advising, and quality assurance across all programs.",
   },
   {
     name: "Anil Thapa",
     role: "Industry Relations Lead",
-    image: "https://placehold.co/400x300/86001d/ffffff?text=Industry",
+    image: "https://placehold.co/400x300",
     bio: "Connects students with internships, workshops, and career pathways through partner organizations.",
   },
 ];
@@ -133,13 +133,14 @@ function AboutPage() {
         eyebrow="About WCBT"
         title="WhiteHouse College of Business & Technology"
         description="WCBT Jhapa Campus is in partnership with Kathmandu University, managed by WhiteHouse Education Foundation — empowering students across Eastern Nepal with future-ready education."
+        image="https://ik.imagekit.io/qn3m81dsk/university/clz%203.jpg"
       />
 
       <SplitSection
         eyebrow="Mission"
         title="Empowering Eastern Nepal through technology education"
         description="We exist to make world-class business and technology education accessible in Jhapa — nurturing innovators, educators, and leaders who can compete nationally and contribute locally."
-        image="https://placehold.co/800x600/86001d/ffffff?text=Mission"
+        image="https://ik.imagekit.io/qn3m81dsk/university/clz%201.jpg"
         bullets={[
           "Deliver KU-partnered programs with academic rigor and practical relevance",
           "Bridge classroom learning with industry exposure and community engagement",
@@ -157,7 +158,7 @@ function AboutPage() {
         eyebrow="Vision"
         title="A regional hub for innovation and lifelong learning"
         description="We envision WCBT as Eastern Nepal's center for applied research, entrepreneurship, and technology-enabled education — where students, faculty, and industry solve real problems together."
-        image="https://placehold.co/800x600/4d0012/ffffff?text=Vision"
+        image="https://placehold.co/800x600"
         imageLeft
         bullets={[
           "Expand research and innovation labs in AI, IoT, and ed-tech",

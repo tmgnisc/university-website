@@ -36,20 +36,20 @@ const CONTACT_BENTO: BentoItem[] = [
   {
     title: "Campus Visits",
     description: "Schedule a guided tour of WCBT facilities in Jhapa.",
-    image: "https://placehold.co/600x400/86001d/ffffff?text=Campus+Visit",
+    image: "https://placehold.co/600x400",
     className: "lg:col-span-2",
   },
   {
     title: "General Inquiries",
     description: "Programs, partnerships, media requests, and other questions.",
-    image: "https://placehold.co/500x400/4d0012/ffffff?text=General+Inquiry",
+    image: "https://placehold.co/500x400",
     className: "lg:col-span-2",
   },
 ];
 
 const FAQ = [
   { question: "What are your office hours?", answer: "Sunday through Friday, 9:00 AM to 5:00 PM NPT. Saturday by appointment for campus visits." },
-  { question: "How do I schedule a campus visit?", answer: "Call 01-5199456 / 57 or email info@whitehouseeducation.edu.np with your preferred date. We recommend visiting on weekdays." },
+  { question: "How do I schedule a campus visit?", answer: "Call 9801268585 or email info@whitehouseeducation.edu.np with your preferred date. We recommend visiting on weekdays." },
   { question: "Can I contact via WhatsApp?", answer: "Yes. Message us at 9801268585 for quick admissions and general inquiries during office hours." },
   { question: "Where is WCBT located?", answer: "WCBT operates from the SBSS premises in Jhapa, Nepal. Detailed directions are shared when you schedule a visit." },
 ];
@@ -72,12 +72,14 @@ function ContactPage() {
         eyebrow="Contact Us"
         title="We'd love to hear from you"
         description="Reach out for admissions guidance, scholarship information, campus tours, or any questions about life at WCBT."
+        image="https://placehold.co/900x600"
+        primaryCta={{ label: "Get in touch", href: "/contact#form" }}
       />
 
       <HighlightBand
         badge="Get in Touch"
         title="Admissions team ready to help"
-        description="Phone: 01-5199456 / 57 · Mobile: 9801268585 · Email: info@whitehouseeducation.edu.np"
+        description="Phone: 9801268585 · Mobile: 9801268585 · Email: info@whitehouseeducation.edu.np"
       />
 
       <PageSection
@@ -96,7 +98,7 @@ function ContactPage() {
       >
         <IconFeatureGrid
           items={[
-            { icon: Phone, title: "Phone", description: "01-5199456 / 57 for admissions and general inquiries during office hours." },
+            { icon: Phone, title: "Phone", description: "9801268585 for admissions and general inquiries during office hours." },
             { icon: Mail, title: "Email", description: "info@whitehouseeducation.edu.np — we respond within one business day." },
             { icon: MapPin, title: "Visit us", description: "WCBT Jhapa Campus, Jhapa, Nepal. Schedule visits in advance." },
             { icon: Clock, title: "Office hours", description: "Sun–Fri, 9:00 AM – 5:00 PM NPT. Saturday visits by appointment." },

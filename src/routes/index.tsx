@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")({
         name: "WhiteHouse College of Business & Technology",
         url: "/",
         address: { "@type": "PostalAddress", addressLocality: "Jhapa", addressRegion: "Jhapa", addressCountry: "NP" },
-        telephone: "01-5199456",
+        telephone: "9801268585",
         email: "info@whitehouseeducation.edu.np",
       }),
     }],
