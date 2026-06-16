@@ -13,7 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 const NAV_LOGO = "https://ik.imagekit.io/qn3m81dsk/university/Address%20(2).png";
 const FOOTER_LOGO = "https://ik.imagekit.io/qn3m81dsk/university/Address%20(1).png";
-const HOME_HERO_IMAGE = "https://ik.imagekit.io/qn3m81dsk/university/clz%204.jpg";
+const HOME_HERO_IMAGE = "https://ik.imagekit.io/qn3m81dsk/university/clz%205.jpg";
 const HOME_IMAGE_1 = "https://ik.imagekit.io/qn3m81dsk/university/clz%201.jpg";
 const HOME_IMAGE_2 = "https://ik.imagekit.io/qn3m81dsk/university/clz%202.jpg";
 const HOME_IMAGE_3 = "https://ik.imagekit.io/qn3m81dsk/university/clz%203.jpg";
