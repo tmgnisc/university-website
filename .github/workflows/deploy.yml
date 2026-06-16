@@ -31,5 +31,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: /public_html/
-          # If this is an addon domain with its own document root, change server-dir to the addon domain root path instead of /public_html/.
+          server-dir: /
