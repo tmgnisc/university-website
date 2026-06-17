@@ -64,6 +64,7 @@ export function SplitSection({
   title,
   description,
   image,
+  imageCaption,
   imageLeft = false,
   bullets,
 }: {
@@ -71,6 +72,7 @@ export function SplitSection({
   title: string;
   description: string;
   image: string;
+  imageCaption?: string;
   imageLeft?: boolean;
   bullets?: string[];
 }) {
@@ -107,7 +109,14 @@ export function SplitSection({
       className="relative"
     >
       <div className="absolute -inset-3 rounded-3xl border border-primary/20" />
-      <img src={image} alt="" className="relative rounded-3xl w-full aspect-[4/3] object-cover shadow-xl shadow-primary/10" />
+      <div className="relative">
+        <img src={image} alt="" className="rounded-3xl w-full aspect-[4/3] object-cover shadow-xl shadow-primary/10" />
+        {imageCaption && (
+          <div className="mt-3 text-center">
+            <p className="text-sm font-medium text-foreground">{imageCaption}</p>
+          </div>
+        )}
+      </div>
     </motion.div>
   );
 

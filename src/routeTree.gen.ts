@@ -11,9 +11,15 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ScholarshipsRouteImport } from './routes/scholarships'
 import { Route as ResearchRouteImport } from './routes/research'
+import { Route as PublicationsRouteImport } from './routes/publications'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as MaintenanceRouteImport } from './routes/maintenance'
+import { Route as LegacyRouteImport } from './routes/legacy'
+import { Route as KuAffiliationRouteImport } from './routes/ku-affiliation'
+import { Route as IndustryExposureRouteImport } from './routes/industry-exposure'
+import { Route as GovernanceRouteImport } from './routes/governance'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CareersRouteImport } from './routes/careers'
 import { Route as CampusLifeRouteImport } from './routes/campus-life'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as AboutRouteImport } from './routes/about'
@@ -30,6 +36,11 @@ const ResearchRoute = ResearchRouteImport.update({
   path: '/research',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PublicationsRoute = PublicationsRouteImport.update({
+  id: '/publications',
+  path: '/publications',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProgramsRoute = ProgramsRouteImport.update({
   id: '/programs',
   path: '/programs',
@@ -40,9 +51,34 @@ const MaintenanceRoute = MaintenanceRouteImport.update({
   path: '/maintenance',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LegacyRoute = LegacyRouteImport.update({
+  id: '/legacy',
+  path: '/legacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KuAffiliationRoute = KuAffiliationRouteImport.update({
+  id: '/ku-affiliation',
+  path: '/ku-affiliation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustryExposureRoute = IndustryExposureRouteImport.update({
+  id: '/industry-exposure',
+  path: '/industry-exposure',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GovernanceRoute = GovernanceRouteImport.update({
+  id: '/governance',
+  path: '/governance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CampusLifeRoute = CampusLifeRouteImport.update({
@@ -77,9 +113,15 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/admissions': typeof AdmissionsRoute
   '/campus-life': typeof CampusLifeRoute
+  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/governance': typeof GovernanceRoute
+  '/industry-exposure': typeof IndustryExposureRoute
+  '/ku-affiliation': typeof KuAffiliationRoute
+  '/legacy': typeof LegacyRoute
   '/maintenance': typeof MaintenanceRoute
   '/programs': typeof ProgramsRoute
+  '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/scholarships': typeof ScholarshipsRoute
 }
@@ -89,9 +131,15 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/admissions': typeof AdmissionsRoute
   '/campus-life': typeof CampusLifeRoute
+  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/governance': typeof GovernanceRoute
+  '/industry-exposure': typeof IndustryExposureRoute
+  '/ku-affiliation': typeof KuAffiliationRoute
+  '/legacy': typeof LegacyRoute
   '/maintenance': typeof MaintenanceRoute
   '/programs': typeof ProgramsRoute
+  '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/scholarships': typeof ScholarshipsRoute
 }
@@ -102,9 +150,15 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admissions': typeof AdmissionsRoute
   '/campus-life': typeof CampusLifeRoute
+  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/governance': typeof GovernanceRoute
+  '/industry-exposure': typeof IndustryExposureRoute
+  '/ku-affiliation': typeof KuAffiliationRoute
+  '/legacy': typeof LegacyRoute
   '/maintenance': typeof MaintenanceRoute
   '/programs': typeof ProgramsRoute
+  '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/scholarships': typeof ScholarshipsRoute
 }
@@ -116,9 +170,15 @@ export interface FileRouteTypes {
     | '/about'
     | '/admissions'
     | '/campus-life'
+    | '/careers'
     | '/contact'
+    | '/governance'
+    | '/industry-exposure'
+    | '/ku-affiliation'
+    | '/legacy'
     | '/maintenance'
     | '/programs'
+    | '/publications'
     | '/research'
     | '/scholarships'
   fileRoutesByTo: FileRoutesByTo
@@ -128,9 +188,15 @@ export interface FileRouteTypes {
     | '/about'
     | '/admissions'
     | '/campus-life'
+    | '/careers'
     | '/contact'
+    | '/governance'
+    | '/industry-exposure'
+    | '/ku-affiliation'
+    | '/legacy'
     | '/maintenance'
     | '/programs'
+    | '/publications'
     | '/research'
     | '/scholarships'
   id:
@@ -140,9 +206,15 @@ export interface FileRouteTypes {
     | '/about'
     | '/admissions'
     | '/campus-life'
+    | '/careers'
     | '/contact'
+    | '/governance'
+    | '/industry-exposure'
+    | '/ku-affiliation'
+    | '/legacy'
     | '/maintenance'
     | '/programs'
+    | '/publications'
     | '/research'
     | '/scholarships'
   fileRoutesById: FileRoutesById
@@ -153,9 +225,15 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdmissionsRoute: typeof AdmissionsRoute
   CampusLifeRoute: typeof CampusLifeRoute
+  CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
+  GovernanceRoute: typeof GovernanceRoute
+  IndustryExposureRoute: typeof IndustryExposureRoute
+  KuAffiliationRoute: typeof KuAffiliationRoute
+  LegacyRoute: typeof LegacyRoute
   MaintenanceRoute: typeof MaintenanceRoute
   ProgramsRoute: typeof ProgramsRoute
+  PublicationsRoute: typeof PublicationsRoute
   ResearchRoute: typeof ResearchRoute
   ScholarshipsRoute: typeof ScholarshipsRoute
 }
@@ -176,6 +254,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/publications': {
+      id: '/publications'
+      path: '/publications'
+      fullPath: '/publications'
+      preLoaderRoute: typeof PublicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/programs': {
       id: '/programs'
       path: '/programs'
@@ -190,11 +275,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MaintenanceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/legacy': {
+      id: '/legacy'
+      path: '/legacy'
+      fullPath: '/legacy'
+      preLoaderRoute: typeof LegacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ku-affiliation': {
+      id: '/ku-affiliation'
+      path: '/ku-affiliation'
+      fullPath: '/ku-affiliation'
+      preLoaderRoute: typeof KuAffiliationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industry-exposure': {
+      id: '/industry-exposure'
+      path: '/industry-exposure'
+      fullPath: '/industry-exposure'
+      preLoaderRoute: typeof IndustryExposureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/governance': {
+      id: '/governance'
+      path: '/governance'
+      fullPath: '/governance'
+      preLoaderRoute: typeof GovernanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/campus-life': {
@@ -241,9 +361,15 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdmissionsRoute: AdmissionsRoute,
   CampusLifeRoute: CampusLifeRoute,
+  CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
+  GovernanceRoute: GovernanceRoute,
+  IndustryExposureRoute: IndustryExposureRoute,
+  KuAffiliationRoute: KuAffiliationRoute,
+  LegacyRoute: LegacyRoute,
   MaintenanceRoute: MaintenanceRoute,
   ProgramsRoute: ProgramsRoute,
+  PublicationsRoute: PublicationsRoute,
   ResearchRoute: ResearchRoute,
   ScholarshipsRoute: ScholarshipsRoute,
 }

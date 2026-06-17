@@ -435,6 +435,9 @@ export function Research() {
           <div className="relative">
             <div className="absolute -inset-3 rounded-3xl border border-primary/30" />
             <img src={HOME_IMAGE_1} alt="AI Robotics & IoT Innovation" loading="lazy" className="relative rounded-3xl w-full aspect-[4/3] object-cover shadow-2xl shadow-primary/20" />
+            <div className="mt-3 text-center">
+              <p className="text-sm font-medium text-foreground">Premises of Nidi Secondary School & Indreni Campus</p>
+            </div>
           </div>
         </Reveal>
       </SectionContainer>
@@ -717,11 +720,11 @@ export function Lead() {
 
 export function Footer() {
   const cols = [
-    { h: "Community", items: ["Board Members","Advisors","Faculty","Administration","International"] },
-    { h: "About", items: ["KU Affiliation","Industry Exposure","Publications","Legacy","Governance"] },
-    { h: "Vision", items: ["Mission","Values","Strategy","Reports"] },
-    { h: "Research", items: ["AI Labs","IoT Labs","Innovation Centers","Publications"] },
-    { h: "Contact", items: ["Inquiry Form","Social Links","WhatsApp","Visit Campus"] },
+    { h: "Community", items: [{ label: "Board Members", href: "#" }, { label: "Advisors", href: "#" }, { label: "Faculty", href: "#" }, { label: "Administration", href: "#" }, { label: "International", href: "#" }] },
+    { h: "About", items: [{ label: "KU Affiliation", href: "/ku-affiliation" }, { label: "Industry Exposure", href: "/industry-exposure" }, { label: "Publications", href: "/publications" }, { label: "Legacy", href: "/legacy" }, { label: "Governance", href: "/governance" }] },
+    { h: "Vision", items: [{ label: "Mission", href: "#" }, { label: "Values", href: "#" }, { label: "Strategy", href: "#" }, { label: "Reports", href: "#" }] },
+    { h: "Research", items: [{ label: "AI Labs", href: "/research" }, { label: "IoT Labs", href: "/research" }, { label: "Innovation Centers", href: "/research" }] },
+    { h: "Careers", items: [{ label: "Career Paths", href: "/careers" }, { label: "Graduate Success", href: "/careers" }, { label: "Placements", href: "#" }] },
   ];
   return (
     <footer className="bg-navy-deep text-white/80 border-t border-white/10">
@@ -736,7 +739,7 @@ export function Footer() {
           <div key={c.h}>
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider">{c.h}</h4>
             <ul className="mt-4 space-y-2 text-sm">
-              {c.items.map((i) => (<li key={i}><a href="#" className="hover:text-white transition-colors">{i}</a></li>))}
+              {c.items.map((i) => (<li key={typeof i === 'string' ? i : i.label}><a href={typeof i === 'string' ? "#" : i.href} className="hover:text-white transition-colors">{typeof i === 'string' ? i : i.label}</a></li>))}
             </ul>
           </div>
         ))}

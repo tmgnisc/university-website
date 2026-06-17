@@ -32,6 +32,7 @@ const FACILITIES_BENTO: BentoItem[] = [
     title: "Smart Classrooms",
     description: "Interactive displays and collaborative tools for modern teaching.",
     image: "https://ik.imagekit.io/qn3m81dsk/university/clz%203.jpg?updatedAt=1781585489415",
+    imageCaption: "Premises of Nidi Secondary School & Indreni Campus",
     className: "lg:col-span-1",
   },
   {

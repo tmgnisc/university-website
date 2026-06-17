@@ -18,6 +18,7 @@ const ABOUT_BENTO: BentoItem[] = [
     title: "Jhapa Campus",
     description: "A purpose-built learning environment in the heart of Jhapa, Eastern Nepal.",
     image: "https://ik.imagekit.io/qn3m81dsk/university/clz%202.jpg",
+    imageCaption: "Premises of Nidi Secondary School & Indreni Campus",
     badge: "Location",
     className: "sm:col-span-2 lg:col-span-2",
   },
@@ -38,6 +39,7 @@ const ABOUT_BENTO: BentoItem[] = [
     title: "Smart Facilities",
     description: "Labs, libraries, and collaborative spaces designed for active learning.",
     image: "https://ik.imagekit.io/qn3m81dsk/university/clz%202.jpg",
+    imageCaption: "Premises of Nidi Secondary School & Indreni Campus",
     className: "sm:col-span-2 lg:col-span-2",
   },
 ];
@@ -141,6 +143,7 @@ function AboutPage() {
         title="Empowering Eastern Nepal through technology education"
         description="We exist to make world-class business and technology education accessible in Jhapa — nurturing innovators, educators, and leaders who can compete nationally and contribute locally."
         image="https://ik.imagekit.io/qn3m81dsk/university/clz%201.jpg"
+        imageCaption="Premises of Nidi Secondary School & Indreni Campus"
         bullets={[
           "Deliver KU-partnered programs with academic rigor and practical relevance",
           "Bridge classroom learning with industry exposure and community engagement",

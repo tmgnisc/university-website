@@ -13,6 +13,7 @@ export type BentoItem = {
   title: string;
   description: string;
   image?: string;
+  imageCaption?: string;
   badge?: string;
   className?: string;
   variant?: "image" | "stat" | "text";
@@ -77,7 +78,7 @@ function BentoCard({ item, delay = 0 }: { item: BentoItem; delay?: number }) {
       viewport={{ once: true, margin: "-60px" }}
       transition={{ delay }}
       className={cn(
-        "group relative min-h-[220px] overflow-hidden rounded-3xl border border-border",
+        "group relative min-h-[220px] overflow-hidden rounded-3xl border border-border flex flex-col",
         item.className,
       )}
     >
@@ -96,6 +97,11 @@ function BentoCard({ item, delay = 0 }: { item: BentoItem; delay?: number }) {
         <h3 className="text-xl font-semibold">{item.title}</h3>
         <p className="mt-2 text-sm text-white/80 leading-relaxed">{item.description}</p>
       </div>
+      {item.imageCaption && (
+        <div className="bg-muted/50 px-6 py-3 text-center border-t border-border">
+          <p className="text-xs font-medium text-foreground">{item.imageCaption}</p>
+        </div>
+      )}
     </motion.article>
   );
 }
@@ -115,6 +121,7 @@ export function PageHero({
   title,
   description,
   image,
+  imageCaption,
   primaryCta,
   secondaryCta,
 }: {
@@ -122,6 +129,7 @@ export function PageHero({
   title: string;
   description?: string;
   image?: string;
+  imageCaption?: string;
   primaryCta?: { label: string; href?: string };
   secondaryCta?: { label: string; href?: string };
 }) {
@@ -202,6 +210,11 @@ export function PageHero({
             )}
           </motion.div>
         </div>
+        {imageCaption && (
+          <div className="mt-8 text-center">
+            <p className="text-sm font-medium text-muted-foreground">{imageCaption}</p>
+          </div>
+        )}
       </div>
     </section>
   );

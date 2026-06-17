@@ -112,6 +112,7 @@ function CampusLifePage() {
         title="More than classrooms"
         description="At WCBT, learning extends beyond lectures — through clubs, events, sports, and a vibrant student community in Jhapa."
         image="https://ik.imagekit.io/qn3m81dsk/university/clz%202.jpg"
+        imageCaption="Premises of Nidi Secondary School & Indreni Campus"
       />
       
 

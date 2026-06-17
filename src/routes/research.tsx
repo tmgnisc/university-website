@@ -74,15 +74,16 @@ function ResearchPage() {
     <PageShell>
       <PageHero
         eyebrow="Research & Innovation"
-        title="Where ideas become impact"
-        description="WCBT fosters a hands-on research culture in AI, IoT, ed-tech, and applied innovation — connecting students with real-world problems."
-        image="https://placehold.co/900x600"
+        title="Research & Innovation Ecosystem"
+        description="Research is an integral part of the academic culture at WhiteHouse College. Our commitment to research helps create a learning environment where curiosity is encouraged, ideas are tested, and knowledge is continuously expanded."
+        image="https://ik.imagekit.io/qn3m81dsk/university/clz%203.jpg"
+        imageCaption="Premises of Nidi Secondary School & Indreni Campus"
       />
 
       <HighlightBand
-        badge="Innovation Ecosystem"
-        title="Labs built for discovery"
-        description="From freshman projects to faculty-led studies, research at WCBT bridges academic theory and practical solutions for Nepal and beyond."
+        badge="From Classroom to Innovation"
+        title="Hands-on labs in AI, Robotics, IoT and applied innovation"
+        description="Through research projects, collaborations, and academic initiatives, students gain the opportunity to explore real-world challenges and develop practical solutions."
       />
 
       <PageSection
@@ -151,6 +152,43 @@ function ResearchPage() {
         className="bg-muted/30"
       >
         <Timeline items={PUBLICATIONS} />
+      </PageSection>
+
+      <PageSection eyebrow="AI LABS" title="Artificial Intelligence Research">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-lg leading-relaxed text-muted-foreground mb-6">
+            The Artificial Intelligence (AI) Labs at WhiteHouse College provide students with hands-on experience in one of the 
+            fastest-growing fields of technology. Our labs are equipped with modern computing resources and guided by experienced faculty, 
+            where students can explore machine learning, data analytics, computer vision, natural language processing, and intelligent systems.
+          </p>
+        </div>
+      </PageSection>
+
+      <PageSection eyebrow="IOT LABS" title="Internet of Things Innovation">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-lg leading-relaxed text-muted-foreground mb-6">
+            The Internet of Things (IoT) Labs are designed to give students practical exposure to connected technologies and smart systems. 
+            Through hands-on learning, students work with sensors, microcontrollers, networking technologies, and embedded systems to develop 
+            innovative solutions for real-world applications. These labs support experimentation, project-based learning, project development, 
+            research, theoretical application and development of various other skills.
+          </p>
+        </div>
+      </PageSection>
+
+      <PageSection
+        eyebrow="INNOVATION CENTERS"
+        title="Centers for Creativity & Entrepreneurship"
+        className="bg-muted/30"
+      >
+        <div className="max-w-4xl mx-auto">
+          <p className="text-lg leading-relaxed text-muted-foreground mb-6">
+            By bringing together students, faculty members, industry professionals, and researchers, the centers create opportunities 
+            for collaboration, innovation, and interdisciplinary learning. The goal is to nurture a mindset of continuous improvement, 
+            leadership, and problem-solving while supporting the development of future innovators and entrepreneurs. The Innovation Centers 
+            at WhiteHouse College serve as hubs for creativity, entrepreneurship, and technological development. Students are encouraged to 
+            transform ideas into practical projects, prototypes, and solutions that address real-world needs.
+          </p>
+        </div>
       </PageSection>
 
       <CtaBand
