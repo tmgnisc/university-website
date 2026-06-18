@@ -11,19 +11,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-const NAV_LOGO = "https://ik.imagekit.io/qn3m81dsk/university/Address%20(2).png";
-const FOOTER_LOGO = "https://ik.imagekit.io/qn3m81dsk/university/Address%20(1).png";
-const HOME_HERO_IMAGE = "https://ik.imagekit.io/qn3m81dsk/university/clz%205.jpg";
+const NAV_LOGO = "https://ik.imagekit.io/qn3m81dsk/university/Address%20(13).png";
+const FOOTER_LOGO = "https://ik.imagekit.io/qn3m81dsk/university/Address%20(13).png";
+const HOME_HERO_IMAGE = "https://ik.imagekit.io/qn3m81dsk/university/Untitled%20design%20(52).png";
 const HOME_IMAGE_1 = "https://ik.imagekit.io/qn3m81dsk/university/clz%201.jpg";
 const HOME_IMAGE_2 = "https://ik.imagekit.io/qn3m81dsk/university/clz%202.jpg";
 const HOME_IMAGE_3 = "https://ik.imagekit.io/qn3m81dsk/university/clz%203.jpg";
+import heroImg from "@/assets/hero-campus.jpg";
+import heroVisionImg from "@/assets/hero.png";
 import progAi from "@/assets/prog-ai.jpg";
 import progEdtech from "@/assets/prog-edtech.jpg";
 import studentLifeImg from "@/assets/student-life.jpg";
 import campusImg from "@/assets/campus.jpg";
 import smartClass from "@/assets/smart-classroom.jpg";
 import aiLab from "@/assets/ai-lab.jpg";
-import campusTour from "@/assets/campus-tour.jpg";
 
 const NAV = ["Home","About","Programs","Admissions","Scholarships","Campus Life","Research","Contact"];
 const NAV_IDS = NAV.map((n) => n.toLowerCase().replace(/ /g, "-"));
@@ -202,22 +203,18 @@ export function Header() {
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  const [heroImage, setHeroImage] = useState(HOME_HERO_IMAGE);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   return (
     <section id="home" ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-black">
-      <img src={HOME_HERO_IMAGE} alt="" className="absolute inset-0 w-full h-full object-cover -z-20" />
       <motion.div style={{ y }} className="absolute inset-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="size-full object-cover scale-105"
-          poster={HOME_HERO_IMAGE}
-        >
-          <source src="https://www.durham.ac.uk/media/durham-university/homepage/headers/UG-Open-days-HP-banner-05_24v2.mp4" type="video/mp4" />
-        </video>
+        <img
+          src={heroImage}
+          alt="WhiteHouse College of Business & Technology campus"
+          className="size-full object-cover object-[center_35%] scale-105"
+          onError={() => setHeroImage(heroImg)}
+        />
       </motion.div>
       <div
         className="absolute inset-0 z-[1] bg-black/40 backdrop-blur-[2px] bg-gradient-to-b from-black/50 via-black/30 to-black/55"
@@ -588,12 +585,12 @@ export function Vision() {
       <SectionContainer className={cn("grid lg:grid-cols-2 items-center relative", LAYOUT.splitGap)}>
         <Reveal>
           <div className="relative rounded-3xl overflow-hidden cyan-glow">
-            <img src={campusTour} alt="Virtual campus tour" loading="lazy" className="w-full aspect-video object-cover" />
-            <div className="absolute inset-0 bg-navy-deep/40 grid place-items-center">
-              <button className="size-20 rounded-full bg-primary text-primary-foreground grid place-items-center cyan-glow hover:scale-110 transition-transform" aria-label="Play tour">
-                <Play className="size-8 fill-current" />
-              </button>
-            </div>
+            <img
+              src={heroVisionImg}
+              alt="WhiteHouse College of Business & Technology campus"
+              loading="lazy"
+              className="w-full aspect-video object-cover"
+            />
           </div>
         </Reveal>
         <Reveal delay={0.1}>
