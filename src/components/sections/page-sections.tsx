@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
@@ -27,7 +28,7 @@ export function PageSection({
   dark?: boolean;
 }) {
   return (
-    <section className={cn("py-16 md:py-24", dark && "bg-navy-deep text-white", className)}>
+    <section className={cn("py-16 md:py-20", dark && "bg-navy-deep text-white", className)}>
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
           variants={fadeUp}
@@ -132,7 +133,7 @@ export function SplitSection({
   );
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-16 md:py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
         {imageLeft ? (
           <>
@@ -160,7 +161,7 @@ export function HighlightBand({
   badge?: string;
 }) {
   return (
-    <section className="bg-primary text-primary-foreground py-12 md:py-16">
+    <section className="bg-primary text-primary-foreground py-16 md:py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
           {badge && (
@@ -362,7 +363,7 @@ export function ProgramSpotlight({
   );
 
   return (
-    <section id={id} className="py-16 md:py-24 scroll-mt-28 even:bg-muted/40">
+    <section id={id} className="py-16 md:py-20 scroll-mt-28 even:bg-muted/40">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
         {imageLeft ? (
           <>
@@ -587,7 +588,7 @@ export function FaqList({ items }: { items: { question: string; answer: string }
 
 export function ContactSection() {
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-16 md:py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-10 lg:gap-14">
         <motion.div
           variants={fadeUp}
@@ -737,6 +738,100 @@ export function CurriculumStructure({ years }: { years: CurriculumYear[] }) {
         </motion.div>
       ))}
     </div>
+  );
+}
+
+const FIELD_CLASS = "w-full h-12 rounded-xl border border-input bg-background px-4 text-sm";
+
+// Reusable application / inquiry form. Front-end only for now (shows a
+// thank-you state on submit) — wire to the backend later.
+export function ApplicationForm({
+  id,
+  eyebrow = "Apply",
+  title,
+  description,
+  submitLabel = "Submit application",
+  className,
+}: {
+  id?: string;
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  submitLabel?: string;
+  className?: string;
+}) {
+  const [sent, setSent] = useState(false);
+  return (
+    <section id={id} className={cn("scroll-mt-28 py-16 md:py-20", className)}>
+      <div className="mx-auto max-w-3xl px-6 lg:px-10">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="text-center"
+        >
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+            {eyebrow}
+          </span>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">{title}</h2>
+          {description && (
+            <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{description}</p>
+          )}
+        </motion.div>
+
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSent(true);
+          }}
+          className="mt-10 rounded-3xl border border-border bg-card p-6 shadow-xl shadow-primary/5 md:p-8"
+        >
+          {sent ? (
+            <div className="py-10 text-center">
+              <div className="mx-auto grid size-14 place-items-center rounded-full bg-primary text-primary-foreground">
+                <CheckCircle2 className="size-7" />
+              </div>
+              <h3 className="mt-5 text-2xl font-semibold">Thank you!</h3>
+              <p className="mt-2 text-muted-foreground">
+                Our admissions team will be in touch with you shortly.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <input required placeholder="Full name" className={FIELD_CLASS} />
+              <div className="grid gap-4 sm:grid-cols-2">
+                <input required type="tel" placeholder="Phone number" className={FIELD_CLASS} />
+                <input required type="email" placeholder="Email" className={FIELD_CLASS} />
+              </div>
+              <select required defaultValue="" className={FIELD_CLASS}>
+                <option value="" disabled>
+                  Program of interest
+                </option>
+                <option>BIT — Bachelor of Information Technology</option>
+                <option>B.Tech Ed IT — Technology in Education</option>
+                <option>Not sure yet</option>
+              </select>
+              <textarea
+                rows={4}
+                placeholder="Anything you'd like us to know? (optional)"
+                className={cn(FIELD_CLASS, "h-auto py-3")}
+              />
+              <Button
+                type="submit"
+                size="lg"
+                className="h-12 w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90"
+              >
+                {submitLabel} <ArrowRight className="ml-1 size-4" />
+              </Button>
+              <p className="text-center text-xs text-muted-foreground">
+                We respect your privacy. No spam, ever.
+              </p>
+            </div>
+          )}
+        </form>
+      </div>
+    </section>
   );
 }
 

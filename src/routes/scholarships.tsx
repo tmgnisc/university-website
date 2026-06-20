@@ -3,6 +3,7 @@ import { Award, Heart, Star, TrendingUp } from "lucide-react";
 
 import { BentoGrid, PageHero, type BentoItem } from "@/components/sections/bento";
 import {
+  ApplicationForm,
   CtaBand,
   FaqList,
   HighlightBand,
@@ -220,6 +221,14 @@ function ScholarshipsPage() {
       >
         <FaqList items={FAQ} />
       </PageSection>
+
+      <ApplicationForm
+        id="apply"
+        eyebrow="Scholarships"
+        title="Apply for a scholarship"
+        description="Tell us about yourself and our team will help you find the right award and guide your application."
+        submitLabel="Submit scholarship inquiry"
+      />
 
       <CtaBand
         title="Explore scholarship options"

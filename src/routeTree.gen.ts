@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VisitUsRouteImport } from './routes/visit-us'
+import { Route as VirtualTourRouteImport } from './routes/virtual-tour'
 import { Route as StudentSupportRouteImport } from './routes/student-support'
 import { Route as StudentExperienceRouteImport } from './routes/student-experience'
 import { Route as ScholarshipsRouteImport } from './routes/scholarships'
@@ -41,6 +42,11 @@ import { Route as AdminAuthedChatbotRouteImport } from './routes/admin._authed.c
 const VisitUsRoute = VisitUsRouteImport.update({
   id: '/visit-us',
   path: '/visit-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VirtualTourRoute = VirtualTourRouteImport.update({
+  id: '/virtual-tour',
+  path: '/virtual-tour',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StudentSupportRoute = StudentSupportRouteImport.update({
@@ -198,6 +204,7 @@ export interface FileRoutesByFullPath {
   '/scholarships': typeof ScholarshipsRoute
   '/student-experience': typeof StudentExperienceRoute
   '/student-support': typeof StudentSupportRoute
+  '/virtual-tour': typeof VirtualTourRoute
   '/visit-us': typeof VisitUsRoute
   '/admin': typeof AdminAuthedRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
@@ -228,6 +235,7 @@ export interface FileRoutesByTo {
   '/scholarships': typeof ScholarshipsRoute
   '/student-experience': typeof StudentExperienceRoute
   '/student-support': typeof StudentSupportRoute
+  '/virtual-tour': typeof VirtualTourRoute
   '/visit-us': typeof VisitUsRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/chatbot': typeof AdminAuthedChatbotRoute
@@ -258,6 +266,7 @@ export interface FileRoutesById {
   '/scholarships': typeof ScholarshipsRoute
   '/student-experience': typeof StudentExperienceRoute
   '/student-support': typeof StudentSupportRoute
+  '/virtual-tour': typeof VirtualTourRoute
   '/visit-us': typeof VisitUsRoute
   '/admin/_authed': typeof AdminAuthedRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
@@ -290,6 +299,7 @@ export interface FileRouteTypes {
     | '/scholarships'
     | '/student-experience'
     | '/student-support'
+    | '/virtual-tour'
     | '/visit-us'
     | '/admin'
     | '/admin/login'
@@ -320,6 +330,7 @@ export interface FileRouteTypes {
     | '/scholarships'
     | '/student-experience'
     | '/student-support'
+    | '/virtual-tour'
     | '/visit-us'
     | '/admin/login'
     | '/admin/chatbot'
@@ -349,6 +360,7 @@ export interface FileRouteTypes {
     | '/scholarships'
     | '/student-experience'
     | '/student-support'
+    | '/virtual-tour'
     | '/visit-us'
     | '/admin/_authed'
     | '/admin/login'
@@ -380,6 +392,7 @@ export interface RootRouteChildren {
   ScholarshipsRoute: typeof ScholarshipsRoute
   StudentExperienceRoute: typeof StudentExperienceRoute
   StudentSupportRoute: typeof StudentSupportRoute
+  VirtualTourRoute: typeof VirtualTourRoute
   VisitUsRoute: typeof VisitUsRoute
   AdminAuthedRoute: typeof AdminAuthedRouteWithChildren
   AdminLoginRoute: typeof AdminLoginRoute
@@ -392,6 +405,13 @@ declare module '@tanstack/react-router' {
       path: '/visit-us'
       fullPath: '/visit-us'
       preLoaderRoute: typeof VisitUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/virtual-tour': {
+      id: '/virtual-tour'
+      path: '/virtual-tour'
+      fullPath: '/virtual-tour'
+      preLoaderRoute: typeof VirtualTourRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/student-support': {
@@ -629,6 +649,7 @@ const rootRouteChildren: RootRouteChildren = {
   ScholarshipsRoute: ScholarshipsRoute,
   StudentExperienceRoute: StudentExperienceRoute,
   StudentSupportRoute: StudentSupportRoute,
+  VirtualTourRoute: VirtualTourRoute,
   VisitUsRoute: VisitUsRoute,
   AdminAuthedRoute: AdminAuthedRouteWithChildren,
   AdminLoginRoute: AdminLoginRoute,

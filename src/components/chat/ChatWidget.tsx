@@ -1,6 +1,16 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
-import { Bot, ChevronLeft, ChevronRight, HelpCircle, MessageCircle, Send, X } from "lucide-react";
+import {
+  ArrowRight,
+  Bot,
+  ChevronLeft,
+  ChevronRight,
+  HelpCircle,
+  MessageCircle,
+  Send,
+  X,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -9,6 +19,14 @@ import chatbotData from "@/data/chatbot.json";
 import { findChatbotAnswer, type ChatbotData } from "@/lib/chatbot";
 
 const chatbot = chatbotData as ChatbotData;
+
+// Quick navigation shown under each bot answer so users can jump straight to the
+// relevant page or start an application.
+const CHAT_LINKS: { label: string; to: string; hash?: string }[] = [
+  { label: "How to apply", to: "/admissions" },
+  { label: "Programs", to: "/programs" },
+  { label: "Scholarships", to: "/scholarships" },
+];
 
 type Message = {
   id: string;
@@ -279,6 +297,29 @@ export function ChatWidget() {
                       >
                         {msg.time}
                       </p>
+                      {msg.role === "bot" && (
+                        <div className="flex flex-wrap gap-1.5 pt-1">
+                          {CHAT_LINKS.map((l) => (
+                            <Link
+                              key={l.label}
+                              to={l.to}
+                              hash={l.hash}
+                              onClick={() => setOpen(false)}
+                              className="rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-[11px] font-medium text-primary transition-colors hover:bg-primary/10"
+                            >
+                              {l.label}
+                            </Link>
+                          ))}
+                          <Link
+                            to="/admissions"
+                            hash="apply"
+                            onClick={() => setOpen(false)}
+                            className="inline-flex items-center gap-1 rounded-full bg-primary px-2.5 py-1 text-[11px] font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                          >
+                            Apply Now <ArrowRight className="size-3" />
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}

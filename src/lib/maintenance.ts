@@ -15,6 +15,7 @@ const LIVE_ROUTES = [
   "/student-experience",
   "/student-support",
   "/visit-us",
+  "/virtual-tour",
   "/ku-affiliation",
   "/industry-exposure",
   "/governance",
@@ -41,7 +42,10 @@ export function shouldAllowInteraction(target: EventTarget | null): boolean {
     if (
       ALLOWED_ROUTE_PREFIXES.some(
         (prefix) =>
-          href === prefix || href.startsWith(`${prefix}/`) || href.startsWith(`${prefix}?`),
+          href === prefix ||
+          href.startsWith(`${prefix}/`) ||
+          href.startsWith(`${prefix}?`) ||
+          href.startsWith(`${prefix}#`),
       )
     ) {
       return true;

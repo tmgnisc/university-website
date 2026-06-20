@@ -1,5 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { MapPin, Landmark, CalendarCheck, Compass, Video, Bus, Phone, Mail } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+  MapPin,
+  Landmark,
+  CalendarCheck,
+  Compass,
+  Video,
+  Bus,
+  Phone,
+  Mail,
+  ArrowRight,
+} from "lucide-react";
 
 import { PageHero } from "@/components/sections/bento";
 import {
@@ -10,6 +20,7 @@ import {
   SplitSection,
 } from "@/components/sections/page-sections";
 import { PageShell } from "@/components/sections/page-shell";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/visit-us")({
   head: () => ({
@@ -42,6 +53,25 @@ function VisitUsPage() {
         title="We'd love to show you around"
         description="Meet our students and faculty, tour the facilities, and get your questions answered in person."
       />
+
+      <PageSection
+        eyebrow="Can't visit yet?"
+        title="Take the virtual campus tour"
+        description="Explore our premises online with an immersive, scrolling walkthrough."
+      >
+        <div className="flex">
+          <Button
+            asChild
+            size="lg"
+            className="rounded-full bg-primary px-8 text-primary-foreground hover:bg-primary/90"
+          >
+            <Link to="/virtual-tour">
+              <Video className="mr-1 size-4" /> Start the virtual tour{" "}
+              <ArrowRight className="ml-1 size-4" />
+            </Link>
+          </Button>
+        </div>
+      </PageSection>
 
       <PageSection
         eyebrow="What to expect"

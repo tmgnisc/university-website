@@ -48,22 +48,24 @@ import campusImg from "@/assets/campus.jpg";
 import smartClass from "@/assets/smart-classroom.jpg";
 import aiLab from "@/assets/ai-lab.jpg";
 
-type NavLink = { label: string; to: string };
+type NavLink = { label: string; to: string; hash?: string };
 type NavGroup = { label: string; to?: string; children?: NavLink[] };
 
 // Top-level header is grouped into a few dropdowns so it stays clean and
 // responsive while still covering every section of the sitemap.
 const NAV_MENU: NavGroup[] = [
   { label: "Home", to: "/" },
+  { label: "About Us", to: "/about" },
   {
-    label: "Academics",
+    label: "Programs",
     children: [
-      { label: "Programs", to: "/programs" },
+      { label: "BIT", to: "/programs", hash: "bit" },
+      { label: "B.Tech Ed IT", to: "/programs", hash: "btech-ed-it" },
       { label: "Research & Innovation", to: "/research" },
     ],
   },
   {
-    label: "Admissions",
+    label: "Academics",
     children: [
       { label: "Admissions", to: "/admissions" },
       { label: "Scholarships", to: "/scholarships" },
@@ -90,8 +92,16 @@ function isGroupActive(group: NavGroup, pathname: string) {
   return group.children?.some((c) => isLinkActive(c.to, pathname)) ?? false;
 }
 
+// Children that share a path but differ by hash (e.g. /programs#bit vs
+// /programs#btech-ed-it) must compare the hash so only one shows as active.
+function isChildActive(child: NavLink, pathname: string, hash: string) {
+  if (!isLinkActive(child.to, pathname)) return false;
+  if (child.hash) return hash.replace(/^#/, "") === child.hash;
+  return true;
+}
+
 const LAYOUT = {
-  section: "py-16 md:py-24",
+  section: "py-16 md:py-20",
   container: "max-w-7xl mx-auto px-6 lg:px-10",
   contentGap: "mt-10",
   gridGap: "gap-6",
@@ -140,7 +150,7 @@ function Reveal({
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -160,9 +170,9 @@ export function Header() {
         scrolled ? "shadow-md border-b border-border" : "border-b border-border/60"
       }`}
     >
-      <div className={cn(LAYOUT.container, "h-22 flex items-center justify-between")}>
+      <div className={cn(LAYOUT.container, "h-24 flex items-center justify-between")}>
         <Link to="/" className="flex items-center">
-          <img src={NAV_LOGO} alt="WCBT Jhapa Campus" className="h-20 w-auto sm:h-22" />
+          <img src={NAV_LOGO} alt="WCBT Jhapa Campus" className="h-[5.5rem] w-auto sm:h-24" />
         </Link>
         <nav className="hidden lg:flex items-center gap-x-1">
           {NAV_MENU.map((item) =>
@@ -184,11 +194,12 @@ export function Header() {
                   <div className="min-w-56 rounded-2xl border border-border bg-white p-2 shadow-xl shadow-black/5">
                     {item.children.map((child) => (
                       <Link
-                        key={child.to}
+                        key={child.label}
                         to={child.to}
+                        hash={child.hash}
                         className={cn(
                           "block rounded-xl px-3 py-2 text-sm transition-colors",
-                          isLinkActive(child.to, pathname)
+                          isChildActive(child, pathname, hash)
                             ? "bg-primary/10 font-medium text-primary"
                             : "text-black hover:bg-muted",
                         )}
@@ -216,8 +227,13 @@ export function Header() {
           )}
         </nav>
         <div className="flex items-center gap-3">
-          <Button className="hidden sm:inline-flex bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-full px-5">
-            Apply Now
+          <Button
+            asChild
+            className="hidden sm:inline-flex bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-full px-5"
+          >
+            <Link to="/admissions" hash="apply">
+              Apply Now
+            </Link>
           </Button>
           <button
             onClick={() => setOpen(true)}
@@ -254,12 +270,13 @@ export function Header() {
                   <div className="flex flex-col gap-2.5">
                     {item.children.map((child) => (
                       <Link
-                        key={child.to}
+                        key={child.label}
                         to={child.to}
+                        hash={child.hash}
                         onClick={() => setOpen(false)}
                         className={cn(
                           "text-base transition-colors",
-                          isLinkActive(child.to, pathname)
+                          isChildActive(child, pathname, hash)
                             ? "font-semibold text-primary"
                             : "text-black hover:text-primary",
                         )}
@@ -285,8 +302,13 @@ export function Header() {
                 </Link>
               ),
             )}
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full mt-2">
-              Apply Now
+            <Button
+              asChild
+              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full mt-2"
+            >
+              <Link to="/admissions" hash="apply" onClick={() => setOpen(false)}>
+                Apply Now
+              </Link>
             </Button>
           </motion.aside>
         </div>
@@ -310,7 +332,7 @@ export function Hero() {
         <img
           src={heroImage}
           alt="WhiteHouse College of Business & Technology campus"
-          className="size-full object-cover object-[center_35%] scale-105"
+          className="size-full object-cover object-[center_55%] scale-105"
           onError={() => setHeroImage(heroImg)}
         />
       </motion.div>
@@ -471,12 +493,14 @@ const programs = [
     tag: "KU Affiliated",
     title: "BIT — Bachelor in Information Technology",
     desc: "Build the next generation of software, AI systems and intelligent platforms.",
+    hash: "bit",
   },
   {
     img: progEdtech,
     tag: "KU Affiliated",
     title: "B.Tech Ed IT — Technology in Education",
     desc: "Equip educators with cutting-edge tools to reshape modern classrooms.",
+    hash: "btech-ed-it",
   },
 ];
 
@@ -504,7 +528,11 @@ export function Programs() {
         >
           {programs.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
-              <article className="group rounded-3xl overflow-hidden bg-card border border-border shadow-xl shadow-primary/5 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/15 h-full flex flex-col">
+              <Link
+                to="/programs"
+                hash={p.hash}
+                className="group rounded-3xl overflow-hidden bg-card border border-border shadow-xl shadow-primary/5 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/15 h-full flex flex-col"
+              >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={p.img}
@@ -520,7 +548,7 @@ export function Programs() {
                   <h3 className="mt-2 font-semibold text-lg leading-snug">{p.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground flex-1">{p.desc}</p>
                 </div>
-              </article>
+              </Link>
             </Reveal>
           ))}
         </div>
@@ -530,10 +558,30 @@ export function Programs() {
 }
 
 const steps = [
-  { icon: FileText, title: "Admission Process", desc: "Eligibility, deadlines & documents." },
-  { icon: GraduationCap, title: "Scholarship Schemes", desc: "Up to 75% merit-based aid." },
-  { icon: MessageSquare, title: "Academic Inquiry", desc: "Talk to our admissions team." },
-  { icon: MapPin, title: "Jhapa Campus", desc: "Visit & explore our facilities." },
+  {
+    icon: FileText,
+    title: "Admission Process",
+    desc: "Eligibility, deadlines & documents.",
+    to: "/admissions",
+  },
+  {
+    icon: GraduationCap,
+    title: "Scholarship Schemes",
+    desc: "Up to 75% merit-based aid.",
+    to: "/scholarships",
+  },
+  {
+    icon: MessageSquare,
+    title: "Academic Inquiry",
+    desc: "Talk to our admissions team.",
+    to: "/contact",
+  },
+  {
+    icon: MapPin,
+    title: "Jhapa Campus",
+    desc: "Visit & explore our facilities.",
+    to: "/visit-us",
+  },
 ];
 
 export function NextSteps() {
@@ -554,9 +602,10 @@ export function NextSteps() {
         >
           {steps.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.08}>
-              <div
+              <Link
+                to={s.to}
                 className={cn(
-                  "group rounded-3xl bg-card border border-border h-full transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/30",
+                  "group block rounded-3xl bg-card border border-border h-full transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/30",
                   LAYOUT.cardPadding,
                 )}
               >
@@ -568,7 +617,7 @@ export function NextSteps() {
                   <ChevronRight className="size-5 shrink-0 text-muted-foreground transition-all group-hover:translate-x-1 group-hover:text-black" />
                 </h3>
                 <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
-              </div>
+              </Link>
             </Reveal>
           ))}
         </div>

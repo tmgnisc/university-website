@@ -3,6 +3,7 @@ import { Calendar, ClipboardList, FileText, GraduationCap } from "lucide-react";
 
 import { BentoGrid, PageHero, type BentoItem } from "@/components/sections/bento";
 import {
+  ApplicationForm,
   CtaBand,
   DeadlineGrid,
   FaqList,
@@ -222,6 +223,15 @@ function AdmissionsPage() {
       >
         <FaqList items={FAQ} />
       </PageSection>
+
+      <ApplicationForm
+        id="apply"
+        eyebrow="Admissions"
+        title="Apply to WCBT"
+        description="Fill in your details and our admissions team will guide you through the next steps."
+        submitLabel="Submit application"
+        className="bg-muted/30"
+      />
 
       <CtaBand
         title="Ready to apply?"
