@@ -9,6 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VisitUsRouteImport } from './routes/visit-us'
+import { Route as StudentSupportRouteImport } from './routes/student-support'
+import { Route as StudentExperienceRouteImport } from './routes/student-experience'
 import { Route as ScholarshipsRouteImport } from './routes/scholarships'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as PublicationsRouteImport } from './routes/publications'
@@ -26,6 +29,21 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VisitUsRoute = VisitUsRouteImport.update({
+  id: '/visit-us',
+  path: '/visit-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentSupportRoute = StudentSupportRouteImport.update({
+  id: '/student-support',
+  path: '/student-support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentExperienceRoute = StudentExperienceRouteImport.update({
+  id: '/student-experience',
+  path: '/student-experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ScholarshipsRoute = ScholarshipsRouteImport.update({
   id: '/scholarships',
   path: '/scholarships',
@@ -124,6 +142,9 @@ export interface FileRoutesByFullPath {
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/scholarships': typeof ScholarshipsRoute
+  '/student-experience': typeof StudentExperienceRoute
+  '/student-support': typeof StudentSupportRoute
+  '/visit-us': typeof VisitUsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -142,6 +163,9 @@ export interface FileRoutesByTo {
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/scholarships': typeof ScholarshipsRoute
+  '/student-experience': typeof StudentExperienceRoute
+  '/student-support': typeof StudentSupportRoute
+  '/visit-us': typeof VisitUsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -161,6 +185,9 @@ export interface FileRoutesById {
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/scholarships': typeof ScholarshipsRoute
+  '/student-experience': typeof StudentExperienceRoute
+  '/student-support': typeof StudentSupportRoute
+  '/visit-us': typeof VisitUsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -181,6 +208,9 @@ export interface FileRouteTypes {
     | '/publications'
     | '/research'
     | '/scholarships'
+    | '/student-experience'
+    | '/student-support'
+    | '/visit-us'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -199,6 +229,9 @@ export interface FileRouteTypes {
     | '/publications'
     | '/research'
     | '/scholarships'
+    | '/student-experience'
+    | '/student-support'
+    | '/visit-us'
   id:
     | '__root__'
     | '/'
@@ -217,6 +250,9 @@ export interface FileRouteTypes {
     | '/publications'
     | '/research'
     | '/scholarships'
+    | '/student-experience'
+    | '/student-support'
+    | '/visit-us'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -236,10 +272,34 @@ export interface RootRouteChildren {
   PublicationsRoute: typeof PublicationsRoute
   ResearchRoute: typeof ResearchRoute
   ScholarshipsRoute: typeof ScholarshipsRoute
+  StudentExperienceRoute: typeof StudentExperienceRoute
+  StudentSupportRoute: typeof StudentSupportRoute
+  VisitUsRoute: typeof VisitUsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/visit-us': {
+      id: '/visit-us'
+      path: '/visit-us'
+      fullPath: '/visit-us'
+      preLoaderRoute: typeof VisitUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-support': {
+      id: '/student-support'
+      path: '/student-support'
+      fullPath: '/student-support'
+      preLoaderRoute: typeof StudentSupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-experience': {
+      id: '/student-experience'
+      path: '/student-experience'
+      fullPath: '/student-experience'
+      preLoaderRoute: typeof StudentExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/scholarships': {
       id: '/scholarships'
       path: '/scholarships'
@@ -372,6 +432,9 @@ const rootRouteChildren: RootRouteChildren = {
   PublicationsRoute: PublicationsRoute,
   ResearchRoute: ResearchRoute,
   ScholarshipsRoute: ScholarshipsRoute,
+  StudentExperienceRoute: StudentExperienceRoute,
+  StudentSupportRoute: StudentSupportRoute,
+  VisitUsRoute: VisitUsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

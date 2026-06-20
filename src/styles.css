@@ -66,26 +66,49 @@
   --ring: #86001d;
 }
 
-.dark { --background: var(--navy-deep); --foreground: oklch(0.985 0.005 250); }
+.dark {
+  --background: var(--navy-deep);
+  --foreground: oklch(0.985 0.005 250);
+}
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1,h2,h3,h4 { font-family: var(--font-display); }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+  }
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
-.animate-marquee { animation: marquee 40s linear infinite; }
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
 
-.glass-navy { background-color: color-mix(in oklab, var(--navy) 80%, transparent); backdrop-filter: blur(16px); }
+.glass-navy {
+  background-color: color-mix(in oklab, var(--navy) 80%, transparent);
+  backdrop-filter: blur(16px);
+}
 
-.cyan-glow { box-shadow: 0 0 40px -8px color-mix(in oklab, var(--cyan) 60%, transparent); }
+.cyan-glow {
+  box-shadow: 0 0 40px -8px color-mix(in oklab, var(--cyan) 60%, transparent);
+}

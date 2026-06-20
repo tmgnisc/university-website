@@ -245,7 +245,10 @@ export function ChatWidget() {
                 {messages.map((msg) => (
                   <div
                     key={msg.id}
-                    className={cn("flex gap-2", msg.role === "user" ? "flex-row-reverse" : "flex-row")}
+                    className={cn(
+                      "flex gap-2",
+                      msg.role === "user" ? "flex-row-reverse" : "flex-row",
+                    )}
                   >
                     {msg.role === "bot" && (
                       <div className="mt-1 grid size-7 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">

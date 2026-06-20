@@ -1,20 +1,47 @@
-// @lovable.dev/vite-tanstack-config already includes the following — do NOT add them manually
-// or the app will break with duplicate plugins:
-//   - tanstackStart, viteReact, tailwindcss, tsConfigPaths, nitro (build-only using cloudflare as a default target),
-//     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
-//     error logger plugins, and sandbox detection (port/host/strictPort).
-// You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { defineConfig } from "vite";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import viteReact from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import tsConfigPaths from "vite-tsconfig-paths";
 
+// Static SPA build (no Nitro server bundle). Output goes to `dist/client`,
+// which is what vercel.json and the deploy workflow consume.
 export default defineConfig({
-  // Static SPA deploy — no Nitro server bundle.
-  nitro: false,
-  tanstackStart: {
-    spa: {
-      enabled: true,
-      prerender: {
-        outputPath: "/index.html",
-      },
-    },
+  server: {
+    host: true,
+    port: 8080,
   },
+  resolve: {
+    // Keep a single copy of React / TanStack Query across the dep graph.
+    dedupe: [
+      "react",
+      "react-dom",
+      "react/jsx-runtime",
+      "react/jsx-dev-runtime",
+      "@tanstack/react-query",
+      "@tanstack/query-core",
+    ],
+  },
+  plugins: [
+    // `@/*` path alias is resolved from tsconfig.json.
+    tsConfigPaths({ projects: ["./tsconfig.json"] }),
+    tailwindcss(),
+    tanstackStart({
+      spa: {
+        enabled: true,
+        prerender: {
+          outputPath: "/index.html",
+        },
+      },
+      // Stop server-only modules from leaking into the client bundle.
+      importProtection: {
+        behavior: "error",
+        client: {
+          files: ["**/server/**"],
+          specifiers: ["server-only"],
+        },
+      },
+    }),
+    viteReact(),
+  ],
 });

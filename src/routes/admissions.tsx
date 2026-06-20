@@ -50,29 +50,75 @@ const ADMISSION_STEPS = [
     description: "Confirm you meet academic requirements for BIT or B.Tech Ed IT before applying.",
     hint: "Most applicants should have completed +2 or equivalent. BIT is best for students with a strong maths/IT foundation; B.Tech Ed IT welcomes future educators with a technology focus.",
   },
-  { step: "02", title: "Submit application", description: "Fill out the online form with personal details, program choice, and supporting documents." },
-  { step: "03", title: "Entrance assessment", description: "Take the admission test and attend the interview on your scheduled date." },
-  { step: "04", title: "Receive offer", description: "Successful candidates receive an offer letter with enrollment and fee payment instructions." },
+  {
+    step: "02",
+    title: "Submit application",
+    description:
+      "Fill out the online form with personal details, program choice, and supporting documents.",
+  },
+  {
+    step: "03",
+    title: "Entrance assessment",
+    description: "Take the admission test and attend the interview on your scheduled date.",
+  },
+  {
+    step: "04",
+    title: "Receive offer",
+    description:
+      "Successful candidates receive an offer letter with enrollment and fee payment instructions.",
+  },
 ];
 
 const DEADLINES = [
-  { date: "Mar 15, 2026", title: "Early application closes", description: "Submit your form early for priority scheduling of entrance exams." },
-  { date: "Apr 30, 2026", title: "Regular deadline", description: "Final date for standard intake applications for the 2026 academic year." },
-  { date: "May 20, 2026", title: "Enrollment week", description: "Confirm your seat, complete orientation, and begin your first semester." },
+  {
+    date: "Mar 15, 2026",
+    title: "Early application closes",
+    description: "Submit your form early for priority scheduling of entrance exams.",
+  },
+  {
+    date: "Apr 30, 2026",
+    title: "Regular deadline",
+    description: "Final date for standard intake applications for the 2026 academic year.",
+  },
+  {
+    date: "May 20, 2026",
+    title: "Enrollment week",
+    description: "Confirm your seat, complete orientation, and begin your first semester.",
+  },
 ];
 
 const FAQ = [
-  { question: "Who can apply to WCBT?", answer: "Students who have completed +2 or equivalent in Science, Management, or related streams with minimum eligibility as per Kathmandu University guidelines." },
-  { question: "Is there an entrance exam?", answer: "Yes. All applicants take a written entrance test followed by an interview. Sample guidelines are shared after application submission." },
-  { question: "Can I apply for both BIT and B.Tech Ed IT?", answer: "You select a primary program on the application. Contact admissions if you need guidance on choosing the right pathway." },
-  { question: "What documents are required?", answer: "Academic certificates, transcripts, citizenship or passport copy, passport-size photos, and any additional documents listed in the offer letter." },
+  {
+    question: "Who can apply to WCBT?",
+    answer:
+      "Students who have completed +2 or equivalent in Science, Management, or related streams with minimum eligibility as per Kathmandu University guidelines.",
+  },
+  {
+    question: "Is there an entrance exam?",
+    answer:
+      "Yes. All applicants take a written entrance test followed by an interview. Sample guidelines are shared after application submission.",
+  },
+  {
+    question: "Can I apply for both BIT and B.Tech Ed IT?",
+    answer:
+      "You select a primary program on the application. Contact admissions if you need guidance on choosing the right pathway.",
+  },
+  {
+    question: "What documents are required?",
+    answer:
+      "Academic certificates, transcripts, citizenship or passport copy, passport-size photos, and any additional documents listed in the offer letter.",
+  },
 ];
 
 export const Route = createFileRoute("/admissions")({
   head: () => ({
     meta: [
       { title: "Admissions — WhiteHouse College of Business & Technology" },
-      { name: "description", content: "Apply to WCBT Jhapa Campus. Learn about eligibility, entrance exams, deadlines, and enrollment for BIT and B.Tech Ed IT programs." },
+      {
+        name: "description",
+        content:
+          "Apply to WCBT Jhapa Campus. Learn about eligibility, entrance exams, deadlines, and enrollment for BIT and B.Tech Ed IT programs.",
+      },
     ],
     links: [{ rel: "canonical", href: "/admissions" }],
   }),
@@ -143,15 +189,37 @@ function AdmissionsPage() {
       >
         <IconFeatureGrid
           items={[
-            { icon: FileText, title: "Application help", description: "Walkthroughs for online forms, document uploads, and program selection." },
-            { icon: ClipboardList, title: "Document checklist", description: "Personalized list of required papers based on your academic background." },
-            { icon: Calendar, title: "Exam scheduling", description: "Flexible entrance exam slots with advance notice and preparation tips." },
-            { icon: GraduationCap, title: "Program counseling", description: "One-on-one sessions to choose between BIT and B.Tech Ed IT." },
+            {
+              icon: FileText,
+              title: "Application help",
+              description:
+                "Walkthroughs for online forms, document uploads, and program selection.",
+            },
+            {
+              icon: ClipboardList,
+              title: "Document checklist",
+              description:
+                "Personalized list of required papers based on your academic background.",
+            },
+            {
+              icon: Calendar,
+              title: "Exam scheduling",
+              description: "Flexible entrance exam slots with advance notice and preparation tips.",
+            },
+            {
+              icon: GraduationCap,
+              title: "Program counseling",
+              description: "One-on-one sessions to choose between BIT and B.Tech Ed IT.",
+            },
           ]}
         />
       </PageSection>
 
-      <PageSection eyebrow="FAQ" title="Frequently asked questions" description="Quick answers to common admissions questions.">
+      <PageSection
+        eyebrow="FAQ"
+        title="Frequently asked questions"
+        description="Quick answers to common admissions questions."
+      >
         <FaqList items={FAQ} />
       </PageSection>
 

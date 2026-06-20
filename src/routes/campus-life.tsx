@@ -43,25 +43,68 @@ const CAMPUS_BENTO: BentoItem[] = [
 ];
 
 const CLUBS = [
-  { title: "Coding Club", description: "Weekly meetups, competitive programming, and open-source contributions.", image: "https://placehold.co/500x300" },
-  { title: "Robotics Society", description: "Build and compete with robots — from line followers to autonomous projects.", image: "https://placehold.co/500x300" },
-  { title: "Ed-Tech Circle", description: "Explore digital tools, LMS platforms, and classroom innovation.", image: "https://placehold.co/500x300" },
-  { title: "Photography & Media", description: "Capture campus life and produce content for college channels.", image: "https://placehold.co/500x300" },
-  { title: "Sports Association", description: "Football, cricket, basketball, and inter-college tournaments.", image: "https://placehold.co/500x300" },
-  { title: "Community Outreach", description: "Tech literacy workshops and volunteer programs in local schools.", image: "https://placehold.co/500x300" },
+  {
+    title: "Coding Club",
+    description: "Weekly meetups, competitive programming, and open-source contributions.",
+    image: "https://placehold.co/500x300",
+  },
+  {
+    title: "Robotics Society",
+    description: "Build and compete with robots — from line followers to autonomous projects.",
+    image: "https://placehold.co/500x300",
+  },
+  {
+    title: "Ed-Tech Circle",
+    description: "Explore digital tools, LMS platforms, and classroom innovation.",
+    image: "https://placehold.co/500x300",
+  },
+  {
+    title: "Photography & Media",
+    description: "Capture campus life and produce content for college channels.",
+    image: "https://placehold.co/500x300",
+  },
+  {
+    title: "Sports Association",
+    description: "Football, cricket, basketball, and inter-college tournaments.",
+    image: "https://placehold.co/500x300",
+  },
+  {
+    title: "Community Outreach",
+    description: "Tech literacy workshops and volunteer programs in local schools.",
+    image: "https://placehold.co/500x300",
+  },
 ];
 
 const EVENTS = [
-  { year: "Jan", title: "Orientation Week", description: "Welcome new students with campus tours, mentor meetups, and team-building activities." },
-  { year: "Mar", title: "Industry Speaker Series", description: "Monthly talks from IT leaders, educators, and startup founders." },
-  { year: "Jun", title: "Summer Hackathon", description: "48-hour build sprint with prizes, mentors, and recruiter networking." },
-  { year: "Oct", title: "WCBT Annual Fest", description: "The biggest celebration of the year — culture, tech expo, sports, and performances." },
+  {
+    year: "Jan",
+    title: "Orientation Week",
+    description:
+      "Welcome new students with campus tours, mentor meetups, and team-building activities.",
+  },
+  {
+    year: "Mar",
+    title: "Industry Speaker Series",
+    description: "Monthly talks from IT leaders, educators, and startup founders.",
+  },
+  {
+    year: "Jun",
+    title: "Summer Hackathon",
+    description: "48-hour build sprint with prizes, mentors, and recruiter networking.",
+  },
+  {
+    year: "Oct",
+    title: "WCBT Annual Fest",
+    description:
+      "The biggest celebration of the year — culture, tech expo, sports, and performances.",
+  },
 ];
 
 const CAMPUS_GALLERY: BentoItem[] = [
   {
     title: "Campus Festivities",
-    description: "Live performances, cultural nights, and student celebrations from across the year.",
+    description:
+      "Live performances, cultural nights, and student celebrations from across the year.",
     image: "https://placehold.co/700x500",
     className: "sm:col-span-2 lg:col-span-2",
   },
@@ -83,7 +126,8 @@ const CAMPUS_GALLERY: BentoItem[] = [
   },
   {
     title: "Team Projects",
-    description: "Collaborative student work that bridges classroom learning with real-world impact.",
+    description:
+      "Collaborative student work that bridges classroom learning with real-world impact.",
     image: "https://placehold.co/500x300",
   },
   {
@@ -97,7 +141,11 @@ export const Route = createFileRoute("/campus-life")({
   head: () => ({
     meta: [
       { title: "Campus Life — WhiteHouse College of Business & Technology" },
-      { name: "description", content: "Discover student life at WCBT — clubs, events, facilities, and community in Jhapa, Nepal." },
+      {
+        name: "description",
+        content:
+          "Discover student life at WCBT — clubs, events, facilities, and community in Jhapa, Nepal.",
+      },
     ],
     links: [{ rel: "canonical", href: "/campus-life" }],
   }),
@@ -114,7 +162,6 @@ function CampusLifePage() {
         image="https://ik.imagekit.io/qn3m81dsk/university/clz%202.jpg"
         imageCaption="Premises of Nidi Secondary School & Indreni Campus"
       />
-      
 
       <HighlightBand
         badge="Student Community"
@@ -168,10 +215,27 @@ function CampusLifePage() {
       >
         <IconFeatureGrid
           items={[
-            { icon: Users, title: "Peer mentoring", description: "Senior students guide newcomers through academics and campus navigation." },
-            { icon: Coffee, title: "Study spaces", description: "Quiet zones and group rooms available throughout the day." },
-            { icon: Dumbbell, title: "Sports & fitness", description: "Intramural leagues and fitness activities promote physical wellbeing." },
-            { icon: Music, title: "Cultural activities", description: "Music, dance, and celebration events build community pride." },
+            {
+              icon: Users,
+              title: "Peer mentoring",
+              description:
+                "Senior students guide newcomers through academics and campus navigation.",
+            },
+            {
+              icon: Coffee,
+              title: "Study spaces",
+              description: "Quiet zones and group rooms available throughout the day.",
+            },
+            {
+              icon: Dumbbell,
+              title: "Sports & fitness",
+              description: "Intramural leagues and fitness activities promote physical wellbeing.",
+            },
+            {
+              icon: Music,
+              title: "Cultural activities",
+              description: "Music, dance, and celebration events build community pride.",
+            },
           ]}
         />
       </PageSection>

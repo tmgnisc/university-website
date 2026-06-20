@@ -2,7 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Briefcase, Users, Target, Zap } from "lucide-react";
 
 import { PageHero } from "@/components/sections/bento";
-import { CtaBand, HighlightBand, IconFeatureGrid, PageSection } from "@/components/sections/page-sections";
+import {
+  CtaBand,
+  HighlightBand,
+  IconFeatureGrid,
+  PageSection,
+} from "@/components/sections/page-sections";
 import { PageShell } from "@/components/sections/page-shell";
 
 export const Route = createFileRoute("/industry-exposure")({
@@ -29,22 +34,26 @@ const EXPOSURE_METHODS = [
   {
     icon: Briefcase,
     title: "Internships",
-    description: "Semester-long and summer internships with technology companies, startups, and businesses.",
+    description:
+      "Semester-long and summer internships with technology companies, startups, and businesses.",
   },
   {
     icon: Users,
     title: "Mentorship Programs",
-    description: "One-on-one guidance from industry professionals and alumni working in leading organizations.",
+    description:
+      "One-on-one guidance from industry professionals and alumni working in leading organizations.",
   },
   {
     icon: Target,
     title: "Workshops & Seminars",
-    description: "Regular training sessions on emerging technologies, professional skills, and industry best practices.",
+    description:
+      "Regular training sessions on emerging technologies, professional skills, and industry best practices.",
   },
   {
     icon: Zap,
     title: "Industry Visits",
-    description: "Field trips and campus visits from companies to expose students to real workplace environments.",
+    description:
+      "Field trips and campus visits from companies to expose students to real workplace environments.",
   },
 ];
 
@@ -94,9 +103,10 @@ function IndustryExposurePage() {
 
       <PageSection eyebrow="Our Approach" title="Learning Beyond the Classroom">
         <p className="text-lg leading-relaxed text-muted-foreground max-w-4xl mx-auto mb-8">
-          At WhiteHouse College, learning extends beyond the classroom. We believe that practical experience plays a vital role in professional 
-          success. Students are provided with opportunities to participate in internships, industrial visits, field projects, workshops, seminars, 
-          and interactions with industry experts.
+          At WhiteHouse College, learning extends beyond the classroom. We believe that practical
+          experience plays a vital role in professional success. Students are provided with
+          opportunities to participate in internships, industrial visits, field projects, workshops,
+          seminars, and interactions with industry experts.
         </p>
         <IconFeatureGrid items={EXPOSURE_METHODS} />
       </PageSection>
@@ -106,16 +116,14 @@ function IndustryExposurePage() {
         description="Students who engage with real industry experience gain the confidence, skills, and networks needed to excel in their careers and contribute meaningfully to their professions."
       />
 
-      <PageSection
-        eyebrow="Development"
-        title="Skills You'll Develop"
-        className="bg-muted/30"
-      >
+      <PageSection eyebrow="Development" title="Skills You'll Develop" className="bg-muted/30">
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {OPPORTUNITIES.map((opp) => (
             <div key={opp.title} className="rounded-2xl border border-border bg-card p-6">
               <h3 className="font-semibold text-lg">{opp.title}</h3>
-              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{opp.description}</p>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                {opp.description}
+              </p>
             </div>
           ))}
         </div>
@@ -123,8 +131,9 @@ function IndustryExposurePage() {
 
       <PageSection eyebrow="Our Partners" title="Industry Collaboration">
         <p className="text-lg leading-relaxed text-muted-foreground max-w-4xl mx-auto">
-          WhiteHouse College collaborates with leading technology companies, startups, educational institutions, and organizations across 
-          Nepal and the region. These partnerships ensure that our students gain exposure to diverse industries, technologies, and career pathways.
+          WhiteHouse College collaborates with leading technology companies, startups, educational
+          institutions, and organizations across Nepal and the region. These partnerships ensure
+          that our students gain exposure to diverse industries, technologies, and career pathways.
         </p>
       </PageSection>
 

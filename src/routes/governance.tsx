@@ -17,7 +17,8 @@ export const Route = createFileRoute("/governance")({
       { property: "og:title", content: "Governance — WCBT Jhapa Campus" },
       {
         property: "og:description",
-        content: "Discover our commitment to transparency, accountability, and institutional excellence.",
+        content:
+          "Discover our commitment to transparency, accountability, and institutional excellence.",
       },
     ],
     links: [{ rel: "canonical", href: "/governance" }],
@@ -36,14 +37,12 @@ function GovernancePage() {
         imageCaption="Premises of Nidi Secondary School & Indreni Campus"
       />
 
-      <PageSection
-        eyebrow="Our Structure"
-        title="Transparent & Accountable Management"
-      >
+      <PageSection eyebrow="Our Structure" title="Transparent & Accountable Management">
         <p className="text-lg leading-relaxed text-muted-foreground max-w-4xl mx-auto mb-8">
-          WhiteHouse College follows a transparent, accountable, and participatory governance system that supports academic excellence 
-          and institutional growth. The college is guided by experienced academic leaders, administrators, and governing bodies committed 
-          to maintaining high standards in education, research, and student services.
+          WhiteHouse College follows a transparent, accountable, and participatory governance system
+          that supports academic excellence and institutional growth. The college is guided by
+          experienced academic leaders, administrators, and governing bodies committed to
+          maintaining high standards in education, research, and student services.
         </p>
       </PageSection>
 
@@ -52,11 +51,7 @@ function GovernancePage() {
         description="Our governance structure ensures that every decision prioritizes student success, academic quality, and institutional sustainability."
       />
 
-      <PageSection
-        eyebrow="Governance Framework"
-        title="Key Components"
-        className="bg-muted/30"
-      >
+      <PageSection eyebrow="Governance Framework" title="Key Components" className="bg-muted/30">
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {[
             {
@@ -89,7 +84,9 @@ function GovernancePage() {
                 <component.icon className="size-5" />
               </div>
               <h3 className="font-semibold text-lg">{component.title}</h3>
-              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{component.description}</p>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                {component.description}
+              </p>
             </div>
           ))}
         </div>
@@ -101,48 +98,53 @@ function GovernancePage() {
             {[
               {
                 title: "Institutional Board",
-                description: "Provides strategic oversight and long-term vision for institutional development and sustainability.",
+                description:
+                  "Provides strategic oversight and long-term vision for institutional development and sustainability.",
               },
               {
                 title: "Academic Council",
-                description: "Oversees curriculum development, program quality, and faculty development initiatives.",
+                description:
+                  "Oversees curriculum development, program quality, and faculty development initiatives.",
               },
               {
                 title: "Administrative Leadership",
-                description: "Manages daily operations, student services, and institutional support systems.",
+                description:
+                  "Manages daily operations, student services, and institutional support systems.",
               },
             ].map((body) => (
               <div key={body.title} className="rounded-2xl border border-border bg-card p-6">
                 <h3 className="font-semibold text-lg">{body.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{body.description}</p>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                  {body.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </PageSection>
 
-      <PageSection
-        eyebrow="Commitment"
-        title="Principles That Guide Us"
-        className="bg-muted/30"
-      >
+      <PageSection eyebrow="Commitment" title="Principles That Guide Us" className="bg-muted/30">
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {[
             {
               title: "Transparency",
-              description: "Open communication about policies, decisions, and performance metrics affecting the college community.",
+              description:
+                "Open communication about policies, decisions, and performance metrics affecting the college community.",
             },
             {
               title: "Accountability",
-              description: "Clear responsibility for outcomes and continuous monitoring of institutional performance.",
+              description:
+                "Clear responsibility for outcomes and continuous monitoring of institutional performance.",
             },
             {
               title: "Student-Centered Focus",
-              description: "Every policy and decision prioritizes student success, safety, and overall development.",
+              description:
+                "Every policy and decision prioritizes student success, safety, and overall development.",
             },
             {
               title: "Academic Integrity",
-              description: "Maintaining high standards in teaching, research, and institutional reputation through ethical practices.",
+              description:
+                "Maintaining high standards in teaching, research, and institutional reputation through ethical practices.",
             },
           ].map((principle) => (
             <div key={principle.title} className="rounded-2xl border border-border p-6">
