@@ -645,7 +645,7 @@ export function ContactSection() {
               <label className="text-sm font-medium">Phone</label>
               <input
                 className="mt-1.5 w-full h-12 rounded-xl border border-input bg-background px-4 text-sm"
-                placeholder="98XXXXXXXX"
+                placeholder="Your phone number"
               />
             </div>
             <div>

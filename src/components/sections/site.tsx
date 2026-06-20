@@ -162,7 +162,7 @@ export function Header() {
     >
       <div className={cn(LAYOUT.container, "h-22 flex items-center justify-between")}>
         <Link to="/" className="flex items-center">
-          <img src={NAV_LOGO} alt="WCBT Jhapa Campus" className="h-[4.5rem] w-auto sm:h-22" />
+          <img src={NAV_LOGO} alt="WCBT Jhapa Campus" className="h-20 w-auto sm:h-22" />
         </Link>
         <nav className="hidden lg:flex items-center gap-x-1">
           {NAV_MENU.map((item) =>
