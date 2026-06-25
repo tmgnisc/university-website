@@ -32,7 +32,7 @@ const ABOUT_BENTO: BentoItem[] = [
   {
     title: "Industry Partners",
     description: "Collaborations that bring internships, mentorship, and placement support.",
-    image: "https://placehold.co/500x400",
+    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80",
     className: "lg:col-span-1",
   },
   {
@@ -94,19 +94,19 @@ const LEADERSHIP = [
   {
     name: "Dr. Rajesh Sharma",
     role: "Campus Director",
-    image: "https://placehold.co/400x300",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
     bio: "Leads academic strategy, faculty development, and partnerships with Kathmandu University and industry.",
   },
   {
     name: "Sunita Karki",
     role: "Academic Coordinator",
-    image: "https://placehold.co/400x300",
+    image: "https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?auto=format&fit=crop&w=600&q=80",
     bio: "Oversees curriculum delivery, student advising, and quality assurance across all programs.",
   },
   {
     name: "Anil Thapa",
     role: "Industry Relations Lead",
-    image: "https://placehold.co/400x300",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
     bio: "Connects students with internships, workshops, and career pathways through partner organizations.",
   },
 ];
@@ -161,7 +161,7 @@ function AboutPage() {
         eyebrow="Vision"
         title="A regional hub for innovation and lifelong learning"
         description="We envision WCBT as Eastern Nepal's center for applied research, entrepreneurship, and technology-enabled education — where students, faculty, and industry solve real problems together."
-        image="https://placehold.co/800x600"
+        image="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80"
         imageLeft
         bullets={[
           "Expand research and innovation labs in AI, IoT, and ed-tech",

@@ -17,7 +17,7 @@ const SCHOLARSHIP_BENTO: BentoItem[] = [
   {
     title: "Merit Scholarship",
     description: "Up to 75% tuition support for outstanding academic performers in entrance exams and prior studies.",
-    image: "https://placehold.co/700x500",
+    image: "https://images.unsplash.com/photo-1627556704302-624286467c65?auto=format&fit=crop&w=1000&q=80",
     badge: "Up to 75%",
     className: "sm:col-span-2 lg:col-span-2 lg:row-span-2 min-h-[300px]",
   },
@@ -38,13 +38,13 @@ const SCHOLARSHIP_BENTO: BentoItem[] = [
   {
     title: "Sports & Talent",
     description: "Recognition for exceptional achievement in sports, arts, or community leadership.",
-    image: "https://placehold.co/500x400",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80",
     className: "lg:col-span-1",
   },
   {
     title: "Rural Access Fund",
     description: "Dedicated support for students from remote and underserved communities in Eastern Nepal.",
-    image: "https://placehold.co/600x400",
+    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80",
     className: "sm:col-span-2 lg:col-span-2",
   },
 ];
@@ -81,7 +81,7 @@ function ScholarshipsPage() {
         eyebrow="Scholarships & Financial Aid"
         title="Making quality education accessible"
         description="WCBT offers a range of scholarships to recognize talent, support deserving students, and open doors for learners across Eastern Nepal."
-        image="https://placehold.co/900x600"
+        image="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=80"
         primaryCta={{ label: "Apply for Scholarship", href: "/scholarships#apply" }}
       />
 
@@ -103,7 +103,7 @@ function ScholarshipsPage() {
         eyebrow="Merit awards"
         title="Rewarding academic excellence"
         description="High performers in entrance examinations and prior academics may qualify for substantial tuition reductions. We believe talent should never be limited by cost."
-        image="https://placehold.co/800x600"
+        image="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=1200&q=80"
         bullets={[
           "Based on entrance exam scores and +2 results",
           "Tiered awards from 25% to 75% tuition coverage",
@@ -116,7 +116,7 @@ function ScholarshipsPage() {
         eyebrow="Need-based aid"
         title="Support for deserving students"
         description="Students facing financial hardship can apply for need-based grants. Our committee reviews each case individually with confidentiality and care."
-        image="https://placehold.co/800x600"
+        image="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80"
         imageLeft
         bullets={[
           "Income and family circumstance documentation required",

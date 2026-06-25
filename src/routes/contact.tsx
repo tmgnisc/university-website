@@ -36,13 +36,13 @@ const CONTACT_BENTO: BentoItem[] = [
   {
     title: "Campus Visits",
     description: "Schedule a guided tour of WCBT facilities in Jhapa.",
-    image: "https://placehold.co/600x400",
+    image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80",
     className: "lg:col-span-2",
   },
   {
     title: "General Inquiries",
     description: "Programs, partnerships, media requests, and other questions.",
-    image: "https://placehold.co/500x400",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80",
     className: "lg:col-span-2",
   },
 ];
@@ -72,7 +72,7 @@ function ContactPage() {
         eyebrow="Contact Us"
         title="We'd love to hear from you"
         description="Reach out for admissions guidance, scholarship information, campus tours, or any questions about life at WCBT."
-        image="https://placehold.co/900x600"
+        image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1400&q=80"
         primaryCta={{ label: "Get in touch", href: "/contact#form" }}
       />
 

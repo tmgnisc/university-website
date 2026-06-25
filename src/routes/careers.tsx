@@ -29,32 +29,32 @@ const CAREER_PATHS = [
   {
     title: "Software Developer",
     description: "Graduates can work with technology companies, startups, financial institutions, and government organizations to create digital solutions that meet real-world needs.",
-    image: "https://placehold.co/500x300",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "IT Support & Systems Administrator",
     description: "This role focuses on ensuring the reliability, security, and efficiency of technology systems used by modern organizations to manage computer systems, networks, cloud services, and IT infrastructure.",
-    image: "https://placehold.co/500x300",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Ed-Tech Specialist",
     description: "Graduates can help schools, colleges, and training institutions improve teaching and learning through innovative technologies.",
-    image: "https://placehold.co/500x300",
+    image: "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "ICT Teacher / Trainer",
     description: "Graduates can also conduct professional development and skills-training programs for various organizations by building the next generation of digital professionals by teaching technology-related subjects in schools, colleges, and training centers.",
-    image: "https://placehold.co/500x300",
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Data & AI Analyst",
     description: "Graduates may work in business intelligence, research, artificial intelligence, data analytics, and digital transformation projects across multiple sectors by analyzing data, identifying trends, and generating insights that support informed decision-making.",
-    image: "https://placehold.co/500x300",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Startup Founder",
     description: "Graduates can launch startups in software development, education technology, digital services, consulting, and other emerging industries, contributing to economic growth and technological advancement and transform innovative ideas into successful ventures.",
-    image: "https://placehold.co/500x300",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
   },
 ];
 

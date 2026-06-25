@@ -17,7 +17,7 @@ const RESEARCH_BENTO: BentoItem[] = [
   {
     title: "AI & Machine Learning Lab",
     description: "Experiment with neural networks, computer vision, and natural language processing projects.",
-    image: "https://placehold.co/800x600",
+    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=1200&q=80",
     badge: "AI / ML",
     className: "sm:col-span-2 lg:col-span-3 lg:row-span-2 min-h-[320px]",
   },
@@ -31,24 +31,24 @@ const RESEARCH_BENTO: BentoItem[] = [
   {
     title: "IoT & Robotics",
     description: "Sensors, embedded systems, and autonomous robot prototypes.",
-    image: "https://placehold.co/600x450",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
     className: "lg:col-span-2",
   },
   {
     title: "Ed-Tech Research",
     description: "Studies on digital learning tools, classroom analytics, and instructional design.",
-    image: "https://placehold.co/600x450",
+    image: "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=800&q=80",
     className: "lg:col-span-2",
   },
 ];
 
 const PROJECTS = [
-  { title: "Smart Agriculture IoT", description: "Soil moisture sensors and automated irrigation for local farms.", image: "https://placehold.co/500x300" },
-  { title: "Nepali NLP Toolkit", description: "Open-source language tools for Nepali text processing and chatbots.", image: "https://placehold.co/500x300" },
-  { title: "VR Classroom Pilot", description: "Immersive learning modules for science and IT education.", image: "https://placehold.co/500x300" },
-  { title: "Cybersecurity Audit", description: "Vulnerability assessment framework for small business networks.", image: "https://placehold.co/500x300" },
-  { title: "Learning Analytics", description: "Dashboard tracking student engagement in digital courses.", image: "https://placehold.co/500x300" },
-  { title: "Green Campus Initiative", description: "Energy monitoring and sustainability reporting system.", image: "https://placehold.co/500x300" },
+  { title: "Smart Agriculture IoT", description: "Soil moisture sensors and automated irrigation for local farms.", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80" },
+  { title: "Nepali NLP Toolkit", description: "Open-source language tools for Nepali text processing and chatbots.", image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=800&q=80" },
+  { title: "VR Classroom Pilot", description: "Immersive learning modules for science and IT education.", image: "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?auto=format&fit=crop&w=800&q=80" },
+  { title: "Cybersecurity Audit", description: "Vulnerability assessment framework for small business networks.", image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" },
+  { title: "Learning Analytics", description: "Dashboard tracking student engagement in digital courses.", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" },
+  { title: "Green Campus Initiative", description: "Energy monitoring and sustainability reporting system.", image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=800&q=80" },
 ];
 
 const PUBLICATIONS = [
@@ -98,7 +98,7 @@ function ResearchPage() {
         eyebrow="Our approach"
         title="Research that solves real problems"
         description="We prioritize applied research with community and industry relevance. Students don't just read about technology — they build solutions that matter."
-        image="https://placehold.co/800x600"
+        image="https://images.unsplash.com/photo-1532153975070-2e9ab71f1b14?auto=format&fit=crop&w=1200&q=80"
         bullets={[
           "Faculty mentorship on every major project",
           "Cross-disciplinary teams from BIT and B.Tech Ed IT",
@@ -135,7 +135,7 @@ function ResearchPage() {
         eyebrow="Industry collaboration"
         title="Partnering for applied outcomes"
         description="We work with technology firms, NGOs, and educational institutions to ensure research addresses genuine needs and creates pathways to deployment."
-        image="https://placehold.co/800x600"
+        image="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80"
         imageLeft
         bullets={[
           "Sponsored capstone projects with partner organizations",

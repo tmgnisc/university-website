@@ -18,7 +18,7 @@ const FACILITIES_BENTO: BentoItem[] = [
   {
     title: "AI & Innovation Lab",
     description: "Experiment with machine learning, robotics, and prototype development.",
-    image: "https://placehold.co/600x450",
+    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=800&q=80",
     className: "lg:col-span-2",
   },
   {
@@ -69,32 +69,32 @@ const CAREER_PATHS = [
   {
     title: "Software Developer",
     description: "Build web and mobile applications for startups, enterprises, and government projects.",
-    image: "https://placehold.co/500x300",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "IT Support & Systems Admin",
     description: "Manage networks, cloud infrastructure, and enterprise systems for organizations.",
-    image: "https://placehold.co/500x300",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Ed-Tech Specialist",
     description: "Design digital curricula and learning platforms for schools and training institutes.",
-    image: "https://placehold.co/500x300",
+    image: "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "ICT Teacher / Trainer",
     description: "Lead technology classrooms and professional development programs nationwide.",
-    image: "https://placehold.co/500x300",
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Data & AI Analyst",
     description: "Turn data into insights for business, research, and public-sector innovation.",
-    image: "https://placehold.co/500x300",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Startup Founder",
     description: "Launch ventures in software, education technology, and digital services.",
-    image: "https://placehold.co/500x300",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
@@ -146,7 +146,7 @@ function ProgramsPage() {
         eyebrow="Academic Programs"
         title="Future-ready degrees in technology & education"
         description="KU-partnered undergraduate programs designed for careers in software, IT services, and technology-enabled teaching across Nepal and beyond."
-        image="https://placehold.co/900x600"
+        image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=80"
         primaryCta={{ label: "View Programs", href: "#programs" }}
       />
 
@@ -161,13 +161,13 @@ function ProgramsPage() {
               id: "bit",
               title: "BIT — Bachelor in Information Technology",
               summary: "Software engineering, databases, networking, and AI fundamentals for tech careers.",
-              image: "https://placehold.co/500x350",
+              image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
             },
             {
               id: "btech-ed-it",
               title: "B.Tech Ed IT — Technology in Education",
               summary: "Digital pedagogy, instructional design, and IT integration for modern educators.",
-              image: "https://placehold.co/500x350",
+              image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
             },
           ]}
         />
@@ -184,7 +184,7 @@ function ProgramsPage() {
         eyebrow="Program 01"
         title="BIT — Bachelor in Information Technology"
         description="A four-year undergraduate program for students who want to design, build, and maintain software systems. From programming fundamentals to capstone projects, BIT graduates leave with a portfolio that proves their skills."
-        image="https://placehold.co/900x700"
+        image="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1400&q=80"
         duration="4 Years · 8 Semesters"
         credits="126 Credit Hours"
         highlights={[
@@ -379,7 +379,7 @@ function ProgramsPage() {
         eyebrow="Program 02"
         title="B.Tech Ed IT — Technology in Education"
         description="Designed for future educators and training professionals, this program blends information technology with pedagogy. Graduates lead digital transformation in classrooms, training centers, and educational institutions."
-        image="https://placehold.co/900x700"
+        image="https://images.unsplash.com/photo-1584697964328-b1e7f1c35bce?auto=format&fit=crop&w=1400&q=80"
         duration="4 Years · 8 Semesters"
         credits="126 Credit Hours"
         imageLeft

@@ -32,13 +32,13 @@ const REQUIREMENTS_BENTO: BentoItem[] = [
   {
     title: "Entrance Exam",
     description: "Written test covering mathematics, logic, and general aptitude.",
-    image: "https://placehold.co/600x400",
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80",
     className: "lg:col-span-1",
   },
   {
     title: "Interview Round",
     description: "Shortlisted applicants meet the admissions panel for program fit assessment.",
-    image: "https://placehold.co/600x400",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80",
     className: "lg:col-span-2",
   },
 ];
@@ -86,7 +86,7 @@ function AdmissionsPage() {
         eyebrow="Admissions"
         title="Start your journey at WCBT"
         description="Admissions are open for Kathmandu University partnered BIT and B.Tech Ed IT programs. Follow the steps below to apply for the upcoming intake."
-        image="https://placehold.co/900x600"
+        image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=80"
         primaryCta={{ label: "Apply Now", href: "/admissions#apply" }}
         secondaryCta={{ label: "Contact Admissions", href: "/contact" }}
       />
@@ -109,7 +109,7 @@ function AdmissionsPage() {
         eyebrow="Eligibility"
         title="Who should apply?"
         description="WCBT welcomes motivated students ready for rigorous, industry-aligned technology education. Whether you aspire to build software or lead digital classrooms, we help you find the right fit."
-        image="https://placehold.co/800x600"
+        image="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80"
         bullets={[
           "Completed +2 or equivalent from a recognized board",
           "Minimum academic standing as per KU program requirements",
