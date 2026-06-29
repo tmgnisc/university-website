@@ -2,9 +2,31 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Link, useLocation } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
-  Menu, X, Search, ArrowRight, FileText, GraduationCap, MessageSquare, MapPin,
-  Play, Calendar, Clock, Phone, Mail, ChevronRight, Sparkles, Cpu, Shield,
-  BookOpen, Users, Award, Briefcase, Laptop, HeartHandshake, Quote,
+  Menu,
+  X,
+  Search,
+  ArrowRight,
+  FileText,
+  GraduationCap,
+  MessageSquare,
+  MapPin,
+  Play,
+  Calendar,
+  Clock,
+  Phone,
+  Mail,
+  ChevronRight,
+  ChevronDown,
+  Sparkles,
+  Cpu,
+  Shield,
+  BookOpen,
+  Users,
+  Award,
+  Briefcase,
+  Laptop,
+  HeartHandshake,
+  Quote,
 } from "lucide-react";
 import { ChatWidget } from "@/components/chat/ChatWidget";
 import { Button } from "@/components/ui/button";
@@ -26,35 +48,61 @@ import campusImg from "@/assets/campus.jpg";
 import smartClass from "@/assets/smart-classroom.jpg";
 import aiLab from "@/assets/ai-lab.jpg";
 
-const NAV = ["Home","About","Programs","Admissions","Scholarships","Campus Life","Research","Contact"];
-const NAV_IDS = NAV.map((n) => n.toLowerCase().replace(/ /g, "-"));
-const NAV_ROUTES: Record<string, string> = {
-  Home: "/",
-  About: "/about",
-  Programs: "/programs",
-  Admissions: "/admissions",
-  Scholarships: "/scholarships",
-  "Campus Life": "/campus-life",
-  Research: "/research",
-  Contact: "/contact",
-};
+type NavLink = { label: string; to: string; hash?: string };
+type NavGroup = { label: string; to?: string; children?: NavLink[] };
 
-function navHref(n: string) {
-  return NAV_ROUTES[n] ?? `/#${n.toLowerCase().replace(/ /g, "-")}`;
+// Top-level header is grouped into a few dropdowns so it stays clean and
+// responsive while still covering every section of the sitemap.
+const NAV_MENU: NavGroup[] = [
+  { label: "Home", to: "/" },
+  { label: "About Us", to: "/about" },
+  {
+    label: "Programs",
+    to: "/programs",
+    children: [
+      { label: "BIT", to: "/programs/bit" },
+      { label: "B.Tech Ed IT", to: "/programs/btech-ed-it" },
+      { label: "Research & Innovation", to: "/research" },
+    ],
+  },
+  {
+    label: "Academics",
+    children: [
+      { label: "Admissions", to: "/admissions" },
+      { label: "Scholarships", to: "/scholarships" },
+    ],
+  },
+  {
+    label: "Student Life",
+    children: [
+      { label: "Student Experience", to: "/student-experience" },
+      { label: "Student Support", to: "/student-support" },
+      { label: "Campus Life", to: "/campus-life" },
+    ],
+  },
+  { label: "Visit Us", to: "/visit-us" },
+  { label: "Careers", to: "/careers" },
+];
+
+function isLinkActive(to: string, pathname: string) {
+  return to === "/" ? pathname === "/" : pathname === to || pathname.startsWith(`${to}/`);
 }
 
-function isNavItemActive(n: string, pathname: string, activeSection: string) {
-  const route = NAV_ROUTES[n];
-  if (route) {
-    if (n === "Home") return pathname === "/" && activeSection === "home";
-    return pathname === route;
-  }
-  const id = n.toLowerCase().replace(/ /g, "-");
-  return pathname === "/" && activeSection === id;
+function isGroupActive(group: NavGroup, pathname: string) {
+  if (group.to) return isLinkActive(group.to, pathname);
+  return group.children?.some((c) => isLinkActive(c.to, pathname)) ?? false;
+}
+
+// Children that share a path but differ by hash (e.g. /programs#bit vs
+// /programs#btech-ed-it) must compare the hash so only one shows as active.
+function isChildActive(child: NavLink, pathname: string, hash: string) {
+  if (!isLinkActive(child.to, pathname)) return false;
+  if (child.hash) return hash.replace(/^#/, "") === child.hash;
+  return true;
 }
 
 const LAYOUT = {
-  section: "py-16 md:py-24",
+  section: "py-16 md:py-20",
   container: "max-w-7xl mx-auto px-6 lg:px-10",
   contentGap: "mt-10",
   gridGap: "gap-6",
@@ -62,23 +110,30 @@ const LAYOUT = {
   cardPadding: "p-6",
 } as const;
 
-function SectionContainer({ children, className }: { children: React.ReactNode; className?: string }) {
+function SectionContainer({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return <div className={cn(LAYOUT.container, className)}>{children}</div>;
 }
-
-const navLinkClass = (active: boolean) =>
-  `relative text-sm font-medium transition-colors ${
-    active
-      ? "text-primary font-semibold after:absolute after:-bottom-1 after:inset-x-0 after:h-0.5 after:rounded-full after:bg-primary"
-      : "text-black hover:text-black/70"
-  }`;
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
-function Reveal({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+function Reveal({
+  children,
+  className,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) {
   return (
     <motion.div
       variants={fadeUp}
@@ -96,8 +151,7 @@ function Reveal({ children, className, delay = 0 }: { children: React.ReactNode;
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("home");
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -106,23 +160,10 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close the mobile drawer whenever the route changes.
   useEffect(() => {
-    const sections = NAV_IDS.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
-    if (!sections.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) setActive(visible[0].target.id);
-      },
-      { rootMargin: "-20% 0px -60% 0px", threshold: [0, 0.25, 0.5] },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <header
@@ -130,34 +171,91 @@ export function Header() {
         scrolled ? "shadow-md border-b border-border" : "border-b border-border/60"
       }`}
     >
-      <div className={cn(LAYOUT.container, "h-22 flex items-center justify-between")}>
+      <div className={cn(LAYOUT.container, "h-24 flex items-center justify-between")}>
         <Link to="/" className="flex items-center">
-          <img src={NAV_LOGO} alt="WCBT Jhapa Campus" className="h-[4.5rem] w-auto sm:h-22" />
+          <img src={NAV_LOGO} alt="WCBT Jhapa Campus" className="h-[5.5rem] w-auto sm:h-24" />
         </Link>
-        <nav className="hidden lg:flex items-center gap-8">
-          {NAV.map((n) => {
-            const href = navHref(n);
-            const activeLink = isNavItemActive(n, pathname, active);
-            const className = navLinkClass(activeLink);
-            if (NAV_ROUTES[n]) {
-              return (
-                <Link key={n} to={href} className={className}>
-                  {n}
-                </Link>
-              );
-            }
-            return (
-              <a key={n} href={href} className={className}>
-                {n}
-              </a>
-            );
-          })}
+        <nav className="hidden lg:flex items-center gap-x-1">
+          {NAV_MENU.map((item) =>
+            item.children ? (
+              <div key={item.label} className="relative group">
+                {item.to ? (
+                  <Link
+                    to={item.to}
+                    className={cn(
+                      "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors",
+                      isGroupActive(item, pathname)
+                        ? "text-primary"
+                        : "text-black hover:text-primary",
+                    )}
+                  >
+                    {item.label}
+                    <ChevronDown className="size-4 transition-transform group-hover:rotate-180" />
+                  </Link>
+                ) : (
+                  <button
+                    type="button"
+                    className={cn(
+                      "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors",
+                      isGroupActive(item, pathname)
+                        ? "text-primary"
+                        : "text-black hover:text-primary",
+                    )}
+                  >
+                    {item.label}
+                    <ChevronDown className="size-4 transition-transform group-hover:rotate-180" />
+                  </button>
+                )}
+                <div className="absolute left-0 top-full pt-2 opacity-0 invisible translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                  <div className="min-w-56 rounded-2xl border border-border bg-white p-2 shadow-xl shadow-black/5">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.label}
+                        to={child.to}
+                        hash={child.hash}
+                        className={cn(
+                          "block rounded-xl px-3 py-2 text-sm transition-colors",
+                          isChildActive(child, pathname, hash)
+                            ? "bg-primary/10 font-medium text-primary"
+                            : "text-black hover:bg-muted",
+                        )}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link
+                key={item.label}
+                to={item.to!}
+                className={cn(
+                  "px-3 py-2 text-sm font-medium transition-colors",
+                  isLinkActive(item.to!, pathname)
+                    ? "text-primary"
+                    : "text-black hover:text-primary",
+                )}
+              >
+                {item.label}
+              </Link>
+            ),
+          )}
         </nav>
         <div className="flex items-center gap-3">
-          <Button className="hidden sm:inline-flex bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-full px-5">
-            Apply Now
+          <Button
+            asChild
+            className="hidden sm:inline-flex bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-full px-5"
+          >
+            <Link to="/admissions" hash="apply">
+              Apply Now
+            </Link>
           </Button>
-          <button onClick={() => setOpen(true)} aria-label="Open menu" className="lg:hidden text-black hover:text-black/70 transition-colors">
+          <button
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
+            className="lg:hidden text-black hover:text-black/70 transition-colors"
+          >
             <Menu className="size-6" />
           </button>
         </div>
@@ -166,34 +264,78 @@ export function Header() {
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} />
           <motion.aside
-            initial={{ x: "100%" }} animate={{ x: 0 }}
-            className="absolute right-0 top-0 h-full w-80 bg-white border-l border-border p-6 flex flex-col gap-6"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white border-l border-border p-6 flex flex-col gap-5 overflow-y-auto"
           >
             <div className="flex justify-end">
-              <button onClick={() => setOpen(false)} aria-label="Close menu" className="text-black hover:text-black/70 transition-colors">
+              <button
+                onClick={() => setOpen(false)}
+                aria-label="Close menu"
+                className="text-black hover:text-black/70 transition-colors"
+              >
                 <X className="size-6" />
               </button>
             </div>
-            {NAV.map((n) => {
-              const href = navHref(n);
-              const activeLink = isNavItemActive(n, pathname, active);
-              const className = `text-lg border-b border-border pb-3 transition-colors ${
-                activeLink ? "text-primary font-semibold" : "text-black hover:text-black/70"
-              }`;
-              if (NAV_ROUTES[n]) {
-                return (
-                  <Link key={n} to={href} onClick={() => setOpen(false)} className={className}>
-                    {n}
-                  </Link>
-                );
-              }
-              return (
-                <a key={n} href={href} onClick={() => setOpen(false)} className={className}>
-                  {n}
-                </a>
-              );
-            })}
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full mt-4">Apply Now</Button>
+            {NAV_MENU.map((item) =>
+              item.children ? (
+                <div key={item.label} className="border-b border-border pb-4">
+                  {item.to ? (
+                    <Link
+                      to={item.to}
+                      onClick={() => setOpen(false)}
+                      className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                      {item.label}
+                    </p>
+                  )}
+                  <div className="flex flex-col gap-2.5">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.label}
+                        to={child.to}
+                        hash={child.hash}
+                        onClick={() => setOpen(false)}
+                        className={cn(
+                          "text-base transition-colors",
+                          isChildActive(child, pathname, hash)
+                            ? "font-semibold text-primary"
+                            : "text-black hover:text-primary",
+                        )}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={item.label}
+                  to={item.to!}
+                  onClick={() => setOpen(false)}
+                  className={cn(
+                    "border-b border-border pb-3 text-lg transition-colors",
+                    isLinkActive(item.to!, pathname)
+                      ? "font-semibold text-primary"
+                      : "text-black hover:text-primary",
+                  )}
+                >
+                  {item.label}
+                </Link>
+              ),
+            )}
+            <Button
+              asChild
+              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full mt-2"
+            >
+              <Link to="/admissions" hash="apply" onClick={() => setOpen(false)}>
+                Apply Now
+              </Link>
+            </Button>
           </motion.aside>
         </div>
       )}
@@ -207,12 +349,16 @@ export function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   return (
-    <section id="home" ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-black">
+    <section
+      id="home"
+      ref={ref}
+      className="relative min-h-screen flex items-center overflow-hidden bg-black"
+    >
       <motion.div style={{ y }} className="absolute inset-0">
         <img
           src={heroImage}
           alt="WhiteHouse College of Business & Technology campus"
-          className="size-full object-cover object-[center_35%] scale-105"
+          className="size-full object-cover object-[center_55%] scale-105"
           onError={() => setHeroImage(heroImg)}
         />
       </motion.div>
@@ -221,31 +367,46 @@ export function Hero() {
         aria-hidden
       />
       <motion.div
-        initial="hidden" animate="show"
+        initial="hidden"
+        animate="show"
         variants={{ show: { transition: { staggerChildren: 0.12 } } }}
         className={cn(LAYOUT.container, "relative z-10 py-32 text-white drop-shadow-md")}
       >
         <motion.p variants={fadeUp} className="text-sm font-medium text-white/90">
           In Partnership with Kathmandu University
         </motion.p>
-        <motion.h1 variants={fadeUp} className="mt-4 text-4xl sm:text-5xl lg:text-7xl font-semibold leading-[1.05] max-w-5xl">
+        <motion.h1
+          variants={fadeUp}
+          className="mt-4 text-4xl sm:text-5xl lg:text-7xl font-semibold leading-[1.05] max-w-5xl"
+        >
           WhiteHouse College of Business & Technology
         </motion.h1>
         <motion.p variants={fadeUp} className="mt-6 text-lg lg:text-xl text-white/75 max-w-2xl">
-          Empowering future innovators, technologists & leaders through world-class academic pathways rooted in Eastern Nepal.
+          Empowering future innovators, technologists & leaders through world-class academic
+          pathways rooted in Eastern Nepal.
         </motion.p>
         <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-4">
           <Link to="/programs" className="inline-flex">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full font-semibold px-7 h-12">
+            <Button
+              size="lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full font-semibold px-7 h-12"
+            >
               Explore Programs <ArrowRight className="ml-1 size-4" />
             </Button>
           </Link>
           <Link to="/scholarships" className="inline-flex">
-            <Button size="lg" variant="outline" className="rounded-full px-7 h-12 border-white/30 bg-white/5 text-white hover:bg-white/10 hover:text-white">
+            <Button
+              size="lg"
+              variant="outline"
+              className="rounded-full px-7 h-12 border-white/30 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+            >
               Scholarship Information
             </Button>
           </Link>
-          <a href="/maintenance" className="text-sm text-white/80 hover:text-white inline-flex items-center gap-1.5 underline-offset-4 hover:underline">
+          <a
+            href="/maintenance"
+            className="text-sm text-white/80 hover:text-white inline-flex items-center gap-1.5 underline-offset-4 hover:underline"
+          >
             <Play className="size-4" /> Virtual Campus Tour
           </a>
         </motion.div>
@@ -266,7 +427,10 @@ function TickerMarquee() {
   return (
     <div className="flex whitespace-nowrap animate-marquee py-3 font-medium">
       {row.map((t, i) => (
-        <span key={i} className="mx-8 inline-flex items-center gap-3 text-sm uppercase tracking-wider">
+        <span
+          key={i}
+          className="mx-8 inline-flex items-center gap-3 text-sm uppercase tracking-wider"
+        >
           <span className="size-1.5 rounded-full bg-black" /> {t}
         </span>
       ))}
@@ -310,33 +474,60 @@ export function Search_() {
   return (
     <section className={LAYOUT.section}>
       <SectionContainer>
-      <Reveal>
-        <div className={cn("rounded-3xl bg-card border border-border shadow-xl shadow-primary/10", LAYOUT.cardPadding)}>
-          <div className="flex flex-col md:flex-row gap-4 items-stretch">
-            <div className="relative flex-1">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
-              <Input className="h-14 pl-12 rounded-2xl text-base" placeholder="Search BIT or B.Tech Ed IT programs..." />
+        <Reveal>
+          <div
+            className={cn(
+              "rounded-3xl bg-card border border-border shadow-xl shadow-primary/10",
+              LAYOUT.cardPadding,
+            )}
+          >
+            <div className="flex flex-col md:flex-row gap-4 items-stretch">
+              <div className="relative flex-1">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
+                <Input
+                  className="h-14 pl-12 rounded-2xl text-base"
+                  placeholder="Search BIT or B.Tech Ed IT programs..."
+                />
+              </div>
+              <Button className="h-14 rounded-2xl px-8 bg-primary text-primary-foreground">
+                Search
+              </Button>
             </div>
-            <Button className="h-14 rounded-2xl px-8 bg-primary text-primary-foreground">Search</Button>
+            <div className="mt-5 flex flex-wrap gap-2">
+              <span className="text-xs text-muted-foreground uppercase tracking-wider mr-2 self-center">
+                Quick filters:
+              </span>
+              {filters.map((f) => (
+                <button
+                  key={f}
+                  className="px-4 py-1.5 rounded-full text-sm border border-border bg-secondary hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
           </div>
-          <div className="mt-5 flex flex-wrap gap-2">
-            <span className="text-xs text-muted-foreground uppercase tracking-wider mr-2 self-center">Quick filters:</span>
-            {filters.map((f) => (
-              <button key={f} className="px-4 py-1.5 rounded-full text-sm border border-border bg-secondary hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300">
-                {f}
-              </button>
-            ))}
-          </div>
-        </div>
-      </Reveal>
+        </Reveal>
       </SectionContainer>
     </section>
   );
 }
 
 const programs = [
-  { img: progAi, tag: "KU Affiliated", title: "BIT — Bachelor in Information Technology", desc: "Build the next generation of software, AI systems and intelligent platforms." },
-  { img: progEdtech, tag: "KU Affiliated", title: "B.Tech Ed IT — Technology in Education", desc: "Equip educators with cutting-edge tools to reshape modern classrooms." },
+  {
+    img: progAi,
+    tag: "KU Affiliated",
+    title: "BIT — Bachelor in Information Technology",
+    desc: "Build the next generation of software, AI systems and intelligent platforms.",
+    to: "/programs/bit" as const,
+  },
+  {
+    img: progEdtech,
+    tag: "KU Affiliated",
+    title: "B.Tech Ed IT — Technology in Education",
+    desc: "Equip educators with cutting-edge tools to reshape modern classrooms.",
+    to: "/programs/btech-ed-it" as const,
+  },
 ];
 
 export function Programs() {
@@ -344,23 +535,45 @@ export function Programs() {
     <section id="programs" className={LAYOUT.section}>
       <SectionContainer>
         <Reveal className="max-w-3xl">
-          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">Programs</span>
-          <h2 className="mt-3 text-3xl md:text-5xl font-semibold">Future-ready degrees, designed with industry</h2>
-          <p className="mt-4 text-muted-foreground text-lg">Affiliated to Kathmandu University. Built for global outcomes.</p>
+          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">
+            Programs
+          </span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-semibold">
+            Future-ready degrees, designed with industry
+          </h2>
+          <p className="mt-4 text-muted-foreground text-lg">
+            Affiliated to Kathmandu University. Built for global outcomes.
+          </p>
         </Reveal>
-        <div className={cn(LAYOUT.contentGap, "grid grid-cols-1 md:grid-cols-2 w-full", LAYOUT.gridGap)}>
+        <div
+          className={cn(
+            LAYOUT.contentGap,
+            "grid grid-cols-1 md:grid-cols-2 w-full",
+            LAYOUT.gridGap,
+          )}
+        >
           {programs.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
-              <article className="group rounded-3xl overflow-hidden bg-card border border-border shadow-xl shadow-primary/5 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/15 h-full flex flex-col">
+              <Link
+                to={p.to}
+                className="group rounded-3xl overflow-hidden bg-card border border-border shadow-xl shadow-primary/5 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/15 h-full flex flex-col"
+              >
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img src={p.img} alt={p.title} loading="lazy" className="size-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <img
+                    src={p.img}
+                    alt={p.title}
+                    loading="lazy"
+                    className="size-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
                 </div>
                 <div className={cn(LAYOUT.cardPadding, "flex-1 flex flex-col")}>
-                  <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground font-semibold">{p.tag}</span>
+                  <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground font-semibold">
+                    {p.tag}
+                  </span>
                   <h3 className="mt-2 font-semibold text-lg leading-snug">{p.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground flex-1">{p.desc}</p>
                 </div>
-              </article>
+              </Link>
             </Reveal>
           ))}
         </div>
@@ -370,10 +583,30 @@ export function Programs() {
 }
 
 const steps = [
-  { icon: FileText, title: "Admission Process", desc: "Eligibility, deadlines & documents." },
-  { icon: GraduationCap, title: "Scholarship Schemes", desc: "Up to 75% merit-based aid." },
-  { icon: MessageSquare, title: "Academic Inquiry", desc: "Talk to our admissions team." },
-  { icon: MapPin, title: "Jhapa Campus", desc: "Visit & explore our facilities." },
+  {
+    icon: FileText,
+    title: "Admission Process",
+    desc: "Eligibility, deadlines & documents.",
+    to: "/admissions",
+  },
+  {
+    icon: GraduationCap,
+    title: "Scholarship Schemes",
+    desc: "Up to 75% merit-based aid.",
+    to: "/scholarships",
+  },
+  {
+    icon: MessageSquare,
+    title: "Academic Inquiry",
+    desc: "Talk to our admissions team.",
+    to: "/contact",
+  },
+  {
+    icon: MapPin,
+    title: "Jhapa Campus",
+    desc: "Visit & explore our facilities.",
+    to: "/visit-us",
+  },
 ];
 
 export function NextSteps() {
@@ -381,12 +614,26 @@ export function NextSteps() {
     <section id="admissions" className={cn(LAYOUT.section, "bg-secondary")}>
       <SectionContainer>
         <Reveal>
-          <h2 className="text-3xl md:text-5xl font-semibold text-center max-w-3xl mx-auto">Your next academic step</h2>
+          <h2 className="text-3xl md:text-5xl font-semibold text-center max-w-3xl mx-auto">
+            Your next academic step
+          </h2>
         </Reveal>
-        <div className={cn(LAYOUT.contentGap, "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4", LAYOUT.gridGap)}>
+        <div
+          className={cn(
+            LAYOUT.contentGap,
+            "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
+            LAYOUT.gridGap,
+          )}
+        >
           {steps.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.08}>
-              <div className={cn("group rounded-3xl bg-card border border-border h-full transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/30", LAYOUT.cardPadding)}>
+              <Link
+                to={s.to}
+                className={cn(
+                  "group block rounded-3xl bg-card border border-border h-full transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/30",
+                  LAYOUT.cardPadding,
+                )}
+              >
                 <div className="size-12 rounded-2xl bg-primary text-primary-foreground grid place-items-center group-hover:bg-primary/90 transition-colors">
                   <s.icon className="size-5" />
                 </div>
@@ -395,7 +642,7 @@ export function NextSteps() {
                   <ChevronRight className="size-5 shrink-0 text-muted-foreground transition-all group-hover:translate-x-1 group-hover:text-black" />
                 </h3>
                 <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
-              </div>
+              </Link>
             </Reveal>
           ))}
         </div>
@@ -409,10 +656,15 @@ export function Research() {
     <section id="research" className={LAYOUT.section}>
       <SectionContainer className={cn("grid lg:grid-cols-2 items-center", LAYOUT.splitGap)}>
         <Reveal>
-          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">Research</span>
-          <h2 className="mt-3 text-3xl md:text-5xl font-semibold leading-tight">Research & Innovation Ecosystem</h2>
+          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">
+            Research
+          </span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-semibold leading-tight">
+            Research & Innovation Ecosystem
+          </h2>
           <p className="mt-4 text-muted-foreground text-lg">
-            Hands-on labs in AI, Robotics, IoT and applied innovation — preparing students to solve real-world problems alongside industry mentors.
+            Hands-on labs in AI, Robotics, IoT and applied innovation — preparing students to solve
+            real-world problems alongside industry mentors.
           </p>
           <div className={cn(LAYOUT.contentGap, "grid grid-cols-2", LAYOUT.gridGap)}>
             {[
@@ -421,8 +673,16 @@ export function Research() {
               { icon: Shield, label: "IoT Systems" },
               { icon: BookOpen, label: "Innovation Labs" },
             ].map((x) => (
-              <div key={x.label} className={cn("rounded-2xl border border-border flex items-center gap-3 bg-card", LAYOUT.cardPadding)}>
-                <div className="size-10 rounded-xl bg-muted text-black grid place-items-center"><x.icon className="size-5" /></div>
+              <div
+                key={x.label}
+                className={cn(
+                  "rounded-2xl border border-border flex items-center gap-3 bg-card",
+                  LAYOUT.cardPadding,
+                )}
+              >
+                <div className="size-10 rounded-xl bg-muted text-black grid place-items-center">
+                  <x.icon className="size-5" />
+                </div>
                 <span className="font-medium">{x.label}</span>
               </div>
             ))}
@@ -431,9 +691,16 @@ export function Research() {
         <Reveal delay={0.1}>
           <div className="relative">
             <div className="absolute -inset-3 rounded-3xl border border-primary/30" />
-            <img src={HOME_IMAGE_1} alt="AI Robotics & IoT Innovation" loading="lazy" className="relative rounded-3xl w-full aspect-[4/3] object-cover shadow-2xl shadow-primary/20" />
+            <img
+              src={HOME_IMAGE_1}
+              alt="AI Robotics & IoT Innovation"
+              loading="lazy"
+              className="relative rounded-3xl w-full aspect-[4/3] object-cover shadow-2xl shadow-primary/20"
+            />
             <div className="mt-3 text-center">
-              <p className="text-sm font-medium text-foreground">Premises of Nidi Secondary School & Indreni Campus</p>
+              <p className="text-sm font-medium text-foreground">
+                Premises of Nidi Secondary School & Indreni Campus
+              </p>
             </div>
           </div>
         </Reveal>
@@ -457,7 +724,14 @@ export function WhatsNew() {
           <h2 className="mt-3 text-3xl md:text-5xl font-semibold">Leadership & latest updates</h2>
         </Reveal>
         <Reveal delay={0.05}>
-          <div className={cn(LAYOUT.contentGap, "grid lg:grid-cols-[1fr_2fr] items-center rounded-3xl bg-white/5 border border-white/10 backdrop-blur", LAYOUT.splitGap, LAYOUT.cardPadding)}>
+          <div
+            className={cn(
+              LAYOUT.contentGap,
+              "grid lg:grid-cols-[1fr_2fr] items-center rounded-3xl bg-white/5 border border-white/10 backdrop-blur",
+              LAYOUT.splitGap,
+              LAYOUT.cardPadding,
+            )}
+          >
             <div className="flex justify-center">
               <div className="relative w-56 lg:w-72 aspect-[3/4] overflow-hidden rounded-2xl border-2 border-white/40 shadow-lg">
                 <img
@@ -469,23 +743,40 @@ export function WhatsNew() {
               </div>
             </div>
             <div>
-              <span className="text-xs uppercase tracking-[0.18em] text-white/80">From the President</span>
+              <span className="text-xs uppercase tracking-[0.18em] text-white/80">
+                From the President
+              </span>
               <p className="mt-3 text-xl lg:text-2xl font-display leading-snug">
-                "Our mission is to nurture an academic ecosystem where Eastern Nepal's brightest minds engineer the future — with integrity, excellence and global ambition."
+                "Our mission is to nurture an academic ecosystem where Eastern Nepal's brightest
+                minds engineer the future — with integrity, excellence and global ambition."
               </p>
               <p className="mt-4 text-sm font-semibold text-white/90">Yuvraj Sharma</p>
               <p className="text-xs text-white/60">President</p>
-              <Button className="mt-6 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">Read Full Message <ArrowRight className="ml-1 size-4" /></Button>
+              <Button className="mt-6 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
+                Read Full Message <ArrowRight className="ml-1 size-4" />
+              </Button>
             </div>
           </div>
         </Reveal>
         <div className={cn(LAYOUT.contentGap, "grid md:grid-cols-3", LAYOUT.gridGap)}>
           {news.map((n, i) => (
             <Reveal key={n.title} delay={i * 0.08}>
-              <article className={cn("group rounded-3xl bg-white/5 border border-white/10 h-full transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:border-white/30", LAYOUT.cardPadding)}>
-                <span className="text-[11px] uppercase tracking-[0.18em] text-white/80 font-semibold">{n.tag}</span>
+              <article
+                className={cn(
+                  "group rounded-3xl bg-white/5 border border-white/10 h-full transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:border-white/30",
+                  LAYOUT.cardPadding,
+                )}
+              >
+                <span className="text-[11px] uppercase tracking-[0.18em] text-white/80 font-semibold">
+                  {n.tag}
+                </span>
                 <h3 className="mt-3 font-semibold text-lg leading-snug">{n.title}</h3>
-                <a href="#" className="mt-4 inline-flex items-center gap-1 text-sm text-white/80 group-hover:text-white">Read more <ArrowRight className="size-4" /></a>
+                <a
+                  href="#"
+                  className="mt-4 inline-flex items-center gap-1 text-sm text-white/80 group-hover:text-white"
+                >
+                  Read more <ArrowRight className="size-4" />
+                </a>
               </article>
             </Reveal>
           ))}
@@ -499,7 +790,12 @@ const events = [
   { title: "Orientation Program 2026", date: "Jan 12, 2026", time: "9:00 AM", img: campusImg },
   { title: "Guest Lecture: AI Ethics", date: "Jan 20, 2026", time: "2:00 PM", img: aiLab },
   { title: "Tech Bootcamp — Web3", date: "Feb 04, 2026", time: "10:00 AM", img: progAi },
-  { title: "Inter-college Sports Week", date: "Feb 18, 2026", time: "All Day", img: studentLifeImg },
+  {
+    title: "Inter-college Sports Week",
+    date: "Feb 18, 2026",
+    time: "All Day",
+    img: studentLifeImg,
+  },
 ];
 
 export function Events() {
@@ -511,22 +807,46 @@ export function Events() {
             <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Events</span>
             <h2 className="mt-3 text-3xl md:text-5xl font-semibold">Upcoming on campus</h2>
           </div>
-          <a href="#" className="text-sm font-medium inline-flex items-center gap-1.5">All events <ArrowRight className="size-4" /></a>
+          <a href="#" className="text-sm font-medium inline-flex items-center gap-1.5">
+            All events <ArrowRight className="size-4" />
+          </a>
         </Reveal>
-        <div className={cn(LAYOUT.contentGap, "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4", LAYOUT.gridGap)}>
+        <div
+          className={cn(
+            LAYOUT.contentGap,
+            "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
+            LAYOUT.gridGap,
+          )}
+        >
           {events.map((e, i) => (
             <Reveal key={e.title} delay={i * 0.08}>
               <article className="group rounded-3xl bg-card border border-border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10 h-full flex flex-col">
                 <div className="aspect-video overflow-hidden">
-                  <img src={e.img} alt={e.title} loading="lazy" className="size-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img
+                    src={e.img}
+                    alt={e.title}
+                    loading="lazy"
+                    className="size-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <div className={cn(LAYOUT.cardPadding, "flex-1 flex flex-col")}>
                   <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                    <span className="inline-flex items-center gap-1"><Calendar className="size-3.5" />{e.date}</span>
-                    <span className="inline-flex items-center gap-1"><Clock className="size-3.5" />{e.time}</span>
+                    <span className="inline-flex items-center gap-1">
+                      <Calendar className="size-3.5" />
+                      {e.date}
+                    </span>
+                    <span className="inline-flex items-center gap-1">
+                      <Clock className="size-3.5" />
+                      {e.time}
+                    </span>
                   </div>
                   <h3 className="mt-3 font-semibold leading-snug flex-1">{e.title}</h3>
-                  <a href="#" className="mt-4 text-sm font-medium text-black inline-flex items-center gap-1 group-hover:text-black/70">View Details <ArrowRight className="size-4" /></a>
+                  <a
+                    href="#"
+                    className="mt-4 text-sm font-medium text-black inline-flex items-center gap-1 group-hover:text-black/70"
+                  >
+                    View Details <ArrowRight className="size-4" />
+                  </a>
                 </div>
               </article>
             </Reveal>
@@ -538,9 +858,24 @@ export function Events() {
 }
 
 const supports = [
-  { icon: Briefcase, title: "Paid Internships", value: 92, desc: "Industry placements with stipends." },
-  { icon: Laptop, title: "Laptop Installment Plan", value: 100, desc: "Flexible monthly EMI for every student." },
-  { icon: HeartHandshake, title: "Counseling Services", value: 80, desc: "Mental health & academic guidance." },
+  {
+    icon: Briefcase,
+    title: "Paid Internships",
+    value: 92,
+    desc: "Industry placements with stipends.",
+  },
+  {
+    icon: Laptop,
+    title: "Laptop Installment Plan",
+    value: 100,
+    desc: "Flexible monthly EMI for every student.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Counseling Services",
+    value: 80,
+    desc: "Mental health & academic guidance.",
+  },
 ];
 
 export function Support() {
@@ -548,13 +883,22 @@ export function Support() {
     <section id="campus-life" className={cn(LAYOUT.section, "bg-secondary")}>
       <SectionContainer className={cn("grid lg:grid-cols-2 items-center", LAYOUT.splitGap)}>
         <Reveal>
-          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Student Support</span>
-          <h2 className="mt-3 text-3xl md:text-5xl font-semibold leading-tight">Beyond the classroom — we back every student</h2>
+          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            Student Support
+          </span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-semibold leading-tight">
+            Beyond the classroom — we back every student
+          </h2>
           <div className={cn(LAYOUT.contentGap, "space-y-4")}>
             {supports.map((s) => (
-              <div key={s.title} className={cn("rounded-2xl bg-card border border-border", LAYOUT.cardPadding)}>
+              <div
+                key={s.title}
+                className={cn("rounded-2xl bg-card border border-border", LAYOUT.cardPadding)}
+              >
                 <div className="flex items-start gap-4">
-                  <div className="size-11 rounded-xl bg-muted text-black grid place-items-center shrink-0"><s.icon className="size-5" /></div>
+                  <div className="size-11 rounded-xl bg-muted text-black grid place-items-center shrink-0">
+                    <s.icon className="size-5" />
+                  </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between gap-3">
                       <h3 className="font-semibold">{s.title}</h3>
@@ -562,7 +906,13 @@ export function Support() {
                     </div>
                     <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
                     <div className="mt-3 h-1.5 bg-border rounded-full overflow-hidden">
-                      <motion.div initial={{ width: 0 }} whileInView={{ width: `${s.value}%` }} viewport={{ once: true }} transition={{ duration: 1.2, ease: "easeOut" }} className="h-full bg-primary" />
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${s.value}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
+                        className="h-full bg-primary"
+                      />
                     </div>
                   </div>
                 </div>
@@ -571,7 +921,12 @@ export function Support() {
           </div>
         </Reveal>
         <Reveal delay={0.1}>
-          <img src={studentLifeImg} alt="Student life — clubs & hackathons" loading="lazy" className="rounded-3xl w-full aspect-[4/5] object-cover shadow-2xl shadow-primary/10" />
+          <img
+            src={studentLifeImg}
+            alt="Student life — clubs & hackathons"
+            loading="lazy"
+            className="rounded-3xl w-full aspect-[4/5] object-cover shadow-2xl shadow-primary/10"
+          />
         </Reveal>
       </SectionContainer>
     </section>
@@ -580,9 +935,14 @@ export function Support() {
 
 export function Vision() {
   return (
-    <section id="tour" className={cn(LAYOUT.section, "bg-navy-deep text-white relative overflow-hidden")}>
+    <section
+      id="tour"
+      className={cn(LAYOUT.section, "bg-navy-deep text-white relative overflow-hidden")}
+    >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(134,0,29,0.15),transparent_60%)]" />
-      <SectionContainer className={cn("grid lg:grid-cols-2 items-center relative", LAYOUT.splitGap)}>
+      <SectionContainer
+        className={cn("grid lg:grid-cols-2 items-center relative", LAYOUT.splitGap)}
+      >
         <Reveal>
           <div className="relative rounded-3xl overflow-hidden cyan-glow">
             <img
@@ -599,8 +959,13 @@ export function Vision() {
             To establish a future-focused academic ecosystem in Eastern Nepal.
           </p>
           <div className={cn(LAYOUT.contentGap, "flex flex-wrap gap-2")}>
-            {["Integrity","Excellence","Innovation","Inclusiveness","Leadership"].map((v) => (
-              <span key={v} className="px-4 py-2 rounded-full border border-white/30 bg-white/10 text-white text-sm">{v}</span>
+            {["Integrity", "Excellence", "Innovation", "Inclusiveness", "Leadership"].map((v) => (
+              <span
+                key={v}
+                className="px-4 py-2 rounded-full border border-white/30 bg-white/10 text-white text-sm"
+              >
+                {v}
+              </span>
             ))}
           </div>
         </Reveal>
@@ -614,27 +979,63 @@ export function Mosaic() {
     <section className={LAYOUT.section}>
       <SectionContainer>
         <Reveal>
-          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">By the numbers</span>
-          <h2 className="mt-3 text-3xl md:text-5xl font-semibold max-w-3xl">A campus built for ambition</h2>
+          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            By the numbers
+          </span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-semibold max-w-3xl">
+            A campus built for ambition
+          </h2>
         </Reveal>
-        <div className={cn(LAYOUT.contentGap, "grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px]", LAYOUT.gridGap)}>
+        <div
+          className={cn(
+            LAYOUT.contentGap,
+            "grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px]",
+            LAYOUT.gridGap,
+          )}
+        >
           <div className="row-span-2 col-span-2 rounded-3xl overflow-hidden relative group">
-            <img src={campusImg} alt="Campus infrastructure" loading="lazy" className="size-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div className={cn("absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/20 to-transparent flex items-end text-white", LAYOUT.cardPadding)}>
+            <img
+              src={campusImg}
+              alt="Campus infrastructure"
+              loading="lazy"
+              className="size-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div
+              className={cn(
+                "absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/20 to-transparent flex items-end text-white",
+                LAYOUT.cardPadding,
+              )}
+            >
               <div>
-                <div className="text-xs uppercase tracking-widest text-white/80">Campus Infrastructure</div>
-                <div className="font-display text-2xl mt-1">Modern facilities, built for learning</div>
+                <div className="text-xs uppercase tracking-widest text-white/80">
+                  Campus Infrastructure
+                </div>
+                <div className="font-display text-2xl mt-1">
+                  Modern facilities, built for learning
+                </div>
               </div>
             </div>
           </div>
-          <div className={cn("rounded-3xl bg-navy-deep text-white flex flex-col justify-between", LAYOUT.cardPadding)}>
-            <span className="text-xs uppercase tracking-widest text-white/80">Mentors & Tie-ups</span>
+          <div
+            className={cn(
+              "rounded-3xl bg-navy-deep text-white flex flex-col justify-between",
+              LAYOUT.cardPadding,
+            )}
+          >
+            <span className="text-xs uppercase tracking-widest text-white/80">
+              Mentors & Tie-ups
+            </span>
             <div>
               <div className="text-5xl font-display font-semibold text-white">150+</div>
               <div className="text-sm text-white/70 mt-1">Industry partners</div>
             </div>
           </div>
-          <div className={cn("rounded-3xl bg-primary text-primary-foreground flex flex-col justify-between", LAYOUT.cardPadding)}>
+          <div
+            className={cn(
+              "rounded-3xl bg-primary text-primary-foreground flex flex-col justify-between",
+              LAYOUT.cardPadding,
+            )}
+          >
             <span className="text-xs uppercase tracking-widest">Affiliation</span>
             <div>
               <div className="text-2xl font-display font-semibold">Kathmandu University</div>
@@ -642,14 +1043,34 @@ export function Mosaic() {
             </div>
           </div>
           <div className="rounded-3xl overflow-hidden relative group">
-            <img src={smartClass} alt="Smart classroom" loading="lazy" className="size-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div className={cn("absolute inset-0 bg-navy-deep/60 flex items-end text-white", LAYOUT.cardPadding)}>
+            <img
+              src={smartClass}
+              alt="Smart classroom"
+              loading="lazy"
+              className="size-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div
+              className={cn(
+                "absolute inset-0 bg-navy-deep/60 flex items-end text-white",
+                LAYOUT.cardPadding,
+              )}
+            >
               <span className="font-medium">Smart Classrooms</span>
             </div>
           </div>
           <div className="rounded-3xl overflow-hidden relative group">
-            <img src={aiLab} alt="AI labs" loading="lazy" className="size-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div className={cn("absolute inset-0 bg-navy-deep/60 flex items-end text-white", LAYOUT.cardPadding)}>
+            <img
+              src={aiLab}
+              alt="AI labs"
+              loading="lazy"
+              className="size-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div
+              className={cn(
+                "absolute inset-0 bg-navy-deep/60 flex items-end text-white",
+                LAYOUT.cardPadding,
+              )}
+            >
               <span className="font-medium">AI Innovation Labs</span>
             </div>
           </div>
@@ -665,15 +1086,33 @@ export function Lead() {
     <section id="contact" className={cn(LAYOUT.section, "bg-secondary")}>
       <SectionContainer className={cn("grid lg:grid-cols-2", LAYOUT.splitGap)}>
         <Reveal>
-          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Request Information</span>
+          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            Request Information
+          </span>
           <h2 className="mt-3 text-3xl md:text-5xl font-semibold">Talk to admissions</h2>
-          <p className="mt-4 text-muted-foreground text-lg">Tell us a little about you and we'll be in touch with personalised guidance.</p>
+          <p className="mt-4 text-muted-foreground text-lg">
+            Tell us a little about you and we'll be in touch with personalised guidance.
+          </p>
           <div className={cn(LAYOUT.contentGap, "space-y-4")}>
-            <div className="flex items-center gap-3"><MapPin className="size-5 text-black" /><span>Jhapa, Nepal</span></div>
-            <div className="flex items-center gap-3"><Phone className="size-5 text-black" /><span>9801268585</span></div>
-            <div className="flex items-center gap-3"><Mail className="size-5 text-black" /><span>info@whitehouseeducation.edu.np</span></div>
+            <div className="flex items-center gap-3">
+              <MapPin className="size-5 text-black" />
+              <span>Jhapa, Nepal</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Phone className="size-5 text-black" />
+              <span>9714530056, 9714530057</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Mail className="size-5 text-black" />
+              <span>info@whitehouseeducation.edu.np</span>
+            </div>
           </div>
-          <div className={cn(LAYOUT.contentGap, "rounded-3xl overflow-hidden border border-border aspect-[5/3] bg-card")}>
+          <div
+            className={cn(
+              LAYOUT.contentGap,
+              "rounded-3xl overflow-hidden border border-border aspect-[5/3] bg-card",
+            )}
+          >
             <iframe
               title="Jhapa campus map"
               src="https://www.openstreetmap.org/export/embed.html?bbox=87.6857%2C26.6586%2C87.7257%2C26.6986&layer=mapnik"
@@ -684,14 +1123,24 @@ export function Lead() {
         </Reveal>
         <Reveal delay={0.1}>
           <form
-            onSubmit={(e) => { e.preventDefault(); setSent(true); }}
-            className={cn("rounded-3xl bg-card border border-border shadow-xl shadow-primary/10 space-y-4", LAYOUT.cardPadding)}
+            onSubmit={(e) => {
+              e.preventDefault();
+              setSent(true);
+            }}
+            className={cn(
+              "rounded-3xl bg-card border border-border shadow-xl shadow-primary/10 space-y-4",
+              LAYOUT.cardPadding,
+            )}
           >
             {sent ? (
               <div className="py-10 text-center">
-                <div className="size-14 rounded-full bg-primary text-primary-foreground grid place-items-center mx-auto"><HeartHandshake className="size-7" /></div>
+                <div className="size-14 rounded-full bg-primary text-primary-foreground grid place-items-center mx-auto">
+                  <HeartHandshake className="size-7" />
+                </div>
                 <h3 className="mt-5 text-2xl font-display">Thank you.</h3>
-                <p className="mt-2 text-muted-foreground">Our admissions team will contact you shortly.</p>
+                <p className="mt-2 text-muted-foreground">
+                  Our admissions team will contact you shortly.
+                </p>
               </div>
             ) : (
               <>
@@ -700,12 +1149,22 @@ export function Lead() {
                   <Input required type="tel" placeholder="Phone" className="h-12 rounded-xl" />
                   <Input required type="email" placeholder="Email" className="h-12 rounded-xl" />
                 </div>
-                <Input required placeholder="Interested program (BIT or B.Tech Ed IT)" className="h-12 rounded-xl" />
+                <Input
+                  required
+                  placeholder="Interested program (BIT or B.Tech Ed IT)"
+                  className="h-12 rounded-xl"
+                />
                 <Textarea required placeholder="Your message" rows={4} className="rounded-xl" />
-                <Button type="submit" size="lg" className="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 h-12">
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 h-12"
+                >
                   Submit Inquiry <ArrowRight className="ml-1 size-4" />
                 </Button>
-                <p className="text-xs text-muted-foreground text-center">We respect your privacy. No spam, ever.</p>
+                <p className="text-xs text-muted-foreground text-center">
+                  We respect your privacy. No spam, ever.
+                </p>
               </>
             )}
           </form>
@@ -717,37 +1176,117 @@ export function Lead() {
 
 export function Footer() {
   const cols = [
-    { h: "Community", items: [{ label: "Board Members", href: "#" }, { label: "Advisors", href: "#" }, { label: "Faculty", href: "#" }, { label: "Administration", href: "#" }, { label: "International", href: "#" }] },
-    { h: "About", items: [{ label: "KU Affiliation", href: "/ku-affiliation" }, { label: "Industry Exposure", href: "/industry-exposure" }, { label: "Publications", href: "/publications" }, { label: "Legacy", href: "/legacy" }, { label: "Governance", href: "/governance" }] },
-    { h: "Vision", items: [{ label: "Mission", href: "#" }, { label: "Values", href: "#" }, { label: "Strategy", href: "#" }, { label: "Reports", href: "#" }] },
-    { h: "Research", items: [{ label: "AI Labs", href: "/research" }, { label: "IoT Labs", href: "/research" }, { label: "Innovation Centers", href: "/research" }] },
-    { h: "Careers", items: [{ label: "Career Paths", href: "/careers" }, { label: "Graduate Success", href: "/careers" }, { label: "Placements", href: "#" }] },
+    {
+      h: "Community",
+      items: [
+        { label: "Board Members", href: "#" },
+        { label: "Advisors", href: "#" },
+        { label: "Faculty", href: "#" },
+        { label: "Administration", href: "#" },
+        { label: "International", href: "#" },
+      ],
+    },
+    {
+      h: "About",
+      items: [
+        { label: "KU Affiliation", href: "/ku-affiliation" },
+        { label: "Industry Exposure", href: "/industry-exposure" },
+        { label: "Publications", href: "/publications" },
+        { label: "Legacy", href: "/legacy" },
+        { label: "Governance", href: "/governance" },
+      ],
+    },
+    {
+      h: "Vision",
+      items: [
+        { label: "Mission", href: "#" },
+        { label: "Values", href: "#" },
+        { label: "Strategy", href: "#" },
+        { label: "Reports", href: "#" },
+      ],
+    },
+    {
+      h: "Research",
+      items: [
+        { label: "AI Labs", href: "/research" },
+        { label: "IoT Labs", href: "/research" },
+        { label: "Innovation Centers", href: "/research" },
+      ],
+    },
+    {
+      h: "Careers",
+      items: [
+        { label: "Career Paths", href: "/careers" },
+        { label: "Graduate Success", href: "/careers" },
+        { label: "Placements", href: "#" },
+      ],
+    },
   ];
   return (
     <footer className="bg-navy-deep text-white/80 border-t border-white/10">
-      <SectionContainer className={cn(LAYOUT.section, "grid md:grid-cols-2 lg:grid-cols-6", LAYOUT.gridGap)}>
+      <SectionContainer
+        className={cn(LAYOUT.section, "grid md:grid-cols-2 lg:grid-cols-6", LAYOUT.gridGap)}
+      >
         <div className="lg:col-span-1">
           <a href="#home" className="inline-flex">
             <img src={FOOTER_LOGO} alt="WCBT Jhapa Campus" className="h-20 w-auto sm:h-24" />
           </a>
-          <p className="mt-5 text-sm text-white/60">Building Eastern Nepal's future-focused academic ecosystem.</p>
+          <p className="mt-5 text-sm text-white/60">
+            Building Eastern Nepal's future-focused academic ecosystem.
+          </p>
         </div>
         {cols.map((c) => (
           <div key={c.h}>
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider">{c.h}</h4>
             <ul className="mt-4 space-y-2 text-sm">
-              {c.items.map((i) => (<li key={typeof i === 'string' ? i : i.label}><a href={typeof i === 'string' ? "#" : i.href} className="hover:text-white transition-colors">{typeof i === 'string' ? i : i.label}</a></li>))}
+              {c.items.map((i) => (
+                <li key={typeof i === "string" ? i : i.label}>
+                  <a
+                    href={typeof i === "string" ? "#" : i.href}
+                    className="hover:text-white transition-colors"
+                  >
+                    {typeof i === "string" ? i : i.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         ))}
       </SectionContainer>
       <div className="border-t border-white/10">
         <SectionContainer className="py-6 flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-white/60">
-          <span>© {new Date().getFullYear()} WhiteHouse Education Foundation. All rights reserved.</span>
-          <span>Jhapa, Nepal · 9801268585 · info@whitehouseeducation.edu.np</span>
+          <span>
+            © {new Date().getFullYear()} WhiteHouse Education Foundation. All rights reserved.
+          </span>
+          <span>Jhapa, Nepal · 9714530056, 9714530057 · info@whitehouseeducation.edu.np</span>
         </SectionContainer>
       </div>
     </footer>
+  );
+}
+
+function ScrollToTop() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 400);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <motion.button
+      type="button"
+      aria-label="Scroll to top"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      initial={false}
+      animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 12, pointerEvents: visible ? "auto" : "none" }}
+      transition={{ duration: 0.25 }}
+      className="fixed bottom-44 right-6 z-50 sm:bottom-24 sm:right-6 size-11 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 grid place-items-center hover:bg-primary/90 transition-colors"
+    >
+      <ArrowRight className="size-5 -rotate-90" />
+    </motion.button>
   );
 }
 
@@ -755,9 +1294,17 @@ export function FloatingCTAs() {
   return (
     <>
       <ChatWidget />
+      <ScrollToTop />
       <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 p-3 bg-navy-deep/95 backdrop-blur border-t border-white/10 flex gap-2">
-        <Button className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full">Apply Now</Button>
-        <Button variant="outline" className="flex-1 rounded-full border-white/30 bg-transparent text-white hover:bg-white/10">Inquiry</Button>
+        <Button className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full">
+          Apply Now
+        </Button>
+        <Button
+          variant="outline"
+          className="flex-1 rounded-full border-white/30 bg-transparent text-white hover:bg-white/10"
+        >
+          Inquiry
+        </Button>
       </div>
     </>
   );

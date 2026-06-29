@@ -48,12 +48,14 @@ const CORE_VALUES = [
   {
     icon: Target,
     title: "Excellence",
-    description: "Rigorous academics aligned with Kathmandu University standards and industry expectations.",
+    description:
+      "Rigorous academics aligned with Kathmandu University standards and industry expectations.",
   },
   {
     icon: Users,
     title: "Inclusivity",
-    description: "Accessible education for students across Eastern Nepal and beyond, with scholarship support.",
+    description:
+      "Accessible education for students across Eastern Nepal and beyond, with scholarship support.",
   },
   {
     icon: BookOpen,
@@ -63,7 +65,8 @@ const CORE_VALUES = [
   {
     icon: HeartHandshake,
     title: "Community",
-    description: "Strong ties with local schools, businesses, and alumni who mentor the next generation.",
+    description:
+      "Strong ties with local schools, businesses, and alumni who mentor the next generation.",
   },
 ];
 
@@ -71,22 +74,26 @@ const MILESTONES = [
   {
     year: "2014",
     title: "Foundation established",
-    description: "WhiteHouse Education Foundation begins its mission to expand quality higher education in Eastern Nepal.",
+    description:
+      "WhiteHouse Education Foundation begins its mission to expand quality higher education in Eastern Nepal.",
   },
   {
     year: "2018",
     title: "WCBT Jhapa Campus opens",
-    description: "The Jhapa campus launches with a focus on business and technology programs for the region.",
+    description:
+      "The Jhapa campus launches with a focus on business and technology programs for the region.",
   },
   {
     year: "2021",
     title: "Kathmandu University partnership",
-    description: "Formal academic partnership brings KU-affiliated BIT and B.Tech Ed IT programs to Jhapa.",
+    description:
+      "Formal academic partnership brings KU-affiliated BIT and B.Tech Ed IT programs to Jhapa.",
   },
   {
     year: "2026",
     title: "Expanding innovation ecosystem",
-    description: "New labs, industry collaborations, and student-led initiatives strengthen the campus community.",
+    description:
+      "New labs, industry collaborations, and student-led initiatives strengthen the campus community.",
   },
 ];
 
@@ -121,7 +128,10 @@ export const Route = createFileRoute("/about")({
           "Learn about WCBT Jhapa Campus, our partnership with Kathmandu University, and the WhiteHouse Education Foundation mission.",
       },
       { property: "og:title", content: "About WCBT Jhapa Campus" },
-      { property: "og:description", content: "Discover our story, mission, and academic partnership in Eastern Nepal." },
+      {
+        property: "og:description",
+        content: "Discover our story, mission, and academic partnership in Eastern Nepal.",
+      },
     ],
     links: [{ rel: "canonical", href: "/about" }],
   }),
@@ -195,14 +205,14 @@ function AboutPage() {
         <Timeline items={MILESTONES} />
       </PageSection>
 
-      <PageSection
+      {/* <PageSection
         eyebrow="Leadership"
         title="Meet the people behind the campus"
         description="Experienced educators and administrators committed to student success and academic excellence."
         className="bg-muted/30"
       >
         <LeadershipGrid members={LEADERSHIP} />
-      </PageSection>
+      </PageSection> */}
 
       <PageSection
         eyebrow="Governance"
@@ -214,14 +224,16 @@ function AboutPage() {
             <Shield className="size-8 text-primary" />
             <h3 className="mt-4 text-xl font-semibold">WhiteHouse Education Foundation</h3>
             <p className="mt-3 text-muted-foreground leading-relaxed">
-              The foundation provides institutional leadership, infrastructure investment, and long-term vision for quality higher education in Eastern Nepal.
+              The foundation provides institutional leadership, infrastructure investment, and
+              long-term vision for quality higher education in Eastern Nepal.
             </p>
           </div>
           <div className="rounded-3xl border border-border bg-card p-8">
             <Award className="size-8 text-primary" />
             <h3 className="mt-4 text-xl font-semibold">Academic oversight</h3>
             <p className="mt-3 text-muted-foreground leading-relaxed">
-              Program quality is monitored through Kathmandu University guidelines, internal reviews, and continuous faculty development initiatives.
+              Program quality is monitored through Kathmandu University guidelines, internal
+              reviews, and continuous faculty development initiatives.
             </p>
           </div>
         </div>

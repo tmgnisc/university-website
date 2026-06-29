@@ -52,17 +52,38 @@ const PROJECTS = [
 ];
 
 const PUBLICATIONS = [
-  { year: "2025", title: "Applied ML in Eastern Nepal", description: "Conference paper on deploying machine learning solutions for regional agriculture." },
-  { year: "2024", title: "Digital Pedagogy Review", description: "Faculty publication on LMS adoption in Nepali secondary schools." },
-  { year: "2024", title: "IoT for Smart Cities", description: "Student-led research presented at the National Innovation Summit." },
-  { year: "2023", title: "Open Data in Education", description: "White paper on transparent academic data sharing practices." },
+  {
+    year: "2025",
+    title: "Applied ML in Eastern Nepal",
+    description:
+      "Conference paper on deploying machine learning solutions for regional agriculture.",
+  },
+  {
+    year: "2024",
+    title: "Digital Pedagogy Review",
+    description: "Faculty publication on LMS adoption in Nepali secondary schools.",
+  },
+  {
+    year: "2024",
+    title: "IoT for Smart Cities",
+    description: "Student-led research presented at the National Innovation Summit.",
+  },
+  {
+    year: "2023",
+    title: "Open Data in Education",
+    description: "White paper on transparent academic data sharing practices.",
+  },
 ];
 
 export const Route = createFileRoute("/research")({
   head: () => ({
     meta: [
       { title: "Research — WhiteHouse College of Business & Technology" },
-      { name: "description", content: "Explore research labs, innovation projects, and publications at WCBT Jhapa Campus." },
+      {
+        name: "description",
+        content:
+          "Explore research labs, innovation projects, and publications at WCBT Jhapa Campus.",
+      },
     ],
     links: [{ rel: "canonical", href: "/research" }],
   }),
@@ -115,10 +136,28 @@ function ResearchPage() {
       >
         <IconFeatureGrid
           items={[
-            { icon: Cpu, title: "Artificial Intelligence", description: "Machine learning, computer vision, and intelligent systems for local applications." },
-            { icon: FlaskConical, title: "IoT & Embedded Systems", description: "Connected devices, sensor networks, and automation prototypes." },
-            { icon: Microscope, title: "Ed-Tech Research", description: "Digital learning effectiveness, instructional design, and classroom technology." },
-            { icon: Lightbulb, title: "Innovation & Startups", description: "Idea incubation, prototyping support, and entrepreneurship mentoring." },
+            {
+              icon: Cpu,
+              title: "Artificial Intelligence",
+              description:
+                "Machine learning, computer vision, and intelligent systems for local applications.",
+            },
+            {
+              icon: FlaskConical,
+              title: "IoT & Embedded Systems",
+              description: "Connected devices, sensor networks, and automation prototypes.",
+            },
+            {
+              icon: Microscope,
+              title: "Ed-Tech Research",
+              description:
+                "Digital learning effectiveness, instructional design, and classroom technology.",
+            },
+            {
+              icon: Lightbulb,
+              title: "Innovation & Startups",
+              description: "Idea incubation, prototyping support, and entrepreneurship mentoring.",
+            },
           ]}
         />
       </PageSection>
@@ -157,9 +196,11 @@ function ResearchPage() {
       <PageSection eyebrow="AI LABS" title="Artificial Intelligence Research">
         <div className="max-w-4xl mx-auto">
           <p className="text-lg leading-relaxed text-muted-foreground mb-6">
-            The Artificial Intelligence (AI) Labs at WhiteHouse College provide students with hands-on experience in one of the 
-            fastest-growing fields of technology. Our labs are equipped with modern computing resources and guided by experienced faculty, 
-            where students can explore machine learning, data analytics, computer vision, natural language processing, and intelligent systems.
+            The Artificial Intelligence (AI) Labs at WhiteHouse College provide students with
+            hands-on experience in one of the fastest-growing fields of technology. Our labs are
+            equipped with modern computing resources and guided by experienced faculty, where
+            students can explore machine learning, data analytics, computer vision, natural language
+            processing, and intelligent systems.
           </p>
         </div>
       </PageSection>
@@ -167,10 +208,12 @@ function ResearchPage() {
       <PageSection eyebrow="IOT LABS" title="Internet of Things Innovation">
         <div className="max-w-4xl mx-auto">
           <p className="text-lg leading-relaxed text-muted-foreground mb-6">
-            The Internet of Things (IoT) Labs are designed to give students practical exposure to connected technologies and smart systems. 
-            Through hands-on learning, students work with sensors, microcontrollers, networking technologies, and embedded systems to develop 
-            innovative solutions for real-world applications. These labs support experimentation, project-based learning, project development, 
-            research, theoretical application and development of various other skills.
+            The Internet of Things (IoT) Labs are designed to give students practical exposure to
+            connected technologies and smart systems. Through hands-on learning, students work with
+            sensors, microcontrollers, networking technologies, and embedded systems to develop
+            innovative solutions for real-world applications. These labs support experimentation,
+            project-based learning, project development, research, theoretical application and
+            development of various other skills.
           </p>
         </div>
       </PageSection>
@@ -182,11 +225,13 @@ function ResearchPage() {
       >
         <div className="max-w-4xl mx-auto">
           <p className="text-lg leading-relaxed text-muted-foreground mb-6">
-            By bringing together students, faculty members, industry professionals, and researchers, the centers create opportunities 
-            for collaboration, innovation, and interdisciplinary learning. The goal is to nurture a mindset of continuous improvement, 
-            leadership, and problem-solving while supporting the development of future innovators and entrepreneurs. The Innovation Centers 
-            at WhiteHouse College serve as hubs for creativity, entrepreneurship, and technological development. Students are encouraged to 
-            transform ideas into practical projects, prototypes, and solutions that address real-world needs.
+            By bringing together students, faculty members, industry professionals, and researchers,
+            the centers create opportunities for collaboration, innovation, and interdisciplinary
+            learning. The goal is to nurture a mindset of continuous improvement, leadership, and
+            problem-solving while supporting the development of future innovators and entrepreneurs.
+            The Innovation Centers at WhiteHouse College serve as hubs for creativity,
+            entrepreneurship, and technological development. Students are encouraged to transform
+            ideas into practical projects, prototypes, and solutions that address real-world needs.
           </p>
         </div>
       </PageSection>

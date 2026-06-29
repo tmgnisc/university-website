@@ -43,10 +43,12 @@ function KUAffiliationPage() {
       >
         <div className="prose prose-invert max-w-4xl mx-auto">
           <p className="text-lg leading-relaxed text-muted-foreground">
-            WhiteHouse College operates under the academic standards and quality framework of Kathmandu University. Through this affiliation, 
-            students benefit from a curriculum designed to promote critical thinking, practical application, innovation, and professional competence. 
-            The academic structure ensures that graduates are equipped with the knowledge and skills required for higher studies, professional careers, 
-            and lifelong learning.
+            WhiteHouse College operates under the academic standards and quality framework of
+            Kathmandu University. Through this affiliation, students benefit from a curriculum
+            designed to promote critical thinking, practical application, innovation, and
+            professional competence. The academic structure ensures that graduates are equipped with
+            the knowledge and skills required for higher studies, professional careers, and lifelong
+            learning.
           </p>
         </div>
       </PageSection>
@@ -102,7 +104,9 @@ function KUAffiliationPage() {
                 <BookOpen className="size-5" />
               </div>
               <h3 className="font-semibold text-lg">{benefit.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{benefit.description}</p>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                {benefit.description}
+              </p>
             </div>
           ))}
         </div>

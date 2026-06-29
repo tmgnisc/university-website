@@ -154,14 +154,26 @@ export function PageHero({
             viewport={{ once: true }}
           >
             {eyebrow && (
-              <p className={image ? "text-sm font-semibold uppercase tracking-wider text-white/90" : "text-sm font-semibold uppercase tracking-wider text-primary"}>{eyebrow}</p>
+              <p
+                className={
+                  image
+                    ? "text-sm font-semibold uppercase tracking-wider text-white/90"
+                    : "text-sm font-semibold uppercase tracking-wider text-primary"
+                }
+              >
+                {eyebrow}
+              </p>
             )}
 
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.06 }}
-              className={image ? "mt-3 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight max-w-3xl text-white" : "mt-3 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight max-w-3xl"}
+              className={
+                image
+                  ? "mt-3 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight max-w-3xl text-white"
+                  : "mt-3 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight max-w-3xl"
+              }
             >
               {title}
             </motion.h1>
@@ -171,7 +183,11 @@ export function PageHero({
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.12 }}
-                className={image ? "mt-5 text-lg text-white/90 max-w-2xl leading-relaxed" : "mt-5 text-lg text-muted-foreground max-w-2xl leading-relaxed"}
+                className={
+                  image
+                    ? "mt-5 text-lg text-white/90 max-w-2xl leading-relaxed"
+                    : "mt-5 text-lg text-muted-foreground max-w-2xl leading-relaxed"
+                }
               >
                 {description}
               </motion.p>
@@ -180,12 +196,27 @@ export function PageHero({
             {(primaryCta || secondaryCta) && (
               <div className="mt-8 flex flex-wrap gap-3">
                 {primaryCta && (
-                  <Button asChild size="lg" className={image ? "rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/95" : "rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/95"}>
-                    <a href={primaryCta.href ?? "#"}>{primaryCta.label} <ArrowRight className="ml-2 size-4" /></a>
+                  <Button
+                    asChild
+                    size="lg"
+                    className={
+                      image
+                        ? "rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/95"
+                        : "rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/95"
+                    }
+                  >
+                    <a href={primaryCta.href ?? "#"}>
+                      {primaryCta.label} <ArrowRight className="ml-2 size-4" />
+                    </a>
                   </Button>
                 )}
                 {secondaryCta && (
-                  <Button asChild size="lg" variant="outline" className="rounded-full px-6 border-white/20 bg-transparent text-foreground">
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="rounded-full px-6 border-white/20 bg-transparent text-foreground"
+                  >
                     <a href={secondaryCta.href ?? "#"}>{secondaryCta.label}</a>
                   </Button>
                 )}

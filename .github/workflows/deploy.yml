@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 20
 
-      - run: npm install
+      - run: npm ci --legacy-peer-deps
       - run: npm run build
 
       - name: Deploy
@@ -25,5 +25,7 @@ jobs:
           server: 49.13.132.105
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
+          # The static SPA (index.html, assets, .htaccess) is emitted to
+          # dist/client. dist/server is unused for this deploy target.
+          local-dir: ./dist/client/
           server-dir: /

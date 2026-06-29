@@ -52,10 +52,28 @@ const CLUBS = [
 ];
 
 const EVENTS = [
-  { year: "Jan", title: "Orientation Week", description: "Welcome new students with campus tours, mentor meetups, and team-building activities." },
-  { year: "Mar", title: "Industry Speaker Series", description: "Monthly talks from IT leaders, educators, and startup founders." },
-  { year: "Jun", title: "Summer Hackathon", description: "48-hour build sprint with prizes, mentors, and recruiter networking." },
-  { year: "Oct", title: "WCBT Annual Fest", description: "The biggest celebration of the year — culture, tech expo, sports, and performances." },
+  {
+    year: "Jan",
+    title: "Orientation Week",
+    description:
+      "Welcome new students with campus tours, mentor meetups, and team-building activities.",
+  },
+  {
+    year: "Mar",
+    title: "Industry Speaker Series",
+    description: "Monthly talks from IT leaders, educators, and startup founders.",
+  },
+  {
+    year: "Jun",
+    title: "Summer Hackathon",
+    description: "48-hour build sprint with prizes, mentors, and recruiter networking.",
+  },
+  {
+    year: "Oct",
+    title: "WCBT Annual Fest",
+    description:
+      "The biggest celebration of the year — culture, tech expo, sports, and performances.",
+  },
 ];
 
 const CAMPUS_GALLERY: BentoItem[] = [
@@ -97,7 +115,11 @@ export const Route = createFileRoute("/campus-life")({
   head: () => ({
     meta: [
       { title: "Campus Life — WhiteHouse College of Business & Technology" },
-      { name: "description", content: "Discover student life at WCBT — clubs, events, facilities, and community in Jhapa, Nepal." },
+      {
+        name: "description",
+        content:
+          "Discover student life at WCBT — clubs, events, facilities, and community in Jhapa, Nepal.",
+      },
     ],
     links: [{ rel: "canonical", href: "/campus-life" }],
   }),
@@ -114,7 +136,6 @@ function CampusLifePage() {
         image="https://ik.imagekit.io/qn3m81dsk/university/clz%202.jpg"
         imageCaption="Premises of Nidi Secondary School & Indreni Campus"
       />
-      
 
       <HighlightBand
         badge="Student Community"
@@ -168,10 +189,27 @@ function CampusLifePage() {
       >
         <IconFeatureGrid
           items={[
-            { icon: Users, title: "Peer mentoring", description: "Senior students guide newcomers through academics and campus navigation." },
-            { icon: Coffee, title: "Study spaces", description: "Quiet zones and group rooms available throughout the day." },
-            { icon: Dumbbell, title: "Sports & fitness", description: "Intramural leagues and fitness activities promote physical wellbeing." },
-            { icon: Music, title: "Cultural activities", description: "Music, dance, and celebration events build community pride." },
+            {
+              icon: Users,
+              title: "Peer mentoring",
+              description:
+                "Senior students guide newcomers through academics and campus navigation.",
+            },
+            {
+              icon: Coffee,
+              title: "Study spaces",
+              description: "Quiet zones and group rooms available throughout the day.",
+            },
+            {
+              icon: Dumbbell,
+              title: "Sports & fitness",
+              description: "Intramural leagues and fitness activities promote physical wellbeing.",
+            },
+            {
+              icon: Music,
+              title: "Cultural activities",
+              description: "Music, dance, and celebration events build community pride.",
+            },
           ]}
         />
       </PageSection>

@@ -9,6 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VisitUsRouteImport } from './routes/visit-us'
+import { Route as VirtualTourRouteImport } from './routes/virtual-tour'
+import { Route as StudentSupportRouteImport } from './routes/student-support'
+import { Route as StudentExperienceRouteImport } from './routes/student-experience'
 import { Route as ScholarshipsRouteImport } from './routes/scholarships'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as PublicationsRouteImport } from './routes/publications'
@@ -25,7 +29,39 @@ import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProgramsIndexRouteImport } from './routes/programs.index'
+import { Route as ProgramsBtechEdItRouteImport } from './routes/programs.btech-ed-it'
+import { Route as ProgramsBitRouteImport } from './routes/programs.bit'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminAuthedRouteImport } from './routes/admin._authed'
+import { Route as AdminAuthedIndexRouteImport } from './routes/admin._authed.index'
+import { Route as AdminAuthedSiteRouteImport } from './routes/admin._authed.site'
+import { Route as AdminAuthedScholarshipsRouteImport } from './routes/admin._authed.scholarships'
+import { Route as AdminAuthedProgramsRouteImport } from './routes/admin._authed.programs'
+import { Route as AdminAuthedOpeningsRouteImport } from './routes/admin._authed.openings'
+import { Route as AdminAuthedNewsRouteImport } from './routes/admin._authed.news'
+import { Route as AdminAuthedChatbotRouteImport } from './routes/admin._authed.chatbot'
 
+const VisitUsRoute = VisitUsRouteImport.update({
+  id: '/visit-us',
+  path: '/visit-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VirtualTourRoute = VirtualTourRouteImport.update({
+  id: '/virtual-tour',
+  path: '/virtual-tour',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentSupportRoute = StudentSupportRouteImport.update({
+  id: '/student-support',
+  path: '/student-support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentExperienceRoute = StudentExperienceRouteImport.update({
+  id: '/student-experience',
+  path: '/student-experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ScholarshipsRoute = ScholarshipsRouteImport.update({
   id: '/scholarships',
   path: '/scholarships',
@@ -106,6 +142,66 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProgramsIndexRoute = ProgramsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProgramsRoute,
+} as any)
+const ProgramsBtechEdItRoute = ProgramsBtechEdItRouteImport.update({
+  id: '/btech-ed-it',
+  path: '/btech-ed-it',
+  getParentRoute: () => ProgramsRoute,
+} as any)
+const ProgramsBitRoute = ProgramsBitRouteImport.update({
+  id: '/bit',
+  path: '/bit',
+  getParentRoute: () => ProgramsRoute,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAuthedRoute = AdminAuthedRouteImport.update({
+  id: '/admin/_authed',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAuthedIndexRoute = AdminAuthedIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminAuthedRoute,
+} as any)
+const AdminAuthedSiteRoute = AdminAuthedSiteRouteImport.update({
+  id: '/site',
+  path: '/site',
+  getParentRoute: () => AdminAuthedRoute,
+} as any)
+const AdminAuthedScholarshipsRoute = AdminAuthedScholarshipsRouteImport.update({
+  id: '/scholarships',
+  path: '/scholarships',
+  getParentRoute: () => AdminAuthedRoute,
+} as any)
+const AdminAuthedProgramsRoute = AdminAuthedProgramsRouteImport.update({
+  id: '/programs',
+  path: '/programs',
+  getParentRoute: () => AdminAuthedRoute,
+} as any)
+const AdminAuthedOpeningsRoute = AdminAuthedOpeningsRouteImport.update({
+  id: '/openings',
+  path: '/openings',
+  getParentRoute: () => AdminAuthedRoute,
+} as any)
+const AdminAuthedNewsRoute = AdminAuthedNewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => AdminAuthedRoute,
+} as any)
+const AdminAuthedChatbotRoute = AdminAuthedChatbotRouteImport.update({
+  id: '/chatbot',
+  path: '/chatbot',
+  getParentRoute: () => AdminAuthedRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -120,10 +216,26 @@ export interface FileRoutesByFullPath {
   '/ku-affiliation': typeof KuAffiliationRoute
   '/legacy': typeof LegacyRoute
   '/maintenance': typeof MaintenanceRoute
-  '/programs': typeof ProgramsRoute
+  '/programs': typeof ProgramsRouteWithChildren
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/scholarships': typeof ScholarshipsRoute
+  '/student-experience': typeof StudentExperienceRoute
+  '/student-support': typeof StudentSupportRoute
+  '/virtual-tour': typeof VirtualTourRoute
+  '/visit-us': typeof VisitUsRoute
+  '/admin': typeof AdminAuthedRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/programs/bit': typeof ProgramsBitRoute
+  '/programs/btech-ed-it': typeof ProgramsBtechEdItRoute
+  '/programs/': typeof ProgramsIndexRoute
+  '/admin/chatbot': typeof AdminAuthedChatbotRoute
+  '/admin/news': typeof AdminAuthedNewsRoute
+  '/admin/openings': typeof AdminAuthedOpeningsRoute
+  '/admin/programs': typeof AdminAuthedProgramsRoute
+  '/admin/scholarships': typeof AdminAuthedScholarshipsRoute
+  '/admin/site': typeof AdminAuthedSiteRoute
+  '/admin/': typeof AdminAuthedIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -138,10 +250,24 @@ export interface FileRoutesByTo {
   '/ku-affiliation': typeof KuAffiliationRoute
   '/legacy': typeof LegacyRoute
   '/maintenance': typeof MaintenanceRoute
-  '/programs': typeof ProgramsRoute
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/scholarships': typeof ScholarshipsRoute
+  '/student-experience': typeof StudentExperienceRoute
+  '/student-support': typeof StudentSupportRoute
+  '/virtual-tour': typeof VirtualTourRoute
+  '/visit-us': typeof VisitUsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/programs/bit': typeof ProgramsBitRoute
+  '/programs/btech-ed-it': typeof ProgramsBtechEdItRoute
+  '/programs': typeof ProgramsIndexRoute
+  '/admin/chatbot': typeof AdminAuthedChatbotRoute
+  '/admin/news': typeof AdminAuthedNewsRoute
+  '/admin/openings': typeof AdminAuthedOpeningsRoute
+  '/admin/programs': typeof AdminAuthedProgramsRoute
+  '/admin/scholarships': typeof AdminAuthedScholarshipsRoute
+  '/admin/site': typeof AdminAuthedSiteRoute
+  '/admin': typeof AdminAuthedIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -157,10 +283,26 @@ export interface FileRoutesById {
   '/ku-affiliation': typeof KuAffiliationRoute
   '/legacy': typeof LegacyRoute
   '/maintenance': typeof MaintenanceRoute
-  '/programs': typeof ProgramsRoute
+  '/programs': typeof ProgramsRouteWithChildren
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/scholarships': typeof ScholarshipsRoute
+  '/student-experience': typeof StudentExperienceRoute
+  '/student-support': typeof StudentSupportRoute
+  '/virtual-tour': typeof VirtualTourRoute
+  '/visit-us': typeof VisitUsRoute
+  '/admin/_authed': typeof AdminAuthedRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/programs/bit': typeof ProgramsBitRoute
+  '/programs/btech-ed-it': typeof ProgramsBtechEdItRoute
+  '/programs/': typeof ProgramsIndexRoute
+  '/admin/_authed/chatbot': typeof AdminAuthedChatbotRoute
+  '/admin/_authed/news': typeof AdminAuthedNewsRoute
+  '/admin/_authed/openings': typeof AdminAuthedOpeningsRoute
+  '/admin/_authed/programs': typeof AdminAuthedProgramsRoute
+  '/admin/_authed/scholarships': typeof AdminAuthedScholarshipsRoute
+  '/admin/_authed/site': typeof AdminAuthedSiteRoute
+  '/admin/_authed/': typeof AdminAuthedIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -181,6 +323,22 @@ export interface FileRouteTypes {
     | '/publications'
     | '/research'
     | '/scholarships'
+    | '/student-experience'
+    | '/student-support'
+    | '/virtual-tour'
+    | '/visit-us'
+    | '/admin'
+    | '/admin/login'
+    | '/programs/bit'
+    | '/programs/btech-ed-it'
+    | '/programs/'
+    | '/admin/chatbot'
+    | '/admin/news'
+    | '/admin/openings'
+    | '/admin/programs'
+    | '/admin/scholarships'
+    | '/admin/site'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -195,10 +353,24 @@ export interface FileRouteTypes {
     | '/ku-affiliation'
     | '/legacy'
     | '/maintenance'
-    | '/programs'
     | '/publications'
     | '/research'
     | '/scholarships'
+    | '/student-experience'
+    | '/student-support'
+    | '/virtual-tour'
+    | '/visit-us'
+    | '/admin/login'
+    | '/programs/bit'
+    | '/programs/btech-ed-it'
+    | '/programs'
+    | '/admin/chatbot'
+    | '/admin/news'
+    | '/admin/openings'
+    | '/admin/programs'
+    | '/admin/scholarships'
+    | '/admin/site'
+    | '/admin'
   id:
     | '__root__'
     | '/'
@@ -217,6 +389,22 @@ export interface FileRouteTypes {
     | '/publications'
     | '/research'
     | '/scholarships'
+    | '/student-experience'
+    | '/student-support'
+    | '/virtual-tour'
+    | '/visit-us'
+    | '/admin/_authed'
+    | '/admin/login'
+    | '/programs/bit'
+    | '/programs/btech-ed-it'
+    | '/programs/'
+    | '/admin/_authed/chatbot'
+    | '/admin/_authed/news'
+    | '/admin/_authed/openings'
+    | '/admin/_authed/programs'
+    | '/admin/_authed/scholarships'
+    | '/admin/_authed/site'
+    | '/admin/_authed/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -232,14 +420,48 @@ export interface RootRouteChildren {
   KuAffiliationRoute: typeof KuAffiliationRoute
   LegacyRoute: typeof LegacyRoute
   MaintenanceRoute: typeof MaintenanceRoute
-  ProgramsRoute: typeof ProgramsRoute
+  ProgramsRoute: typeof ProgramsRouteWithChildren
   PublicationsRoute: typeof PublicationsRoute
   ResearchRoute: typeof ResearchRoute
   ScholarshipsRoute: typeof ScholarshipsRoute
+  StudentExperienceRoute: typeof StudentExperienceRoute
+  StudentSupportRoute: typeof StudentSupportRoute
+  VirtualTourRoute: typeof VirtualTourRoute
+  VisitUsRoute: typeof VisitUsRoute
+  AdminAuthedRoute: typeof AdminAuthedRouteWithChildren
+  AdminLoginRoute: typeof AdminLoginRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/visit-us': {
+      id: '/visit-us'
+      path: '/visit-us'
+      fullPath: '/visit-us'
+      preLoaderRoute: typeof VisitUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/virtual-tour': {
+      id: '/virtual-tour'
+      path: '/virtual-tour'
+      fullPath: '/virtual-tour'
+      preLoaderRoute: typeof VirtualTourRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-support': {
+      id: '/student-support'
+      path: '/student-support'
+      fullPath: '/student-support'
+      preLoaderRoute: typeof StudentSupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-experience': {
+      id: '/student-experience'
+      path: '/student-experience'
+      fullPath: '/student-experience'
+      preLoaderRoute: typeof StudentExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/scholarships': {
       id: '/scholarships'
       path: '/scholarships'
@@ -352,8 +574,132 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programs/': {
+      id: '/programs/'
+      path: '/'
+      fullPath: '/programs/'
+      preLoaderRoute: typeof ProgramsIndexRouteImport
+      parentRoute: typeof ProgramsRoute
+    }
+    '/programs/btech-ed-it': {
+      id: '/programs/btech-ed-it'
+      path: '/btech-ed-it'
+      fullPath: '/programs/btech-ed-it'
+      preLoaderRoute: typeof ProgramsBtechEdItRouteImport
+      parentRoute: typeof ProgramsRoute
+    }
+    '/programs/bit': {
+      id: '/programs/bit'
+      path: '/bit'
+      fullPath: '/programs/bit'
+      preLoaderRoute: typeof ProgramsBitRouteImport
+      parentRoute: typeof ProgramsRoute
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/_authed': {
+      id: '/admin/_authed'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminAuthedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/_authed/': {
+      id: '/admin/_authed/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminAuthedIndexRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
+    '/admin/_authed/site': {
+      id: '/admin/_authed/site'
+      path: '/site'
+      fullPath: '/admin/site'
+      preLoaderRoute: typeof AdminAuthedSiteRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
+    '/admin/_authed/scholarships': {
+      id: '/admin/_authed/scholarships'
+      path: '/scholarships'
+      fullPath: '/admin/scholarships'
+      preLoaderRoute: typeof AdminAuthedScholarshipsRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
+    '/admin/_authed/programs': {
+      id: '/admin/_authed/programs'
+      path: '/programs'
+      fullPath: '/admin/programs'
+      preLoaderRoute: typeof AdminAuthedProgramsRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
+    '/admin/_authed/openings': {
+      id: '/admin/_authed/openings'
+      path: '/openings'
+      fullPath: '/admin/openings'
+      preLoaderRoute: typeof AdminAuthedOpeningsRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
+    '/admin/_authed/news': {
+      id: '/admin/_authed/news'
+      path: '/news'
+      fullPath: '/admin/news'
+      preLoaderRoute: typeof AdminAuthedNewsRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
+    '/admin/_authed/chatbot': {
+      id: '/admin/_authed/chatbot'
+      path: '/chatbot'
+      fullPath: '/admin/chatbot'
+      preLoaderRoute: typeof AdminAuthedChatbotRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
   }
 }
+
+interface ProgramsRouteChildren {
+  ProgramsBitRoute: typeof ProgramsBitRoute
+  ProgramsBtechEdItRoute: typeof ProgramsBtechEdItRoute
+  ProgramsIndexRoute: typeof ProgramsIndexRoute
+}
+
+const ProgramsRouteChildren: ProgramsRouteChildren = {
+  ProgramsBitRoute: ProgramsBitRoute,
+  ProgramsBtechEdItRoute: ProgramsBtechEdItRoute,
+  ProgramsIndexRoute: ProgramsIndexRoute,
+}
+
+const ProgramsRouteWithChildren = ProgramsRoute._addFileChildren(
+  ProgramsRouteChildren,
+)
+
+interface AdminAuthedRouteChildren {
+  AdminAuthedChatbotRoute: typeof AdminAuthedChatbotRoute
+  AdminAuthedNewsRoute: typeof AdminAuthedNewsRoute
+  AdminAuthedOpeningsRoute: typeof AdminAuthedOpeningsRoute
+  AdminAuthedProgramsRoute: typeof AdminAuthedProgramsRoute
+  AdminAuthedScholarshipsRoute: typeof AdminAuthedScholarshipsRoute
+  AdminAuthedSiteRoute: typeof AdminAuthedSiteRoute
+  AdminAuthedIndexRoute: typeof AdminAuthedIndexRoute
+}
+
+const AdminAuthedRouteChildren: AdminAuthedRouteChildren = {
+  AdminAuthedChatbotRoute: AdminAuthedChatbotRoute,
+  AdminAuthedNewsRoute: AdminAuthedNewsRoute,
+  AdminAuthedOpeningsRoute: AdminAuthedOpeningsRoute,
+  AdminAuthedProgramsRoute: AdminAuthedProgramsRoute,
+  AdminAuthedScholarshipsRoute: AdminAuthedScholarshipsRoute,
+  AdminAuthedSiteRoute: AdminAuthedSiteRoute,
+  AdminAuthedIndexRoute: AdminAuthedIndexRoute,
+}
+
+const AdminAuthedRouteWithChildren = AdminAuthedRoute._addFileChildren(
+  AdminAuthedRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -368,10 +714,16 @@ const rootRouteChildren: RootRouteChildren = {
   KuAffiliationRoute: KuAffiliationRoute,
   LegacyRoute: LegacyRoute,
   MaintenanceRoute: MaintenanceRoute,
-  ProgramsRoute: ProgramsRoute,
+  ProgramsRoute: ProgramsRouteWithChildren,
   PublicationsRoute: PublicationsRoute,
   ResearchRoute: ResearchRoute,
   ScholarshipsRoute: ScholarshipsRoute,
+  StudentExperienceRoute: StudentExperienceRoute,
+  StudentSupportRoute: StudentSupportRoute,
+  VirtualTourRoute: VirtualTourRoute,
+  VisitUsRoute: VisitUsRoute,
+  AdminAuthedRoute: AdminAuthedRouteWithChildren,
+  AdminLoginRoute: AdminLoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
