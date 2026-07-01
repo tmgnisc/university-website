@@ -33,13 +33,15 @@ const REQUIREMENTS_BENTO: BentoItem[] = [
   {
     title: "Entrance Exam",
     description: "Written test covering mathematics, logic, and general aptitude.",
-    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80",
     className: "lg:col-span-1",
   },
   {
     title: "Interview Round",
     description: "Shortlisted applicants meet the admissions panel for program fit assessment.",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80",
     className: "lg:col-span-2",
   },
 ];
@@ -133,7 +135,7 @@ function AdmissionsPage() {
         eyebrow="Admissions"
         title="Start your journey at WCBT"
         description="Admissions are open for Kathmandu University partnered BIT and B.Tech Ed IT programs. Follow the steps below to apply for the upcoming intake."
-        image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=80"
+        image="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1600&q=80"
         primaryCta={{ label: "Apply Now", href: "/admissions#apply" }}
         secondaryCta={{ label: "Contact Admissions", href: "/contact" }}
       />

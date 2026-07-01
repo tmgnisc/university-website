@@ -61,9 +61,7 @@ function BtechEdItPage() {
         eyebrow="B.Tech Ed IT Program"
         title="B.Tech Ed IT — Technology in Education"
         description="A four-year KU-partnered program blending information technology with pedagogy — preparing future educators to lead digital transformation in classrooms and training centers."
-        image="https://plus.unsplash.com/premium_photo-1664304168263-f18dcc6fb94a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        imageClassName="scale-110 blur-[2px]"
-        overlayClassName="bg-black/75 bg-gradient-to-b from-black/80 via-black/65 to-black/80"
+        image="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80"
       />
 
       <ProgramSpotlight

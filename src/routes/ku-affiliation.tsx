@@ -32,7 +32,7 @@ function KUAffiliationPage() {
         eyebrow="KU Partnership"
         title="Kathmandu University Affiliation"
         description="WhiteHouse College, Jhapa operates under the academic standards and quality framework of Kathmandu University, ensuring world-class education and recognized qualifications."
-        image="https://ik.imagekit.io/qn3m81dsk/university/clz%203.jpg"
+        image="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1600&q=80"
         imageCaption="Premises of Nidi Secondary School & Indreni Campus"
       />
 
