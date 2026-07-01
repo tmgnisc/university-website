@@ -122,6 +122,8 @@ export function PageHero({
   description,
   image,
   imageCaption,
+  imageClassName,
+  overlayClassName,
   primaryCta,
   secondaryCta,
 }: {
@@ -130,6 +132,8 @@ export function PageHero({
   description?: string;
   image?: string;
   imageCaption?: string;
+  imageClassName?: string;
+  overlayClassName?: string;
   primaryCta?: { label: string; href?: string };
   secondaryCta?: { label: string; href?: string };
 }) {
@@ -141,8 +145,8 @@ export function PageHero({
     <section className={sectionClass}>
       {image && (
         <div className="absolute inset-0 -z-10 pointer-events-none">
-          <img src={image} alt="" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-black/50" />
+          <img src={image} alt="" className={cn("w-full h-full object-cover", imageClassName)} />
+          <div className={cn("absolute inset-0 bg-black/50", overlayClassName)} />
         </div>
       )}
 
