@@ -48,6 +48,29 @@ import campusImg from "@/assets/campus.jpg";
 import smartClass from "@/assets/smart-classroom.jpg";
 import aiLab from "@/assets/ai-lab.jpg";
 
+type RequestFormPayload = {
+  name: string;
+  phone: string;
+  email: string;
+  subject?: string;
+  program?: string;
+  message?: string;
+};
+
+async function sendRequestForm(payload: RequestFormPayload) {
+  const apiBase = import.meta.env.VITE_CMS_API_URL?.replace(/\/$/, "") ?? "";
+  const response = await fetch(`${apiBase}/api/request-form`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const data = await response.json().catch(() => null);
+    throw new Error(data?.error ?? "Could not send your request. Please try again.");
+  }
+}
+
 type NavLink = { label: string; to: string; hash?: string };
 type NavGroup = { label: string; to?: string; children?: NavLink[] };
 
@@ -1082,6 +1105,8 @@ export function Mosaic() {
 
 export function Lead() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
   return (
     <section id="contact" className={cn(LAYOUT.section, "bg-secondary")}>
       <SectionContainer className={cn("grid lg:grid-cols-2", LAYOUT.splitGap)}>
@@ -1125,7 +1150,24 @@ export function Lead() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              setSent(true);
+              const form = e.currentTarget;
+              const formData = new FormData(form);
+              setSending(true);
+              setError("");
+              sendRequestForm({
+                name: String(formData.get("name") ?? ""),
+                phone: String(formData.get("phone") ?? ""),
+                email: String(formData.get("email") ?? ""),
+                program: String(formData.get("program") ?? ""),
+                message: String(formData.get("message") ?? ""),
+                subject: "Website admissions inquiry",
+              })
+                .then(() => {
+                  setSent(true);
+                  form.reset();
+                })
+                .catch((err) => setError(err instanceof Error ? err.message : "Send failed"))
+                .finally(() => setSending(false));
             }}
             className={cn(
               "rounded-3xl bg-card border border-border shadow-xl shadow-primary/10 space-y-4",
@@ -1144,23 +1186,44 @@ export function Lead() {
               </div>
             ) : (
               <>
-                <Input required placeholder="Full name" className="h-12 rounded-xl" />
+                <Input required name="name" placeholder="Full name" className="h-12 rounded-xl" />
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <Input required type="tel" placeholder="Phone" className="h-12 rounded-xl" />
-                  <Input required type="email" placeholder="Email" className="h-12 rounded-xl" />
+                  <Input
+                    required
+                    name="phone"
+                    type="tel"
+                    placeholder="Phone"
+                    className="h-12 rounded-xl"
+                  />
+                  <Input
+                    required
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    className="h-12 rounded-xl"
+                  />
                 </div>
                 <Input
                   required
+                  name="program"
                   placeholder="Interested program (BIT or B.Tech Ed IT)"
                   className="h-12 rounded-xl"
                 />
-                <Textarea required placeholder="Your message" rows={4} className="rounded-xl" />
+                <Textarea
+                  required
+                  name="message"
+                  placeholder="Your message"
+                  rows={4}
+                  className="rounded-xl"
+                />
+                {error && <p className="text-sm text-destructive">{error}</p>}
                 <Button
                   type="submit"
                   size="lg"
+                  disabled={sending}
                   className="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 h-12"
                 >
-                  Submit Inquiry <ArrowRight className="ml-1 size-4" />
+                  {sending ? "Sending..." : "Submit Inquiry"} <ArrowRight className="ml-1 size-4" />
                 </Button>
                 <p className="text-xs text-muted-foreground text-center">
                   We respect your privacy. No spam, ever.
@@ -1281,7 +1344,11 @@ function ScrollToTop() {
       aria-label="Scroll to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       initial={false}
-      animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 12, pointerEvents: visible ? "auto" : "none" }}
+      animate={{
+        opacity: visible ? 1 : 0,
+        y: visible ? 0 : 12,
+        pointerEvents: visible ? "auto" : "none",
+      }}
       transition={{ duration: 0.25 }}
       className="fixed bottom-44 right-6 z-50 sm:bottom-24 sm:right-6 size-11 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 grid place-items-center hover:bg-primary/90 transition-colors"
     >
