@@ -2,11 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
 import { PageHero } from "@/components/sections/bento";
-import {
-  CtaBand,
-  PageSection,
-  ProgramSpotlight,
-} from "@/components/sections/page-sections";
+import { CtaBand, PageSection, ProgramSpotlight } from "@/components/sections/page-sections";
 import { PageShell } from "@/components/sections/page-shell";
 
 function CurriculumCard({ title, url }: { title: string; url: string }) {
@@ -65,7 +61,7 @@ function BtechEdItPage() {
         eyebrow="B.Tech Ed IT Program"
         title="B.Tech Ed IT — Technology in Education"
         description="A four-year KU-partnered program blending information technology with pedagogy — preparing future educators to lead digital transformation in classrooms and training centers."
-        image="https://images.unsplash.com/photo-1584697964328-b1e7f1c35bce?auto=format&fit=crop&w=1400&q=80"
+        image="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80"
       />
 
       <ProgramSpotlight

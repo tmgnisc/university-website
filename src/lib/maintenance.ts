@@ -31,6 +31,7 @@ export function shouldAllowInteraction(target: EventTarget | null): boolean {
   if (!(target instanceof Element)) return true;
 
   if (target.closest("[data-chat-widget]")) return true;
+  if (target.closest("[data-maintenance-allow]")) return true;
 
   // Site header (nav links, dropdown toggles, mobile menu) is always interactive.
   if (target.closest("header")) return true;

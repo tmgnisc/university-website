@@ -21,6 +21,7 @@ import {
 } from "@/components/sections/page-sections";
 import { PageShell } from "@/components/sections/page-shell";
 import { Button } from "@/components/ui/button";
+import campusImage from "@/assets/campus.jpg";
 
 export const Route = createFileRoute("/visit-us")({
   head: () => ({
@@ -118,7 +119,7 @@ function VisitUsPage() {
         eyebrow="Getting here"
         title="Easy to reach in Jhapa"
         description="WCBT is located on the premises of Nidi Secondary School & Indreni Campus in Jhapa, Nepal, with convenient access by public and private transport."
-        image="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?auto=format&fit=crop&w=1200&q=80"
+        image={campusImage}
         imageLeft
         bullets={[
           "Central location in Jhapa, Eastern Nepal",

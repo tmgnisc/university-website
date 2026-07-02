@@ -587,6 +587,10 @@ export function FaqList({ items }: { items: { question: string; answer: string }
 }
 
 export function ContactSection() {
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+
   return (
     <section className="py-16 md:py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-10 lg:gap-14">
@@ -622,7 +626,11 @@ export function ContactSection() {
             </p>
           </div>
           <div className="mt-8 rounded-3xl overflow-hidden border border-border aspect-[5/3]">
-            <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?auto=format&fit=crop&w=1200&q=80" alt="" className="size-full object-cover" />
+            <img
+              src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?auto=format&fit=crop&w=1200&q=80"
+              alt=""
+              className="size-full object-cover"
+            />
           </div>
         </motion.div>
         <motion.form
@@ -631,55 +639,99 @@ export function ContactSection() {
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
           transition={{ delay: 0.1 }}
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={(e) => {
+            e.preventDefault();
+            const form = e.currentTarget;
+            const formData = new FormData(form);
+            setSending(true);
+            setError("");
+            sendRequestForm({
+              name: String(formData.get("name") ?? ""),
+              phone: String(formData.get("phone") ?? ""),
+              email: String(formData.get("email") ?? ""),
+              subject: String(formData.get("subject") ?? "Website contact message"),
+              message: String(formData.get("message") ?? ""),
+            })
+              .then(() => {
+                setSent(true);
+                form.reset();
+              })
+              .catch((err) => setError(err instanceof Error ? err.message : "Send failed"))
+              .finally(() => setSending(false));
+          }}
           className="rounded-3xl border border-border bg-card p-6 md:p-8 shadow-xl shadow-primary/5 space-y-4"
         >
-          <div>
-            <label className="text-sm font-medium">Full name</label>
-            <input
-              className="mt-1.5 w-full h-12 rounded-xl border border-input bg-background px-4 text-sm"
-              placeholder="Your name"
-            />
-          </div>
-          <div className="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label className="text-sm font-medium">Phone</label>
-              <input
-                className="mt-1.5 w-full h-12 rounded-xl border border-input bg-background px-4 text-sm"
-                placeholder="Your phone number"
-              />
+          {sent ? (
+            <div className="py-10 text-center">
+              <div className="mx-auto grid size-14 place-items-center rounded-full bg-primary text-primary-foreground">
+                <CheckCircle2 className="size-7" />
+              </div>
+              <h3 className="mt-5 text-2xl font-semibold">Thank you!</h3>
+              <p className="mt-2 text-muted-foreground">
+                Our admissions team will be in touch with you shortly.
+              </p>
             </div>
-            <div>
-              <label className="text-sm font-medium">Email</label>
-              <input
-                type="email"
-                className="mt-1.5 w-full h-12 rounded-xl border border-input bg-background px-4 text-sm"
-                placeholder="you@email.com"
-              />
-            </div>
-          </div>
-          <div>
-            <label className="text-sm font-medium">Subject</label>
-            <input
-              className="mt-1.5 w-full h-12 rounded-xl border border-input bg-background px-4 text-sm"
-              placeholder="Admissions, scholarships, campus visit..."
-            />
-          </div>
-          <div>
-            <label className="text-sm font-medium">Message</label>
-            <textarea
-              rows={4}
-              className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm"
-              placeholder="How can we help you?"
-            />
-          </div>
-          <Button
-            type="submit"
-            size="lg"
-            className="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 h-12"
-          >
-            Send Message <ArrowRight className="ml-1 size-4" />
-          </Button>
+          ) : (
+            <>
+              <div>
+                <label className="text-sm font-medium">Full name</label>
+                <input
+                  required
+                  name="name"
+                  className="mt-1.5 w-full h-12 rounded-xl border border-input bg-background px-4 text-sm"
+                  placeholder="Your name"
+                />
+              </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium">Phone</label>
+                  <input
+                    required
+                    name="phone"
+                    className="mt-1.5 w-full h-12 rounded-xl border border-input bg-background px-4 text-sm"
+                    placeholder="Your phone number"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Email</label>
+                  <input
+                    required
+                    name="email"
+                    type="email"
+                    className="mt-1.5 w-full h-12 rounded-xl border border-input bg-background px-4 text-sm"
+                    placeholder="you@email.com"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="text-sm font-medium">Subject</label>
+                <input
+                  name="subject"
+                  className="mt-1.5 w-full h-12 rounded-xl border border-input bg-background px-4 text-sm"
+                  placeholder="Admissions, scholarships, campus visit..."
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium">Message</label>
+                <textarea
+                  required
+                  name="message"
+                  rows={4}
+                  className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm"
+                  placeholder="How can we help you?"
+                />
+              </div>
+              {error && <p className="text-sm text-destructive">{error}</p>}
+              <Button
+                type="submit"
+                size="lg"
+                disabled={sending}
+                className="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 h-12"
+              >
+                {sending ? "Sending..." : "Send Message"} <ArrowRight className="ml-1 size-4" />
+              </Button>
+            </>
+          )}
         </motion.form>
       </div>
     </section>
@@ -743,6 +795,29 @@ export function CurriculumStructure({ years }: { years: CurriculumYear[] }) {
 
 const FIELD_CLASS = "w-full h-12 rounded-xl border border-input bg-background px-4 text-sm";
 
+type RequestFormPayload = {
+  name: string;
+  phone: string;
+  email: string;
+  subject?: string;
+  program?: string;
+  message?: string;
+};
+
+async function sendRequestForm(payload: RequestFormPayload) {
+  const apiBase = import.meta.env.VITE_CMS_API_URL?.replace(/\/$/, "") ?? "";
+  const response = await fetch(`${apiBase}/api/request-form`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const data = await response.json().catch(() => null);
+    throw new Error(data?.error ?? "Could not send your request. Please try again.");
+  }
+}
+
 // Reusable application / inquiry form. Front-end only for now (shows a
 // thank-you state on submit) — wire to the backend later.
 export function ApplicationForm({
@@ -761,6 +836,8 @@ export function ApplicationForm({
   className?: string;
 }) {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
   return (
     <section id={id} className={cn("scroll-mt-28 py-16 md:py-20", className)}>
       <div className="mx-auto max-w-3xl px-6 lg:px-10">
@@ -783,7 +860,24 @@ export function ApplicationForm({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            setSent(true);
+            const form = e.currentTarget;
+            const formData = new FormData(form);
+            setSending(true);
+            setError("");
+            sendRequestForm({
+              name: String(formData.get("name") ?? ""),
+              phone: String(formData.get("phone") ?? ""),
+              email: String(formData.get("email") ?? ""),
+              program: String(formData.get("program") ?? ""),
+              message: String(formData.get("message") ?? ""),
+              subject: title,
+            })
+              .then(() => {
+                setSent(true);
+                form.reset();
+              })
+              .catch((err) => setError(err instanceof Error ? err.message : "Send failed"))
+              .finally(() => setSending(false));
           }}
           className="mt-10 rounded-3xl border border-border bg-card p-6 shadow-xl shadow-primary/5 md:p-8"
         >
@@ -799,12 +893,24 @@ export function ApplicationForm({
             </div>
           ) : (
             <div className="space-y-4">
-              <input required placeholder="Full name" className={FIELD_CLASS} />
+              <input required name="name" placeholder="Full name" className={FIELD_CLASS} />
               <div className="grid gap-4 sm:grid-cols-2">
-                <input required type="tel" placeholder="Phone number" className={FIELD_CLASS} />
-                <input required type="email" placeholder="Email" className={FIELD_CLASS} />
+                <input
+                  required
+                  name="phone"
+                  type="tel"
+                  placeholder="Phone number"
+                  className={FIELD_CLASS}
+                />
+                <input
+                  required
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  className={FIELD_CLASS}
+                />
               </div>
-              <select required defaultValue="" className={FIELD_CLASS}>
+              <select required name="program" defaultValue="" className={FIELD_CLASS}>
                 <option value="" disabled>
                   Program of interest
                 </option>
@@ -813,16 +919,19 @@ export function ApplicationForm({
                 <option>Not sure yet</option>
               </select>
               <textarea
+                name="message"
                 rows={4}
                 placeholder="Anything you'd like us to know? (optional)"
                 className={cn(FIELD_CLASS, "h-auto py-3")}
               />
+              {error && <p className="text-sm text-destructive">{error}</p>}
               <Button
                 type="submit"
                 size="lg"
+                disabled={sending}
                 className="h-12 w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90"
               >
-                {submitLabel} <ArrowRight className="ml-1 size-4" />
+                {sending ? "Sending..." : submitLabel} <ArrowRight className="ml-1 size-4" />
               </Button>
               <p className="text-center text-xs text-muted-foreground">
                 We respect your privacy. No spam, ever.

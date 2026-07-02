@@ -3,9 +3,12 @@ import { drizzle } from "drizzle-orm/neon-http";
 
 import * as schema from "./schema";
 
-if (!process.env.DATABASE_URL) {
+function missingDatabaseUrl() {
   throw new Error("DATABASE_URL is not set");
 }
 
-const sql = neon(process.env.DATABASE_URL);
-export const db = drizzle(sql, { schema });
+export const db = process.env.DATABASE_URL
+  ? drizzle(neon(process.env.DATABASE_URL), { schema })
+  : new Proxy({} as ReturnType<typeof drizzle>, {
+      get: missingDatabaseUrl,
+    });
