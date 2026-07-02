@@ -16,7 +16,8 @@ const FACILITIES_BENTO: BentoItem[] = [
   {
     title: "AI & Innovation Lab",
     description: "Experiment with machine learning, robotics, and prototype development.",
-    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=800&q=80",
     className: "lg:col-span-2",
   },
   {
@@ -94,33 +95,39 @@ const CAREER_PATHS = [
     title: "Software Developer",
     description:
       "Build web and mobile applications for startups, enterprises, and government projects.",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "IT Support & Systems Admin",
     description: "Manage networks, cloud infrastructure, and enterprise systems for organizations.",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Ed-Tech Specialist",
     description:
       "Design digital curricula and learning platforms for schools and training institutes.",
-    image: "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "ICT Teacher / Trainer",
     description: "Lead technology classrooms and professional development programs nationwide.",
-    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Data & AI Analyst",
     description: "Turn data into insights for business, research, and public-sector innovation.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Startup Founder",
     description: "Launch ventures in software, education technology, and digital services.",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
@@ -151,7 +158,7 @@ function ProgramsPage() {
         eyebrow="Academic Programs"
         title="Future-ready degrees in technology & education"
         description="KU-partnered undergraduate programs designed for careers in software, IT services, and technology-enabled teaching across Nepal and beyond."
-        image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=80"
+        image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80"
       />
 
       <PageSection
@@ -166,7 +173,8 @@ function ProgramsPage() {
               title: "BIT — Bachelor in Information Technology",
               summary:
                 "Software engineering, databases, networking, and AI fundamentals for tech careers.",
-              image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
+              image:
+                "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
               href: "/programs/bit",
             },
             {
@@ -174,7 +182,8 @@ function ProgramsPage() {
               title: "B.Tech Ed IT — Technology in Education",
               summary:
                 "Digital pedagogy, instructional design, and IT integration for modern educators.",
-              image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
+              image:
+                "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
               href: "/programs/btech-ed-it",
             },
           ]}

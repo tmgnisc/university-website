@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
   Menu,
@@ -47,6 +47,29 @@ import studentLifeImg from "@/assets/student-life.jpg";
 import campusImg from "@/assets/campus.jpg";
 import smartClass from "@/assets/smart-classroom.jpg";
 import aiLab from "@/assets/ai-lab.jpg";
+
+type RequestFormPayload = {
+  name: string;
+  phone: string;
+  email: string;
+  subject?: string;
+  program?: string;
+  message?: string;
+};
+
+async function sendRequestForm(payload: RequestFormPayload) {
+  const apiBase = import.meta.env.VITE_CMS_API_URL?.replace(/\/$/, "") ?? "";
+  const response = await fetch(`${apiBase}/api/request-form`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const data = await response.json().catch(() => null);
+    throw new Error(data?.error ?? "Could not send your request. Please try again.");
+  }
+}
 
 type NavLink = { label: string; to: string; hash?: string };
 type NavGroup = { label: string; to?: string; children?: NavLink[] };
@@ -470,29 +493,195 @@ export function AffiliationBanner() {
 }
 
 export function Search_() {
+  const navigate = useNavigate();
+  const [term, setTerm] = useState("");
+  const [searchError, setSearchError] = useState("");
   const filters = ["BIT", "B.Tech Ed IT"];
+  const searchTargets = [
+    {
+      to: "/programs/bit" as const,
+      title: "BIT",
+      description: "Bachelor in Information Technology program page.",
+      keywords: ["bit", "bachelor in information technology", "information technology", "it"],
+    },
+    {
+      to: "/programs/btech-ed-it" as const,
+      title: "B.Tech Ed IT",
+      description: "Technology in Education program page.",
+      keywords: [
+        "b.tech ed it",
+        "btech ed it",
+        "b tech ed it",
+        "educational information technology",
+        "education technology",
+        "edtech",
+      ],
+    },
+    {
+      to: "/programs" as const,
+      title: "Programs",
+      description: "Explore all academic programs at WCBT.",
+      keywords: ["program", "programs", "course", "courses", "degree"],
+    },
+    {
+      to: "/admissions" as const,
+      title: "Admissions",
+      description: "Eligibility, process, documents, and application guidance.",
+      keywords: ["admission", "admissions", "apply", "enroll", "application"],
+    },
+    {
+      to: "/scholarships" as const,
+      title: "Scholarships",
+      description: "Merit aid, fee support, and scholarship options.",
+      keywords: ["scholarship", "scholarships", "fee", "financial aid", "discount"],
+    },
+    {
+      to: "/research" as const,
+      title: "Research & Innovation",
+      description: "Research labs, innovation projects, and publications.",
+      keywords: ["research", "innovation", "ai lab", "iot lab", "publication"],
+    },
+    {
+      to: "/careers" as const,
+      title: "Careers",
+      description: "Career paths, internships, and future opportunities.",
+      keywords: ["career", "careers", "job", "internship", "placement"],
+    },
+    {
+      to: "/contact" as const,
+      title: "Contact",
+      description: "Phone, email, inquiry form, and contact details.",
+      keywords: ["contact", "phone", "email", "inquiry", "message"],
+    },
+    {
+      to: "/visit-us" as const,
+      title: "Visit Us",
+      description: "Campus location, map, and visit information.",
+      keywords: ["visit", "location", "map", "campus", "address"],
+    },
+  ];
+
+  const getSearchScore = (value: string, target: (typeof searchTargets)[number]) => {
+    const normalized = value.trim().toLowerCase();
+    const haystack = [target.title, target.description, ...target.keywords].join(" ").toLowerCase();
+
+    if (!normalized) return 0;
+    if (target.title.toLowerCase() === normalized) return 100;
+    if (target.title.toLowerCase().startsWith(normalized)) return 80;
+    if (target.keywords.some((keyword) => keyword === normalized)) return 70;
+    if (target.keywords.some((keyword) => keyword.startsWith(normalized))) return 55;
+    if (haystack.includes(normalized)) return 35;
+
+    return 0;
+  };
+
+  const getSearchResults = (value: string) =>
+    value.trim()
+      ? searchTargets
+          .map((target) => ({ ...target, score: getSearchScore(value, target) }))
+          .filter((target) => target.score > 0)
+          .sort((a, b) => b.score - a.score)
+      : [];
+
+  const hasSearchTerm = term.trim().length > 0;
+  const searchResults = getSearchResults(term);
+
+  const openResult = (target: (typeof searchTargets)[number]) => {
+    setSearchError("");
+    setTerm(target.title);
+    navigate({ to: target.to });
+  };
+
+  const runSearch = (value: string) => {
+    const normalized = value.trim();
+
+    if (!normalized) {
+      setSearchError("Please enter a program or topic to search.");
+      return;
+    }
+
+    const match = getSearchResults(value)[0];
+
+    if (!match) {
+      setSearchError("No matching page found. Try BIT, B.Tech Ed IT, admissions, or scholarships.");
+      return;
+    }
+
+    setSearchError("");
+    navigate({ to: match.to });
+  };
+
   return (
     <section className={LAYOUT.section}>
       <SectionContainer>
         <Reveal>
           <div
+            data-maintenance-allow
             className={cn(
               "rounded-3xl bg-card border border-border shadow-xl shadow-primary/10",
               LAYOUT.cardPadding,
             )}
           >
-            <div className="flex flex-col md:flex-row gap-4 items-stretch">
+            <form
+              className="flex flex-col md:flex-row gap-4 items-stretch"
+              onSubmit={(event) => {
+                event.preventDefault();
+                runSearch(term);
+              }}
+            >
               <div className="relative flex-1">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
                 <Input
                   className="h-14 pl-12 rounded-2xl text-base"
                   placeholder="Search BIT or B.Tech Ed IT programs..."
+                  value={term}
+                  onChange={(event) => {
+                    setTerm(event.target.value);
+                    if (searchError) setSearchError("");
+                  }}
                 />
               </div>
-              <Button className="h-14 rounded-2xl px-8 bg-primary text-primary-foreground">
+              <Button
+                type="submit"
+                className="h-14 rounded-2xl px-8 bg-primary text-primary-foreground"
+              >
                 Search
               </Button>
-            </div>
+            </form>
+            {searchError ? (
+              <p className="mt-3 text-sm font-medium text-destructive">{searchError}</p>
+            ) : null}
+            {hasSearchTerm ? (
+              <div className="mt-4 rounded-2xl border border-border bg-background/80 p-3">
+                <div className="grid gap-1">
+                  {searchResults.length > 0 ? (
+                    searchResults.map((result) => (
+                      <button
+                        key={result.to}
+                        type="button"
+                        onClick={() => openResult(result)}
+                        className="group flex w-full cursor-pointer items-center justify-between gap-4 rounded-xl px-3 py-3 text-left transition-all duration-200 hover:-translate-y-0.5 hover:bg-secondary hover:shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                      >
+                        <span className="min-w-0">
+                          <span className="block truncate text-sm font-semibold transition-colors group-hover:text-primary">
+                            {result.title}
+                          </span>
+                          <span className="mt-0.5 block truncate text-xs text-muted-foreground">
+                            {result.description}
+                          </span>
+                        </span>
+                        <ArrowRight className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                      </button>
+                    ))
+                  ) : (
+                    <p className="px-3 py-4 text-sm text-muted-foreground">
+                      No result found. Try searching for programs, admissions, scholarships,
+                      research, contact, or campus.
+                    </p>
+                  )}
+                </div>
+              </div>
+            ) : null}
             <div className="mt-5 flex flex-wrap gap-2">
               <span className="text-xs text-muted-foreground uppercase tracking-wider mr-2 self-center">
                 Quick filters:
@@ -500,7 +689,12 @@ export function Search_() {
               {filters.map((f) => (
                 <button
                   key={f}
-                  className="px-4 py-1.5 rounded-full text-sm border border-border bg-secondary hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
+                  type="button"
+                  onClick={() => {
+                    setTerm(f);
+                    runSearch(f);
+                  }}
+                  className="cursor-pointer px-4 py-1.5 rounded-full text-sm border border-border bg-secondary hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
                 >
                   {f}
                 </button>
@@ -1082,6 +1276,8 @@ export function Mosaic() {
 
 export function Lead() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
   return (
     <section id="contact" className={cn(LAYOUT.section, "bg-secondary")}>
       <SectionContainer className={cn("grid lg:grid-cols-2", LAYOUT.splitGap)}>
@@ -1125,7 +1321,24 @@ export function Lead() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              setSent(true);
+              const form = e.currentTarget;
+              const formData = new FormData(form);
+              setSending(true);
+              setError("");
+              sendRequestForm({
+                name: String(formData.get("name") ?? ""),
+                phone: String(formData.get("phone") ?? ""),
+                email: String(formData.get("email") ?? ""),
+                program: String(formData.get("program") ?? ""),
+                message: String(formData.get("message") ?? ""),
+                subject: "Website admissions inquiry",
+              })
+                .then(() => {
+                  setSent(true);
+                  form.reset();
+                })
+                .catch((err) => setError(err instanceof Error ? err.message : "Send failed"))
+                .finally(() => setSending(false));
             }}
             className={cn(
               "rounded-3xl bg-card border border-border shadow-xl shadow-primary/10 space-y-4",
@@ -1144,23 +1357,44 @@ export function Lead() {
               </div>
             ) : (
               <>
-                <Input required placeholder="Full name" className="h-12 rounded-xl" />
+                <Input required name="name" placeholder="Full name" className="h-12 rounded-xl" />
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <Input required type="tel" placeholder="Phone" className="h-12 rounded-xl" />
-                  <Input required type="email" placeholder="Email" className="h-12 rounded-xl" />
+                  <Input
+                    required
+                    name="phone"
+                    type="tel"
+                    placeholder="Phone"
+                    className="h-12 rounded-xl"
+                  />
+                  <Input
+                    required
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    className="h-12 rounded-xl"
+                  />
                 </div>
                 <Input
                   required
+                  name="program"
                   placeholder="Interested program (BIT or B.Tech Ed IT)"
                   className="h-12 rounded-xl"
                 />
-                <Textarea required placeholder="Your message" rows={4} className="rounded-xl" />
+                <Textarea
+                  required
+                  name="message"
+                  placeholder="Your message"
+                  rows={4}
+                  className="rounded-xl"
+                />
+                {error && <p className="text-sm text-destructive">{error}</p>}
                 <Button
                   type="submit"
                   size="lg"
+                  disabled={sending}
                   className="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 h-12"
                 >
-                  Submit Inquiry <ArrowRight className="ml-1 size-4" />
+                  {sending ? "Sending..." : "Submit Inquiry"} <ArrowRight className="ml-1 size-4" />
                 </Button>
                 <p className="text-xs text-muted-foreground text-center">
                   We respect your privacy. No spam, ever.
@@ -1281,7 +1515,11 @@ function ScrollToTop() {
       aria-label="Scroll to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       initial={false}
-      animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 12, pointerEvents: visible ? "auto" : "none" }}
+      animate={{
+        opacity: visible ? 1 : 0,
+        y: visible ? 0 : 12,
+        pointerEvents: visible ? "auto" : "none",
+      }}
       transition={{ duration: 0.25 }}
       className="fixed bottom-44 right-6 z-50 sm:bottom-24 sm:right-6 size-11 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 grid place-items-center hover:bg-primary/90 transition-colors"
     >

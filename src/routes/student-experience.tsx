@@ -17,32 +17,38 @@ const CLUBS = [
   {
     title: "Coding & Robotics",
     description: "Competitive programming, hackathons, and hands-on robotics projects.",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Ed-Tech Circle",
     description: "Explore digital learning tools, LMS platforms, and classroom innovation.",
-    image: "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Sports & Recreation",
     description: "Football, cricket, basketball, and inter-college tournaments.",
-    image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Arts, Music & Media",
     description: "Photography, performance, and content creation for campus channels.",
-    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Community Outreach",
     description: "Tech-literacy workshops and volunteering in local schools.",
-    image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Entrepreneurship Hub",
     description: "Pitch nights, startup mentoring, and innovation challenges.",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
@@ -105,7 +111,7 @@ function StudentExperiencePage() {
         eyebrow="Our Colleges"
         title="A connected learning community"
         description="WCBT operates alongside established partner institutions, giving students access to shared facilities, faculty, and a broader academic network in Eastern Nepal."
-        image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80"
+        image="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80"
         bullets={[
           "Shared campus facilities and resources",
           "Cross-institution faculty and mentorship",

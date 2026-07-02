@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
+
+const HERO_IMAGE_FALLBACK =
+  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -122,6 +126,8 @@ export function PageHero({
   description,
   image,
   imageCaption,
+  imageClassName,
+  overlayClassName,
   primaryCta,
   secondaryCta,
 }: {
@@ -130,9 +136,12 @@ export function PageHero({
   description?: string;
   image?: string;
   imageCaption?: string;
+  imageClassName?: string;
+  overlayClassName?: string;
   primaryCta?: { label: string; href?: string };
   secondaryCta?: { label: string; href?: string };
 }) {
+  const [heroImage, setHeroImage] = useState(image);
   const sectionClass = image
     ? "relative pt-28 pb-14 md:pb-20 overflow-hidden border-b border-border"
     : "pt-28 pb-14 md:pb-20 bg-gradient-to-b from-muted/60 to-background border-b border-border";
@@ -141,7 +150,12 @@ export function PageHero({
     <section className={sectionClass}>
       {image && (
         <div className="absolute inset-0 -z-10 pointer-events-none">
-          <img src={image} alt="" className="w-full h-full object-cover" />
+          <img
+            src={heroImage}
+            alt=""
+            className="w-full h-full object-cover"
+            onError={() => setHeroImage(HERO_IMAGE_FALLBACK)}
+          />
           <div className="absolute inset-0 bg-black/50" />
         </div>
       )}
@@ -215,7 +229,11 @@ export function PageHero({
                     asChild
                     size="lg"
                     variant="outline"
-                    className="rounded-full px-6 border-white/20 bg-transparent text-foreground"
+                    className={
+                      image
+                        ? "rounded-full px-6 border-white/20 bg-transparent text-white hover:bg-white hover:text-foreground"
+                        : "rounded-full px-6"
+                    }
                   >
                     <a href={secondaryCta.href ?? "#"}>{secondaryCta.label}</a>
                   </Button>

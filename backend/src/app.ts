@@ -25,10 +25,12 @@ import {
   newsItemInput,
   openingInput,
   programInput,
+  requestFormInput,
   scholarshipInput,
   siteContactSchema,
   siteMetaSchema,
 } from "./schemas";
+import { sendRequestFormMail } from "./mail";
 
 // Hono application. Mounted at /api (see api/[[...route]].ts). Implements the
 // REST contract consumed by the frontend's http-adapter.
@@ -46,15 +48,43 @@ app.use(
 
 app.get("/health", (c) => c.json({ ok: true }));
 
+app.post("/request-form", async (c) => {
+  const parsed = requestFormInput.safeParse(await c.req.json().catch(() => null));
+  if (!parsed.success) return c.json({ error: parsed.error.issues[0].message }, 400);
+
+  try {
+    const result = await sendRequestFormMail(parsed.data);
+    if (result.rejected.length > 0) {
+      return c.json({ error: "Some recipients were rejected", rejected: result.rejected }, 502);
+    }
+    return c.json({ ok: true, messageId: result.messageId, previewUrl: result.previewUrl });
+  } catch (err) {
+    const error = err as { code?: string; message?: string; rejected?: string[] };
+    switch (error.code) {
+      case "ECONNECTION":
+      case "ETIMEDOUT":
+        return c.json({ error: "Network error - retry later", detail: error.message }, 503);
+      case "EAUTH":
+        return c.json({ error: "Authentication failed", detail: error.message }, 500);
+      case "EENVELOPE":
+        return c.json(
+          { error: "Invalid envelope", detail: error.message, rejected: error.rejected ?? [] },
+          400,
+        );
+      case "EMAIL_CONFIG":
+        return c.json({ error: "Email service is not configured yet" }, 500);
+      default:
+        return c.json({ error: "Send failed", detail: error.message }, 500);
+    }
+  }
+});
+
 // --- Auth ----------------------------------------------------------------
 app.post("/auth/login", async (c) => {
   const parsed = loginInput.safeParse(await c.req.json().catch(() => null));
   if (!parsed.success) return c.json({ error: "Username and password required" }, 400);
 
-  const [admin] = await db
-    .select()
-    .from(admins)
-    .where(eq(admins.username, parsed.data.username));
+  const [admin] = await db.select().from(admins).where(eq(admins.username, parsed.data.username));
   if (!admin || !bcrypt.compareSync(parsed.data.password, admin.passwordHash)) {
     return c.json({ error: "Invalid username or password" }, 401);
   }
@@ -68,7 +98,10 @@ function registerCollection(path: string, table: any, schema: ZodSchema) {
   app.get(`/${path}`, async (c) => c.json(await db.select().from(table)));
 
   app.get(`/${path}/:id`, async (c) => {
-    const [row] = await db.select().from(table).where(eq(table.id, c.req.param("id")));
+    const [row] = await db
+      .select()
+      .from(table)
+      .where(eq(table.id, c.req.param("id")));
     return c.json(row ?? null);
   });
 

@@ -22,7 +22,10 @@ export const chatbotEntryInput = z.object({
 });
 
 const courseSchema = z.object({ name: z.string().min(1), credits: z.number().int().min(0) });
-const semesterSchema = z.object({ title: z.string().min(1), courses: z.array(courseSchema).default([]) });
+const semesterSchema = z.object({
+  title: z.string().min(1),
+  courses: z.array(courseSchema).default([]),
+});
 const curriculumYearSchema = z.object({
   title: z.string().min(1),
   subtitle: z.string().default(""),
@@ -90,3 +93,14 @@ export const loginInput = z.object({
   username: z.string().min(1),
   password: z.string().min(1),
 });
+
+export const requestFormInput = z.object({
+  name: z.string().min(1, "Full name is required"),
+  phone: z.string().min(1, "Phone number is required"),
+  email: z.string().email("Valid email is required"),
+  subject: z.string().default("New website request"),
+  program: z.string(),
+  message: z.string().default(""),
+});
+
+export type RequestFormInput = z.infer<typeof requestFormInput>;
