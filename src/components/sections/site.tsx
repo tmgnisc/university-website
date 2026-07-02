@@ -575,13 +575,16 @@ export function Search_() {
     return 0;
   };
 
+  const getSearchResults = (value: string) =>
+    value.trim()
+      ? searchTargets
+          .map((target) => ({ ...target, score: getSearchScore(value, target) }))
+          .filter((target) => target.score > 0)
+          .sort((a, b) => b.score - a.score)
+      : [];
+
   const hasSearchTerm = term.trim().length > 0;
-  const searchResults = hasSearchTerm
-    ? searchTargets
-        .map((target) => ({ ...target, score: getSearchScore(term, target) }))
-        .filter((target) => target.score > 0)
-        .sort((a, b) => b.score - a.score)
-    : [];
+  const searchResults = getSearchResults(term);
 
   const openResult = (target: (typeof searchTargets)[number]) => {
     setSearchError("");
@@ -597,7 +600,7 @@ export function Search_() {
       return;
     }
 
-    const match = searchResults[0];
+    const match = getSearchResults(value)[0];
 
     if (!match) {
       setSearchError("No matching page found. Try BIT, B.Tech Ed IT, admissions, or scholarships.");
@@ -691,7 +694,7 @@ export function Search_() {
                     setTerm(f);
                     runSearch(f);
                   }}
-                  className="px-4 py-1.5 rounded-full text-sm border border-border bg-secondary hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
+                  className="cursor-pointer px-4 py-1.5 rounded-full text-sm border border-border bg-secondary hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
                 >
                   {f}
                 </button>
