@@ -229,7 +229,11 @@ export function PageHero({
                     asChild
                     size="lg"
                     variant="outline"
-                    className="rounded-full px-6 border-white/20 bg-transparent text-foreground"
+                    className={
+                      image
+                        ? "rounded-full px-6 border-white/20 bg-transparent text-white hover:bg-white hover:text-foreground"
+                        : "rounded-full px-6"
+                    }
                   >
                     <a href={secondaryCta.href ?? "#"}>{secondaryCta.label}</a>
                   </Button>
