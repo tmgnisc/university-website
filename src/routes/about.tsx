@@ -32,7 +32,8 @@ const ABOUT_BENTO: BentoItem[] = [
   {
     title: "Industry Partners",
     description: "Collaborations that bring internships, mentorship, and placement support.",
-    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80",
     className: "lg:col-span-1",
   },
   {
@@ -97,24 +98,41 @@ const MILESTONES = [
   },
 ];
 
-const LEADERSHIP = [
+const OUR_TEAM = [
   {
-    name: "Dr. Rajesh Sharma",
-    role: "Campus Director",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
-    bio: "Leads academic strategy, faculty development, and partnerships with Kathmandu University and industry.",
+    name: "Yuvraj Sharma",
+    role: "President",
+    image:
+      "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=600&q=80",
+    bio: "Provides strategic leadership for institutional growth and long-term academic vision.",
   },
   {
-    name: "Sunita Karki",
-    role: "Academic Coordinator",
-    image: "https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?auto=format&fit=crop&w=600&q=80",
-    bio: "Oversees curriculum delivery, student advising, and quality assurance across all programs.",
+    name: "Ranjit Shah",
+    role: "Director",
+    image:
+      "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=600&q=80",
+    bio: "Supports governance, operations, and partnership development across the campus.",
   },
   {
-    name: "Anil Thapa",
-    role: "Industry Relations Lead",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
-    bio: "Connects students with internships, workshops, and career pathways through partner organizations.",
+    name: "Sanjog Kharel",
+    role: "Director",
+    image:
+      "https://images.unsplash.com/photo-1562788869-4ed32648eb72?auto=format&fit=crop&w=600&q=80",
+    bio: "Guides planning, institutional coordination, and student-centered initiatives.",
+  },
+  {
+    name: "Arya Bhattarai",
+    role: "College Head",
+    image:
+      "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=600&q=80",
+    bio: "Leads day-to-day academic administration and campus coordination.",
+  },
+  {
+    name: "Aarohi Basnet",
+    role: "Program Officer, Admissions & ECA",
+    image:
+      "https://images.unsplash.com/photo-1590650153855-d9e808231d41?auto=format&fit=crop&w=600&q=80",
+    bio: "Coordinates admissions support, student engagement, and extracurricular activities.",
   },
 ];
 
@@ -205,14 +223,14 @@ function AboutPage() {
         <Timeline items={MILESTONES} />
       </PageSection>
 
-      {/* <PageSection
-        eyebrow="Leadership"
-        title="Meet the people behind the campus"
+      <PageSection
+        eyebrow="Our team"
+        title="Meet the people behind WCBT"
         description="Experienced educators and administrators committed to student success and academic excellence."
         className="bg-muted/30"
       >
-        <LeadershipGrid members={LEADERSHIP} />
-      </PageSection> */}
+        <LeadershipGrid members={OUR_TEAM} />
+      </PageSection>
 
       <PageSection
         eyebrow="Governance"

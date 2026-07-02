@@ -252,9 +252,15 @@ export function LeadershipGrid({
           whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
           transition={{ delay: i * 0.08 }}
-          className="rounded-3xl overflow-hidden border border-border bg-card"
+          className="group rounded-3xl overflow-hidden border border-border bg-card"
         >
-          <img src={m.image} alt="" className="w-full aspect-[4/3] object-cover" />
+          <div className="aspect-[4/3] overflow-hidden bg-muted">
+            <img
+              src={m.image}
+              alt={m.name}
+              className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+            />
+          </div>
           <div className="p-6">
             <h3 className="font-semibold text-lg">{m.name}</h3>
             <p className="text-sm text-primary font-medium">{m.role}</p>
