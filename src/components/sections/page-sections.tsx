@@ -663,11 +663,12 @@ export function ContactSection() {
               info@whitehouseeducation.edu.np
             </p>
           </div>
-          <div className="mt-8 rounded-3xl overflow-hidden border border-border aspect-[5/3]">
-            <img
-              src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?auto=format&fit=crop&w=1200&q=80"
-              alt=""
-              className="size-full object-cover"
+          <div className="mt-8 aspect-[5/3] overflow-hidden rounded-3xl border border-border bg-card">
+            <iframe
+              title="Jhapa campus map"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=87.6857%2C26.6586%2C87.7257%2C26.6986&layer=mapnik"
+              className="size-full"
+              loading="lazy"
             />
           </div>
         </motion.div>
