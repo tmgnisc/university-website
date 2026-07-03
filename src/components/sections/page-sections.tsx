@@ -504,6 +504,9 @@ export function CtaBand({
   primaryLabel?: string;
   secondaryLabel?: string;
 }) {
+  const primaryHref = getCtaHref(primaryLabel);
+  const secondaryHref = getCtaHref(secondaryLabel);
+
   return (
     <section className="py-16 md:py-20 bg-navy-deep text-white border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
@@ -512,23 +515,52 @@ export function CtaBand({
           <p className="mt-4 text-white/75 max-w-2xl mx-auto text-lg">{description}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button
+              asChild
               size="lg"
               className="rounded-full px-8 bg-primary text-primary-foreground hover:bg-primary/90"
             >
-              {primaryLabel} <ArrowRight className="ml-1 size-4" />
+              <a href={primaryHref}>
+                {primaryLabel} <ArrowRight className="ml-1 size-4" />
+              </a>
             </Button>
             <Button
+              asChild
               size="lg"
               variant="outline"
               className="rounded-full px-8 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
             >
-              {secondaryLabel}
+              <a href={secondaryHref}>{secondaryLabel}</a>
             </Button>
           </div>
         </motion.div>
       </div>
     </section>
   );
+}
+
+function getCtaHref(label: string) {
+  const normalized = label.toLowerCase();
+
+  if (normalized.includes("apply") || normalized.includes("admission")) return "/admissions#apply";
+  if (normalized.includes("visit") || normalized.includes("campus")) return "/visit-us";
+  if (
+    normalized.includes("contact") ||
+    normalized.includes("talk") ||
+    normalized.includes("question")
+  ) {
+    return "/contact";
+  }
+  if (normalized.includes("program")) return "/programs";
+  if (normalized.includes("career")) return "/careers";
+  if (normalized.includes("placement")) return "/placements";
+  if (normalized.includes("support")) return "/student-support";
+  if (normalized.includes("industry")) return "/industry-exposure";
+  if (normalized.includes("research")) return "/research";
+  if (normalized.includes("scholarship")) return "/scholarships";
+  if (normalized.includes("governance")) return "/governance";
+  if (normalized.includes("about") || normalized.includes("learn more")) return "/about";
+
+  return "/contact";
 }
 
 export function ProgramQuickLinks({

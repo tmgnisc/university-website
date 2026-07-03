@@ -661,6 +661,7 @@ export function Search_() {
                       <button
                         key={result.to}
                         type="button"
+                        data-maintenance-allow
                         onClick={() => openResult(result)}
                         className="group flex w-full cursor-pointer items-center justify-between gap-4 rounded-xl px-3 py-3 text-left transition-all duration-200 hover:-translate-y-0.5 hover:bg-secondary hover:shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                       >
@@ -692,6 +693,7 @@ export function Search_() {
                 <button
                   key={f}
                   type="button"
+                  data-maintenance-allow
                   onClick={() => {
                     setTerm(f);
                     runSearch(f);
@@ -948,8 +950,13 @@ export function WhatsNew() {
               </p>
               <p className="mt-4 text-sm font-semibold text-white/90">Yuvraj Sharma</p>
               <p className="text-xs text-white/60">President</p>
-              <Button className="mt-6 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
-                Read Full Message <ArrowRight className="ml-1 size-4" />
+              <Button
+                asChild
+                className="mt-6 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
+              >
+                <a href="/board-members" className="inline-flex items-center">
+                  Read Full Message <ArrowRight className="ml-1 size-4" />
+                </a>
               </Button>
             </div>
           </div>
@@ -968,7 +975,7 @@ export function WhatsNew() {
                 </span>
                 <h3 className="mt-3 font-semibold text-lg leading-snug">{n.title}</h3>
                 <a
-                  href="#"
+                  href="/news"
                   className="mt-4 inline-flex items-center gap-1 text-sm text-white/80 group-hover:text-white"
                 >
                   Read more <ArrowRight className="size-4" />
@@ -1003,7 +1010,7 @@ export function Events() {
             <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Events</span>
             <h2 className="mt-3 text-3xl md:text-5xl font-semibold">Upcoming on campus</h2>
           </div>
-          <a href="#" className="text-sm font-medium inline-flex items-center gap-1.5">
+          <a href="/events" className="text-sm font-medium inline-flex items-center gap-1.5">
             All events <ArrowRight className="size-4" />
           </a>
         </Reveal>
@@ -1038,7 +1045,7 @@ export function Events() {
                   </div>
                   <h3 className="mt-3 font-semibold leading-snug flex-1">{e.title}</h3>
                   <a
-                    href="#"
+                    href="/events"
                     className="mt-4 text-sm font-medium text-black inline-flex items-center gap-1 group-hover:text-black/70"
                   >
                     View Details <ArrowRight className="size-4" />
@@ -1554,11 +1561,11 @@ export function Footer() {
     {
       h: "Community",
       items: [
-        { label: "Board Members", href: "#" },
-        { label: "Advisors", href: "#" },
-        { label: "Faculty", href: "#" },
-        { label: "Administration", href: "#" },
-        { label: "International", href: "#" },
+        { label: "Board Members", href: "/board-members" },
+        { label: "Advisors", href: "/advisors" },
+        { label: "Faculty", href: "/faculty" },
+        { label: "Administration", href: "/administration" },
+        { label: "International", href: "/international" },
       ],
     },
     {
@@ -1574,26 +1581,26 @@ export function Footer() {
     {
       h: "Vision",
       items: [
-        { label: "Mission", href: "#" },
-        { label: "Values", href: "#" },
-        { label: "Strategy", href: "#" },
-        { label: "Reports", href: "#" },
+        { label: "Mission", href: "/mission" },
+        { label: "Values", href: "/values" },
+        { label: "Strategy", href: "/strategy" },
+        { label: "Reports", href: "/reports" },
       ],
     },
     {
       h: "Research",
       items: [
-        { label: "AI Labs", href: "/research" },
-        { label: "IoT Labs", href: "/research" },
-        { label: "Innovation Centers", href: "/research" },
+        { label: "AI Labs", href: "/ai-labs" },
+        { label: "IoT Labs", href: "/iot-labs" },
+        { label: "Innovation Centers", href: "/innovation-centers" },
       ],
     },
     {
       h: "Careers",
       items: [
-        { label: "Career Paths", href: "/careers" },
-        { label: "Graduate Success", href: "/careers" },
-        { label: "Placements", href: "#" },
+        { label: "Career Paths", href: "/career-paths" },
+        { label: "Graduate Success", href: "/graduate-success" },
+        { label: "Placements", href: "/placements" },
       ],
     },
   ];
@@ -1653,6 +1660,7 @@ function ScrollToTop() {
   return (
     <motion.button
       type="button"
+      data-maintenance-allow
       aria-label="Scroll to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       initial={false}
@@ -1675,14 +1683,18 @@ export function FloatingCTAs() {
       <ChatWidget />
       <ScrollToTop />
       <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 p-3 bg-navy-deep/95 backdrop-blur border-t border-white/10 flex gap-2">
-        <Button className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full">
-          Apply Now
+        <Button
+          asChild
+          className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full"
+        >
+          <a href="/admissions#apply">Apply Now</a>
         </Button>
         <Button
+          asChild
           variant="outline"
           className="flex-1 rounded-full border-white/30 bg-transparent text-white hover:bg-white/10"
         >
-          Inquiry
+          <a href="/contact">Inquiry</a>
         </Button>
       </div>
     </>

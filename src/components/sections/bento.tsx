@@ -219,7 +219,7 @@ export function PageHero({
                         : "rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/95"
                     }
                   >
-                    <a href={primaryCta.href ?? "#"}>
+                    <a href={primaryCta.href ?? "/admissions#apply"}>
                       {primaryCta.label} <ArrowRight className="ml-2 size-4" />
                     </a>
                   </Button>
@@ -235,7 +235,7 @@ export function PageHero({
                         : "rounded-full px-6"
                     }
                   >
-                    <a href={secondaryCta.href ?? "#"}>{secondaryCta.label}</a>
+                    <a href={secondaryCta.href ?? "/contact"}>{secondaryCta.label}</a>
                   </Button>
                 )}
               </div>

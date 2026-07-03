@@ -5,6 +5,11 @@ export const MAINTENANCE_PATH = "/maintenance";
 const LIVE_ROUTES = [
   "/",
   "/about",
+  "/advisors",
+  "/administration",
+  "/ai-labs",
+  "/board-members",
+  "/career-paths",
   "/programs",
   "/admissions",
   "/scholarships",
@@ -12,6 +17,20 @@ const LIVE_ROUTES = [
   "/research",
   "/contact",
   "/careers",
+  "/community",
+  "/events",
+  "/faculty",
+  "/graduate-success",
+  "/innovation-centers",
+  "/international",
+  "/iot-labs",
+  "/mission",
+  "/news",
+  "/reports",
+  "/strategy",
+  "/values",
+  "/vision",
+  "/placements",
   "/student-experience",
   "/student-support",
   "/visit-us",
@@ -56,8 +75,17 @@ export function shouldAllowInteraction(target: EventTarget | null): boolean {
 
   const button = target.closest("button");
   if (button) {
+    if (button.type === "submit") return true;
+    if (button.closest("form")) return true;
     const label = button.getAttribute("aria-label");
-    if (label === "Open menu" || label === "Close menu") return true;
+    if (
+      label === "Open menu" ||
+      label === "Close menu" ||
+      label === "Scroll to top" ||
+      label === "Close support details"
+    ) {
+      return true;
+    }
     return false;
   }
 
