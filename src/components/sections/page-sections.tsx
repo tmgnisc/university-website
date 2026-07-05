@@ -240,7 +240,7 @@ export function Timeline({
 export function LeadershipGrid({
   members,
 }: {
-  members: { name: string; role: string; image: string; bio: string }[];
+  members: { name: string; role: string; image: string; bio: string; imageClassName?: string }[];
 }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -258,7 +258,10 @@ export function LeadershipGrid({
             <img
               src={m.image}
               alt={m.name}
-              className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+              className={cn(
+                "size-full object-cover object-center transition-transform duration-500 group-hover:scale-110",
+                m.imageClassName,
+              )}
             />
           </div>
           <div className="p-6">
