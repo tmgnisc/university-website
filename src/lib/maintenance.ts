@@ -58,6 +58,7 @@ export function shouldAllowInteraction(target: EventTarget | null): boolean {
   const anchor = target.closest("a");
   if (anchor) {
     const href = anchor.getAttribute("href")?.trim() ?? "";
+    if (/^(tel|mailto):/i.test(href)) return true;
     if (ALLOWED_LINKS.has(href)) return true;
     if (
       ALLOWED_ROUTE_PREFIXES.some(
