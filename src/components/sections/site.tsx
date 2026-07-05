@@ -954,9 +954,13 @@ export function WhatsNew() {
                 asChild
                 className="mt-6 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
               >
-                <a href="/board-members" className="inline-flex items-center">
+                <Link
+                  to="/board-members"
+                  hash="president-message"
+                  className="inline-flex items-center"
+                >
                   Read Full Message <ArrowRight className="ml-1 size-4" />
-                </a>
+                </Link>
               </Button>
             </div>
           </div>
