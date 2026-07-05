@@ -21,44 +21,50 @@ export const Route = createFileRoute("/virtual-tour")({
   component: VirtualTourPage,
 });
 
-// Placeholder imagery (stable, real-looking photos). Swap the `image` URLs for
-// AI-generated / real campus photos when ready — nothing else needs to change.
+// Placeholder videos from Mixkit. Swap these URLs for real WCBT campus footage
+// when ready — the tour rendering does not need to change.
 const STOPS = [
   {
     title: "Main Entrance",
     description:
       "Step through the gates of WCBT in Jhapa, where your journey into technology and innovation begins.",
-    image: "https://picsum.photos/seed/wcbt-entrance/1920/1080",
+    video: "https://assets.mixkit.co/videos/4560/4560-720.mp4",
+    poster: "https://assets.mixkit.co/videos/4560/4560-thumb-720-0.jpg",
   },
   {
     title: "Academic Block",
     description:
       "Modern classrooms and smart lecture halls designed for collaborative, hands-on learning.",
-    image: "https://picsum.photos/seed/wcbt-academic/1920/1080",
+    video: "https://assets.mixkit.co/videos/48165/48165-720.mp4",
+    poster: "https://assets.mixkit.co/videos/48165/48165-thumb-720-3.jpg",
   },
   {
     title: "Library & Resources",
     description:
       "A quiet space for research and study, with digital and print resources at your fingertips.",
-    image: "https://picsum.photos/seed/wcbt-library/1920/1080",
+    video: "https://assets.mixkit.co/videos/21595/21595-720.mp4",
+    poster: "https://assets.mixkit.co/videos/21595/21595-thumb-720-0.jpg",
   },
   {
     title: "Computer & Innovation Labs",
     description:
-      "Well-equipped labs for programming, AI, and project work — the heart of practical learning.",
-    image: "https://picsum.photos/seed/wcbt-labs/1920/1080",
+      "Well-equipped spaces for coding, electronics, robotics, and project work — the heart of practical learning.",
+    video: "https://assets.mixkit.co/videos/24569/24569-720.mp4",
+    poster: "https://assets.mixkit.co/videos/24569/24569-thumb-720-0.jpg",
   },
   {
     title: "Student Lounge",
     description:
       "Relaxed spaces to collaborate, recharge, and connect with fellow students between classes.",
-    image: "https://picsum.photos/seed/wcbt-lounge/1920/1080",
+    video: "https://assets.mixkit.co/videos/4794/4794-720.mp4",
+    poster: "https://assets.mixkit.co/videos/4794/4794-thumb-720-0.jpg",
   },
   {
     title: "Campus Grounds",
     description:
       "Open spaces for sports, events, and the vibrant community life that makes WCBT feel like home.",
-    image: "https://picsum.photos/seed/wcbt-grounds/1920/1080",
+    video: "https://assets.mixkit.co/videos/4520/4520-720.mp4",
+    poster: "https://assets.mixkit.co/videos/4520/4520-thumb-720-0.jpg",
   },
 ];
 
@@ -82,10 +88,16 @@ function TourHero() {
 
   return (
     <section ref={ref} className="relative h-screen overflow-hidden">
-      <motion.img
+      <motion.video
         style={{ y }}
-        src="https://picsum.photos/seed/wcbt-campus-aerial/1920/1200"
-        alt=""
+        src="https://assets.mixkit.co/videos/4519/4519-720.mp4"
+        poster="https://assets.mixkit.co/videos/4519/4519-thumb-720-0.jpg"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
         className="absolute inset-0 size-full scale-125 object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
@@ -120,17 +132,19 @@ function ParallaxStop({
   total,
   title,
   description,
-  image,
+  video,
+  poster,
 }: {
   index: number;
   total: number;
   title: string;
   description: string;
-  image: string;
+  video: string;
+  poster: string;
 }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  // Image drifts slower than the page → parallax. Oversized + scaled so the
+  // Video drifts slower than the page. Oversized + scaled so the
   // translation never reveals an edge.
   const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
   const textY = useTransform(scrollYProgress, [0, 0.5, 1], ["40px", "0px", "-40px"]);
@@ -138,11 +152,16 @@ function ParallaxStop({
 
   return (
     <section ref={ref} className="relative h-[85vh] overflow-hidden md:h-screen">
-      <motion.img
+      <motion.video
         style={{ y }}
-        src={image}
-        alt={title}
-        loading="lazy"
+        src={video}
+        poster={poster}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-label={`${title} tour video`}
         className="absolute inset-0 size-full scale-125 object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/40" />
@@ -168,7 +187,7 @@ function ClosingCTA() {
       <div className="mx-auto max-w-2xl">
         <h2 className="text-3xl font-bold md:text-4xl">Seen enough? Come see it in person.</h2>
         <p className="mt-4 text-lg text-white/80">
-          Photos only go so far. Book a campus visit or talk to our admissions team.
+          Videos only go so far. Book a campus visit or talk to our admissions team.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Button
