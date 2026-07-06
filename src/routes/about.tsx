@@ -1,122 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Award, BookOpen, HeartHandshake, Shield, Target, Users } from "lucide-react";
+import { Award, Shield } from "lucide-react";
 
 import { BentoGrid, PageHero, type BentoItem } from "@/components/sections/bento";
 import {
   CtaBand,
   HighlightBand,
   IconFeatureGrid,
-  LeadershipGrid,
   PageSection,
   SplitSection,
   Timeline,
-} from "@/components/sections/page-sections";
+} from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
+import { resolveIcons } from "@/lib/icon-registry";
 
-const ABOUT_BENTO: BentoItem[] = [
-  {
-    title: "Jhapa Campus",
-    description: "A purpose-built learning environment in the heart of Jhapa, Eastern Nepal.",
-    image: "https://ik.imagekit.io/qn3m81dsk/university/clz%202.jpg",
-    imageCaption: "Premises of Nidi Secondary School & Indreni Campus",
-    badge: "Location",
-    className: "sm:col-span-2 lg:col-span-2",
-  },
-  {
-    title: "Students Enrolled",
-    description: "A growing community across IT and education technology programs.",
-    variant: "stat",
-    stat: "500+",
-    className: "lg:col-span-1",
-  },
-  {
-    title: "Industry Partners",
-    description: "Collaborations that bring internships, mentorship, and placement support.",
-    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80",
-    className: "lg:col-span-1",
-  },
-  {
-    title: "Smart Facilities",
-    description: "Labs, libraries, and collaborative spaces designed for active learning.",
-    image: "https://ik.imagekit.io/qn3m81dsk/university/clz%202.jpg",
-    imageCaption: "Premises of Nidi Secondary School & Indreni Campus",
-    className: "sm:col-span-2 lg:col-span-2",
-  },
-];
+import content from "@/data/pages/about.json";
 
-const CORE_VALUES = [
-  {
-    icon: Target,
-    title: "Excellence",
-    description:
-      "Rigorous academics aligned with Kathmandu University standards and industry expectations.",
-  },
-  {
-    icon: Users,
-    title: "Inclusivity",
-    description:
-      "Accessible education for students across Eastern Nepal and beyond, with scholarship support.",
-  },
-  {
-    icon: BookOpen,
-    title: "Innovation",
-    description: "Project-based learning, hackathons, and research exposure from day one.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Community",
-    description:
-      "Strong ties with local schools, businesses, and alumni who mentor the next generation.",
-  },
-];
-
-const MILESTONES = [
-  {
-    year: "2014",
-    title: "Foundation established",
-    description:
-      "WhiteHouse Education Foundation begins its mission to expand quality higher education in Eastern Nepal.",
-  },
-  {
-    year: "2018",
-    title: "WCBT Jhapa Campus opens",
-    description:
-      "The Jhapa campus launches with a focus on business and technology programs for the region.",
-  },
-  {
-    year: "2021",
-    title: "Kathmandu University partnership",
-    description:
-      "Formal academic partnership brings KU-affiliated BIT and B.Tech Ed IT programs to Jhapa.",
-  },
-  {
-    year: "2026",
-    title: "Expanding innovation ecosystem",
-    description:
-      "New labs, industry collaborations, and student-led initiatives strengthen the campus community.",
-  },
-];
-
-const LEADERSHIP = [
-  {
-    name: "Dr. Rajesh Sharma",
-    role: "Campus Director",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
-    bio: "Leads academic strategy, faculty development, and partnerships with Kathmandu University and industry.",
-  },
-  {
-    name: "Sunita Karki",
-    role: "Academic Coordinator",
-    image: "https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?auto=format&fit=crop&w=600&q=80",
-    bio: "Oversees curriculum delivery, student advising, and quality assurance across all programs.",
-  },
-  {
-    name: "Anil Thapa",
-    role: "Industry Relations Lead",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
-    bio: "Connects students with internships, workshops, and career pathways through partner organizations.",
-  },
-];
+const ABOUT_BENTO = content.bento as BentoItem[];
+const CORE_VALUES = resolveIcons(content.coreValues);
+const MILESTONES = content.milestones;
 
 export const Route = createFileRoute("/about")({
   head: () => ({

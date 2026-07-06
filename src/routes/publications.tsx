@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BookOpen, Users, TrendingUp, Award } from "lucide-react";
 
 import { PageHero } from "@/components/sections/bento";
-import {
-  CtaBand,
-  HighlightBand,
-  IconFeatureGrid,
-  PageSection,
-} from "@/components/sections/page-sections";
+import { CtaBand, HighlightBand, IconFeatureGrid, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
+import { resolveIcons } from "@/lib/icon-registry";
+
+import content from "@/data/pages/publications.json";
+
+const RESEARCH_ACTIVITIES = resolveIcons(content.researchActivities);
+const FOCUS_AREAS = content.focusAreas;
 
 export const Route = createFileRoute("/publications")({
   head: () => ({
@@ -29,33 +29,6 @@ export const Route = createFileRoute("/publications")({
   }),
   component: PublicationsPage,
 });
-
-const RESEARCH_ACTIVITIES = [
-  {
-    icon: BookOpen,
-    title: "Academic Journals",
-    description:
-      "Publication of peer-reviewed research in recognized national and international academic journals.",
-  },
-  {
-    icon: Award,
-    title: "Conference Presentations",
-    description:
-      "Faculty and student presentations at national and international academic conferences and seminars.",
-  },
-  {
-    icon: Users,
-    title: "Collaborative Research",
-    description:
-      "Interdisciplinary studies involving collaboration between faculty members, students, and external researchers.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Innovation Projects",
-    description:
-      "Research projects focused on technology innovation, educational advancement, and social impact.",
-  },
-];
 
 function PublicationsPage() {
   return (
@@ -90,28 +63,7 @@ function PublicationsPage() {
         className="bg-muted/30"
       >
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {[
-            {
-              title: "Technology & Innovation",
-              description:
-                "Research in artificial intelligence, IoT systems, software engineering, and emerging technologies with real-world applications.",
-            },
-            {
-              title: "Educational Technology",
-              description:
-                "Studies exploring digital learning tools, instructional design, online education, and technology-enhanced pedagogy.",
-            },
-            {
-              title: "Applied Research",
-              description:
-                "Practical research projects addressing specific problems in industry, education, and community development.",
-            },
-            {
-              title: "Interdisciplinary Studies",
-              description:
-                "Collaborative research combining perspectives from technology, education, business, and social sciences.",
-            },
-          ].map((area) => (
+          {FOCUS_AREAS.map((area) => (
             <div key={area.title} className="rounded-2xl border border-border bg-card p-6">
               <h3 className="font-semibold text-lg">{area.title}</h3>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">

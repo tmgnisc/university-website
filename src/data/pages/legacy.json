@@ -1,0 +1,49 @@
+{
+  "milestones": [
+    {
+      "year": "2014",
+      "title": "Foundation Established",
+      "description": "WhiteHouse Education Foundation begins its mission to expand quality higher education in Eastern Nepal."
+    },
+    {
+      "year": "2018",
+      "title": "WCBT Jhapa Campus Opens",
+      "description": "The first campus launches with a focus on technology and business education, serving the Jhapa region."
+    },
+    {
+      "year": "2021",
+      "title": "KU Partnership Formalized",
+      "description": "Kathmandu University affiliation brings recognized BIT and B.Tech Ed IT programs to our campus."
+    },
+    {
+      "year": "2024",
+      "title": "Regional Impact Recognition",
+      "description": "WCBT becomes recognized as a trusted institution contributing to Eastern Nepal's educational and technological advancement."
+    },
+    {
+      "year": "2026",
+      "title": "Expanding Excellence",
+      "description": "New research labs, expanded facilities, and growing industry partnerships strengthen our academic ecosystem."
+    }
+  ],
+  "achievements": [
+    { "icon": "Heart", "label": "Student Success", "value": "500+" },
+    { "icon": "Users", "label": "Graduates Placed", "value": "400+" },
+    { "icon": "Star", "label": "Industry Partners", "value": "50+" },
+    { "icon": "TrendingUp", "label": "Years of Excellence", "value": "12+" }
+  ],
+  "values": [
+    {
+      "title": "Academic Excellence",
+      "description": "Rigorous standards, innovative teaching, and continuous improvement in all we do."
+    },
+    {
+      "title": "Student-Centered Approach",
+      "description": "Every decision prioritizes student success, growth, and career readiness."
+    },
+    {
+      "title": "Community Impact",
+      "description": "Creating positive change through education, research, and community engagement."
+    }
+  ]
+}

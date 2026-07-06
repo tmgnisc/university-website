@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Award, Heart, Star, TrendingUp } from "lucide-react";
 
 import { BentoGrid, PageHero, type BentoItem } from "@/components/sections/bento";
 import {
@@ -11,100 +10,16 @@ import {
   PageSection,
   SplitSection,
   StepGrid,
-} from "@/components/sections/page-sections";
+} from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
+import { resolveIcons } from "@/lib/icon-registry";
 
-const SCHOLARSHIP_BENTO: BentoItem[] = [
-  {
-    title: "Merit Scholarship",
-    description:
-      "Up to 75% tuition support for outstanding academic performers in entrance exams and prior studies.",
-    image:
-      "https://images.unsplash.com/photo-1627556704302-624286467c65?auto=format&fit=crop&w=1000&q=80",
-    badge: "Up to 75%",
-    className: "sm:col-span-2 lg:col-span-2 lg:row-span-2 min-h-[300px]",
-  },
-  {
-    title: "Need-Based Aid",
-    description:
-      "Financial assistance for students demonstrating genuine economic need with supporting documentation.",
-    variant: "text",
-    badge: "Support",
-    className: "lg:col-span-2",
-  },
-  {
-    title: "Women in Tech",
-    description: "Encouraging more women to pursue IT and education technology careers.",
-    variant: "stat",
-    stat: "30%",
-    className: "lg:col-span-1",
-  },
-  {
-    title: "Sports & Talent",
-    description:
-      "Recognition for exceptional achievement in sports, arts, or community leadership.",
-    image:
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80",
-    className: "lg:col-span-1",
-  },
-  {
-    title: "Rural Access Fund",
-    description:
-      "Dedicated support for students from remote and underserved communities in Eastern Nepal.",
-    image:
-      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80",
-    className: "sm:col-span-2 lg:col-span-2",
-  },
-];
+import content from "@/data/pages/scholarships.json";
 
-const APPLY_STEPS = [
-  {
-    step: "01",
-    title: "Receive admission offer",
-    description:
-      "Scholarship consideration begins after you are offered a place in BIT or B.Tech Ed IT.",
-  },
-  {
-    step: "02",
-    title: "Submit scholarship form",
-    description: "Complete the financial aid application with required supporting documents.",
-  },
-  {
-    step: "03",
-    title: "Review committee",
-    description:
-      "Applications are evaluated based on merit, need, and scholarship category criteria.",
-  },
-  {
-    step: "04",
-    title: "Award notification",
-    description:
-      "Successful applicants receive scholarship details before the enrollment deadline.",
-  },
-];
-
-const FAQ = [
-  {
-    question: "Can I apply for multiple scholarships?",
-    answer:
-      "Students may be considered for more than one category, but total aid is capped per institutional policy. The committee assigns the most suitable award.",
-  },
-  {
-    question: "Do scholarships cover full tuition?",
-    answer:
-      "Merit scholarships can cover up to 75% of tuition. Partial awards and need-based grants are also available depending on funds.",
-  },
-  {
-    question: "Is the scholarship renewable?",
-    answer:
-      "Most awards require maintaining a minimum GPA each semester and good academic standing to continue receiving support.",
-  },
-  {
-    question: "When should I apply?",
-    answer:
-      "Submit your scholarship application alongside or immediately after accepting your admission offer, before the enrollment deadline.",
-  },
-];
+const SCHOLARSHIP_BENTO = content.bento as BentoItem[];
+const APPLY_STEPS = content.applySteps;
+const COMMITMENT = resolveIcons(content.commitment);
+const FAQ = content.faq;
 
 export const Route = createFileRoute("/scholarships")({
   head: () => ({
@@ -187,33 +102,7 @@ function ScholarshipsPage() {
         title="Investing in student success"
         description="Scholarships are part of WhiteHouse Education Foundation's mission to expand access to quality higher education."
       >
-        <IconFeatureGrid
-          items={[
-            {
-              icon: Award,
-              title: "Transparent criteria",
-              description: "Clear eligibility guidelines published for every scholarship category.",
-            },
-            {
-              icon: Heart,
-              title: "Student-first review",
-              description:
-                "Applications evaluated fairly with respect for each student's circumstances.",
-            },
-            {
-              icon: Star,
-              title: "Renewal support",
-              description:
-                "Ongoing guidance to help scholars maintain eligibility and academic progress.",
-            },
-            {
-              icon: TrendingUp,
-              title: "Growing fund",
-              description:
-                "Annual expansion of scholarship pools through foundation and partner contributions.",
-            },
-          ]}
-        />
+        <IconFeatureGrid items={COMMITMENT} />
       </PageSection>
 
       <PageSection

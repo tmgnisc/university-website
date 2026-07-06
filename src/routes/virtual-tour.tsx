@@ -6,6 +6,8 @@ import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/sections/page-shell";
 
+import content from "@/data/pages/virtual-tour.json";
+
 export const Route = createFileRoute("/virtual-tour")({
   head: () => ({
     meta: [
@@ -23,44 +25,7 @@ export const Route = createFileRoute("/virtual-tour")({
 
 // Placeholder imagery (stable, real-looking photos). Swap the `image` URLs for
 // AI-generated / real campus photos when ready — nothing else needs to change.
-const STOPS = [
-  {
-    title: "Main Entrance",
-    description:
-      "Step through the gates of WCBT in Jhapa, where your journey into technology and innovation begins.",
-    image: "https://picsum.photos/seed/wcbt-entrance/1920/1080",
-  },
-  {
-    title: "Academic Block",
-    description:
-      "Modern classrooms and smart lecture halls designed for collaborative, hands-on learning.",
-    image: "https://picsum.photos/seed/wcbt-academic/1920/1080",
-  },
-  {
-    title: "Library & Resources",
-    description:
-      "A quiet space for research and study, with digital and print resources at your fingertips.",
-    image: "https://picsum.photos/seed/wcbt-library/1920/1080",
-  },
-  {
-    title: "Computer & Innovation Labs",
-    description:
-      "Well-equipped labs for programming, AI, and project work — the heart of practical learning.",
-    image: "https://picsum.photos/seed/wcbt-labs/1920/1080",
-  },
-  {
-    title: "Student Lounge",
-    description:
-      "Relaxed spaces to collaborate, recharge, and connect with fellow students between classes.",
-    image: "https://picsum.photos/seed/wcbt-lounge/1920/1080",
-  },
-  {
-    title: "Campus Grounds",
-    description:
-      "Open spaces for sports, events, and the vibrant community life that makes WCBT feel like home.",
-    image: "https://picsum.photos/seed/wcbt-grounds/1920/1080",
-  },
-];
+const STOPS = content.stops;
 
 function VirtualTourPage() {
   return (

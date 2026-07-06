@@ -1,0 +1,112 @@
+{
+  "curriculum": [
+    {
+      "title": "Year 1",
+      "subtitle": "Foundation Year — Building Core Knowledge",
+      "semesters": [
+        {
+          "title": "Semester 1",
+          "courses": [
+            { "name": "Advanced Communication Skills", "credits": 3 },
+            { "name": "Calculus and Linear Algebra", "credits": 3 },
+            { "name": "Computer Programming", "credits": 3 },
+            { "name": "Digital Logic", "credits": 3 },
+            { "name": "Introduction to Information System Technology", "credits": 2 },
+            { "name": "Project I", "credits": 2 }
+          ]
+        },
+        {
+          "title": "Semester 2",
+          "courses": [
+            { "name": "Mathematics II (Advanced Calculus)", "credits": 3 },
+            { "name": "Management Principles", "credits": 3 },
+            { "name": "Microprocessor and Assembly Language Programming", "credits": 3 },
+            { "name": "Object Oriented Programming", "credits": 3 },
+            { "name": "Discrete Mathematics", "credits": 3 },
+            { "name": "Project II", "credits": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Year 2",
+      "subtitle": "Core Technology and Systems",
+      "semesters": [
+        {
+          "title": "Semester 3",
+          "courses": [
+            { "name": "Probability and Statistics", "credits": 3 },
+            { "name": "Data Structures and Algorithms", "credits": 3 },
+            { "name": "Operating Systems", "credits": 3 },
+            { "name": "System Analysis and Design", "credits": 3 },
+            { "name": "Marketing Management", "credits": 3 },
+            { "name": "Project III", "credits": 2 }
+          ]
+        },
+        {
+          "title": "Semester 4",
+          "courses": [
+            { "name": "Computer Architecture and Design", "credits": 3 },
+            { "name": "Database Management System", "credits": 3 },
+            { "name": "Software Engineering", "credits": 3 },
+            { "name": "Financial Management and Accounting", "credits": 3 },
+            { "name": "IT Ethics and Information Security", "credits": 3 },
+            { "name": "Project IV", "credits": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Year 3",
+      "subtitle": "Advanced Specialization and Applications",
+      "semesters": [
+        {
+          "title": "Semester 5",
+          "courses": [
+            { "name": "Data Communication and Networking", "credits": 3 },
+            { "name": "Web Application Development", "credits": 3 },
+            { "name": "Artificial Intelligence", "credits": 3 },
+            { "name": "Management Information System", "credits": 3 },
+            { "name": "Computer Graphics and Multimedia", "credits": 3 },
+            { "name": "Project V", "credits": 2 }
+          ]
+        },
+        {
+          "title": "Semester 6",
+          "courses": [
+            { "name": "Cloud Computing", "credits": 3 },
+            { "name": "Mobile Application Development", "credits": 3 },
+            { "name": "Big Data", "credits": 3 },
+            { "name": "Organizational Behavior", "credits": 3 },
+            { "name": "Digital Economy", "credits": 3 },
+            { "name": "Project VI", "credits": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Year 4",
+      "subtitle": "Capstone, Electives and Internship",
+      "semesters": [
+        {
+          "title": "Semester 7",
+          "courses": [
+            { "name": "E-Commerce", "credits": 3 },
+            { "name": "Deep Learning", "credits": 3 },
+            { "name": "Research Seminar", "credits": 3 },
+            { "name": "Elective I (Specialization)", "credits": 3 },
+            { "name": "Project VII", "credits": 2 }
+          ]
+        },
+        {
+          "title": "Semester 8",
+          "courses": [
+            { "name": "Internship", "credits": 6 },
+            { "name": "Elective II (Specialization)", "credits": 3 },
+            { "name": "Elective III (Specialization)", "credits": 3 }
+          ]
+        }
+      ]
+    }
+  ]
+}

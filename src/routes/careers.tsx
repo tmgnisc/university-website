@@ -1,17 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  Code,
-  Network,
-  Lightbulb,
-  BookOpen,
-  TrendingUp,
-  Rocket,
-  CheckCircle2,
-  Mail,
-  Phone,
-  MapPin,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2, Mail, MapPin, Phone } from "lucide-react";
 
 import { PageHero } from "@/components/sections/bento";
 import {
@@ -20,22 +8,19 @@ import {
   HighlightBand,
   IconFeatureGrid,
   PageSection,
-} from "@/components/sections/page-sections";
+} from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
 import { Button } from "@/components/ui/button";
+import { resolveIcons } from "@/lib/icon-registry";
+
+import content from "@/data/pages/careers.json";
 
 const HR_EMAIL = "hr@whitehouseeducation.edu.np";
 
-const OPEN_POSITION = {
-  title: "Coordinator / Head of Studies",
-  type: "Full-time",
-  location: "Jhapa, Nepal",
-  qualifications: [
-    "Minimum a Master's degree in MIT, M.Tech, MSc CSIT, or MCA",
-    "Bachelor's degree in Engineering or a related field",
-  ],
-  experience: ["At least 3 to 5 years of experience in higher education"],
-};
+const OPEN_POSITION = content.openPosition;
+const CAREER_AREAS = resolveIcons(content.careerAreas);
+const FURTHER_STUDIES = content.furtherStudies;
+const CAREER_SUPPORT = content.careerSupport;
 
 export const Route = createFileRoute("/careers")({
   head: () => ({
@@ -56,38 +41,7 @@ export const Route = createFileRoute("/careers")({
   component: CareersPage,
 });
 
-const CAREER_PATHS = [
-  {
-    title: "Software Developer",
-    description: "Graduates can work with technology companies, startups, financial institutions, and government organizations to create digital solutions that meet real-world needs.",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "IT Support & Systems Administrator",
-    description: "This role focuses on ensuring the reliability, security, and efficiency of technology systems used by modern organizations to manage computer systems, networks, cloud services, and IT infrastructure.",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Ed-Tech Specialist",
-    description: "Graduates can help schools, colleges, and training institutions improve teaching and learning through innovative technologies.",
-    image: "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "ICT Teacher / Trainer",
-    description: "Graduates can also conduct professional development and skills-training programs for various organizations by building the next generation of digital professionals by teaching technology-related subjects in schools, colleges, and training centers.",
-    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Data & AI Analyst",
-    description: "Graduates may work in business intelligence, research, artificial intelligence, data analytics, and digital transformation projects across multiple sectors by analyzing data, identifying trends, and generating insights that support informed decision-making.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Startup Founder",
-    description: "Graduates can launch startups in software development, education technology, digital services, consulting, and other emerging industries, contributing to economic growth and technological advancement and transform innovative ideas into successful ventures.",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
-  },
-];
+const CAREER_PATHS = content.careerPaths;
 
 function CareersPage() {
   return (
@@ -202,46 +156,7 @@ function CareersPage() {
       </PageSection>
 
       <PageSection eyebrow="Key Career Areas" title="Where WCBT Graduates Thrive">
-        <IconFeatureGrid
-          items={[
-            {
-              icon: Code,
-              title: "Software Development",
-              description:
-                "Creating applications, web platforms, and digital solutions for organizations globally.",
-            },
-            {
-              icon: Network,
-              title: "IT Infrastructure",
-              description:
-                "Managing systems, networks, and technology infrastructure for modern organizations.",
-            },
-            {
-              icon: Lightbulb,
-              title: "Education Technology",
-              description:
-                "Transforming learning through innovative digital tools and instructional design.",
-            },
-            {
-              icon: BookOpen,
-              title: "Teaching & Training",
-              description:
-                "Building the next generation by educating and training technology professionals.",
-            },
-            {
-              icon: TrendingUp,
-              title: "Data & Analytics",
-              description:
-                "Turning data into insights for business intelligence and strategic decision-making.",
-            },
-            {
-              icon: Rocket,
-              title: "Entrepreneurship",
-              description:
-                "Building startups and ventures that drive innovation and economic growth.",
-            },
-          ]}
-        />
+        <IconFeatureGrid items={CAREER_AREAS} />
       </PageSection>
 
       <PageSection eyebrow="Further Studies" title="Pathways to Higher Education">
@@ -253,28 +168,7 @@ function CareersPage() {
             certifications.
           </p>
           <div className="grid md:grid-cols-2 gap-6">
-            {[
-              {
-                title: "Master's Programs",
-                description:
-                  "Advanced studies in computer science, IT, data science, business, and education technology.",
-              },
-              {
-                title: "Research & PhD",
-                description:
-                  "Foundation for pursuing doctoral research in technology, innovation, and applied sciences.",
-              },
-              {
-                title: "Professional Certifications",
-                description:
-                  "Industry-recognized credentials in cloud computing, cybersecurity, data analytics, and more.",
-              },
-              {
-                title: "Specialized Training",
-                description:
-                  "Continuing education and professional development programs throughout your career.",
-              },
-            ].map((path) => (
+            {FURTHER_STUDIES.map((path) => (
               <div key={path.title} className="rounded-2xl border border-border bg-card p-6">
                 <h3 className="font-semibold text-lg">{path.title}</h3>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
@@ -297,28 +191,7 @@ function CareersPage() {
 
       <PageSection eyebrow="Career Support" title="We Support Your Success">
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {[
-            {
-              title: "Career Counseling",
-              description:
-                "Personalized guidance on career planning, job search strategies, and professional development.",
-            },
-            {
-              title: "Job Placements",
-              description:
-                "Direct connections with employers and recruitment opportunities through our industry network.",
-            },
-            {
-              title: "Internship Programs",
-              description:
-                "Structured internship experiences that provide practical training and job-ready skills.",
-            },
-            {
-              title: "Alumni Mentorship",
-              description:
-                "Connection with successful graduates who can guide and inspire your career journey.",
-            },
-          ].map((support) => (
+          {CAREER_SUPPORT.map((support) => (
             <div key={support.title} className="rounded-2xl border border-border bg-card p-6">
               <h3 className="font-semibold text-lg">{support.title}</h3>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">

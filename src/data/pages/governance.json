@@ -1,0 +1,56 @@
+{
+  "framework": [
+    {
+      "icon": "Shield",
+      "title": "Academic Oversight",
+      "description": "Program quality is monitored through Kathmandu University guidelines, internal reviews, and continuous faculty development initiatives."
+    },
+    {
+      "icon": "Users",
+      "title": "Participatory Leadership",
+      "description": "Experienced academic leaders and administrators collaborate with faculty, staff, and student representatives in decision-making."
+    },
+    {
+      "icon": "Award",
+      "title": "Quality Assurance",
+      "description": "Regular assessments, accreditation reviews, and performance metrics ensure institutional standards are maintained and improved."
+    },
+    {
+      "icon": "Zap",
+      "title": "Institutional Accountability",
+      "description": "Transparent reporting, financial oversight, and compliance with regulatory standards demonstrate our commitment to responsible management."
+    }
+  ],
+  "governingBodies": [
+    {
+      "title": "Institutional Board",
+      "description": "Provides strategic oversight and long-term vision for institutional development and sustainability."
+    },
+    {
+      "title": "Academic Council",
+      "description": "Oversees curriculum development, program quality, and faculty development initiatives."
+    },
+    {
+      "title": "Administrative Leadership",
+      "description": "Manages daily operations, student services, and institutional support systems."
+    }
+  ],
+  "principles": [
+    {
+      "title": "Transparency",
+      "description": "Open communication about policies, decisions, and performance metrics affecting the college community."
+    },
+    {
+      "title": "Accountability",
+      "description": "Clear responsibility for outcomes and continuous monitoring of institutional performance."
+    },
+    {
+      "title": "Student-Centered Focus",
+      "description": "Every policy and decision prioritizes student success, safety, and overall development."
+    },
+    {
+      "title": "Academic Integrity",
+      "description": "Maintaining high standards in teaching, research, and institutional reputation through ethical practices."
+    }
+  ]
+}

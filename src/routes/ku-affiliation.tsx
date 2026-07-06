@@ -2,8 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BookOpen } from "lucide-react";
 
 import { PageHero } from "@/components/sections/bento";
-import { CtaBand, HighlightBand, PageSection } from "@/components/sections/page-sections";
+import { CtaBand, HighlightBand, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
+
+import content from "@/data/pages/ku-affiliation.json";
+
+const BENEFITS = content.benefits;
 
 export const Route = createFileRoute("/ku-affiliation")({
   head: () => ({
@@ -64,38 +68,7 @@ function KUAffiliationPage() {
         className="bg-muted/30"
       >
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {[
-            {
-              title: "Rigorous Curriculum",
-              description:
-                "Programs designed to international standards while addressing local and regional needs in technology and education.",
-            },
-            {
-              title: "Faculty Excellence",
-              description:
-                "Access to Kathmandu University faculty expertise, guest lectures, and collaborative research initiatives.",
-            },
-            {
-              title: "Industry Recognition",
-              description:
-                "Degrees recognized across Nepal and internationally, opening doors for further studies and professional opportunities.",
-            },
-            {
-              title: "Quality Assurance",
-              description:
-                "Regular program reviews and assessments ensuring continuous improvement in teaching methods and learning outcomes.",
-            },
-            {
-              title: "Academic Mobility",
-              description:
-                "Opportunities for student and faculty exchanges, collaborative projects, and joint academic initiatives.",
-            },
-            {
-              title: "Professional Network",
-              description:
-                "Connection to KU's extensive network of alumni, industry partners, and academic institutions globally.",
-            },
-          ].map((benefit) => (
+          {BENEFITS.map((benefit) => (
             <div
               key={benefit.title}
               className="rounded-2xl border border-border bg-card p-6 hover:shadow-lg hover:shadow-primary/10 transition-shadow"

@@ -1,14 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Briefcase, Users, Target, Zap } from "lucide-react";
 
 import { PageHero } from "@/components/sections/bento";
-import {
-  CtaBand,
-  HighlightBand,
-  IconFeatureGrid,
-  PageSection,
-} from "@/components/sections/page-sections";
+import { CtaBand, HighlightBand, IconFeatureGrid, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
+import { resolveIcons } from "@/lib/icon-registry";
+
+import content from "@/data/pages/industry-exposure.json";
 
 export const Route = createFileRoute("/industry-exposure")({
   head: () => ({
@@ -30,65 +27,8 @@ export const Route = createFileRoute("/industry-exposure")({
   component: IndustryExposurePage,
 });
 
-const EXPOSURE_METHODS = [
-  {
-    icon: Briefcase,
-    title: "Internships",
-    description:
-      "Semester-long and summer internships with technology companies, startups, and businesses.",
-  },
-  {
-    icon: Users,
-    title: "Mentorship Programs",
-    description:
-      "One-on-one guidance from industry professionals and alumni working in leading organizations.",
-  },
-  {
-    icon: Target,
-    title: "Workshops & Seminars",
-    description:
-      "Regular training sessions on emerging technologies, professional skills, and industry best practices.",
-  },
-  {
-    icon: Zap,
-    title: "Industry Visits",
-    description:
-      "Field trips and campus visits from companies to expose students to real workplace environments.",
-  },
-];
-
-const OPPORTUNITIES = [
-  {
-    title: "Problem-Solving Skills",
-    description:
-      "Apply classroom knowledge to real-world challenges, developing the critical thinking and adaptability required in modern workplaces.",
-  },
-  {
-    title: "Teamwork & Communication",
-    description:
-      "Collaborate with professionals from diverse backgrounds, building the soft skills essential for career success.",
-  },
-  {
-    title: "Professional Network",
-    description:
-      "Build relationships with mentors, recruiters, and industry leaders that can lead to internships, job placements, and career opportunities.",
-  },
-  {
-    title: "Industry Insights",
-    description:
-      "Gain firsthand knowledge of industry trends, technologies, and career pathways to make informed decisions about your future.",
-  },
-  {
-    title: "Practical Confidence",
-    description:
-      "Experience working in professional settings, building the confidence and readiness needed to transition from student to professional.",
-  },
-  {
-    title: "Career Preparation",
-    description:
-      "Understand workplace expectations, develop professional habits, and prepare for job interviews and career advancement.",
-  },
-];
+const EXPOSURE_METHODS = resolveIcons(content.exposureMethods);
+const OPPORTUNITIES = content.opportunities;
 
 function IndustryExposurePage() {
   return (

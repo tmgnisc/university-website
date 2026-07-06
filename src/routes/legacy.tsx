@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Heart, Users, Star, TrendingUp } from "lucide-react";
 
 import { PageHero } from "@/components/sections/bento";
-import { CtaBand, HighlightBand, PageSection, Timeline } from "@/components/sections/page-sections";
+import { CtaBand, HighlightBand, PageSection, Timeline } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
+import { resolveIcons } from "@/lib/icon-registry";
+
+import content from "@/data/pages/legacy.json";
 
 export const Route = createFileRoute("/legacy")({
   head: () => ({
@@ -25,38 +27,9 @@ export const Route = createFileRoute("/legacy")({
   component: LegacyPage,
 });
 
-const LEGACY_MILESTONES = [
-  {
-    year: "2014",
-    title: "Foundation Established",
-    description:
-      "WhiteHouse Education Foundation begins its mission to expand quality higher education in Eastern Nepal.",
-  },
-  {
-    year: "2018",
-    title: "WCBT Jhapa Campus Opens",
-    description:
-      "The first campus launches with a focus on technology and business education, serving the Jhapa region.",
-  },
-  {
-    year: "2021",
-    title: "KU Partnership Formalized",
-    description:
-      "Kathmandu University affiliation brings recognized BIT and B.Tech Ed IT programs to our campus.",
-  },
-  {
-    year: "2024",
-    title: "Regional Impact Recognition",
-    description:
-      "WCBT becomes recognized as a trusted institution contributing to Eastern Nepal's educational and technological advancement.",
-  },
-  {
-    year: "2026",
-    title: "Expanding Excellence",
-    description:
-      "New research labs, expanded facilities, and growing industry partnerships strengthen our academic ecosystem.",
-  },
-];
+const LEGACY_MILESTONES = content.milestones;
+const ACHIEVEMENTS = resolveIcons(content.achievements);
+const VALUES = content.values;
 
 function LegacyPage() {
   return (
@@ -89,12 +62,7 @@ function LegacyPage() {
 
       <PageSection eyebrow="Our Achievements" title="Proud Accomplishments">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {[
-            { icon: Heart, label: "Student Success", value: "500+" },
-            { icon: Users, label: "Graduates Placed", value: "400+" },
-            { icon: Star, label: "Industry Partners", value: "50+" },
-            { icon: TrendingUp, label: "Years of Excellence", value: "12+" },
-          ].map((stat) => (
+          {ACHIEVEMENTS.map((stat) => (
             <div
               key={stat.label}
               className="rounded-2xl border border-border bg-card p-6 text-center"
@@ -111,23 +79,7 @@ function LegacyPage() {
 
       <PageSection eyebrow="Our Values" title="What Drives Our Legacy">
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {[
-            {
-              title: "Academic Excellence",
-              description:
-                "Rigorous standards, innovative teaching, and continuous improvement in all we do.",
-            },
-            {
-              title: "Student-Centered Approach",
-              description:
-                "Every decision prioritizes student success, growth, and career readiness.",
-            },
-            {
-              title: "Community Impact",
-              description:
-                "Creating positive change through education, research, and community engagement.",
-            },
-          ].map((value) => (
+          {VALUES.map((value) => (
             <div key={value.title} className="rounded-2xl border border-border bg-card p-6">
               <h3 className="font-semibold text-lg">{value.title}</h3>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">

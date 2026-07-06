@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Sparkles, Users, Compass, Trophy, HeartHandshake, Calendar } from "lucide-react";
 
 import { PageHero } from "@/components/sections/bento";
 import {
@@ -10,70 +9,16 @@ import {
   PageSection,
   SplitSection,
   Timeline,
-} from "@/components/sections/page-sections";
+} from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
+import { resolveIcons } from "@/lib/icon-registry";
 
-const CLUBS = [
-  {
-    title: "Coding & Robotics",
-    description: "Competitive programming, hackathons, and hands-on robotics projects.",
-    image:
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Ed-Tech Circle",
-    description: "Explore digital learning tools, LMS platforms, and classroom innovation.",
-    image:
-      "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Sports & Recreation",
-    description: "Football, cricket, basketball, and inter-college tournaments.",
-    image:
-      "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Arts, Music & Media",
-    description: "Photography, performance, and content creation for campus channels.",
-    image:
-      "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Community Outreach",
-    description: "Tech-literacy workshops and volunteering in local schools.",
-    image:
-      "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Entrepreneurship Hub",
-    description: "Pitch nights, startup mentoring, and innovation challenges.",
-    image:
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
-  },
-];
+import content from "@/data/pages/student-experience.json";
 
-const EVENTS = [
-  {
-    year: "Jan",
-    title: "Welcome & Orientation",
-    description: "Campus tours, mentor meetups, and team-building for new students.",
-  },
-  {
-    year: "Mar",
-    title: "Enrichment Week",
-    description: "Workshops, guest talks, and skill sessions beyond the curriculum.",
-  },
-  {
-    year: "Jun",
-    title: "Summer Hackathon",
-    description: "A 48-hour build sprint with mentors, prizes, and recruiter networking.",
-  },
-  {
-    year: "Oct",
-    title: "WCBT Annual Fest",
-    description: "Culture, tech expo, sports, and performances — the highlight of the year.",
-  },
-];
+const CLUBS = content.clubs;
+const EVENTS = content.events;
+const ENRICHMENT_ACTIVITIES = resolveIcons(content.enrichmentActivities);
+const ORIENTATION = resolveIcons(content.orientation);
 
 export const Route = createFileRoute("/student-experience")({
   head: () => ({
@@ -126,30 +71,7 @@ function StudentExperiencePage() {
         description="Develop leadership, creativity, and teamwork through activities designed to complement your degree."
         className="bg-muted/30"
       >
-        <IconFeatureGrid
-          items={[
-            {
-              icon: Compass,
-              title: "Skill Workshops",
-              description: "Regular sessions on emerging tools, soft skills, and career readiness.",
-            },
-            {
-              icon: Trophy,
-              title: "Competitions",
-              description: "Hackathons, quizzes, and inter-college contests across disciplines.",
-            },
-            {
-              icon: HeartHandshake,
-              title: "Volunteering",
-              description: "Community service and outreach that create real-world impact.",
-            },
-            {
-              icon: Sparkles,
-              title: "Cultural Events",
-              description: "Music, art, and celebration events that build campus pride.",
-            },
-          ]}
-        />
+        <IconFeatureGrid items={ENRICHMENT_ACTIVITIES} />
       </PageSection>
 
       <PageSection
@@ -166,30 +88,7 @@ function StudentExperiencePage() {
         description="New students are welcomed with a structured orientation that makes settling in easy."
         className="bg-muted/30"
       >
-        <IconFeatureGrid
-          items={[
-            {
-              icon: Compass,
-              title: "Campus Tour",
-              description: "Get familiar with facilities, classrooms, and key student services.",
-            },
-            {
-              icon: Users,
-              title: "Mentor Pairing",
-              description: "Connect with senior students who guide you through your first weeks.",
-            },
-            {
-              icon: HeartHandshake,
-              title: "Team Building",
-              description: "Icebreakers and group activities to help you make friends fast.",
-            },
-            {
-              icon: Calendar,
-              title: "Intro Sessions",
-              description: "Briefings on academics, expectations, and campus life essentials.",
-            },
-          ]}
-        />
+        <IconFeatureGrid items={ORIENTATION} />
       </PageSection>
 
       <PageSection

@@ -1,9 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Shield, Users, Zap, Award } from "lucide-react";
 
 import { PageHero } from "@/components/sections/bento";
-import { CtaBand, HighlightBand, PageSection } from "@/components/sections/page-sections";
+import { CtaBand, HighlightBand, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
+import { resolveIcons } from "@/lib/icon-registry";
+
+import content from "@/data/pages/governance.json";
+
+const FRAMEWORK = resolveIcons(content.framework);
+const GOVERNING_BODIES = content.governingBodies;
+const PRINCIPLES = content.principles;
 
 export const Route = createFileRoute("/governance")({
   head: () => ({
@@ -53,32 +59,7 @@ function GovernancePage() {
 
       <PageSection eyebrow="Governance Framework" title="Key Components" className="bg-muted/30">
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {[
-            {
-              icon: Shield,
-              title: "Academic Oversight",
-              description:
-                "Program quality is monitored through Kathmandu University guidelines, internal reviews, and continuous faculty development initiatives.",
-            },
-            {
-              icon: Users,
-              title: "Participatory Leadership",
-              description:
-                "Experienced academic leaders and administrators collaborate with faculty, staff, and student representatives in decision-making.",
-            },
-            {
-              icon: Award,
-              title: "Quality Assurance",
-              description:
-                "Regular assessments, accreditation reviews, and performance metrics ensure institutional standards are maintained and improved.",
-            },
-            {
-              icon: Zap,
-              title: "Institutional Accountability",
-              description:
-                "Transparent reporting, financial oversight, and compliance with regulatory standards demonstrate our commitment to responsible management.",
-            },
-          ].map((component) => (
+          {FRAMEWORK.map((component) => (
             <div key={component.title} className="rounded-2xl border border-border bg-card p-6">
               <div className="size-10 rounded-lg bg-primary/10 text-primary grid place-items-center mb-4">
                 <component.icon className="size-5" />
@@ -95,23 +76,7 @@ function GovernancePage() {
       <PageSection eyebrow="Leadership" title="Our Governing Bodies">
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Institutional Board",
-                description:
-                  "Provides strategic oversight and long-term vision for institutional development and sustainability.",
-              },
-              {
-                title: "Academic Council",
-                description:
-                  "Oversees curriculum development, program quality, and faculty development initiatives.",
-              },
-              {
-                title: "Administrative Leadership",
-                description:
-                  "Manages daily operations, student services, and institutional support systems.",
-              },
-            ].map((body) => (
+            {GOVERNING_BODIES.map((body) => (
               <div key={body.title} className="rounded-2xl border border-border bg-card p-6">
                 <h3 className="font-semibold text-lg">{body.title}</h3>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
@@ -125,28 +90,7 @@ function GovernancePage() {
 
       <PageSection eyebrow="Commitment" title="Principles That Guide Us" className="bg-muted/30">
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {[
-            {
-              title: "Transparency",
-              description:
-                "Open communication about policies, decisions, and performance metrics affecting the college community.",
-            },
-            {
-              title: "Accountability",
-              description:
-                "Clear responsibility for outcomes and continuous monitoring of institutional performance.",
-            },
-            {
-              title: "Student-Centered Focus",
-              description:
-                "Every policy and decision prioritizes student success, safety, and overall development.",
-            },
-            {
-              title: "Academic Integrity",
-              description:
-                "Maintaining high standards in teaching, research, and institutional reputation through ethical practices.",
-            },
-          ].map((principle) => (
+          {PRINCIPLES.map((principle) => (
             <div key={principle.title} className="rounded-2xl border border-border p-6">
               <h3 className="font-semibold text-lg">{principle.title}</h3>
               <p className="mt-3 text-muted-foreground leading-relaxed">{principle.description}</p>

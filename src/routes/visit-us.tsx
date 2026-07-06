@@ -1,15 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  MapPin,
-  Landmark,
-  CalendarCheck,
-  Compass,
-  Video,
-  Bus,
-  Phone,
-  Mail,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone, Video } from "lucide-react";
 
 import { PageHero } from "@/components/sections/bento";
 import {
@@ -18,10 +8,15 @@ import {
   IconFeatureGrid,
   PageSection,
   SplitSection,
-} from "@/components/sections/page-sections";
+} from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
 import { Button } from "@/components/ui/button";
+import { resolveIcons } from "@/lib/icon-registry";
 import campusImage from "@/assets/campus.jpg";
+
+import content from "@/data/pages/visit-us.json";
+
+const EXPLORE_WAYS = resolveIcons(content.exploreWays);
 
 export const Route = createFileRoute("/visit-us")({
   head: () => ({
@@ -79,40 +74,7 @@ function VisitUsPage() {
         title="Ways to explore WCBT"
         description="Choose the option that works best for you — on campus or online."
       >
-        <IconFeatureGrid
-          items={[
-            {
-              icon: MapPin,
-              title: "Campus Location & Map",
-              description: "Find us in Jhapa, Nepal, with easy directions to the campus.",
-            },
-            {
-              icon: Landmark,
-              title: "Attractions Near College",
-              description: "Discover dining, lodging, and points of interest close to campus.",
-            },
-            {
-              icon: CalendarCheck,
-              title: "Open Day Schedule",
-              description: "Join scheduled open days to experience a typical day at WCBT.",
-            },
-            {
-              icon: Compass,
-              title: "Book a Campus Visit",
-              description: "Arrange a personalized tour at a time that suits you.",
-            },
-            {
-              icon: Video,
-              title: "Virtual Tour",
-              description: "Explore our spaces online if you can't make it in person.",
-            },
-            {
-              icon: Bus,
-              title: "Transport & Parking",
-              description: "Public transport routes and parking guidance for your visit.",
-            },
-          ]}
-        />
+        <IconFeatureGrid items={EXPLORE_WAYS} />
       </PageSection>
 
       <SplitSection

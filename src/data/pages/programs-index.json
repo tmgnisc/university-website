@@ -1,0 +1,122 @@
+{
+  "facilitiesBento": [
+    {
+      "title": "AI & Innovation Lab",
+      "description": "Experiment with machine learning, robotics, and prototype development.",
+      "image": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=800&q=80",
+      "className": "lg:col-span-2"
+    },
+    {
+      "title": "24/7 Library Access",
+      "description": "Digital and print resources for research and self-study.",
+      "variant": "stat",
+      "stat": "24/7",
+      "className": "lg:col-span-1"
+    },
+    {
+      "title": "Smart Classrooms",
+      "description": "Interactive displays and collaborative tools for modern teaching.",
+      "image": "https://ik.imagekit.io/qn3m81dsk/university/clz%203.jpg?updatedAt=1781585489415",
+      "imageCaption": "Premises of Nidi Secondary School & Indreni Campus",
+      "className": "lg:col-span-1"
+    },
+    {
+      "title": "Industry Mentorship",
+      "description": "Guest lectures, hackathons, and placement workshops year-round.",
+      "variant": "text",
+      "badge": "Support",
+      "className": "lg:col-span-2"
+    }
+  ],
+  "compareRows": [
+    { "label": "Degree focus", "bit": "Software & IT systems", "btech": "Technology in education" },
+    { "label": "Duration", "bit": "4 years (8 semesters)", "btech": "4 years (8 semesters)" },
+    {
+      "label": "Ideal for",
+      "bit": "Aspiring developers & IT professionals",
+      "btech": "Future educators & ed-tech leaders"
+    },
+    {
+      "label": "Core skills",
+      "bit": "Programming, databases, networking, AI basics",
+      "btech": "Instructional design, LMS, digital pedagogy"
+    },
+    {
+      "label": "Internships",
+      "bit": "Software houses & IT firms",
+      "btech": "Schools, training centers & ed-tech startups"
+    },
+    { "label": "KU affiliation", "bit": "Yes", "btech": "Yes" }
+  ],
+  "admissionSteps": [
+    {
+      "step": "01",
+      "title": "Check eligibility",
+      "description": "Review academic requirements for +2 or equivalent qualifications in relevant streams.",
+      "hint": "Eligibility generally requires +2 or equivalent. BIT suits students strong in maths and technology, while B.Tech Ed IT is ideal for those focused on education technology and instructional design."
+    },
+    {
+      "step": "02",
+      "title": "Submit application",
+      "description": "Complete the online form with transcripts, identification, and program preference."
+    },
+    {
+      "step": "03",
+      "title": "Entrance assessment",
+      "description": "Attend the admission test and interview scheduled by the admissions office."
+    },
+    {
+      "step": "04",
+      "title": "Enrollment",
+      "description": "Confirm your seat, complete fee payment, and join orientation week."
+    }
+  ],
+  "careerPaths": [
+    {
+      "title": "Software Developer",
+      "description": "Build web and mobile applications for startups, enterprises, and government projects.",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "IT Support & Systems Admin",
+      "description": "Manage networks, cloud infrastructure, and enterprise systems for organizations.",
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "Ed-Tech Specialist",
+      "description": "Design digital curricula and learning platforms for schools and training institutes.",
+      "image": "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "ICT Teacher / Trainer",
+      "description": "Lead technology classrooms and professional development programs nationwide.",
+      "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "Data & AI Analyst",
+      "description": "Turn data into insights for business, research, and public-sector innovation.",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "Startup Founder",
+      "description": "Launch ventures in software, education technology, and digital services.",
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
+    }
+  ],
+  "quickLinks": [
+    {
+      "id": "bit",
+      "title": "BIT — Bachelor in Information Technology",
+      "summary": "Software engineering, databases, networking, and AI fundamentals for tech careers.",
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
+      "href": "/programs/bit"
+    },
+    {
+      "id": "btech-ed-it",
+      "title": "B.Tech Ed IT — Technology in Education",
+      "summary": "Digital pedagogy, instructional design, and IT integration for modern educators.",
+      "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
+      "href": "/programs/btech-ed-it"
+    }
+  ]
+}

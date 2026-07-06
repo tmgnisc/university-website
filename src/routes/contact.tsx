@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 import { BentoGrid, PageHero, type BentoItem } from "@/components/sections/bento";
 import {
@@ -9,66 +8,15 @@ import {
   HighlightBand,
   IconFeatureGrid,
   PageSection,
-} from "@/components/sections/page-sections";
+} from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
+import { resolveIcons } from "@/lib/icon-registry";
 
-const CONTACT_BENTO: BentoItem[] = [
-  {
-    title: "Admissions Office",
-    description: "Questions about applications, eligibility, entrance exams, and enrollment.",
-    variant: "text",
-    badge: "Admissions",
-    className: "lg:col-span-2",
-  },
-  {
-    title: "Response Time",
-    description: "We aim to reply to all inquiries within one business day.",
-    variant: "stat",
-    stat: "24h",
-    className: "lg:col-span-1",
-  },
-  {
-    title: "Scholarships Desk",
-    description: "Financial aid, merit awards, and need-based grant inquiries.",
-    variant: "text",
-    className: "lg:col-span-1",
-  },
-  {
-    title: "Campus Visits",
-    description: "Schedule a guided tour of WCBT facilities in Jhapa.",
-    image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80",
-    className: "lg:col-span-2",
-  },
-  {
-    title: "General Inquiries",
-    description: "Programs, partnerships, media requests, and other questions.",
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80",
-    className: "lg:col-span-2",
-  },
-];
+import content from "@/data/pages/contact.json";
 
-const FAQ = [
-  {
-    question: "What are your office hours?",
-    answer:
-      "Sunday through Friday, 9:00 AM to 5:00 PM NPT. Saturday by appointment for campus visits.",
-  },
-  {
-    question: "How do I schedule a campus visit?",
-    answer:
-      "Call 9714530056 or 9714530057 or email info@whitehouseeducation.edu.np with your preferred date. We recommend visiting on weekdays.",
-  },
-  {
-    question: "Can I contact via WhatsApp?",
-    answer:
-      "Yes. Message us at 9714530056 or 9714530057 for quick admissions and general inquiries during office hours.",
-  },
-  {
-    question: "Where is WCBT located?",
-    answer:
-      "WCBT operates from the SBSS premises in Jhapa, Nepal. Detailed directions are shared when you schedule a visit.",
-  },
-];
+const CONTACT_BENTO = content.bento as BentoItem[];
+const CHANNELS = resolveIcons(content.channels);
+const FAQ = content.faq;
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -116,31 +64,7 @@ function ContactPage() {
         description="Choose the channel that works best for you."
         className="bg-muted/30"
       >
-        <IconFeatureGrid
-          items={[
-            {
-              icon: Phone,
-              title: "Phone",
-              description:
-                "9714530056, 9714530057 for admissions and general inquiries during office hours.",
-            },
-            {
-              icon: Mail,
-              title: "Email",
-              description: "info@whitehouseeducation.edu.np — we respond within one business day.",
-            },
-            {
-              icon: MapPin,
-              title: "Visit us",
-              description: "WCBT Jhapa Campus, Jhapa, Nepal. Schedule visits in advance.",
-            },
-            {
-              icon: Clock,
-              title: "Office hours",
-              description: "Sun–Fri, 9:00 AM – 5:00 PM NPT. Saturday visits by appointment.",
-            },
-          ]}
-        />
+        <IconFeatureGrid items={CHANNELS} />
       </PageSection>
 
       <ContactSection />

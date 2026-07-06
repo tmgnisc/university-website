@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Cpu, FlaskConical, Lightbulb, Microscope } from "lucide-react";
 
 import { BentoGrid, PageHero, type BentoItem } from "@/components/sections/bento";
 import {
@@ -10,70 +9,16 @@ import {
   PageSection,
   SplitSection,
   Timeline,
-} from "@/components/sections/page-sections";
+} from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
+import { resolveIcons } from "@/lib/icon-registry";
 
-const RESEARCH_BENTO: BentoItem[] = [
-  {
-    title: "AI & Machine Learning Lab",
-    description: "Experiment with neural networks, computer vision, and natural language processing projects.",
-    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=1200&q=80",
-    badge: "AI / ML",
-    className: "sm:col-span-2 lg:col-span-3 lg:row-span-2 min-h-[320px]",
-  },
-  {
-    title: "Active Projects",
-    description: "Student and faculty research initiatives running each semester.",
-    variant: "stat",
-    stat: "20+",
-    className: "lg:col-span-1",
-  },
-  {
-    title: "IoT & Robotics",
-    description: "Sensors, embedded systems, and autonomous robot prototypes.",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
-    className: "lg:col-span-2",
-  },
-  {
-    title: "Ed-Tech Research",
-    description: "Studies on digital learning tools, classroom analytics, and instructional design.",
-    image: "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=800&q=80",
-    className: "lg:col-span-2",
-  },
-];
+import content from "@/data/pages/research.json";
 
-const PROJECTS = [
-  { title: "Smart Agriculture IoT", description: "Soil moisture sensors and automated irrigation for local farms.", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80" },
-  { title: "Nepali NLP Toolkit", description: "Open-source language tools for Nepali text processing and chatbots.", image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=800&q=80" },
-  { title: "VR Classroom Pilot", description: "Immersive learning modules for science and IT education.", image: "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?auto=format&fit=crop&w=800&q=80" },
-  { title: "Cybersecurity Audit", description: "Vulnerability assessment framework for small business networks.", image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" },
-  { title: "Learning Analytics", description: "Dashboard tracking student engagement in digital courses.", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" },
-  { title: "Green Campus Initiative", description: "Energy monitoring and sustainability reporting system.", image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=800&q=80" },
-];
-
-const PUBLICATIONS = [
-  {
-    year: "2025",
-    title: "Applied ML in Eastern Nepal",
-    description:
-      "Conference paper on deploying machine learning solutions for regional agriculture.",
-  },
-  {
-    year: "2024",
-    title: "Digital Pedagogy Review",
-    description: "Faculty publication on LMS adoption in Nepali secondary schools.",
-  },
-  {
-    year: "2024",
-    title: "IoT for Smart Cities",
-    description: "Student-led research presented at the National Innovation Summit.",
-  },
-  {
-    year: "2023",
-    title: "Open Data in Education",
-    description: "White paper on transparent academic data sharing practices.",
-  },
-];
+const RESEARCH_BENTO = content.bento as BentoItem[];
+const PROJECTS = content.projects;
+const PUBLICATIONS = content.publications;
+const FOCUS_AREAS = resolveIcons(content.focusAreas);
 
 export const Route = createFileRoute("/research")({
   head: () => ({
@@ -134,32 +79,7 @@ function ResearchPage() {
         description="Core research domains aligned with our programs and regional needs."
         className="bg-muted/30"
       >
-        <IconFeatureGrid
-          items={[
-            {
-              icon: Cpu,
-              title: "Artificial Intelligence",
-              description:
-                "Machine learning, computer vision, and intelligent systems for local applications.",
-            },
-            {
-              icon: FlaskConical,
-              title: "IoT & Embedded Systems",
-              description: "Connected devices, sensor networks, and automation prototypes.",
-            },
-            {
-              icon: Microscope,
-              title: "Ed-Tech Research",
-              description:
-                "Digital learning effectiveness, instructional design, and classroom technology.",
-            },
-            {
-              icon: Lightbulb,
-              title: "Innovation & Startups",
-              description: "Idea incubation, prototyping support, and entrepreneurship mentoring.",
-            },
-          ]}
-        />
+        <IconFeatureGrid items={FOCUS_AREAS} />
       </PageSection>
 
       <PageSection

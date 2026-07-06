@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Footer, FloatingCTAs, Header } from "@/components/sections/site";
+import { Footer, FloatingCTAs, Header } from "@/components/layout";
 
 export function PageShell({ children }: { children: ReactNode }) {
   return (

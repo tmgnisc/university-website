@@ -1,0 +1,34 @@
+{
+  "services": [
+    {
+      "icon": "HeartPulse",
+      "title": "Counselling Services",
+      "description": "Confidential one-on-one counselling to help you navigate personal and academic challenges."
+    },
+    {
+      "icon": "Brain",
+      "title": "Mental Health & Wellbeing",
+      "description": "Wellbeing workshops, stress management, and resources to support your mental health."
+    },
+    {
+      "icon": "GraduationCap",
+      "title": "Academic Support",
+      "description": "Tutoring, study skills, and guidance to help you stay on top of your coursework."
+    },
+    {
+      "icon": "Accessibility",
+      "title": "Disability Services",
+      "description": "Reasonable accommodations and inclusive support for students with disabilities."
+    },
+    {
+      "icon": "Wallet",
+      "title": "Financial Aid Advice",
+      "description": "Guidance on scholarships, grants, and managing the cost of your education."
+    },
+    {
+      "icon": "Phone",
+      "title": "Emergency Contacts",
+      "description": "Know who to reach and how to get help quickly in urgent situations."
+    }
+  ]
+}

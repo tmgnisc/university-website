@@ -1,22 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Footer, FloatingCTAs, Header } from "@/components/layout";
 import {
-  Header,
-  Hero,
-  Ticker,
   AffiliationBanner,
-  Search_,
-  Programs,
-  NextSteps,
-  Research,
-  WhatsNew,
   Events,
-  Support,
-  Vision,
-  Mosaic,
+  Hero,
   Lead,
-  Footer,
-  FloatingCTAs,
-} from "@/components/sections/site";
+  Mosaic,
+  NextSteps,
+  Programs,
+  Research,
+  Search_,
+  Support,
+  Ticker,
+  Vision,
+  WhatsNew,
+} from "@/components/sections/home";
 import { MaintenanceGuard } from "@/components/MaintenanceGuard";
 
 export const Route = createFileRoute("/")({

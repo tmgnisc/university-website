@@ -1,0 +1,42 @@
+{
+  "researchActivities": [
+    {
+      "icon": "BookOpen",
+      "title": "Academic Journals",
+      "description": "Publication of peer-reviewed research in recognized national and international academic journals."
+    },
+    {
+      "icon": "Award",
+      "title": "Conference Presentations",
+      "description": "Faculty and student presentations at national and international academic conferences and seminars."
+    },
+    {
+      "icon": "Users",
+      "title": "Collaborative Research",
+      "description": "Interdisciplinary studies involving collaboration between faculty members, students, and external researchers."
+    },
+    {
+      "icon": "TrendingUp",
+      "title": "Innovation Projects",
+      "description": "Research projects focused on technology innovation, educational advancement, and social impact."
+    }
+  ],
+  "focusAreas": [
+    {
+      "title": "Technology & Innovation",
+      "description": "Research in artificial intelligence, IoT systems, software engineering, and emerging technologies with real-world applications."
+    },
+    {
+      "title": "Educational Technology",
+      "description": "Studies exploring digital learning tools, instructional design, online education, and technology-enhanced pedagogy."
+    },
+    {
+      "title": "Applied Research",
+      "description": "Practical research projects addressing specific problems in industry, education, and community development."
+    },
+    {
+      "title": "Interdisciplinary Studies",
+      "description": "Collaborative research combining perspectives from technology, education, business, and social sciences."
+    }
+  ]
+}

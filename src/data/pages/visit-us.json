@@ -1,0 +1,34 @@
+{
+  "exploreWays": [
+    {
+      "icon": "MapPin",
+      "title": "Campus Location & Map",
+      "description": "Find us in Jhapa, Nepal, with easy directions to the campus."
+    },
+    {
+      "icon": "Landmark",
+      "title": "Attractions Near College",
+      "description": "Discover dining, lodging, and points of interest close to campus."
+    },
+    {
+      "icon": "CalendarCheck",
+      "title": "Open Day Schedule",
+      "description": "Join scheduled open days to experience a typical day at WCBT."
+    },
+    {
+      "icon": "Compass",
+      "title": "Book a Campus Visit",
+      "description": "Arrange a personalized tour at a time that suits you."
+    },
+    {
+      "icon": "Video",
+      "title": "Virtual Tour",
+      "description": "Explore our spaces online if you can't make it in person."
+    },
+    {
+      "icon": "Bus",
+      "title": "Transport & Parking",
+      "description": "Public transport routes and parking guidance for your visit."
+    }
+  ]
+}

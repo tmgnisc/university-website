@@ -1,23 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  HeartPulse,
-  Brain,
-  GraduationCap,
-  Accessibility,
-  Wallet,
-  Phone,
-  Mail,
-  MapPin,
-} from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 import { PageHero } from "@/components/sections/bento";
-import {
-  CtaBand,
-  HighlightBand,
-  IconFeatureGrid,
-  PageSection,
-} from "@/components/sections/page-sections";
+import { CtaBand, HighlightBand, IconFeatureGrid, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
+import { resolveIcons } from "@/lib/icon-registry";
+
+import content from "@/data/pages/student-support.json";
+
+const SERVICES = resolveIcons(content.services);
 
 export const Route = createFileRoute("/student-support")({
   head: () => ({
@@ -56,45 +47,7 @@ function StudentSupportPage() {
         title="How we support you"
         description="A range of services to keep you healthy, focused, and on track for success."
       >
-        <IconFeatureGrid
-          items={[
-            {
-              icon: HeartPulse,
-              title: "Counselling Services",
-              description:
-                "Confidential one-on-one counselling to help you navigate personal and academic challenges.",
-            },
-            {
-              icon: Brain,
-              title: "Mental Health & Wellbeing",
-              description:
-                "Wellbeing workshops, stress management, and resources to support your mental health.",
-            },
-            {
-              icon: GraduationCap,
-              title: "Academic Support",
-              description:
-                "Tutoring, study skills, and guidance to help you stay on top of your coursework.",
-            },
-            {
-              icon: Accessibility,
-              title: "Disability Services",
-              description:
-                "Reasonable accommodations and inclusive support for students with disabilities.",
-            },
-            {
-              icon: Wallet,
-              title: "Financial Aid Advice",
-              description:
-                "Guidance on scholarships, grants, and managing the cost of your education.",
-            },
-            {
-              icon: Phone,
-              title: "Emergency Contacts",
-              description: "Know who to reach and how to get help quickly in urgent situations.",
-            },
-          ]}
-        />
+        <IconFeatureGrid items={SERVICES} />
       </PageSection>
 
       <PageSection

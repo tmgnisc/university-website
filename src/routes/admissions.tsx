@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Calendar, ClipboardList, FileText, GraduationCap } from "lucide-react";
 
 import { BentoGrid, PageHero, type BentoItem } from "@/components/sections/bento";
 import {
@@ -12,106 +11,17 @@ import {
   PageSection,
   SplitSection,
   StepGrid,
-} from "@/components/sections/page-sections";
+} from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
+import { resolveIcons } from "@/lib/icon-registry";
 
-const REQUIREMENTS_BENTO: BentoItem[] = [
-  {
-    title: "Academic Transcripts",
-    description: "SEBON / NEB marksheets and character certificates from previous institutions.",
-    variant: "text",
-    badge: "Documents",
-    className: "lg:col-span-2",
-  },
-  {
-    title: "Minimum GPA",
-    description: "Eligible candidates typically hold a minimum second division or equivalent.",
-    variant: "stat",
-    stat: "2.0+",
-    className: "lg:col-span-1",
-  },
-  {
-    title: "Entrance Exam",
-    description: "Written test covering mathematics, logic, and general aptitude.",
-    image:
-      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80",
-    className: "lg:col-span-1",
-  },
-  {
-    title: "Interview Round",
-    description: "Shortlisted applicants meet the admissions panel for program fit assessment.",
-    image:
-      "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80",
-    className: "lg:col-span-2",
-  },
-];
+import content from "@/data/pages/admissions.json";
 
-const ADMISSION_STEPS = [
-  {
-    step: "01",
-    title: "Review eligibility",
-    description: "Confirm you meet academic requirements for BIT or B.Tech Ed IT before applying.",
-    hint: "Most applicants should have completed +2 or equivalent. BIT is best for students with a strong maths/IT foundation; B.Tech Ed IT welcomes future educators with a technology focus.",
-  },
-  {
-    step: "02",
-    title: "Submit application",
-    description:
-      "Fill out the online form with personal details, program choice, and supporting documents.",
-  },
-  {
-    step: "03",
-    title: "Entrance assessment",
-    description: "Take the admission test and attend the interview on your scheduled date.",
-  },
-  {
-    step: "04",
-    title: "Receive offer",
-    description:
-      "Successful candidates receive an offer letter with enrollment and fee payment instructions.",
-  },
-];
-
-const DEADLINES = [
-  {
-    date: "Mar 15, 2026",
-    title: "Early application closes",
-    description: "Submit your form early for priority scheduling of entrance exams.",
-  },
-  {
-    date: "Apr 30, 2026",
-    title: "Regular deadline",
-    description: "Final date for standard intake applications for the 2026 academic year.",
-  },
-  {
-    date: "May 20, 2026",
-    title: "Enrollment week",
-    description: "Confirm your seat, complete orientation, and begin your first semester.",
-  },
-];
-
-const FAQ = [
-  {
-    question: "Who can apply to WCBT?",
-    answer:
-      "Students who have completed +2 or equivalent in Science, Management, or related streams with minimum eligibility as per Kathmandu University guidelines.",
-  },
-  {
-    question: "Is there an entrance exam?",
-    answer:
-      "Yes. All applicants take a written entrance test followed by an interview. Sample guidelines are shared after application submission.",
-  },
-  {
-    question: "Can I apply for both BIT and B.Tech Ed IT?",
-    answer:
-      "You select a primary program on the application. Contact admissions if you need guidance on choosing the right pathway.",
-  },
-  {
-    question: "What documents are required?",
-    answer:
-      "Academic certificates, transcripts, citizenship or passport copy, passport-size photos, and any additional documents listed in the offer letter.",
-  },
-];
+const REQUIREMENTS_BENTO = content.requirementsBento as BentoItem[];
+const ADMISSION_STEPS = content.admissionSteps;
+const DEADLINES = content.deadlines;
+const SUPPORT_SERVICES = resolveIcons(content.supportServices);
+const FAQ = content.faq;
 
 export const Route = createFileRoute("/admissions")({
   head: () => ({
@@ -190,32 +100,7 @@ function AdmissionsPage() {
         description="Our admissions team offers guidance on programs, documents, scholarships, and campus visits."
         className="bg-muted/30"
       >
-        <IconFeatureGrid
-          items={[
-            {
-              icon: FileText,
-              title: "Application help",
-              description:
-                "Walkthroughs for online forms, document uploads, and program selection.",
-            },
-            {
-              icon: ClipboardList,
-              title: "Document checklist",
-              description:
-                "Personalized list of required papers based on your academic background.",
-            },
-            {
-              icon: Calendar,
-              title: "Exam scheduling",
-              description: "Flexible entrance exam slots with advance notice and preparation tips.",
-            },
-            {
-              icon: GraduationCap,
-              title: "Program counseling",
-              description: "One-on-one sessions to choose between BIT and B.Tech Ed IT.",
-            },
-          ]}
-        />
+        <IconFeatureGrid items={SUPPORT_SERVICES} />
       </PageSection>
 
       <PageSection
