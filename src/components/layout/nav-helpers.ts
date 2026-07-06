@@ -5,7 +5,7 @@ export type NavGroup = { label: string; to?: string; children?: NavLink[] };
 // responsive while still covering every section of the sitemap.
 export const NAV_MENU: NavGroup[] = [
   { label: "Home", to: "/" },
-  { label: "About Us", to: "/about/about" },
+  { label: "About Us", to: "/about" },
   {
     label: "Programs",
     to: "/programs",
@@ -30,7 +30,7 @@ export const NAV_MENU: NavGroup[] = [
       { label: "Campus Life", to: "/student-life/campus-life" },
     ],
   },
-  { label: "Visit Us", to: "/visit/visit-us" },
+  { label: "Visit Us", to: "/visit" },
   { label: "Careers", to: "/careers" },
 ];
 

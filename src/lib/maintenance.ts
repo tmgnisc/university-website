@@ -4,7 +4,7 @@ export const MAINTENANCE_PATH = "/maintenance";
 // (unbuilt features, dead buttons, forms) route to the maintenance page.
 const LIVE_ROUTES = [
   "/",
-  "/about/about",
+  "/about",
   "/programs",
   "/academics/admissions",
   "/academics/scholarships",
@@ -14,7 +14,7 @@ const LIVE_ROUTES = [
   "/careers",
   "/student-life/student-experience",
   "/student-life/student-support",
-  "/visit/visit-us",
+  "/visit",
   "/visit/virtual-tour",
   "/about/ku-affiliation",
   "/about/industry-exposure",

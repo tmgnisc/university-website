@@ -18,7 +18,7 @@ import content from "@/data/pages/visit-us.json";
 
 const EXPLORE_WAYS = resolveIcons(content.exploreWays);
 
-export const Route = createFileRoute("/visit/visit-us")({
+export const Route = createFileRoute("/visit/")({
   head: () => ({
     meta: [
       { title: "Visit Us — WhiteHouse College of Business & Technology" },
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/visit/visit-us")({
           "Plan your visit to WCBT Jhapa — campus location, open days, campus visit booking, virtual tour, and transport.",
       },
     ],
-    links: [{ rel: "canonical", href: "/visit/visit-us" }],
+    links: [{ rel: "canonical", href: "/visit" }],
   }),
   component: VisitUsPage,
 });

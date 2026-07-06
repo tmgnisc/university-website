@@ -18,7 +18,7 @@ const CONTACT_BENTO = content.bento as BentoItem[];
 const CHANNELS = resolveIcons(content.channels);
 const FAQ = content.faq;
 
-export const Route = createFileRoute("/contact")({
+export const Route = createFileRoute("/contact/")({
   head: () => ({
     meta: [
       { title: "Contact — WhiteHouse College of Business & Technology" },

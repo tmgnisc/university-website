@@ -141,7 +141,7 @@ function ClosingCTA() {
             size="lg"
             className="rounded-full bg-primary px-8 text-primary-foreground hover:bg-primary/90"
           >
-            <Link to="/visit/visit-us">
+            <Link to="/visit">
               Book a visit <ArrowRight className="ml-1 size-4" />
             </Link>
           </Button>

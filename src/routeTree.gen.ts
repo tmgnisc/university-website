@@ -11,12 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as MaintenanceRouteImport } from './routes/maintenance'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CareersRouteImport } from './routes/careers'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VisitIndexRouteImport } from './routes/visit/index'
 import { Route as ProgramsIndexRouteImport } from './routes/programs/index'
-import { Route as VisitVisitUsRouteImport } from './routes/visit/visit-us'
+import { Route as ContactIndexRouteImport } from './routes/contact/index'
+import { Route as CareersIndexRouteImport } from './routes/careers/index'
+import { Route as AboutIndexRouteImport } from './routes/about/index'
 import { Route as VisitVirtualTourRouteImport } from './routes/visit/virtual-tour'
 import { Route as StudentLifeStudentSupportRouteImport } from './routes/student-life/student-support'
 import { Route as StudentLifeStudentExperienceRouteImport } from './routes/student-life/student-experience'
@@ -33,7 +34,6 @@ import { Route as AboutLegacyRouteImport } from './routes/about/legacy'
 import { Route as AboutKuAffiliationRouteImport } from './routes/about/ku-affiliation'
 import { Route as AboutIndustryExposureRouteImport } from './routes/about/industry-exposure'
 import { Route as AboutGovernanceRouteImport } from './routes/about/governance'
-import { Route as AboutAboutRouteImport } from './routes/about/about'
 import { Route as AdminAuthedIndexRouteImport } from './routes/admin/_authed/index'
 import { Route as AdminAuthedSiteRouteImport } from './routes/admin/_authed/site'
 import { Route as AdminAuthedScholarshipsRouteImport } from './routes/admin/_authed/scholarships'
@@ -52,16 +52,6 @@ const MaintenanceRoute = MaintenanceRouteImport.update({
   path: '/maintenance',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CareersRoute = CareersRouteImport.update({
-  id: '/careers',
-  path: '/careers',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SplatRoute = SplatRouteImport.update({
   id: '/$',
   path: '/$',
@@ -72,14 +62,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VisitIndexRoute = VisitIndexRouteImport.update({
+  id: '/visit/',
+  path: '/visit/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProgramsIndexRoute = ProgramsIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => ProgramsRoute,
 } as any)
-const VisitVisitUsRoute = VisitVisitUsRouteImport.update({
-  id: '/visit/visit-us',
-  path: '/visit/visit-us',
+const ContactIndexRoute = ContactIndexRouteImport.update({
+  id: '/contact/',
+  path: '/contact/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersIndexRoute = CareersIndexRouteImport.update({
+  id: '/careers/',
+  path: '/careers/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutIndexRoute = AboutIndexRouteImport.update({
+  id: '/about/',
+  path: '/about/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VisitVirtualTourRoute = VisitVirtualTourRouteImport.update({
@@ -164,11 +169,6 @@ const AboutGovernanceRoute = AboutGovernanceRouteImport.update({
   path: '/about/governance',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutAboutRoute = AboutAboutRouteImport.update({
-  id: '/about/about',
-  path: '/about/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AdminAuthedIndexRoute = AdminAuthedIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -208,11 +208,8 @@ const AdminAuthedChatbotRoute = AdminAuthedChatbotRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
-  '/careers': typeof CareersRoute
-  '/contact': typeof ContactRoute
   '/maintenance': typeof MaintenanceRoute
   '/programs': typeof ProgramsRouteWithChildren
-  '/about/about': typeof AboutAboutRoute
   '/about/governance': typeof AboutGovernanceRoute
   '/about/industry-exposure': typeof AboutIndustryExposureRoute
   '/about/ku-affiliation': typeof AboutKuAffiliationRoute
@@ -229,8 +226,11 @@ export interface FileRoutesByFullPath {
   '/student-life/student-experience': typeof StudentLifeStudentExperienceRoute
   '/student-life/student-support': typeof StudentLifeStudentSupportRoute
   '/visit/virtual-tour': typeof VisitVirtualTourRoute
-  '/visit/visit-us': typeof VisitVisitUsRoute
+  '/about/': typeof AboutIndexRoute
+  '/careers/': typeof CareersIndexRoute
+  '/contact/': typeof ContactIndexRoute
   '/programs/': typeof ProgramsIndexRoute
+  '/visit/': typeof VisitIndexRoute
   '/admin/chatbot': typeof AdminAuthedChatbotRoute
   '/admin/news': typeof AdminAuthedNewsRoute
   '/admin/openings': typeof AdminAuthedOpeningsRoute
@@ -242,10 +242,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
-  '/careers': typeof CareersRoute
-  '/contact': typeof ContactRoute
   '/maintenance': typeof MaintenanceRoute
-  '/about/about': typeof AboutAboutRoute
   '/about/governance': typeof AboutGovernanceRoute
   '/about/industry-exposure': typeof AboutIndustryExposureRoute
   '/about/ku-affiliation': typeof AboutKuAffiliationRoute
@@ -261,8 +258,11 @@ export interface FileRoutesByTo {
   '/student-life/student-experience': typeof StudentLifeStudentExperienceRoute
   '/student-life/student-support': typeof StudentLifeStudentSupportRoute
   '/visit/virtual-tour': typeof VisitVirtualTourRoute
-  '/visit/visit-us': typeof VisitVisitUsRoute
+  '/about': typeof AboutIndexRoute
+  '/careers': typeof CareersIndexRoute
+  '/contact': typeof ContactIndexRoute
   '/programs': typeof ProgramsIndexRoute
+  '/visit': typeof VisitIndexRoute
   '/admin/chatbot': typeof AdminAuthedChatbotRoute
   '/admin/news': typeof AdminAuthedNewsRoute
   '/admin/openings': typeof AdminAuthedOpeningsRoute
@@ -275,11 +275,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
-  '/careers': typeof CareersRoute
-  '/contact': typeof ContactRoute
   '/maintenance': typeof MaintenanceRoute
   '/programs': typeof ProgramsRouteWithChildren
-  '/about/about': typeof AboutAboutRoute
   '/about/governance': typeof AboutGovernanceRoute
   '/about/industry-exposure': typeof AboutIndustryExposureRoute
   '/about/ku-affiliation': typeof AboutKuAffiliationRoute
@@ -296,8 +293,11 @@ export interface FileRoutesById {
   '/student-life/student-experience': typeof StudentLifeStudentExperienceRoute
   '/student-life/student-support': typeof StudentLifeStudentSupportRoute
   '/visit/virtual-tour': typeof VisitVirtualTourRoute
-  '/visit/visit-us': typeof VisitVisitUsRoute
+  '/about/': typeof AboutIndexRoute
+  '/careers/': typeof CareersIndexRoute
+  '/contact/': typeof ContactIndexRoute
   '/programs/': typeof ProgramsIndexRoute
+  '/visit/': typeof VisitIndexRoute
   '/admin/_authed/chatbot': typeof AdminAuthedChatbotRoute
   '/admin/_authed/news': typeof AdminAuthedNewsRoute
   '/admin/_authed/openings': typeof AdminAuthedOpeningsRoute
@@ -311,11 +311,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$'
-    | '/careers'
-    | '/contact'
     | '/maintenance'
     | '/programs'
-    | '/about/about'
     | '/about/governance'
     | '/about/industry-exposure'
     | '/about/ku-affiliation'
@@ -332,8 +329,11 @@ export interface FileRouteTypes {
     | '/student-life/student-experience'
     | '/student-life/student-support'
     | '/visit/virtual-tour'
-    | '/visit/visit-us'
+    | '/about/'
+    | '/careers/'
+    | '/contact/'
     | '/programs/'
+    | '/visit/'
     | '/admin/chatbot'
     | '/admin/news'
     | '/admin/openings'
@@ -345,10 +345,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/$'
-    | '/careers'
-    | '/contact'
     | '/maintenance'
-    | '/about/about'
     | '/about/governance'
     | '/about/industry-exposure'
     | '/about/ku-affiliation'
@@ -364,8 +361,11 @@ export interface FileRouteTypes {
     | '/student-life/student-experience'
     | '/student-life/student-support'
     | '/visit/virtual-tour'
-    | '/visit/visit-us'
+    | '/about'
+    | '/careers'
+    | '/contact'
     | '/programs'
+    | '/visit'
     | '/admin/chatbot'
     | '/admin/news'
     | '/admin/openings'
@@ -377,11 +377,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$'
-    | '/careers'
-    | '/contact'
     | '/maintenance'
     | '/programs'
-    | '/about/about'
     | '/about/governance'
     | '/about/industry-exposure'
     | '/about/ku-affiliation'
@@ -398,8 +395,11 @@ export interface FileRouteTypes {
     | '/student-life/student-experience'
     | '/student-life/student-support'
     | '/visit/virtual-tour'
-    | '/visit/visit-us'
+    | '/about/'
+    | '/careers/'
+    | '/contact/'
     | '/programs/'
+    | '/visit/'
     | '/admin/_authed/chatbot'
     | '/admin/_authed/news'
     | '/admin/_authed/openings'
@@ -412,11 +412,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SplatRoute: typeof SplatRoute
-  CareersRoute: typeof CareersRoute
-  ContactRoute: typeof ContactRoute
   MaintenanceRoute: typeof MaintenanceRoute
   ProgramsRoute: typeof ProgramsRouteWithChildren
-  AboutAboutRoute: typeof AboutAboutRoute
   AboutGovernanceRoute: typeof AboutGovernanceRoute
   AboutIndustryExposureRoute: typeof AboutIndustryExposureRoute
   AboutKuAffiliationRoute: typeof AboutKuAffiliationRoute
@@ -431,7 +428,10 @@ export interface RootRouteChildren {
   StudentLifeStudentExperienceRoute: typeof StudentLifeStudentExperienceRoute
   StudentLifeStudentSupportRoute: typeof StudentLifeStudentSupportRoute
   VisitVirtualTourRoute: typeof VisitVirtualTourRoute
-  VisitVisitUsRoute: typeof VisitVisitUsRoute
+  AboutIndexRoute: typeof AboutIndexRoute
+  CareersIndexRoute: typeof CareersIndexRoute
+  ContactIndexRoute: typeof ContactIndexRoute
+  VisitIndexRoute: typeof VisitIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -450,20 +450,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MaintenanceRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/careers': {
-      id: '/careers'
-      path: '/careers'
-      fullPath: '/careers'
-      preLoaderRoute: typeof CareersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/$': {
       id: '/$'
       path: '/$'
@@ -478,6 +464,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/visit/': {
+      id: '/visit/'
+      path: '/visit'
+      fullPath: '/visit/'
+      preLoaderRoute: typeof VisitIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/programs/': {
       id: '/programs/'
       path: '/'
@@ -485,11 +478,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramsIndexRouteImport
       parentRoute: typeof ProgramsRoute
     }
-    '/visit/visit-us': {
-      id: '/visit/visit-us'
-      path: '/visit/visit-us'
-      fullPath: '/visit/visit-us'
-      preLoaderRoute: typeof VisitVisitUsRouteImport
+    '/contact/': {
+      id: '/contact/'
+      path: '/contact'
+      fullPath: '/contact/'
+      preLoaderRoute: typeof ContactIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers/': {
+      id: '/careers/'
+      path: '/careers'
+      fullPath: '/careers/'
+      preLoaderRoute: typeof CareersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about/': {
+      id: '/about/'
+      path: '/about'
+      fullPath: '/about/'
+      preLoaderRoute: typeof AboutIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/visit/virtual-tour': {
@@ -604,13 +611,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutGovernanceRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about/about': {
-      id: '/about/about'
-      path: '/about/about'
-      fullPath: '/about/about'
-      preLoaderRoute: typeof AboutAboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/admin/_authed/': {
       id: '/admin/_authed/'
       path: '/'
@@ -706,11 +706,8 @@ const AdminAuthedRouteWithChildren = AdminAuthedRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SplatRoute: SplatRoute,
-  CareersRoute: CareersRoute,
-  ContactRoute: ContactRoute,
   MaintenanceRoute: MaintenanceRoute,
   ProgramsRoute: ProgramsRouteWithChildren,
-  AboutAboutRoute: AboutAboutRoute,
   AboutGovernanceRoute: AboutGovernanceRoute,
   AboutIndustryExposureRoute: AboutIndustryExposureRoute,
   AboutKuAffiliationRoute: AboutKuAffiliationRoute,
@@ -725,7 +722,10 @@ const rootRouteChildren: RootRouteChildren = {
   StudentLifeStudentExperienceRoute: StudentLifeStudentExperienceRoute,
   StudentLifeStudentSupportRoute: StudentLifeStudentSupportRoute,
   VisitVirtualTourRoute: VisitVirtualTourRoute,
-  VisitVisitUsRoute: VisitVisitUsRoute,
+  AboutIndexRoute: AboutIndexRoute,
+  CareersIndexRoute: CareersIndexRoute,
+  ContactIndexRoute: ContactIndexRoute,
+  VisitIndexRoute: VisitIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

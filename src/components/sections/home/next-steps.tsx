@@ -27,7 +27,7 @@ const steps = [
     icon: MapPin,
     title: "Jhapa Campus",
     desc: "Visit & explore our facilities.",
-    to: "/visit/visit-us",
+    to: "/visit",
   },
 ];
 

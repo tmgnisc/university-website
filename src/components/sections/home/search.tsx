@@ -69,7 +69,7 @@ export function Search_() {
       keywords: ["contact", "phone", "email", "inquiry", "message"],
     },
     {
-      to: "/visit/visit-us" as const,
+      to: "/visit" as const,
       title: "Visit Us",
       description: "Campus location, map, and visit information.",
       keywords: ["visit", "location", "map", "campus", "address"],
