@@ -53,11 +53,6 @@ export function Research() {
               loading="lazy"
               className="relative rounded-3xl w-full aspect-[4/3] object-cover shadow-2xl shadow-primary/20"
             />
-            <div className="mt-3 text-center">
-              <p className="text-sm font-medium text-foreground">
-                Premises of Nidi Secondary School & Indreni Campus
-              </p>
-            </div>
           </div>
         </Reveal>
       </SectionContainer>

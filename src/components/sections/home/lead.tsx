@@ -46,7 +46,7 @@ export function Lead() {
           >
             <iframe
               title="Jhapa campus map"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=87.6857%2C26.6586%2C87.7257%2C26.6986&layer=mapnik"
+              src="https://www.google.com/maps?q=WhiteHouse+College+of+Business+and+Technology+-+Birtamode&ll=26.6355331,87.9699395&z=16&output=embed"
               className="size-full"
               loading="lazy"
             />
