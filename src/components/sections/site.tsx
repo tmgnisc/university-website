@@ -192,9 +192,8 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 bg-white transition-all duration-300 ${
-        scrolled ? "shadow-md border-b border-border" : "border-b border-border/60"
-      }`}
+      className={`fixed top-0 inset-x-0 z-50 bg-white transition-all duration-300 ${scrolled ? "shadow-md border-b border-border" : "border-b border-border/60"
+        }`}
     >
       <div className={cn(LAYOUT.container, "h-24 flex items-center justify-between")}>
         <Link to="/" className="flex items-center">
@@ -580,9 +579,9 @@ export function Search_() {
   const getSearchResults = (value: string) =>
     value.trim()
       ? searchTargets
-          .map((target) => ({ ...target, score: getSearchScore(value, target) }))
-          .filter((target) => target.score > 0)
-          .sort((a, b) => b.score - a.score)
+        .map((target) => ({ ...target, score: getSearchScore(value, target) }))
+        .filter((target) => target.score > 0)
+        .sort((a, b) => b.score - a.score)
       : [];
 
   const hasSearchTerm = term.trim().length > 0;
@@ -895,11 +894,6 @@ export function Research() {
               loading="lazy"
               className="relative rounded-3xl w-full aspect-[4/3] object-cover shadow-2xl shadow-primary/20"
             />
-            <div className="mt-3 text-center">
-              <p className="text-sm font-medium text-foreground">
-                Premises of Nidi Secondary School & Indreni Campus
-              </p>
-            </div>
           </div>
         </Reveal>
       </SectionContainer>
@@ -1476,8 +1470,7 @@ export function Lead() {
           >
             <iframe
               title="Jhapa campus map"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=87.6857%2C26.6586%2C87.7257%2C26.6986&layer=mapnik"
-              className="size-full"
+              src="https://www.google.com/maps?q=WhiteHouse+College+of+Business+and+Technology+-+Birtamode&ll=26.6355331,87.9699395&z=16&output=embed" className="size-full"
               loading="lazy"
             />
           </div>
