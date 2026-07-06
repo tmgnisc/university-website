@@ -76,12 +76,12 @@ export function Hero() {
               Scholarship Information
             </Button>
           </Link>
-          <a
-            href="/maintenance"
+          <Link
+            to="/visit/virtual-tour"
             className="text-sm text-white/80 hover:text-white inline-flex items-center gap-1.5 underline-offset-4 hover:underline"
           >
             <Play className="size-4" /> Virtual Campus Tour
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
     </section>
