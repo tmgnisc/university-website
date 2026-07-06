@@ -20,7 +20,7 @@ const PROJECTS = content.projects;
 const PUBLICATIONS = content.publications;
 const FOCUS_AREAS = resolveIcons(content.focusAreas);
 
-export const Route = createFileRoute("/research")({
+export const Route = createFileRoute("/academics/research")({
   head: () => ({
     meta: [
       { title: "Research — WhiteHouse College of Business & Technology" },
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/research")({
           "Explore research labs, innovation projects, and publications at WCBT Jhapa Campus.",
       },
     ],
-    links: [{ rel: "canonical", href: "/research" }],
+    links: [{ rel: "canonical", href: "/academics/research" }],
   }),
   component: ResearchPage,
 });

@@ -19,11 +19,11 @@ export function Footer() {
     {
       h: "About",
       items: [
-        { label: "KU Affiliation", href: "/ku-affiliation" },
-        { label: "Industry Exposure", href: "/industry-exposure" },
-        { label: "Publications", href: "/publications" },
-        { label: "Legacy", href: "/legacy" },
-        { label: "Governance", href: "/governance" },
+        { label: "KU Affiliation", href: "/about/ku-affiliation" },
+        { label: "Industry Exposure", href: "/about/industry-exposure" },
+        { label: "Publications", href: "/about/publications" },
+        { label: "Legacy", href: "/about/legacy" },
+        { label: "Governance", href: "/about/governance" },
       ],
     },
     {
@@ -38,9 +38,9 @@ export function Footer() {
     {
       h: "Research",
       items: [
-        { label: "AI Labs", href: "/research" },
-        { label: "IoT Labs", href: "/research" },
-        { label: "Innovation Centers", href: "/research" },
+        { label: "AI Labs", href: "/academics/research" },
+        { label: "IoT Labs", href: "/academics/research" },
+        { label: "Innovation Centers", href: "/academics/research" },
       ],
     },
     {

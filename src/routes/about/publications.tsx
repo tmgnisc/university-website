@@ -10,7 +10,7 @@ import content from "@/data/pages/publications.json";
 const RESEARCH_ACTIVITIES = resolveIcons(content.researchActivities);
 const FOCUS_AREAS = content.focusAreas;
 
-export const Route = createFileRoute("/publications")({
+export const Route = createFileRoute("/about/publications")({
   head: () => ({
     meta: [
       { title: "Publications & Research — WhiteHouse College of Business & Technology" },
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/publications")({
         content: "Learn about our research culture and academic publishing initiatives.",
       },
     ],
-    links: [{ rel: "canonical", href: "/publications" }],
+    links: [{ rel: "canonical", href: "/about/publications" }],
   }),
   component: PublicationsPage,
 });

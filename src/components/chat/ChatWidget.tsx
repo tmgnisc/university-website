@@ -23,9 +23,9 @@ const chatbot = chatbotData as ChatbotData;
 // Quick navigation shown under each bot answer so users can jump straight to the
 // relevant page or start an application.
 const CHAT_LINKS: { label: string; to: string; hash?: string }[] = [
-  { label: "How to apply", to: "/admissions" },
+  { label: "How to apply", to: "/academics/admissions" },
   { label: "Programs", to: "/programs" },
-  { label: "Scholarships", to: "/scholarships" },
+  { label: "Scholarships", to: "/academics/scholarships" },
 ];
 
 type Message = {
@@ -311,7 +311,7 @@ export function ChatWidget() {
                             </Link>
                           ))}
                           <Link
-                            to="/admissions"
+                            to="/academics/admissions"
                             hash="apply"
                             onClick={() => setOpen(false)}
                             className="inline-flex items-center gap-1 rounded-full bg-primary px-2.5 py-1 text-[11px] font-semibold text-primary-foreground transition-colors hover:bg-primary/90"

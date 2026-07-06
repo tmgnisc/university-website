@@ -8,7 +8,7 @@ import { PageShell } from "@/components/sections/page-shell";
 
 import content from "@/data/pages/virtual-tour.json";
 
-export const Route = createFileRoute("/virtual-tour")({
+export const Route = createFileRoute("/visit/virtual-tour")({
   head: () => ({
     meta: [
       { title: "Virtual Campus Tour — WhiteHouse College of Business & Technology" },
@@ -18,7 +18,7 @@ export const Route = createFileRoute("/virtual-tour")({
           "Take a scrolling virtual tour of the WCBT campus in Jhapa — entrance, library, labs, lounges, and grounds.",
       },
     ],
-    links: [{ rel: "canonical", href: "/virtual-tour" }],
+    links: [{ rel: "canonical", href: "/visit/virtual-tour" }],
   }),
   component: VirtualTourPage,
 });
@@ -141,7 +141,7 @@ function ClosingCTA() {
             size="lg"
             className="rounded-full bg-primary px-8 text-primary-foreground hover:bg-primary/90"
           >
-            <Link to="/visit-us">
+            <Link to="/visit/visit-us">
               Book a visit <ArrowRight className="ml-1 size-4" />
             </Link>
           </Button>
@@ -151,7 +151,7 @@ function ClosingCTA() {
             variant="outline"
             className="rounded-full border-white/30 bg-transparent px-8 text-white hover:bg-white/10 hover:text-white"
           >
-            <Link to="/admissions">Admissions</Link>
+            <Link to="/academics/admissions">Admissions</Link>
           </Button>
         </div>
       </div>

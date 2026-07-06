@@ -9,13 +9,13 @@ const steps = [
     icon: FileText,
     title: "Admission Process",
     desc: "Eligibility, deadlines & documents.",
-    to: "/admissions",
+    to: "/academics/admissions",
   },
   {
     icon: GraduationCap,
     title: "Scholarship Schemes",
     desc: "Up to 75% merit-based aid.",
-    to: "/scholarships",
+    to: "/academics/scholarships",
   },
   {
     icon: MessageSquare,
@@ -27,7 +27,7 @@ const steps = [
     icon: MapPin,
     title: "Jhapa Campus",
     desc: "Visit & explore our facilities.",
-    to: "/visit-us",
+    to: "/visit/visit-us",
   },
 ];
 

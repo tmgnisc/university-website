@@ -39,19 +39,19 @@ export function Search_() {
       keywords: ["program", "programs", "course", "courses", "degree"],
     },
     {
-      to: "/admissions" as const,
+      to: "/academics/admissions" as const,
       title: "Admissions",
       description: "Eligibility, process, documents, and application guidance.",
       keywords: ["admission", "admissions", "apply", "enroll", "application"],
     },
     {
-      to: "/scholarships" as const,
+      to: "/academics/scholarships" as const,
       title: "Scholarships",
       description: "Merit aid, fee support, and scholarship options.",
       keywords: ["scholarship", "scholarships", "fee", "financial aid", "discount"],
     },
     {
-      to: "/research" as const,
+      to: "/academics/research" as const,
       title: "Research & Innovation",
       description: "Research labs, innovation projects, and publications.",
       keywords: ["research", "innovation", "ai lab", "iot lab", "publication"],
@@ -69,7 +69,7 @@ export function Search_() {
       keywords: ["contact", "phone", "email", "inquiry", "message"],
     },
     {
-      to: "/visit-us" as const,
+      to: "/visit/visit-us" as const,
       title: "Visit Us",
       description: "Campus location, map, and visit information.",
       keywords: ["visit", "location", "map", "campus", "address"],

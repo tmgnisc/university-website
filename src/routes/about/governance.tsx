@@ -11,7 +11,7 @@ const FRAMEWORK = resolveIcons(content.framework);
 const GOVERNING_BODIES = content.governingBodies;
 const PRINCIPLES = content.principles;
 
-export const Route = createFileRoute("/governance")({
+export const Route = createFileRoute("/about/governance")({
   head: () => ({
     meta: [
       { title: "Governance — WhiteHouse College of Business & Technology" },
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/governance")({
           "Discover our commitment to transparency, accountability, and institutional excellence.",
       },
     ],
-    links: [{ rel: "canonical", href: "/governance" }],
+    links: [{ rel: "canonical", href: "/about/governance" }],
   }),
   component: GovernancePage,
 });

@@ -67,7 +67,7 @@ export function Hero() {
               Explore Programs <ArrowRight className="ml-1 size-4" />
             </Button>
           </Link>
-          <Link to="/scholarships" className="inline-flex">
+          <Link to="/academics/scholarships" className="inline-flex">
             <Button
               size="lg"
               variant="outline"

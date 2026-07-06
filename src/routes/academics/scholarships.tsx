@@ -21,7 +21,7 @@ const APPLY_STEPS = content.applySteps;
 const COMMITMENT = resolveIcons(content.commitment);
 const FAQ = content.faq;
 
-export const Route = createFileRoute("/scholarships")({
+export const Route = createFileRoute("/academics/scholarships")({
   head: () => ({
     meta: [
       { title: "Scholarships — WhiteHouse College of Business & Technology" },
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/scholarships")({
           "Explore merit, need-based, and special scholarships at WCBT Jhapa Campus for BIT and B.Tech Ed IT students.",
       },
     ],
-    links: [{ rel: "canonical", href: "/scholarships" }],
+    links: [{ rel: "canonical", href: "/academics/scholarships" }],
   }),
   component: ScholarshipsPage,
 });
@@ -44,7 +44,7 @@ function ScholarshipsPage() {
         title="Making quality education accessible"
         description="WCBT offers a range of scholarships to recognize talent, support deserving students, and open doors for learners across Eastern Nepal."
         image="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1600&q=80"
-        primaryCta={{ label: "Apply for Scholarship", href: "/scholarships#apply" }}
+        primaryCta={{ label: "Apply for Scholarship", href: "/academics/scholarships#apply" }}
       />
 
       <HighlightBand

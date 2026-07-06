@@ -7,7 +7,7 @@ import { resolveIcons } from "@/lib/icon-registry";
 
 import content from "@/data/pages/legacy.json";
 
-export const Route = createFileRoute("/legacy")({
+export const Route = createFileRoute("/about/legacy")({
   head: () => ({
     meta: [
       { title: "Our Legacy — WhiteHouse College of Business & Technology" },
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/legacy")({
         content: "Discover the trust, achievements, and excellence that define our institution.",
       },
     ],
-    links: [{ rel: "canonical", href: "/legacy" }],
+    links: [{ rel: "canonical", href: "/about/legacy" }],
   }),
   component: LegacyPage,
 });

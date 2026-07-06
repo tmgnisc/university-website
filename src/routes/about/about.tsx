@@ -19,7 +19,7 @@ const ABOUT_BENTO = content.bento as BentoItem[];
 const CORE_VALUES = resolveIcons(content.coreValues);
 const MILESTONES = content.milestones;
 
-export const Route = createFileRoute("/about")({
+export const Route = createFileRoute("/about/about")({
   head: () => ({
     meta: [
       { title: "About — WhiteHouse College of Business & Technology" },
@@ -34,7 +34,7 @@ export const Route = createFileRoute("/about")({
         content: "Discover our story, mission, and academic partnership in Eastern Nepal.",
       },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: "/about/about" }],
   }),
   component: AboutPage,
 });

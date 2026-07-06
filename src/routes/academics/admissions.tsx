@@ -23,7 +23,7 @@ const DEADLINES = content.deadlines;
 const SUPPORT_SERVICES = resolveIcons(content.supportServices);
 const FAQ = content.faq;
 
-export const Route = createFileRoute("/admissions")({
+export const Route = createFileRoute("/academics/admissions")({
   head: () => ({
     meta: [
       { title: "Admissions — WhiteHouse College of Business & Technology" },
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/admissions")({
           "Apply to WCBT Jhapa Campus. Learn about eligibility, entrance exams, deadlines, and enrollment for BIT and B.Tech Ed IT programs.",
       },
     ],
-    links: [{ rel: "canonical", href: "/admissions" }],
+    links: [{ rel: "canonical", href: "/academics/admissions" }],
   }),
   component: AdmissionsPage,
 });
@@ -46,7 +46,7 @@ function AdmissionsPage() {
         title="Start your journey at WCBT"
         description="Admissions are open for Kathmandu University partnered BIT and B.Tech Ed IT programs. Follow the steps below to apply for the upcoming intake."
         image="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1600&q=80"
-        primaryCta={{ label: "Apply Now", href: "/admissions#apply" }}
+        primaryCta={{ label: "Apply Now", href: "/academics/admissions#apply" }}
         secondaryCta={{ label: "Contact Admissions", href: "/contact" }}
       />
 
