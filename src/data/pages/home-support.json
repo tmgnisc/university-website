@@ -1,0 +1,43 @@
+{
+  "supports": [
+    {
+      "icon": "Briefcase",
+      "title": "Paid Internships",
+      "value": 92,
+      "desc": "Industry placements with stipends.",
+      "detail": "Students are guided toward internship opportunities where classroom learning can be applied in real workplaces. The support team helps with readiness, placement coordination, and follow-up during the internship period.",
+      "includes": [
+        "Industry-linked placement opportunities",
+        "CV, interview, and workplace-readiness guidance",
+        "Coordination with partner organizations"
+      ],
+      "access": "Contact the placement or administration team to learn about active internship openings and eligibility."
+    },
+    {
+      "icon": "Laptop",
+      "title": "Laptop Installment Plan",
+      "value": 100,
+      "desc": "Flexible monthly EMI for every student.",
+      "detail": "The laptop installment plan helps students access the device they need for coursework, labs, projects, and online learning without paying the full amount at once.",
+      "includes": [
+        "Flexible monthly installment guidance",
+        "Support choosing a study-ready laptop",
+        "Simple coordination through the college office"
+      ],
+      "access": "Visit the administration office for current laptop-plan options, documents, and payment details."
+    },
+    {
+      "icon": "HeartHandshake",
+      "title": "Counseling Services",
+      "value": 80,
+      "desc": "Mental health & academic guidance.",
+      "detail": "Counseling support gives students a confidential place to talk through academic pressure, personal concerns, adjustment challenges, motivation, and wellbeing needs.",
+      "includes": [
+        "Confidential one-on-one guidance",
+        "Academic and wellbeing support",
+        "Referral direction when specialized help is needed"
+      ],
+      "access": "Request support through the administration desk or email the college support team."
+    }
+  ]
+}

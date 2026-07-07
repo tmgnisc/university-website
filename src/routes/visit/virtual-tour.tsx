@@ -6,7 +6,7 @@ import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/sections/page-shell";
 
-import content from "../../../utils/virtual-tour.json";
+import content from "@/data/pages/virtual-tour.json";
 
 export const Route = createFileRoute("/visit/virtual-tour")({
   head: () => ({
