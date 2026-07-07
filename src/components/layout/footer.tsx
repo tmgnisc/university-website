@@ -8,12 +8,13 @@ export function Footer() {
   const cols = [
     {
       h: "Community",
+      href: "/community",
       items: [
-        { label: "Board Members", href: "#" },
-        { label: "Advisors", href: "#" },
-        { label: "Faculty", href: "#" },
-        { label: "Administration", href: "#" },
-        { label: "International", href: "#" },
+        { label: "Board Members", href: "/board-members" },
+        { label: "Advisors", href: "/advisors" },
+        { label: "Faculty", href: "/faculty" },
+        { label: "Administration", href: "/administration" },
+        { label: "International", href: "/international" },
       ],
     },
     {
@@ -28,27 +29,28 @@ export function Footer() {
     },
     {
       h: "Vision",
+      href: "/vision",
       items: [
-        { label: "Mission", href: "#" },
-        { label: "Values", href: "#" },
-        { label: "Strategy", href: "#" },
-        { label: "Reports", href: "#" },
+        { label: "Mission", href: "/mission" },
+        { label: "Values", href: "/values" },
+        { label: "Strategy", href: "/strategy" },
+        { label: "Reports", href: "/reports" },
       ],
     },
     {
       h: "Research",
       items: [
-        { label: "AI Labs", href: "/academics/research" },
-        { label: "IoT Labs", href: "/academics/research" },
-        { label: "Innovation Centers", href: "/academics/research" },
+        { label: "AI Labs", href: "/ai-labs" },
+        { label: "IoT Labs", href: "/iot-labs" },
+        { label: "Innovation Centers", href: "/innovation-centers" },
       ],
     },
     {
       h: "Careers",
       items: [
-        { label: "Career Paths", href: "/careers" },
-        { label: "Graduate Success", href: "/careers" },
-        { label: "Placements", href: "#" },
+        { label: "Career Paths", href: "/career-paths" },
+        { label: "Graduate Success", href: "/graduate-success" },
+        { label: "Placements", href: "/placements" },
       ],
     },
   ];
@@ -67,15 +69,20 @@ export function Footer() {
         </div>
         {cols.map((c) => (
           <div key={c.h}>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider">{c.h}</h4>
+            <h4 className="text-sm font-semibold text-white uppercase tracking-wider">
+              {c.href ? (
+                <a href={c.href} className="hover:text-white/80 transition-colors">
+                  {c.h}
+                </a>
+              ) : (
+                c.h
+              )}
+            </h4>
             <ul className="mt-4 space-y-2 text-sm">
               {c.items.map((i) => (
-                <li key={typeof i === "string" ? i : i.label}>
-                  <a
-                    href={typeof i === "string" ? "#" : i.href}
-                    className="hover:text-white transition-colors"
-                  >
-                    {typeof i === "string" ? i : i.label}
+                <li key={i.label}>
+                  <a href={i.href} className="hover:text-white transition-colors">
+                    {i.label}
                   </a>
                 </li>
               ))}
