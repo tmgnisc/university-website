@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProgramsRouteImport } from './routes/programs'
+import { Route as NotFoundPageRouteImport } from './routes/not-found-page'
 import { Route as MaintenanceRouteImport } from './routes/maintenance'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
@@ -45,6 +46,11 @@ import { Route as AdminAuthedChatbotRouteImport } from './routes/admin/_authed/c
 const ProgramsRoute = ProgramsRouteImport.update({
   id: '/programs',
   path: '/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotFoundPageRoute = NotFoundPageRouteImport.update({
+  id: '/not-found-page',
+  path: '/not-found-page',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MaintenanceRoute = MaintenanceRouteImport.update({
@@ -209,6 +215,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/maintenance': typeof MaintenanceRoute
+  '/not-found-page': typeof NotFoundPageRoute
   '/programs': typeof ProgramsRouteWithChildren
   '/about/governance': typeof AboutGovernanceRoute
   '/about/industry-exposure': typeof AboutIndustryExposureRoute
@@ -243,6 +250,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/maintenance': typeof MaintenanceRoute
+  '/not-found-page': typeof NotFoundPageRoute
   '/about/governance': typeof AboutGovernanceRoute
   '/about/industry-exposure': typeof AboutIndustryExposureRoute
   '/about/ku-affiliation': typeof AboutKuAffiliationRoute
@@ -276,6 +284,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/maintenance': typeof MaintenanceRoute
+  '/not-found-page': typeof NotFoundPageRoute
   '/programs': typeof ProgramsRouteWithChildren
   '/about/governance': typeof AboutGovernanceRoute
   '/about/industry-exposure': typeof AboutIndustryExposureRoute
@@ -312,6 +321,7 @@ export interface FileRouteTypes {
     | '/'
     | '/$'
     | '/maintenance'
+    | '/not-found-page'
     | '/programs'
     | '/about/governance'
     | '/about/industry-exposure'
@@ -346,6 +356,7 @@ export interface FileRouteTypes {
     | '/'
     | '/$'
     | '/maintenance'
+    | '/not-found-page'
     | '/about/governance'
     | '/about/industry-exposure'
     | '/about/ku-affiliation'
@@ -378,6 +389,7 @@ export interface FileRouteTypes {
     | '/'
     | '/$'
     | '/maintenance'
+    | '/not-found-page'
     | '/programs'
     | '/about/governance'
     | '/about/industry-exposure'
@@ -413,6 +425,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SplatRoute: typeof SplatRoute
   MaintenanceRoute: typeof MaintenanceRoute
+  NotFoundPageRoute: typeof NotFoundPageRoute
   ProgramsRoute: typeof ProgramsRouteWithChildren
   AboutGovernanceRoute: typeof AboutGovernanceRoute
   AboutIndustryExposureRoute: typeof AboutIndustryExposureRoute
@@ -441,6 +454,13 @@ declare module '@tanstack/react-router' {
       path: '/programs'
       fullPath: '/programs'
       preLoaderRoute: typeof ProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/not-found-page': {
+      id: '/not-found-page'
+      path: '/not-found-page'
+      fullPath: '/not-found-page'
+      preLoaderRoute: typeof NotFoundPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/maintenance': {
@@ -707,6 +727,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SplatRoute: SplatRoute,
   MaintenanceRoute: MaintenanceRoute,
+  NotFoundPageRoute: NotFoundPageRoute,
   ProgramsRoute: ProgramsRouteWithChildren,
   AboutGovernanceRoute: AboutGovernanceRoute,
   AboutIndustryExposureRoute: AboutIndustryExposureRoute,
