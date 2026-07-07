@@ -5,7 +5,7 @@ import { PageHero } from "@/components/sections/bento";
 import { CtaBand, IconFeatureGrid, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
 
-export const Route = createFileRoute("/values")({
+export const Route = createFileRoute("/vision/values")({
   head: () => ({
     meta: [
       { title: "Values — WhiteHouse College of Business & Technology" },
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/values")({
         content: "The values that guide teaching, leadership, and student support at WCBT.",
       },
     ],
-    links: [{ rel: "canonical", href: "/values" }],
+    links: [{ rel: "canonical", href: "/vision/values" }],
   }),
   component: ValuesPage,
 });

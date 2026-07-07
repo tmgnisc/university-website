@@ -9,7 +9,7 @@ import content from "@/data/pages/careers.json";
 
 const PATHS = content.careerPaths;
 
-export const Route = createFileRoute("/career-paths")({
+export const Route = createFileRoute("/careers/career-paths")({
   head: () => ({
     meta: [
       { title: "Career Paths — WhiteHouse College of Business & Technology" },
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/career-paths")({
           "Career paths available to WCBT graduates in technology, education, data, and entrepreneurship.",
       },
     ],
-    links: [{ rel: "canonical", href: "/career-paths" }],
+    links: [{ rel: "canonical", href: "/careers/career-paths" }],
   }),
   component: CareerPathsPage,
 });

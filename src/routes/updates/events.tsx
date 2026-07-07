@@ -5,7 +5,7 @@ import { PageHero } from "@/components/sections/bento";
 import { CtaBand, IconFeatureGrid, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
 
-export const Route = createFileRoute("/events")({
+export const Route = createFileRoute("/updates/events")({
   head: () => ({
     meta: [
       { title: "Events — WhiteHouse College of Business & Technology" },
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/events")({
         content: "Campus events, lectures, workshops, and student activities at WCBT.",
       },
     ],
-    links: [{ rel: "canonical", href: "/events" }],
+    links: [{ rel: "canonical", href: "/updates/events" }],
   }),
   component: EventsPage,
 });

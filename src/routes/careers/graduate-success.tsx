@@ -5,7 +5,7 @@ import { PageHero } from "@/components/sections/bento";
 import { CtaBand, IconFeatureGrid, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
 
-export const Route = createFileRoute("/graduate-success")({
+export const Route = createFileRoute("/careers/graduate-success")({
   head: () => ({
     meta: [
       { title: "Graduate Success — WhiteHouse College of Business & Technology" },
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/graduate-success")({
         content: "Graduate outcomes, employability, further study, and career support at WCBT.",
       },
     ],
-    links: [{ rel: "canonical", href: "/graduate-success" }],
+    links: [{ rel: "canonical", href: "/careers/graduate-success" }],
   }),
   component: GraduateSuccessPage,
 });

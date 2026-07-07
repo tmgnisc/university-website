@@ -5,7 +5,7 @@ import { PageHero } from "@/components/sections/bento";
 import { CtaBand, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
 
-export const Route = createFileRoute("/community")({
+export const Route = createFileRoute("/community/")({
   head: () => ({
     meta: [
       { title: "Community — WhiteHouse College of Business & Technology" },
@@ -25,7 +25,7 @@ const COMMUNITY_SECTIONS = [
     id: "board-members",
     icon: ShieldCheck,
     title: "Board Members",
-    href: "/board-members",
+    href: "/community/board-members",
     description:
       "Our board provides strategic direction, institutional oversight, and long-term guidance for sustainable academic growth.",
   },
@@ -33,7 +33,7 @@ const COMMUNITY_SECTIONS = [
     id: "advisors",
     icon: Handshake,
     title: "Advisors",
-    href: "/advisors",
+    href: "/community/advisors",
     description:
       "Academic and industry advisors help align programs, projects, and student exposure with real workforce needs.",
   },
@@ -41,7 +41,7 @@ const COMMUNITY_SECTIONS = [
     id: "faculty",
     icon: GraduationCap,
     title: "Faculty",
-    href: "/faculty",
+    href: "/community/faculty",
     description:
       "Faculty members bring subject expertise, mentoring, and project-based learning into the classroom.",
   },
@@ -49,7 +49,7 @@ const COMMUNITY_SECTIONS = [
     id: "administration",
     icon: Users,
     title: "Administration",
-    href: "/administration",
+    href: "/community/administration",
     description:
       "The administration team supports admissions, student services, operations, and daily campus coordination.",
   },
@@ -57,7 +57,7 @@ const COMMUNITY_SECTIONS = [
     id: "international",
     icon: Globe2,
     title: "International",
-    href: "/international",
+    href: "/community/international",
     description:
       "WCBT encourages global perspectives through academic standards, collaboration, digital learning, and future mobility pathways.",
   },

@@ -5,7 +5,7 @@ import { PageHero } from "@/components/sections/bento";
 import { CtaBand, IconFeatureGrid, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
 
-export const Route = createFileRoute("/strategy")({
+export const Route = createFileRoute("/vision/strategy")({
   head: () => ({
     meta: [
       { title: "Strategy — WhiteHouse College of Business & Technology" },
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/strategy")({
           "WCBT strategic priorities for academic quality, industry exposure, research, and student success.",
       },
     ],
-    links: [{ rel: "canonical", href: "/strategy" }],
+    links: [{ rel: "canonical", href: "/vision/strategy" }],
   }),
   component: StrategyPage,
 });

@@ -6,7 +6,7 @@ import { PageHero } from "@/components/sections/bento";
 import { CtaBand, IconFeatureGrid, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
 
-export const Route = createFileRoute("/iot-labs")({
+export const Route = createFileRoute("/research/iot-labs")({
   head: () => ({
     meta: [
       { title: "IoT Labs — WhiteHouse College of Business & Technology" },
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/iot-labs")({
         content: "IoT lab learning, sensors, automation, and connected systems exposure at WCBT.",
       },
     ],
-    links: [{ rel: "canonical", href: "/iot-labs" }],
+    links: [{ rel: "canonical", href: "/research/iot-labs" }],
   }),
   component: IotLabsPage,
 });

@@ -10,11 +10,11 @@ export function Footer() {
       h: "Community",
       href: "/community",
       items: [
-        { label: "Board Members", href: "/board-members" },
-        { label: "Advisors", href: "/advisors" },
-        { label: "Faculty", href: "/faculty" },
-        { label: "Administration", href: "/administration" },
-        { label: "International", href: "/international" },
+        { label: "Board Members", href: "/community/board-members" },
+        { label: "Advisors", href: "/community/advisors" },
+        { label: "Faculty", href: "/community/faculty" },
+        { label: "Administration", href: "/community/administration" },
+        { label: "International", href: "/community/international" },
       ],
     },
     {
@@ -31,26 +31,26 @@ export function Footer() {
       h: "Vision",
       href: "/vision",
       items: [
-        { label: "Mission", href: "/mission" },
-        { label: "Values", href: "/values" },
-        { label: "Strategy", href: "/strategy" },
-        { label: "Reports", href: "/reports" },
+        { label: "Mission", href: "/vision/mission" },
+        { label: "Values", href: "/vision/values" },
+        { label: "Strategy", href: "/vision/strategy" },
+        { label: "Reports", href: "/vision/reports" },
       ],
     },
     {
       h: "Research",
       items: [
-        { label: "AI Labs", href: "/ai-labs" },
-        { label: "IoT Labs", href: "/iot-labs" },
-        { label: "Innovation Centers", href: "/innovation-centers" },
+        { label: "AI Labs", href: "/research/ai-labs" },
+        { label: "IoT Labs", href: "/research/iot-labs" },
+        { label: "Innovation Centers", href: "/research/innovation-centers" },
       ],
     },
     {
       h: "Careers",
       items: [
-        { label: "Career Paths", href: "/career-paths" },
-        { label: "Graduate Success", href: "/graduate-success" },
-        { label: "Placements", href: "/placements" },
+        { label: "Career Paths", href: "/careers/career-paths" },
+        { label: "Graduate Success", href: "/careers/graduate-success" },
+        { label: "Placements", href: "/careers/placements" },
       ],
     },
   ];

@@ -9,41 +9,41 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as VisionRouteImport } from './routes/vision'
-import { Route as ValuesRouteImport } from './routes/values'
-import { Route as StrategyRouteImport } from './routes/strategy'
-import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as ProgramsRouteImport } from './routes/programs'
-import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as NotFoundPageRouteImport } from './routes/not-found-page'
-import { Route as NewsRouteImport } from './routes/news'
-import { Route as MissionRouteImport } from './routes/mission'
 import { Route as MaintenanceRouteImport } from './routes/maintenance'
-import { Route as IotLabsRouteImport } from './routes/iot-labs'
-import { Route as InternationalRouteImport } from './routes/international'
-import { Route as InnovationCentersRouteImport } from './routes/innovation-centers'
-import { Route as GraduateSuccessRouteImport } from './routes/graduate-success'
-import { Route as FacultyRouteImport } from './routes/faculty'
-import { Route as EventsRouteImport } from './routes/events'
-import { Route as CommunityRouteImport } from './routes/community'
-import { Route as CareerPathsRouteImport } from './routes/career-paths'
-import { Route as BoardMembersRouteImport } from './routes/board-members'
-import { Route as AiLabsRouteImport } from './routes/ai-labs'
-import { Route as AdvisorsRouteImport } from './routes/advisors'
-import { Route as AdministrationRouteImport } from './routes/administration'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as VisitIndexRouteImport } from './routes/visit/index'
+import { Route as VisionIndexRouteImport } from './routes/vision/index'
 import { Route as ProgramsIndexRouteImport } from './routes/programs/index'
 import { Route as ContactIndexRouteImport } from './routes/contact/index'
+import { Route as CommunityIndexRouteImport } from './routes/community/index'
 import { Route as CareersIndexRouteImport } from './routes/careers/index'
 import { Route as AboutIndexRouteImport } from './routes/about/index'
 import { Route as VisitVirtualTourRouteImport } from './routes/visit/virtual-tour'
+import { Route as VisionValuesRouteImport } from './routes/vision/values'
+import { Route as VisionStrategyRouteImport } from './routes/vision/strategy'
+import { Route as VisionReportsRouteImport } from './routes/vision/reports'
+import { Route as VisionMissionRouteImport } from './routes/vision/mission'
+import { Route as UpdatesNewsRouteImport } from './routes/updates/news'
+import { Route as UpdatesEventsRouteImport } from './routes/updates/events'
 import { Route as StudentLifeStudentSupportRouteImport } from './routes/student-life/student-support'
 import { Route as StudentLifeStudentExperienceRouteImport } from './routes/student-life/student-experience'
 import { Route as StudentLifeCampusLifeRouteImport } from './routes/student-life/campus-life'
+import { Route as ResearchIotLabsRouteImport } from './routes/research/iot-labs'
+import { Route as ResearchInnovationCentersRouteImport } from './routes/research/innovation-centers'
+import { Route as ResearchAiLabsRouteImport } from './routes/research/ai-labs'
 import { Route as ProgramsBtechEdItRouteImport } from './routes/programs/btech-ed-it'
 import { Route as ProgramsBitRouteImport } from './routes/programs/bit'
+import { Route as CommunityInternationalRouteImport } from './routes/community/international'
+import { Route as CommunityFacultyRouteImport } from './routes/community/faculty'
+import { Route as CommunityBoardMembersRouteImport } from './routes/community/board-members'
+import { Route as CommunityAdvisorsRouteImport } from './routes/community/advisors'
+import { Route as CommunityAdministrationRouteImport } from './routes/community/administration'
+import { Route as CareersPlacementsRouteImport } from './routes/careers/placements'
+import { Route as CareersGraduateSuccessRouteImport } from './routes/careers/graduate-success'
+import { Route as CareersCareerPathsRouteImport } from './routes/careers/career-paths'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminAuthedRouteImport } from './routes/admin/_authed'
 import { Route as AcademicsScholarshipsRouteImport } from './routes/academics/scholarships'
@@ -62,34 +62,9 @@ import { Route as AdminAuthedOpeningsRouteImport } from './routes/admin/_authed/
 import { Route as AdminAuthedNewsRouteImport } from './routes/admin/_authed/news'
 import { Route as AdminAuthedChatbotRouteImport } from './routes/admin/_authed/chatbot'
 
-const VisionRoute = VisionRouteImport.update({
-  id: '/vision',
-  path: '/vision',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ValuesRoute = ValuesRouteImport.update({
-  id: '/values',
-  path: '/values',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const StrategyRoute = StrategyRouteImport.update({
-  id: '/strategy',
-  path: '/strategy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ReportsRoute = ReportsRouteImport.update({
-  id: '/reports',
-  path: '/reports',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProgramsRoute = ProgramsRouteImport.update({
   id: '/programs',
   path: '/programs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PlacementsRoute = PlacementsRouteImport.update({
-  id: '/placements',
-  path: '/placements',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NotFoundPageRoute = NotFoundPageRouteImport.update({
@@ -97,79 +72,9 @@ const NotFoundPageRoute = NotFoundPageRouteImport.update({
   path: '/not-found-page',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NewsRoute = NewsRouteImport.update({
-  id: '/news',
-  path: '/news',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MissionRoute = MissionRouteImport.update({
-  id: '/mission',
-  path: '/mission',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const MaintenanceRoute = MaintenanceRouteImport.update({
   id: '/maintenance',
   path: '/maintenance',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IotLabsRoute = IotLabsRouteImport.update({
-  id: '/iot-labs',
-  path: '/iot-labs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InternationalRoute = InternationalRouteImport.update({
-  id: '/international',
-  path: '/international',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InnovationCentersRoute = InnovationCentersRouteImport.update({
-  id: '/innovation-centers',
-  path: '/innovation-centers',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GraduateSuccessRoute = GraduateSuccessRouteImport.update({
-  id: '/graduate-success',
-  path: '/graduate-success',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FacultyRoute = FacultyRouteImport.update({
-  id: '/faculty',
-  path: '/faculty',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EventsRoute = EventsRouteImport.update({
-  id: '/events',
-  path: '/events',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CommunityRoute = CommunityRouteImport.update({
-  id: '/community',
-  path: '/community',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CareerPathsRoute = CareerPathsRouteImport.update({
-  id: '/career-paths',
-  path: '/career-paths',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BoardMembersRoute = BoardMembersRouteImport.update({
-  id: '/board-members',
-  path: '/board-members',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AiLabsRoute = AiLabsRouteImport.update({
-  id: '/ai-labs',
-  path: '/ai-labs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdvisorsRoute = AdvisorsRouteImport.update({
-  id: '/advisors',
-  path: '/advisors',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdministrationRoute = AdministrationRouteImport.update({
-  id: '/administration',
-  path: '/administration',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SplatRoute = SplatRouteImport.update({
@@ -187,6 +92,11 @@ const VisitIndexRoute = VisitIndexRouteImport.update({
   path: '/visit/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VisionIndexRoute = VisionIndexRouteImport.update({
+  id: '/vision/',
+  path: '/vision/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProgramsIndexRoute = ProgramsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -195,6 +105,11 @@ const ProgramsIndexRoute = ProgramsIndexRouteImport.update({
 const ContactIndexRoute = ContactIndexRouteImport.update({
   id: '/contact/',
   path: '/contact/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityIndexRoute = CommunityIndexRouteImport.update({
+  id: '/community/',
+  path: '/community/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CareersIndexRoute = CareersIndexRouteImport.update({
@@ -210,6 +125,36 @@ const AboutIndexRoute = AboutIndexRouteImport.update({
 const VisitVirtualTourRoute = VisitVirtualTourRouteImport.update({
   id: '/visit/virtual-tour',
   path: '/visit/virtual-tour',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VisionValuesRoute = VisionValuesRouteImport.update({
+  id: '/vision/values',
+  path: '/vision/values',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VisionStrategyRoute = VisionStrategyRouteImport.update({
+  id: '/vision/strategy',
+  path: '/vision/strategy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VisionReportsRoute = VisionReportsRouteImport.update({
+  id: '/vision/reports',
+  path: '/vision/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VisionMissionRoute = VisionMissionRouteImport.update({
+  id: '/vision/mission',
+  path: '/vision/mission',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UpdatesNewsRoute = UpdatesNewsRouteImport.update({
+  id: '/updates/news',
+  path: '/updates/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UpdatesEventsRoute = UpdatesEventsRouteImport.update({
+  id: '/updates/events',
+  path: '/updates/events',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StudentLifeStudentSupportRoute =
@@ -229,6 +174,22 @@ const StudentLifeCampusLifeRoute = StudentLifeCampusLifeRouteImport.update({
   path: '/student-life/campus-life',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResearchIotLabsRoute = ResearchIotLabsRouteImport.update({
+  id: '/research/iot-labs',
+  path: '/research/iot-labs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchInnovationCentersRoute =
+  ResearchInnovationCentersRouteImport.update({
+    id: '/research/innovation-centers',
+    path: '/research/innovation-centers',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ResearchAiLabsRoute = ResearchAiLabsRouteImport.update({
+  id: '/research/ai-labs',
+  path: '/research/ai-labs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProgramsBtechEdItRoute = ProgramsBtechEdItRouteImport.update({
   id: '/btech-ed-it',
   path: '/btech-ed-it',
@@ -238,6 +199,46 @@ const ProgramsBitRoute = ProgramsBitRouteImport.update({
   id: '/bit',
   path: '/bit',
   getParentRoute: () => ProgramsRoute,
+} as any)
+const CommunityInternationalRoute = CommunityInternationalRouteImport.update({
+  id: '/community/international',
+  path: '/community/international',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityFacultyRoute = CommunityFacultyRouteImport.update({
+  id: '/community/faculty',
+  path: '/community/faculty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityBoardMembersRoute = CommunityBoardMembersRouteImport.update({
+  id: '/community/board-members',
+  path: '/community/board-members',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityAdvisorsRoute = CommunityAdvisorsRouteImport.update({
+  id: '/community/advisors',
+  path: '/community/advisors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityAdministrationRoute = CommunityAdministrationRouteImport.update({
+  id: '/community/administration',
+  path: '/community/administration',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersPlacementsRoute = CareersPlacementsRouteImport.update({
+  id: '/careers/placements',
+  path: '/careers/placements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersGraduateSuccessRoute = CareersGraduateSuccessRouteImport.update({
+  id: '/careers/graduate-success',
+  path: '/careers/graduate-success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersCareerPathsRoute = CareersCareerPathsRouteImport.update({
+  id: '/careers/career-paths',
+  path: '/careers/career-paths',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin/login',
@@ -328,28 +329,9 @@ const AdminAuthedChatbotRoute = AdminAuthedChatbotRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
-  '/administration': typeof AdministrationRoute
-  '/advisors': typeof AdvisorsRoute
-  '/ai-labs': typeof AiLabsRoute
-  '/board-members': typeof BoardMembersRoute
-  '/career-paths': typeof CareerPathsRoute
-  '/community': typeof CommunityRoute
-  '/events': typeof EventsRoute
-  '/faculty': typeof FacultyRoute
-  '/graduate-success': typeof GraduateSuccessRoute
-  '/innovation-centers': typeof InnovationCentersRoute
-  '/international': typeof InternationalRoute
-  '/iot-labs': typeof IotLabsRoute
   '/maintenance': typeof MaintenanceRoute
-  '/mission': typeof MissionRoute
-  '/news': typeof NewsRoute
   '/not-found-page': typeof NotFoundPageRoute
-  '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRouteWithChildren
-  '/reports': typeof ReportsRoute
-  '/strategy': typeof StrategyRoute
-  '/values': typeof ValuesRoute
-  '/vision': typeof VisionRoute
   '/about/governance': typeof AboutGovernanceRoute
   '/about/industry-exposure': typeof AboutIndustryExposureRoute
   '/about/ku-affiliation': typeof AboutKuAffiliationRoute
@@ -360,16 +342,35 @@ export interface FileRoutesByFullPath {
   '/academics/scholarships': typeof AcademicsScholarshipsRoute
   '/admin': typeof AdminAuthedRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
+  '/careers/career-paths': typeof CareersCareerPathsRoute
+  '/careers/graduate-success': typeof CareersGraduateSuccessRoute
+  '/careers/placements': typeof CareersPlacementsRoute
+  '/community/administration': typeof CommunityAdministrationRoute
+  '/community/advisors': typeof CommunityAdvisorsRoute
+  '/community/board-members': typeof CommunityBoardMembersRoute
+  '/community/faculty': typeof CommunityFacultyRoute
+  '/community/international': typeof CommunityInternationalRoute
   '/programs/bit': typeof ProgramsBitRoute
   '/programs/btech-ed-it': typeof ProgramsBtechEdItRoute
+  '/research/ai-labs': typeof ResearchAiLabsRoute
+  '/research/innovation-centers': typeof ResearchInnovationCentersRoute
+  '/research/iot-labs': typeof ResearchIotLabsRoute
   '/student-life/campus-life': typeof StudentLifeCampusLifeRoute
   '/student-life/student-experience': typeof StudentLifeStudentExperienceRoute
   '/student-life/student-support': typeof StudentLifeStudentSupportRoute
+  '/updates/events': typeof UpdatesEventsRoute
+  '/updates/news': typeof UpdatesNewsRoute
+  '/vision/mission': typeof VisionMissionRoute
+  '/vision/reports': typeof VisionReportsRoute
+  '/vision/strategy': typeof VisionStrategyRoute
+  '/vision/values': typeof VisionValuesRoute
   '/visit/virtual-tour': typeof VisitVirtualTourRoute
   '/about/': typeof AboutIndexRoute
   '/careers/': typeof CareersIndexRoute
+  '/community/': typeof CommunityIndexRoute
   '/contact/': typeof ContactIndexRoute
   '/programs/': typeof ProgramsIndexRoute
+  '/vision/': typeof VisionIndexRoute
   '/visit/': typeof VisitIndexRoute
   '/admin/chatbot': typeof AdminAuthedChatbotRoute
   '/admin/news': typeof AdminAuthedNewsRoute
@@ -382,27 +383,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
-  '/administration': typeof AdministrationRoute
-  '/advisors': typeof AdvisorsRoute
-  '/ai-labs': typeof AiLabsRoute
-  '/board-members': typeof BoardMembersRoute
-  '/career-paths': typeof CareerPathsRoute
-  '/community': typeof CommunityRoute
-  '/events': typeof EventsRoute
-  '/faculty': typeof FacultyRoute
-  '/graduate-success': typeof GraduateSuccessRoute
-  '/innovation-centers': typeof InnovationCentersRoute
-  '/international': typeof InternationalRoute
-  '/iot-labs': typeof IotLabsRoute
   '/maintenance': typeof MaintenanceRoute
-  '/mission': typeof MissionRoute
-  '/news': typeof NewsRoute
   '/not-found-page': typeof NotFoundPageRoute
-  '/placements': typeof PlacementsRoute
-  '/reports': typeof ReportsRoute
-  '/strategy': typeof StrategyRoute
-  '/values': typeof ValuesRoute
-  '/vision': typeof VisionRoute
   '/about/governance': typeof AboutGovernanceRoute
   '/about/industry-exposure': typeof AboutIndustryExposureRoute
   '/about/ku-affiliation': typeof AboutKuAffiliationRoute
@@ -412,16 +394,35 @@ export interface FileRoutesByTo {
   '/academics/research': typeof AcademicsResearchRoute
   '/academics/scholarships': typeof AcademicsScholarshipsRoute
   '/admin/login': typeof AdminLoginRoute
+  '/careers/career-paths': typeof CareersCareerPathsRoute
+  '/careers/graduate-success': typeof CareersGraduateSuccessRoute
+  '/careers/placements': typeof CareersPlacementsRoute
+  '/community/administration': typeof CommunityAdministrationRoute
+  '/community/advisors': typeof CommunityAdvisorsRoute
+  '/community/board-members': typeof CommunityBoardMembersRoute
+  '/community/faculty': typeof CommunityFacultyRoute
+  '/community/international': typeof CommunityInternationalRoute
   '/programs/bit': typeof ProgramsBitRoute
   '/programs/btech-ed-it': typeof ProgramsBtechEdItRoute
+  '/research/ai-labs': typeof ResearchAiLabsRoute
+  '/research/innovation-centers': typeof ResearchInnovationCentersRoute
+  '/research/iot-labs': typeof ResearchIotLabsRoute
   '/student-life/campus-life': typeof StudentLifeCampusLifeRoute
   '/student-life/student-experience': typeof StudentLifeStudentExperienceRoute
   '/student-life/student-support': typeof StudentLifeStudentSupportRoute
+  '/updates/events': typeof UpdatesEventsRoute
+  '/updates/news': typeof UpdatesNewsRoute
+  '/vision/mission': typeof VisionMissionRoute
+  '/vision/reports': typeof VisionReportsRoute
+  '/vision/strategy': typeof VisionStrategyRoute
+  '/vision/values': typeof VisionValuesRoute
   '/visit/virtual-tour': typeof VisitVirtualTourRoute
   '/about': typeof AboutIndexRoute
   '/careers': typeof CareersIndexRoute
+  '/community': typeof CommunityIndexRoute
   '/contact': typeof ContactIndexRoute
   '/programs': typeof ProgramsIndexRoute
+  '/vision': typeof VisionIndexRoute
   '/visit': typeof VisitIndexRoute
   '/admin/chatbot': typeof AdminAuthedChatbotRoute
   '/admin/news': typeof AdminAuthedNewsRoute
@@ -435,28 +436,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
-  '/administration': typeof AdministrationRoute
-  '/advisors': typeof AdvisorsRoute
-  '/ai-labs': typeof AiLabsRoute
-  '/board-members': typeof BoardMembersRoute
-  '/career-paths': typeof CareerPathsRoute
-  '/community': typeof CommunityRoute
-  '/events': typeof EventsRoute
-  '/faculty': typeof FacultyRoute
-  '/graduate-success': typeof GraduateSuccessRoute
-  '/innovation-centers': typeof InnovationCentersRoute
-  '/international': typeof InternationalRoute
-  '/iot-labs': typeof IotLabsRoute
   '/maintenance': typeof MaintenanceRoute
-  '/mission': typeof MissionRoute
-  '/news': typeof NewsRoute
   '/not-found-page': typeof NotFoundPageRoute
-  '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRouteWithChildren
-  '/reports': typeof ReportsRoute
-  '/strategy': typeof StrategyRoute
-  '/values': typeof ValuesRoute
-  '/vision': typeof VisionRoute
   '/about/governance': typeof AboutGovernanceRoute
   '/about/industry-exposure': typeof AboutIndustryExposureRoute
   '/about/ku-affiliation': typeof AboutKuAffiliationRoute
@@ -467,16 +449,35 @@ export interface FileRoutesById {
   '/academics/scholarships': typeof AcademicsScholarshipsRoute
   '/admin/_authed': typeof AdminAuthedRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
+  '/careers/career-paths': typeof CareersCareerPathsRoute
+  '/careers/graduate-success': typeof CareersGraduateSuccessRoute
+  '/careers/placements': typeof CareersPlacementsRoute
+  '/community/administration': typeof CommunityAdministrationRoute
+  '/community/advisors': typeof CommunityAdvisorsRoute
+  '/community/board-members': typeof CommunityBoardMembersRoute
+  '/community/faculty': typeof CommunityFacultyRoute
+  '/community/international': typeof CommunityInternationalRoute
   '/programs/bit': typeof ProgramsBitRoute
   '/programs/btech-ed-it': typeof ProgramsBtechEdItRoute
+  '/research/ai-labs': typeof ResearchAiLabsRoute
+  '/research/innovation-centers': typeof ResearchInnovationCentersRoute
+  '/research/iot-labs': typeof ResearchIotLabsRoute
   '/student-life/campus-life': typeof StudentLifeCampusLifeRoute
   '/student-life/student-experience': typeof StudentLifeStudentExperienceRoute
   '/student-life/student-support': typeof StudentLifeStudentSupportRoute
+  '/updates/events': typeof UpdatesEventsRoute
+  '/updates/news': typeof UpdatesNewsRoute
+  '/vision/mission': typeof VisionMissionRoute
+  '/vision/reports': typeof VisionReportsRoute
+  '/vision/strategy': typeof VisionStrategyRoute
+  '/vision/values': typeof VisionValuesRoute
   '/visit/virtual-tour': typeof VisitVirtualTourRoute
   '/about/': typeof AboutIndexRoute
   '/careers/': typeof CareersIndexRoute
+  '/community/': typeof CommunityIndexRoute
   '/contact/': typeof ContactIndexRoute
   '/programs/': typeof ProgramsIndexRoute
+  '/vision/': typeof VisionIndexRoute
   '/visit/': typeof VisitIndexRoute
   '/admin/_authed/chatbot': typeof AdminAuthedChatbotRoute
   '/admin/_authed/news': typeof AdminAuthedNewsRoute
@@ -491,28 +492,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$'
-    | '/administration'
-    | '/advisors'
-    | '/ai-labs'
-    | '/board-members'
-    | '/career-paths'
-    | '/community'
-    | '/events'
-    | '/faculty'
-    | '/graduate-success'
-    | '/innovation-centers'
-    | '/international'
-    | '/iot-labs'
     | '/maintenance'
-    | '/mission'
-    | '/news'
     | '/not-found-page'
-    | '/placements'
     | '/programs'
-    | '/reports'
-    | '/strategy'
-    | '/values'
-    | '/vision'
     | '/about/governance'
     | '/about/industry-exposure'
     | '/about/ku-affiliation'
@@ -523,16 +505,35 @@ export interface FileRouteTypes {
     | '/academics/scholarships'
     | '/admin'
     | '/admin/login'
+    | '/careers/career-paths'
+    | '/careers/graduate-success'
+    | '/careers/placements'
+    | '/community/administration'
+    | '/community/advisors'
+    | '/community/board-members'
+    | '/community/faculty'
+    | '/community/international'
     | '/programs/bit'
     | '/programs/btech-ed-it'
+    | '/research/ai-labs'
+    | '/research/innovation-centers'
+    | '/research/iot-labs'
     | '/student-life/campus-life'
     | '/student-life/student-experience'
     | '/student-life/student-support'
+    | '/updates/events'
+    | '/updates/news'
+    | '/vision/mission'
+    | '/vision/reports'
+    | '/vision/strategy'
+    | '/vision/values'
     | '/visit/virtual-tour'
     | '/about/'
     | '/careers/'
+    | '/community/'
     | '/contact/'
     | '/programs/'
+    | '/vision/'
     | '/visit/'
     | '/admin/chatbot'
     | '/admin/news'
@@ -545,27 +546,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/$'
-    | '/administration'
-    | '/advisors'
-    | '/ai-labs'
-    | '/board-members'
-    | '/career-paths'
-    | '/community'
-    | '/events'
-    | '/faculty'
-    | '/graduate-success'
-    | '/innovation-centers'
-    | '/international'
-    | '/iot-labs'
     | '/maintenance'
-    | '/mission'
-    | '/news'
     | '/not-found-page'
-    | '/placements'
-    | '/reports'
-    | '/strategy'
-    | '/values'
-    | '/vision'
     | '/about/governance'
     | '/about/industry-exposure'
     | '/about/ku-affiliation'
@@ -575,16 +557,35 @@ export interface FileRouteTypes {
     | '/academics/research'
     | '/academics/scholarships'
     | '/admin/login'
+    | '/careers/career-paths'
+    | '/careers/graduate-success'
+    | '/careers/placements'
+    | '/community/administration'
+    | '/community/advisors'
+    | '/community/board-members'
+    | '/community/faculty'
+    | '/community/international'
     | '/programs/bit'
     | '/programs/btech-ed-it'
+    | '/research/ai-labs'
+    | '/research/innovation-centers'
+    | '/research/iot-labs'
     | '/student-life/campus-life'
     | '/student-life/student-experience'
     | '/student-life/student-support'
+    | '/updates/events'
+    | '/updates/news'
+    | '/vision/mission'
+    | '/vision/reports'
+    | '/vision/strategy'
+    | '/vision/values'
     | '/visit/virtual-tour'
     | '/about'
     | '/careers'
+    | '/community'
     | '/contact'
     | '/programs'
+    | '/vision'
     | '/visit'
     | '/admin/chatbot'
     | '/admin/news'
@@ -597,28 +598,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$'
-    | '/administration'
-    | '/advisors'
-    | '/ai-labs'
-    | '/board-members'
-    | '/career-paths'
-    | '/community'
-    | '/events'
-    | '/faculty'
-    | '/graduate-success'
-    | '/innovation-centers'
-    | '/international'
-    | '/iot-labs'
     | '/maintenance'
-    | '/mission'
-    | '/news'
     | '/not-found-page'
-    | '/placements'
     | '/programs'
-    | '/reports'
-    | '/strategy'
-    | '/values'
-    | '/vision'
     | '/about/governance'
     | '/about/industry-exposure'
     | '/about/ku-affiliation'
@@ -629,16 +611,35 @@ export interface FileRouteTypes {
     | '/academics/scholarships'
     | '/admin/_authed'
     | '/admin/login'
+    | '/careers/career-paths'
+    | '/careers/graduate-success'
+    | '/careers/placements'
+    | '/community/administration'
+    | '/community/advisors'
+    | '/community/board-members'
+    | '/community/faculty'
+    | '/community/international'
     | '/programs/bit'
     | '/programs/btech-ed-it'
+    | '/research/ai-labs'
+    | '/research/innovation-centers'
+    | '/research/iot-labs'
     | '/student-life/campus-life'
     | '/student-life/student-experience'
     | '/student-life/student-support'
+    | '/updates/events'
+    | '/updates/news'
+    | '/vision/mission'
+    | '/vision/reports'
+    | '/vision/strategy'
+    | '/vision/values'
     | '/visit/virtual-tour'
     | '/about/'
     | '/careers/'
+    | '/community/'
     | '/contact/'
     | '/programs/'
+    | '/vision/'
     | '/visit/'
     | '/admin/_authed/chatbot'
     | '/admin/_authed/news'
@@ -652,28 +653,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SplatRoute: typeof SplatRoute
-  AdministrationRoute: typeof AdministrationRoute
-  AdvisorsRoute: typeof AdvisorsRoute
-  AiLabsRoute: typeof AiLabsRoute
-  BoardMembersRoute: typeof BoardMembersRoute
-  CareerPathsRoute: typeof CareerPathsRoute
-  CommunityRoute: typeof CommunityRoute
-  EventsRoute: typeof EventsRoute
-  FacultyRoute: typeof FacultyRoute
-  GraduateSuccessRoute: typeof GraduateSuccessRoute
-  InnovationCentersRoute: typeof InnovationCentersRoute
-  InternationalRoute: typeof InternationalRoute
-  IotLabsRoute: typeof IotLabsRoute
   MaintenanceRoute: typeof MaintenanceRoute
-  MissionRoute: typeof MissionRoute
-  NewsRoute: typeof NewsRoute
   NotFoundPageRoute: typeof NotFoundPageRoute
-  PlacementsRoute: typeof PlacementsRoute
   ProgramsRoute: typeof ProgramsRouteWithChildren
-  ReportsRoute: typeof ReportsRoute
-  StrategyRoute: typeof StrategyRoute
-  ValuesRoute: typeof ValuesRoute
-  VisionRoute: typeof VisionRoute
   AboutGovernanceRoute: typeof AboutGovernanceRoute
   AboutIndustryExposureRoute: typeof AboutIndustryExposureRoute
   AboutKuAffiliationRoute: typeof AboutKuAffiliationRoute
@@ -684,58 +666,42 @@ export interface RootRouteChildren {
   AcademicsScholarshipsRoute: typeof AcademicsScholarshipsRoute
   AdminAuthedRoute: typeof AdminAuthedRouteWithChildren
   AdminLoginRoute: typeof AdminLoginRoute
+  CareersCareerPathsRoute: typeof CareersCareerPathsRoute
+  CareersGraduateSuccessRoute: typeof CareersGraduateSuccessRoute
+  CareersPlacementsRoute: typeof CareersPlacementsRoute
+  CommunityAdministrationRoute: typeof CommunityAdministrationRoute
+  CommunityAdvisorsRoute: typeof CommunityAdvisorsRoute
+  CommunityBoardMembersRoute: typeof CommunityBoardMembersRoute
+  CommunityFacultyRoute: typeof CommunityFacultyRoute
+  CommunityInternationalRoute: typeof CommunityInternationalRoute
+  ResearchAiLabsRoute: typeof ResearchAiLabsRoute
+  ResearchInnovationCentersRoute: typeof ResearchInnovationCentersRoute
+  ResearchIotLabsRoute: typeof ResearchIotLabsRoute
   StudentLifeCampusLifeRoute: typeof StudentLifeCampusLifeRoute
   StudentLifeStudentExperienceRoute: typeof StudentLifeStudentExperienceRoute
   StudentLifeStudentSupportRoute: typeof StudentLifeStudentSupportRoute
+  UpdatesEventsRoute: typeof UpdatesEventsRoute
+  UpdatesNewsRoute: typeof UpdatesNewsRoute
+  VisionMissionRoute: typeof VisionMissionRoute
+  VisionReportsRoute: typeof VisionReportsRoute
+  VisionStrategyRoute: typeof VisionStrategyRoute
+  VisionValuesRoute: typeof VisionValuesRoute
   VisitVirtualTourRoute: typeof VisitVirtualTourRoute
   AboutIndexRoute: typeof AboutIndexRoute
   CareersIndexRoute: typeof CareersIndexRoute
+  CommunityIndexRoute: typeof CommunityIndexRoute
   ContactIndexRoute: typeof ContactIndexRoute
+  VisionIndexRoute: typeof VisionIndexRoute
   VisitIndexRoute: typeof VisitIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/vision': {
-      id: '/vision'
-      path: '/vision'
-      fullPath: '/vision'
-      preLoaderRoute: typeof VisionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/values': {
-      id: '/values'
-      path: '/values'
-      fullPath: '/values'
-      preLoaderRoute: typeof ValuesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/strategy': {
-      id: '/strategy'
-      path: '/strategy'
-      fullPath: '/strategy'
-      preLoaderRoute: typeof StrategyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/reports': {
-      id: '/reports'
-      path: '/reports'
-      fullPath: '/reports'
-      preLoaderRoute: typeof ReportsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/programs': {
       id: '/programs'
       path: '/programs'
       fullPath: '/programs'
       preLoaderRoute: typeof ProgramsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/placements': {
-      id: '/placements'
-      path: '/placements'
-      fullPath: '/placements'
-      preLoaderRoute: typeof PlacementsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/not-found-page': {
@@ -745,109 +711,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NotFoundPageRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/news': {
-      id: '/news'
-      path: '/news'
-      fullPath: '/news'
-      preLoaderRoute: typeof NewsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mission': {
-      id: '/mission'
-      path: '/mission'
-      fullPath: '/mission'
-      preLoaderRoute: typeof MissionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/maintenance': {
       id: '/maintenance'
       path: '/maintenance'
       fullPath: '/maintenance'
       preLoaderRoute: typeof MaintenanceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/iot-labs': {
-      id: '/iot-labs'
-      path: '/iot-labs'
-      fullPath: '/iot-labs'
-      preLoaderRoute: typeof IotLabsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/international': {
-      id: '/international'
-      path: '/international'
-      fullPath: '/international'
-      preLoaderRoute: typeof InternationalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/innovation-centers': {
-      id: '/innovation-centers'
-      path: '/innovation-centers'
-      fullPath: '/innovation-centers'
-      preLoaderRoute: typeof InnovationCentersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/graduate-success': {
-      id: '/graduate-success'
-      path: '/graduate-success'
-      fullPath: '/graduate-success'
-      preLoaderRoute: typeof GraduateSuccessRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/faculty': {
-      id: '/faculty'
-      path: '/faculty'
-      fullPath: '/faculty'
-      preLoaderRoute: typeof FacultyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/events': {
-      id: '/events'
-      path: '/events'
-      fullPath: '/events'
-      preLoaderRoute: typeof EventsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/community': {
-      id: '/community'
-      path: '/community'
-      fullPath: '/community'
-      preLoaderRoute: typeof CommunityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/career-paths': {
-      id: '/career-paths'
-      path: '/career-paths'
-      fullPath: '/career-paths'
-      preLoaderRoute: typeof CareerPathsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/board-members': {
-      id: '/board-members'
-      path: '/board-members'
-      fullPath: '/board-members'
-      preLoaderRoute: typeof BoardMembersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ai-labs': {
-      id: '/ai-labs'
-      path: '/ai-labs'
-      fullPath: '/ai-labs'
-      preLoaderRoute: typeof AiLabsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/advisors': {
-      id: '/advisors'
-      path: '/advisors'
-      fullPath: '/advisors'
-      preLoaderRoute: typeof AdvisorsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/administration': {
-      id: '/administration'
-      path: '/administration'
-      fullPath: '/administration'
-      preLoaderRoute: typeof AdministrationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$': {
@@ -871,6 +739,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VisitIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vision/': {
+      id: '/vision/'
+      path: '/vision'
+      fullPath: '/vision/'
+      preLoaderRoute: typeof VisionIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/programs/': {
       id: '/programs/'
       path: '/'
@@ -883,6 +758,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact/'
       preLoaderRoute: typeof ContactIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community/': {
+      id: '/community/'
+      path: '/community'
+      fullPath: '/community/'
+      preLoaderRoute: typeof CommunityIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/careers/': {
@@ -906,6 +788,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VisitVirtualTourRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vision/values': {
+      id: '/vision/values'
+      path: '/vision/values'
+      fullPath: '/vision/values'
+      preLoaderRoute: typeof VisionValuesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vision/strategy': {
+      id: '/vision/strategy'
+      path: '/vision/strategy'
+      fullPath: '/vision/strategy'
+      preLoaderRoute: typeof VisionStrategyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vision/reports': {
+      id: '/vision/reports'
+      path: '/vision/reports'
+      fullPath: '/vision/reports'
+      preLoaderRoute: typeof VisionReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vision/mission': {
+      id: '/vision/mission'
+      path: '/vision/mission'
+      fullPath: '/vision/mission'
+      preLoaderRoute: typeof VisionMissionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/updates/news': {
+      id: '/updates/news'
+      path: '/updates/news'
+      fullPath: '/updates/news'
+      preLoaderRoute: typeof UpdatesNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/updates/events': {
+      id: '/updates/events'
+      path: '/updates/events'
+      fullPath: '/updates/events'
+      preLoaderRoute: typeof UpdatesEventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/student-life/student-support': {
       id: '/student-life/student-support'
       path: '/student-life/student-support'
@@ -927,6 +851,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentLifeCampusLifeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/research/iot-labs': {
+      id: '/research/iot-labs'
+      path: '/research/iot-labs'
+      fullPath: '/research/iot-labs'
+      preLoaderRoute: typeof ResearchIotLabsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research/innovation-centers': {
+      id: '/research/innovation-centers'
+      path: '/research/innovation-centers'
+      fullPath: '/research/innovation-centers'
+      preLoaderRoute: typeof ResearchInnovationCentersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research/ai-labs': {
+      id: '/research/ai-labs'
+      path: '/research/ai-labs'
+      fullPath: '/research/ai-labs'
+      preLoaderRoute: typeof ResearchAiLabsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/programs/btech-ed-it': {
       id: '/programs/btech-ed-it'
       path: '/btech-ed-it'
@@ -940,6 +885,62 @@ declare module '@tanstack/react-router' {
       fullPath: '/programs/bit'
       preLoaderRoute: typeof ProgramsBitRouteImport
       parentRoute: typeof ProgramsRoute
+    }
+    '/community/international': {
+      id: '/community/international'
+      path: '/community/international'
+      fullPath: '/community/international'
+      preLoaderRoute: typeof CommunityInternationalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community/faculty': {
+      id: '/community/faculty'
+      path: '/community/faculty'
+      fullPath: '/community/faculty'
+      preLoaderRoute: typeof CommunityFacultyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community/board-members': {
+      id: '/community/board-members'
+      path: '/community/board-members'
+      fullPath: '/community/board-members'
+      preLoaderRoute: typeof CommunityBoardMembersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community/advisors': {
+      id: '/community/advisors'
+      path: '/community/advisors'
+      fullPath: '/community/advisors'
+      preLoaderRoute: typeof CommunityAdvisorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community/administration': {
+      id: '/community/administration'
+      path: '/community/administration'
+      fullPath: '/community/administration'
+      preLoaderRoute: typeof CommunityAdministrationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers/placements': {
+      id: '/careers/placements'
+      path: '/careers/placements'
+      fullPath: '/careers/placements'
+      preLoaderRoute: typeof CareersPlacementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers/graduate-success': {
+      id: '/careers/graduate-success'
+      path: '/careers/graduate-success'
+      fullPath: '/careers/graduate-success'
+      preLoaderRoute: typeof CareersGraduateSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers/career-paths': {
+      id: '/careers/career-paths'
+      path: '/careers/career-paths'
+      fullPath: '/careers/career-paths'
+      preLoaderRoute: typeof CareersCareerPathsRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/admin/login': {
       id: '/admin/login'
@@ -1106,28 +1107,9 @@ const AdminAuthedRouteWithChildren = AdminAuthedRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SplatRoute: SplatRoute,
-  AdministrationRoute: AdministrationRoute,
-  AdvisorsRoute: AdvisorsRoute,
-  AiLabsRoute: AiLabsRoute,
-  BoardMembersRoute: BoardMembersRoute,
-  CareerPathsRoute: CareerPathsRoute,
-  CommunityRoute: CommunityRoute,
-  EventsRoute: EventsRoute,
-  FacultyRoute: FacultyRoute,
-  GraduateSuccessRoute: GraduateSuccessRoute,
-  InnovationCentersRoute: InnovationCentersRoute,
-  InternationalRoute: InternationalRoute,
-  IotLabsRoute: IotLabsRoute,
   MaintenanceRoute: MaintenanceRoute,
-  MissionRoute: MissionRoute,
-  NewsRoute: NewsRoute,
   NotFoundPageRoute: NotFoundPageRoute,
-  PlacementsRoute: PlacementsRoute,
   ProgramsRoute: ProgramsRouteWithChildren,
-  ReportsRoute: ReportsRoute,
-  StrategyRoute: StrategyRoute,
-  ValuesRoute: ValuesRoute,
-  VisionRoute: VisionRoute,
   AboutGovernanceRoute: AboutGovernanceRoute,
   AboutIndustryExposureRoute: AboutIndustryExposureRoute,
   AboutKuAffiliationRoute: AboutKuAffiliationRoute,
@@ -1138,13 +1120,32 @@ const rootRouteChildren: RootRouteChildren = {
   AcademicsScholarshipsRoute: AcademicsScholarshipsRoute,
   AdminAuthedRoute: AdminAuthedRouteWithChildren,
   AdminLoginRoute: AdminLoginRoute,
+  CareersCareerPathsRoute: CareersCareerPathsRoute,
+  CareersGraduateSuccessRoute: CareersGraduateSuccessRoute,
+  CareersPlacementsRoute: CareersPlacementsRoute,
+  CommunityAdministrationRoute: CommunityAdministrationRoute,
+  CommunityAdvisorsRoute: CommunityAdvisorsRoute,
+  CommunityBoardMembersRoute: CommunityBoardMembersRoute,
+  CommunityFacultyRoute: CommunityFacultyRoute,
+  CommunityInternationalRoute: CommunityInternationalRoute,
+  ResearchAiLabsRoute: ResearchAiLabsRoute,
+  ResearchInnovationCentersRoute: ResearchInnovationCentersRoute,
+  ResearchIotLabsRoute: ResearchIotLabsRoute,
   StudentLifeCampusLifeRoute: StudentLifeCampusLifeRoute,
   StudentLifeStudentExperienceRoute: StudentLifeStudentExperienceRoute,
   StudentLifeStudentSupportRoute: StudentLifeStudentSupportRoute,
+  UpdatesEventsRoute: UpdatesEventsRoute,
+  UpdatesNewsRoute: UpdatesNewsRoute,
+  VisionMissionRoute: VisionMissionRoute,
+  VisionReportsRoute: VisionReportsRoute,
+  VisionStrategyRoute: VisionStrategyRoute,
+  VisionValuesRoute: VisionValuesRoute,
   VisitVirtualTourRoute: VisitVirtualTourRoute,
   AboutIndexRoute: AboutIndexRoute,
   CareersIndexRoute: CareersIndexRoute,
+  CommunityIndexRoute: CommunityIndexRoute,
   ContactIndexRoute: ContactIndexRoute,
+  VisionIndexRoute: VisionIndexRoute,
   VisitIndexRoute: VisitIndexRoute,
 }
 export const routeTree = rootRouteImport

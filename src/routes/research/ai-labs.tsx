@@ -6,7 +6,7 @@ import { PageHero } from "@/components/sections/bento";
 import { CtaBand, IconFeatureGrid, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
 
-export const Route = createFileRoute("/ai-labs")({
+export const Route = createFileRoute("/research/ai-labs")({
   head: () => ({
     meta: [
       { title: "AI Labs — WhiteHouse College of Business & Technology" },
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/ai-labs")({
         content: "AI learning, projects, and lab exposure for WCBT students.",
       },
     ],
-    links: [{ rel: "canonical", href: "/ai-labs" }],
+    links: [{ rel: "canonical", href: "/research/ai-labs" }],
   }),
   component: AiLabsPage,
 });

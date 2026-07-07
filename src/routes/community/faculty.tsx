@@ -15,7 +15,7 @@ import aboutContent from "@/data/pages/about.json";
 const BOARD_ROLES = ["President", "Director"];
 const FACULTY = aboutContent.team.filter((member) => !BOARD_ROLES.includes(member.role));
 
-export const Route = createFileRoute("/faculty")({
+export const Route = createFileRoute("/community/faculty")({
   head: () => ({
     meta: [
       { title: "Faculty — WhiteHouse College of Business & Technology" },
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/faculty")({
         content: "Meet faculty and academic leaders supporting WCBT students.",
       },
     ],
-    links: [{ rel: "canonical", href: "/faculty" }],
+    links: [{ rel: "canonical", href: "/community/faculty" }],
   }),
   component: FacultyPage,
 });

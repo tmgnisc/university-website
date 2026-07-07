@@ -5,7 +5,7 @@ import { PageHero } from "@/components/sections/bento";
 import { CtaBand, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
 
-export const Route = createFileRoute("/vision")({
+export const Route = createFileRoute("/vision/")({
   head: () => ({
     meta: [
       { title: "Vision — WhiteHouse College of Business & Technology" },
@@ -25,7 +25,7 @@ const VISION_SECTIONS = [
     id: "mission",
     icon: Flag,
     title: "Mission",
-    href: "/mission",
+    href: "/vision/mission",
     description:
       "To make high-quality technology, business, and education programs accessible in Eastern Nepal through practical learning and strong academic standards.",
   },
@@ -33,7 +33,7 @@ const VISION_SECTIONS = [
     id: "values",
     icon: HeartHandshake,
     title: "Values",
-    href: "/values",
+    href: "/vision/values",
     description:
       "Integrity, excellence, innovation, inclusiveness, and leadership guide how we teach, support students, and grow as an institution.",
   },
@@ -41,7 +41,7 @@ const VISION_SECTIONS = [
     id: "strategy",
     icon: Compass,
     title: "Strategy",
-    href: "/strategy",
+    href: "/vision/strategy",
     description:
       "WCBT focuses on KU-aligned academic quality, stronger industry exposure, research culture, student support, and community impact.",
   },
@@ -49,7 +49,7 @@ const VISION_SECTIONS = [
     id: "reports",
     icon: BarChart3,
     title: "Reports",
-    href: "/reports",
+    href: "/vision/reports",
     description:
       "Institutional updates and progress reports focus on academic delivery, student outcomes, partnerships, and campus development priorities.",
   },

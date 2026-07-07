@@ -5,7 +5,7 @@ import { PageHero } from "@/components/sections/bento";
 import { CtaBand, IconFeatureGrid, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
 
-export const Route = createFileRoute("/innovation-centers")({
+export const Route = createFileRoute("/research/innovation-centers")({
   head: () => ({
     meta: [
       { title: "Innovation Centers — WhiteHouse College of Business & Technology" },
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/innovation-centers")({
         content: "Innovation, student projects, entrepreneurship, and applied research at WCBT.",
       },
     ],
-    links: [{ rel: "canonical", href: "/innovation-centers" }],
+    links: [{ rel: "canonical", href: "/research/innovation-centers" }],
   }),
   component: InnovationCentersPage,
 });

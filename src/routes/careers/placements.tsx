@@ -5,7 +5,7 @@ import { PageHero } from "@/components/sections/bento";
 import { CtaBand, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
 
-export const Route = createFileRoute("/placements")({
+export const Route = createFileRoute("/careers/placements")({
   head: () => ({
     meta: [
       { title: "Placements — WhiteHouse College of Business & Technology" },
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/placements")({
           "Placement support, internship preparation, employer connections, and career guidance for WCBT students.",
       },
     ],
-    links: [{ rel: "canonical", href: "/placements" }],
+    links: [{ rel: "canonical", href: "/careers/placements" }],
   }),
   component: PlacementsPage,
 });

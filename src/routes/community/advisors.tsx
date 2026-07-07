@@ -5,7 +5,7 @@ import { PageHero } from "@/components/sections/bento";
 import { CtaBand, IconFeatureGrid, PageSection } from "@/components/sections/shared";
 import { PageShell } from "@/components/sections/page-shell";
 
-export const Route = createFileRoute("/advisors")({
+export const Route = createFileRoute("/community/advisors")({
   head: () => ({
     meta: [
       { title: "Advisors — WhiteHouse College of Business & Technology" },
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/advisors")({
         content: "Academic and industry advisors supporting WCBT programs and student exposure.",
       },
     ],
-    links: [{ rel: "canonical", href: "/advisors" }],
+    links: [{ rel: "canonical", href: "/community/advisors" }],
   }),
   component: AdvisorsPage,
 });
