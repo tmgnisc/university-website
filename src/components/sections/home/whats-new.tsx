@@ -76,12 +76,12 @@ export function WhatsNew() {
                   {n.tag}
                 </span>
                 <h3 className="mt-3 font-semibold text-lg leading-snug">{n.title}</h3>
-                <a
-                  href="#"
+                <Link
+                  to="/updates/news"
                   className="mt-4 inline-flex items-center gap-1 text-sm text-white/80 group-hover:text-white"
                 >
                   Read more <ArrowRight className="size-4" />
-                </a>
+                </Link>
               </article>
             </Reveal>
           ))}
