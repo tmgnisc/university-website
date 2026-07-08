@@ -1,5 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BarChart3, CheckCircle2, GraduationCap, ShieldCheck, UsersRound } from "lucide-react";
+import {
+  BarChart3,
+  CheckCircle2,
+  GraduationCap,
+  Quote,
+  ShieldCheck,
+  UsersRound,
+} from "lucide-react";
 
 import { PageHero } from "@/components/sections/bento";
 import {
@@ -11,9 +18,11 @@ import {
 import { PageShell } from "@/components/sections/page-shell";
 
 import aboutContent from "@/data/pages/about.json";
+import boardMembersContent from "@/data/pages/board-members.json";
 
 const BOARD_ROLES = ["President", "Director"];
 const BOARD_MEMBERS = aboutContent.team.filter((member) => BOARD_ROLES.includes(member.role));
+const PRESIDENT_MESSAGE = boardMembersContent.presidentMessage;
 
 export const Route = createFileRoute("/community/board-members")({
   head: () => ({
@@ -82,6 +91,38 @@ function BoardMembersPage() {
       >
         <LeadershipGrid members={BOARD_MEMBERS} />
       </PageSection>
+
+      <div id="president-message" className="scroll-mt-28">
+        <PageSection
+          eyebrow="From the President"
+          title="Message from the President"
+          description={`A note from ${PRESIDENT_MESSAGE.name} on WCBT's mission, values, and commitment to students across Eastern Nepal.`}
+          className="bg-muted/30"
+        >
+          <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
+            <div className="overflow-hidden rounded-3xl border border-border bg-card">
+              <img
+                src={PRESIDENT_MESSAGE.image}
+                alt={`${PRESIDENT_MESSAGE.name}, ${PRESIDENT_MESSAGE.role}`}
+                className="aspect-[4/5] w-full object-cover object-top"
+              />
+              <div className="p-6">
+                <p className="font-semibold">{PRESIDENT_MESSAGE.name}</p>
+                <p className="text-sm text-primary">{PRESIDENT_MESSAGE.role}</p>
+              </div>
+            </div>
+
+            <article className="rounded-3xl border border-border bg-card p-6 md:p-8">
+              <Quote className="size-9 text-primary" />
+              <div className="mt-6 space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
+                {PRESIDENT_MESSAGE.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </article>
+          </div>
+        </PageSection>
+      </div>
 
       <PageSection
         eyebrow="Board Focus"
