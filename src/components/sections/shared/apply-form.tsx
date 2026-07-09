@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Plus, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -16,9 +16,16 @@ const PURPOSE_OPTIONS = [
   "Hackathon Registration",
 ];
 
+type TeamMember = { name: string; contact: string };
+
+const EMPTY_MEMBER: TeamMember = { name: "", contact: "" };
+
 // Single form used by the /apply-form page for admissions, scholarship,
 // hackathon (query + registration), and general inquiries — routed by the
-// "purpose" field rather than separate forms per use case.
+// "purpose" field rather than separate forms per use case. Selecting
+// "Hackathon Registration" or an admissions/scholarship query reveals extra
+// fields specific to that purpose instead of relying on the free-text
+// message box.
 export function ApplyForm({
   id,
   eyebrow = "Apply Now",
@@ -37,6 +44,26 @@ export function ApplyForm({
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
+
+  const [purpose, setPurpose] = useState("");
+  const [teamName, setTeamName] = useState("");
+  const [members, setMembers] = useState<TeamMember[]>([{ ...EMPTY_MEMBER }]);
+  const [interest, setInterest] = useState("");
+
+  const isHackathonRegistration = purpose === "Hackathon Registration";
+  const isAdmission = purpose === "Admission Query";
+  const isScholarship = purpose === "Scholarship Query";
+
+  function updateMember(index: number, field: keyof TeamMember, value: string) {
+    setMembers((prev) => prev.map((m, i) => (i === index ? { ...m, [field]: value } : m)));
+  }
+
+  function resetPurposeFields() {
+    setPurpose("");
+    setTeamName("");
+    setMembers([{ ...EMPTY_MEMBER }]);
+    setInterest("");
+  }
 
   return (
     <section id={id} className={cn("scroll-mt-28 py-16 md:py-20", className)}>
@@ -62,9 +89,13 @@ export function ApplyForm({
             e.preventDefault();
             const form = e.currentTarget;
             const formData = new FormData(form);
-            const purpose = String(formData.get("purpose") ?? "");
             setSending(true);
             setError("");
+
+            const teamMembers = members
+              .map((m) => ({ name: m.name.trim(), contact: m.contact.trim() }))
+              .filter((m) => m.name || m.contact);
+
             sendRequestForm({
               name: String(formData.get("name") ?? ""),
               phone: String(formData.get("phone") ?? ""),
@@ -73,10 +104,14 @@ export function ApplyForm({
               purpose,
               subject: purpose ? `${purpose} — Website form` : "New website request",
               message: String(formData.get("message") ?? ""),
+              program: isAdmission || isScholarship ? interest : undefined,
+              teamName: isHackathonRegistration ? teamName : undefined,
+              teamMembers: isHackathonRegistration ? teamMembers : undefined,
             })
               .then(() => {
                 setSent(true);
                 form.reset();
+                resetPurposeFields();
               })
               .catch((err) => setError(err instanceof Error ? err.message : "Send failed"))
               .finally(() => setSending(false));
@@ -96,25 +131,36 @@ export function ApplyForm({
             </div>
           ) : (
             <div className="space-y-4">
-              <input required name="name" placeholder="Full name" className={FIELD_CLASS} />
+              <input
+                required
+                name="name"
+                placeholder={isHackathonRegistration ? "Team leader full name" : "Full name"}
+                className={FIELD_CLASS}
+              />
               <input required name="address" placeholder="Address" className={FIELD_CLASS} />
               <div className="grid gap-4 sm:grid-cols-2">
                 <input
                   required
                   name="phone"
                   type="tel"
-                  placeholder="Phone number"
+                  placeholder={isHackathonRegistration ? "Team leader phone number" : "Phone number"}
                   className={FIELD_CLASS}
                 />
                 <input
                   required
                   name="email"
                   type="email"
-                  placeholder="Email"
+                  placeholder={isHackathonRegistration ? "Team leader email" : "Email"}
                   className={FIELD_CLASS}
                 />
               </div>
-              <select required name="purpose" defaultValue="" className={FIELD_CLASS}>
+              <select
+                required
+                name="purpose"
+                value={purpose}
+                onChange={(e) => setPurpose(e.target.value)}
+                className={FIELD_CLASS}
+              >
                 <option value="" disabled>
                   Purpose of contact
                 </option>
@@ -122,10 +168,77 @@ export function ApplyForm({
                   <option key={option}>{option}</option>
                 ))}
               </select>
+
+              {isHackathonRegistration && (
+                <div className="space-y-4 rounded-2xl border border-dashed border-border p-4">
+                  <p className="text-sm font-semibold text-foreground">Team details</p>
+                  <input
+                    required
+                    value={teamName}
+                    onChange={(e) => setTeamName(e.target.value)}
+                    placeholder="Team name"
+                    className={FIELD_CLASS}
+                  />
+
+                  <div className="space-y-3">
+                    {members.map((member, index) => (
+                      <div key={index} className="grid gap-2 sm:grid-cols-[1fr_1fr_auto] sm:gap-3">
+                        <input
+                          required
+                          value={member.name}
+                          onChange={(e) => updateMember(index, "name", e.target.value)}
+                          placeholder={`Member ${index + 1} name`}
+                          className={FIELD_CLASS}
+                        />
+                        <input
+                          required
+                          value={member.contact}
+                          onChange={(e) => updateMember(index, "contact", e.target.value)}
+                          placeholder={`Member ${index + 1} phone or email`}
+                          className={FIELD_CLASS}
+                        />
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="icon"
+                          disabled={members.length === 1}
+                          onClick={() => setMembers((prev) => prev.filter((_, i) => i !== index))}
+                          aria-label="Remove member"
+                          className="justify-self-start sm:justify-self-auto"
+                        >
+                          <Trash2 />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setMembers((prev) => [...prev, { ...EMPTY_MEMBER }])}
+                  >
+                    <Plus /> Add team member
+                  </Button>
+                </div>
+              )}
+
+              {(isAdmission || isScholarship) && (
+                <input
+                  required
+                  value={interest}
+                  onChange={(e) => setInterest(e.target.value)}
+                  placeholder={
+                    isAdmission ? "Program you're interested in" : "Scholarship you're interested in"
+                  }
+                  className={FIELD_CLASS}
+                />
+              )}
+
               <textarea
                 name="message"
                 rows={4}
-                placeholder="Tell us more - e.g. team details for hackathon registration, program of interest for admissions, or your question (optional)"
+                placeholder="Tell us more - any other details or questions (optional)"
                 className={cn(FIELD_CLASS, "h-auto py-3")}
               />
               {error && <p className="text-sm text-destructive">{error}</p>}

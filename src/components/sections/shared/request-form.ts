@@ -13,6 +13,8 @@ export type RequestFormPayload = {
   purpose?: string;
   address?: string;
   message?: string;
+  teamName?: string;
+  teamMembers?: { name: string; contact: string }[];
 };
 
 export async function sendRequestForm(payload: RequestFormPayload) {

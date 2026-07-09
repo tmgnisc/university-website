@@ -94,6 +94,11 @@ export const loginInput = z.object({
   password: z.string().min(1),
 });
 
+const teamMemberInput = z.object({
+  name: z.string().min(1),
+  contact: z.string().min(1),
+});
+
 export const requestFormInput = z.object({
   name: z.string().min(1, "Full name is required"),
   phone: z.string().min(1, "Phone number is required"),
@@ -103,6 +108,8 @@ export const requestFormInput = z.object({
   purpose: z.string().default(""),
   address: z.string().default(""),
   message: z.string().default(""),
+  teamName: z.string().default(""),
+  teamMembers: z.array(teamMemberInput).default([]),
 });
 
 export type RequestFormInput = z.infer<typeof requestFormInput>;
