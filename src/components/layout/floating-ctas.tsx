@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
 import { ChatWidget } from "@/components/chat/ChatWidget";
@@ -40,8 +41,11 @@ export function FloatingCTAs() {
       <ChatWidget />
       <ScrollToTop />
       <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 p-3 bg-navy-deep/95 backdrop-blur border-t border-white/10 flex gap-2">
-        <Button className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full">
-          Apply Now
+        <Button
+          asChild
+          className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full"
+        >
+          <Link to="/apply-form">Apply Now</Link>
         </Button>
         <Button
           variant="outline"

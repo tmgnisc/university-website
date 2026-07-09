@@ -108,6 +108,7 @@ function AboutPage() {
         <Timeline items={MILESTONES} />
       </PageSection>
 
+      {/* Our Team section - commented out for now
       <PageSection
         eyebrow="Our Team"
         title="Meet the people behind the campus"
@@ -116,6 +117,7 @@ function AboutPage() {
       >
         <LeadershipGrid members={OUR_TEAM} />
       </PageSection>
+      */}
 
       <PageSection
         eyebrow="Governance"

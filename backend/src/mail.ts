@@ -38,6 +38,8 @@ export async function sendRequestFormMail(input: RequestFormInput) {
   const subject = input.subject || `New request form submission from ${input.name}`;
   const message = input.message || "No message provided.";
   const programLine = input.program ? `Program: ${input.program}\n` : "";
+  const purposeLine = input.purpose ? `Purpose: ${input.purpose}\n` : "";
+  const addressLine = input.address ? `Address: ${input.address}\n` : "";
 
   const text = [
     "New request form submission",
@@ -45,6 +47,8 @@ export async function sendRequestFormMail(input: RequestFormInput) {
     `Name: ${input.name}`,
     `Phone: ${input.phone}`,
     `Email: ${input.email}`,
+    addressLine.trim(),
+    purposeLine.trim(),
     programLine.trim(),
     "",
     "Message:",
@@ -58,6 +62,8 @@ export async function sendRequestFormMail(input: RequestFormInput) {
     <p><strong>Name:</strong> ${escapeHtml(input.name)}</p>
     <p><strong>Phone:</strong> ${escapeHtml(input.phone)}</p>
     <p><strong>Email:</strong> ${escapeHtml(input.email)}</p>
+    ${input.address ? `<p><strong>Address:</strong> ${escapeHtml(input.address)}</p>` : ""}
+    ${input.purpose ? `<p><strong>Purpose:</strong> ${escapeHtml(input.purpose)}</p>` : ""}
     ${input.program ? `<p><strong>Program:</strong> ${escapeHtml(input.program)}</p>` : ""}
     <p><strong>Message:</strong></p>
     <p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>

@@ -10,6 +10,8 @@ export type RequestFormPayload = {
   email: string;
   subject?: string;
   program?: string;
+  purpose?: string;
+  address?: string;
   message?: string;
 };
 

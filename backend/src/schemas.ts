@@ -99,7 +99,9 @@ export const requestFormInput = z.object({
   phone: z.string().min(1, "Phone number is required"),
   email: z.string().email("Valid email is required"),
   subject: z.string().default("New website request"),
-  program: z.string(),
+  program: z.string().default(""),
+  purpose: z.string().default(""),
+  address: z.string().default(""),
   message: z.string().default(""),
 });
 

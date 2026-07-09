@@ -19,4 +19,5 @@ export { FaqList } from "./faq-list";
 export { ContactSection } from "./contact-section";
 export { CurriculumStructure } from "./curriculum-structure";
 export { ApplicationForm } from "./application-form";
+export { ApplyForm } from "./apply-form";
 export { DeadlineGrid } from "./deadline-grid";

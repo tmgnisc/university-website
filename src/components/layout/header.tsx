@@ -110,9 +110,7 @@ export function Header() {
             asChild
             className="hidden sm:inline-flex bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-full px-5"
           >
-            <Link to="/academics/admissions" hash="apply">
-              Apply Now
-            </Link>
+            <Link to="/apply-form">Apply Now</Link>
           </Button>
           <button
             onClick={() => setOpen(true)}
@@ -195,7 +193,7 @@ export function Header() {
               asChild
               className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full mt-2"
             >
-              <Link to="/academics/admissions" hash="apply" onClick={() => setOpen(false)}>
+              <Link to="/apply-form" onClick={() => setOpen(false)}>
                 Apply Now
               </Link>
             </Button>
