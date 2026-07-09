@@ -6,21 +6,25 @@ const LIVE_ROUTES = [
   "/",
   "/about",
   "/programs",
-  "/admissions",
-  "/scholarships",
-  "/campus-life",
-  "/research",
+  "/academics/admissions",
+  "/academics/scholarships",
+  "/student-life/campus-life",
+  "/academics/research",
   "/contact",
   "/careers",
-  "/student-experience",
-  "/student-support",
-  "/visit-us",
-  "/virtual-tour",
-  "/ku-affiliation",
-  "/industry-exposure",
-  "/governance",
-  "/publications",
-  "/legacy",
+  "/student-life/student-experience",
+  "/student-life/student-support",
+  "/visit",
+  "/visit/virtual-tour",
+  "/about/ku-affiliation",
+  "/about/industry-exposure",
+  "/about/governance",
+  "/about/publications",
+  "/about/legacy",
+  "/community",
+  "/vision",
+  "/research",
+  "/updates",
   "/maintenance",
 ];
 
@@ -39,6 +43,7 @@ export function shouldAllowInteraction(target: EventTarget | null): boolean {
   const anchor = target.closest("a");
   if (anchor) {
     const href = anchor.getAttribute("href")?.trim() ?? "";
+    if (/^(tel|mailto):/i.test(href)) return true;
     if (ALLOWED_LINKS.has(href)) return true;
     if (
       ALLOWED_ROUTE_PREFIXES.some(

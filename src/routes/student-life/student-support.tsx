@@ -10,7 +10,7 @@ import content from "@/data/pages/student-support.json";
 
 const SERVICES = resolveIcons(content.services);
 
-export const Route = createFileRoute("/student-support")({
+export const Route = createFileRoute("/student-life/student-support")({
   head: () => ({
     meta: [
       { title: "Student Support — WhiteHouse College of Business & Technology" },
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/student-support")({
           "Counselling, wellbeing, academic help, disability services, financial aid advice, and emergency contacts at WCBT Jhapa.",
       },
     ],
-    links: [{ rel: "canonical", href: "/student-support" }],
+    links: [{ rel: "canonical", href: "/student-life/student-support" }],
   }),
   component: StudentSupportPage,
 });

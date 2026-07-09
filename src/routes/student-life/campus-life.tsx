@@ -21,7 +21,7 @@ const EVENTS = content.events;
 const CAMPUS_GALLERY = content.gallery as BentoItem[];
 const WELLBEING = resolveIcons(content.wellbeing);
 
-export const Route = createFileRoute("/campus-life")({
+export const Route = createFileRoute("/student-life/campus-life")({
   head: () => ({
     meta: [
       { title: "Campus Life — WhiteHouse College of Business & Technology" },
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/campus-life")({
           "Discover student life at WCBT — clubs, events, facilities, and community in Jhapa, Nepal.",
       },
     ],
-    links: [{ rel: "canonical", href: "/campus-life" }],
+    links: [{ rel: "canonical", href: "/student-life/campus-life" }],
   }),
   component: CampusLifePage,
 });

@@ -31,11 +31,23 @@ export function Lead() {
             </div>
             <div className="flex items-center gap-3">
               <Phone className="size-5 text-black" />
-              <span>9714530056, 9714530057</span>
-            </div>
+              <span>
+                <a href="tel:9714530056" className="hover:text-primary hover:underline">
+                  9714530056
+                </a>
+                {", "}
+                <a href="tel:9714530057" className="hover:text-primary hover:underline">
+                  9714530057
+                </a>
+              </span>            </div>
             <div className="flex items-center gap-3">
               <Mail className="size-5 text-black" />
-              <span>info@whitehouseeducation.edu.np</span>
+              <a
+                href="mailto:info@whitehouseeducation.edu.np"
+                className="hover:text-primary hover:underline"
+              >
+                info@whitehouseeducation.edu.np
+              </a>
             </div>
           </div>
           <div
@@ -46,7 +58,7 @@ export function Lead() {
           >
             <iframe
               title="Jhapa campus map"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=87.6857%2C26.6586%2C87.7257%2C26.6986&layer=mapnik"
+              src="https://www.google.com/maps?q=WhiteHouse+College+of+Business+and+Technology+-+Birtamode&ll=26.6355331,87.9699395&z=16&output=embed"
               className="size-full"
               loading="lazy"
             />

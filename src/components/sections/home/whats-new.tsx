@@ -1,8 +1,12 @@
+import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { LAYOUT, Reveal, SectionContainer } from "@/components/layout/layout-primitives";
 import { cn } from "@/lib/utils";
+import boardMembersContent from "@/data/pages/board-members.json";
+
+const PRESIDENT_MESSAGE = boardMembersContent.presidentMessage;
 
 const news = [
   { tag: "Hackathon", title: "48-hour AI Hackathon ignites student innovation" },
@@ -30,8 +34,8 @@ export function WhatsNew() {
             <div className="flex justify-center">
               <div className="relative w-56 lg:w-72 aspect-[3/4] overflow-hidden rounded-2xl border-2 border-white/40 shadow-lg">
                 <img
-                  src="https://ik.imagekit.io/qn3m81dsk/university/president%201.jpg"
-                  alt="Yuvraj Sharma, President"
+                  src={PRESIDENT_MESSAGE.image}
+                  alt={`${PRESIDENT_MESSAGE.name}, ${PRESIDENT_MESSAGE.role}`}
                   loading="lazy"
                   className="size-full object-cover object-top"
                 />
@@ -42,13 +46,19 @@ export function WhatsNew() {
                 From the President
               </span>
               <p className="mt-3 text-xl lg:text-2xl font-display leading-snug">
-                "Our mission is to nurture an academic ecosystem where Eastern Nepal's brightest
-                minds engineer the future — with integrity, excellence and global ambition."
+                "{PRESIDENT_MESSAGE.paragraphs[0]}"
               </p>
-              <p className="mt-4 text-sm font-semibold text-white/90">Yuvraj Sharma</p>
-              <p className="text-xs text-white/60">President</p>
-              <Button className="mt-6 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
-                Read Full Message <ArrowRight className="ml-1 size-4" />
+              <p className="mt-4 text-sm font-semibold text-white/90">
+                {PRESIDENT_MESSAGE.name}
+              </p>
+              <p className="text-xs text-white/60">{PRESIDENT_MESSAGE.role}</p>
+              <Button
+                asChild
+                className="mt-6 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
+              >
+                <Link to="/community/board-members" hash="president-message">
+                  Read Full Message <ArrowRight className="ml-1 size-4" />
+                </Link>
               </Button>
             </div>
           </div>
@@ -66,12 +76,12 @@ export function WhatsNew() {
                   {n.tag}
                 </span>
                 <h3 className="mt-3 font-semibold text-lg leading-snug">{n.title}</h3>
-                <a
-                  href="#"
+                <Link
+                  to="/updates/news"
                   className="mt-4 inline-flex items-center gap-1 text-sm text-white/80 group-hover:text-white"
                 >
                   Read more <ArrowRight className="size-4" />
-                </a>
+                </Link>
               </article>
             </Reveal>
           ))}

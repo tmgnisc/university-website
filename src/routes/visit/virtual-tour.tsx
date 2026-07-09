@@ -8,7 +8,7 @@ import { PageShell } from "@/components/sections/page-shell";
 
 import content from "@/data/pages/virtual-tour.json";
 
-export const Route = createFileRoute("/virtual-tour")({
+export const Route = createFileRoute("/visit/virtual-tour")({
   head: () => ({
     meta: [
       { title: "Virtual Campus Tour — WhiteHouse College of Business & Technology" },
@@ -18,13 +18,11 @@ export const Route = createFileRoute("/virtual-tour")({
           "Take a scrolling virtual tour of the WCBT campus in Jhapa — entrance, library, labs, lounges, and grounds.",
       },
     ],
-    links: [{ rel: "canonical", href: "/virtual-tour" }],
+    links: [{ rel: "canonical", href: "/visit/virtual-tour" }],
   }),
   component: VirtualTourPage,
 });
 
-// Placeholder imagery (stable, real-looking photos). Swap the `image` URLs for
-// AI-generated / real campus photos when ready — nothing else needs to change.
 const STOPS = content.stops;
 
 function VirtualTourPage() {
@@ -47,10 +45,15 @@ function TourHero() {
 
   return (
     <section ref={ref} className="relative h-screen overflow-hidden">
-      <motion.img
+      <motion.video
         style={{ y }}
-        src="https://picsum.photos/seed/wcbt-campus-aerial/1920/1200"
-        alt=""
+        src="https://assets.mixkit.co/videos/4519/4519-720.mp4"
+        poster="https://assets.mixkit.co/videos/4519/4519-thumb-720-0.jpg"
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-label="WCBT campus aerial view"
         className="absolute inset-0 size-full scale-125 object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
@@ -85,17 +88,19 @@ function ParallaxStop({
   total,
   title,
   description,
-  image,
+  video,
+  poster,
 }: {
   index: number;
   total: number;
   title: string;
   description: string;
-  image: string;
+  video: string;
+  poster: string;
 }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  // Image drifts slower than the page → parallax. Oversized + scaled so the
+  // Video drifts slower than the page → parallax. Oversized + scaled so the
   // translation never reveals an edge.
   const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
   const textY = useTransform(scrollYProgress, [0, 0.5, 1], ["40px", "0px", "-40px"]);
@@ -103,11 +108,15 @@ function ParallaxStop({
 
   return (
     <section ref={ref} className="relative h-[85vh] overflow-hidden md:h-screen">
-      <motion.img
+      <motion.video
         style={{ y }}
-        src={image}
-        alt={title}
-        loading="lazy"
+        src={video}
+        poster={poster}
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-label={title}
         className="absolute inset-0 size-full scale-125 object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/40" />
@@ -141,7 +150,7 @@ function ClosingCTA() {
             size="lg"
             className="rounded-full bg-primary px-8 text-primary-foreground hover:bg-primary/90"
           >
-            <Link to="/visit-us">
+            <Link to="/visit">
               Book a visit <ArrowRight className="ml-1 size-4" />
             </Link>
           </Button>
@@ -151,7 +160,7 @@ function ClosingCTA() {
             variant="outline"
             className="rounded-full border-white/30 bg-transparent px-8 text-white hover:bg-white/10 hover:text-white"
           >
-            <Link to="/admissions">Admissions</Link>
+            <Link to="/academics/admissions">Admissions</Link>
           </Button>
         </div>
       </div>

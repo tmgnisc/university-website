@@ -20,7 +20,7 @@ const EVENTS = content.events;
 const ENRICHMENT_ACTIVITIES = resolveIcons(content.enrichmentActivities);
 const ORIENTATION = resolveIcons(content.orientation);
 
-export const Route = createFileRoute("/student-experience")({
+export const Route = createFileRoute("/student-life/student-experience")({
   head: () => ({
     meta: [
       { title: "Wider Student Experience — WhiteHouse College of Business & Technology" },
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/student-experience")({
           "Clubs, societies, enrichment activities, orientation, and the student events calendar at WCBT Jhapa.",
       },
     ],
-    links: [{ rel: "canonical", href: "/student-experience" }],
+    links: [{ rel: "canonical", href: "/student-life/student-experience" }],
   }),
   component: StudentExperiencePage,
 });

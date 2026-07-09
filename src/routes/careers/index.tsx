@@ -22,7 +22,7 @@ const CAREER_AREAS = resolveIcons(content.careerAreas);
 const FURTHER_STUDIES = content.furtherStudies;
 const CAREER_SUPPORT = content.careerSupport;
 
-export const Route = createFileRoute("/careers")({
+export const Route = createFileRoute("/careers/")({
   head: () => ({
     meta: [
       { title: "Careers — WhiteHouse College of Business & Technology" },

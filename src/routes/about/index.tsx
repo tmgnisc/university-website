@@ -6,6 +6,7 @@ import {
   CtaBand,
   HighlightBand,
   IconFeatureGrid,
+  LeadershipGrid,
   PageSection,
   SplitSection,
   Timeline,
@@ -18,8 +19,9 @@ import content from "@/data/pages/about.json";
 const ABOUT_BENTO = content.bento as BentoItem[];
 const CORE_VALUES = resolveIcons(content.coreValues);
 const MILESTONES = content.milestones;
+const OUR_TEAM = content.team;
 
-export const Route = createFileRoute("/about")({
+export const Route = createFileRoute("/about/")({
   head: () => ({
     meta: [
       { title: "About — WhiteHouse College of Business & Technology" },
@@ -106,14 +108,14 @@ function AboutPage() {
         <Timeline items={MILESTONES} />
       </PageSection>
 
-      {/* <PageSection
-        eyebrow="Leadership"
+      <PageSection
+        eyebrow="Our Team"
         title="Meet the people behind the campus"
-        description="Experienced educators and administrators committed to student success and academic excellence."
+        description="Experienced leaders and administrators committed to student success and academic excellence."
         className="bg-muted/30"
       >
-        <LeadershipGrid members={LEADERSHIP} />
-      </PageSection> */}
+        <LeadershipGrid members={OUR_TEAM} />
+      </PageSection>
 
       <PageSection
         eyebrow="Governance"

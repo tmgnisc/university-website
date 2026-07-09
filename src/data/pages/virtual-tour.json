@@ -3,32 +3,38 @@
     {
       "title": "Main Entrance",
       "description": "Step through the gates of WCBT in Jhapa, where your journey into technology and innovation begins.",
-      "image": "https://picsum.photos/seed/wcbt-entrance/1920/1080"
+      "video": "https://assets.mixkit.co/videos/4560/4560-720.mp4",
+      "poster": "https://assets.mixkit.co/videos/4560/4560-thumb-720-0.jpg"
     },
     {
       "title": "Academic Block",
       "description": "Modern classrooms and smart lecture halls designed for collaborative, hands-on learning.",
-      "image": "https://picsum.photos/seed/wcbt-academic/1920/1080"
+      "video": "https://assets.mixkit.co/videos/48165/48165-720.mp4",
+      "poster": "https://assets.mixkit.co/videos/48165/48165-thumb-720-3.jpg"
     },
     {
       "title": "Library & Resources",
       "description": "A quiet space for research and study, with digital and print resources at your fingertips.",
-      "image": "https://picsum.photos/seed/wcbt-library/1920/1080"
+      "video": "https://assets.mixkit.co/videos/21595/21595-720.mp4",
+      "poster": "https://assets.mixkit.co/videos/21595/21595-thumb-720-0.jpg"
     },
     {
       "title": "Computer & Innovation Labs",
-      "description": "Well-equipped labs for programming, AI, and project work — the heart of practical learning.",
-      "image": "https://picsum.photos/seed/wcbt-labs/1920/1080"
+      "description": "Well-equipped spaces for coding, electronics, robotics, and project work — the heart of practical learning.",
+      "video": "https://assets.mixkit.co/videos/24569/24569-720.mp4",
+      "poster": "https://assets.mixkit.co/videos/24569/24569-thumb-720-0.jpg"
     },
     {
       "title": "Student Lounge",
       "description": "Relaxed spaces to collaborate, recharge, and connect with fellow students between classes.",
-      "image": "https://picsum.photos/seed/wcbt-lounge/1920/1080"
+      "video": "https://assets.mixkit.co/videos/4794/4794-720.mp4",
+      "poster": "https://assets.mixkit.co/videos/4794/4794-thumb-720-0.jpg"
     },
     {
       "title": "Campus Grounds",
       "description": "Open spaces for sports, events, and the vibrant community life that makes WCBT feel like home.",
-      "image": "https://picsum.photos/seed/wcbt-grounds/1920/1080"
+      "video": "https://assets.mixkit.co/videos/4520/4520-720.mp4",
+      "poster": "https://assets.mixkit.co/videos/4520/4520-thumb-720-0.jpg"
     }
   ]
 }

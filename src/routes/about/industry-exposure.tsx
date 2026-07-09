@@ -7,7 +7,7 @@ import { resolveIcons } from "@/lib/icon-registry";
 
 import content from "@/data/pages/industry-exposure.json";
 
-export const Route = createFileRoute("/industry-exposure")({
+export const Route = createFileRoute("/about/industry-exposure")({
   head: () => ({
     meta: [
       { title: "Industry Exposure — WhiteHouse College of Business & Technology" },
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/industry-exposure")({
         content: "Learn about our industry partnerships and real-world learning opportunities.",
       },
     ],
-    links: [{ rel: "canonical", href: "/industry-exposure" }],
+    links: [{ rel: "canonical", href: "/about/industry-exposure" }],
   }),
   component: IndustryExposurePage,
 });

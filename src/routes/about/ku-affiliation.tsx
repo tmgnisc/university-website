@@ -9,7 +9,7 @@ import content from "@/data/pages/ku-affiliation.json";
 
 const BENEFITS = content.benefits;
 
-export const Route = createFileRoute("/ku-affiliation")({
+export const Route = createFileRoute("/about/ku-affiliation")({
   head: () => ({
     meta: [
       { title: "KU Affiliation — WhiteHouse College of Business & Technology" },
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/ku-affiliation")({
         content: "Discover our Kathmandu University partnership and academic standards.",
       },
     ],
-    links: [{ rel: "canonical", href: "/ku-affiliation" }],
+    links: [{ rel: "canonical", href: "/about/ku-affiliation" }],
   }),
   component: KUAffiliationPage,
 });
