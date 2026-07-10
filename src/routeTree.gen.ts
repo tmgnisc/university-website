@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as NotFoundPageRouteImport } from './routes/not-found-page'
 import { Route as MaintenanceRouteImport } from './routes/maintenance'
+import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as VisitIndexRouteImport } from './routes/visit/index'
@@ -75,6 +76,11 @@ const NotFoundPageRoute = NotFoundPageRouteImport.update({
 const MaintenanceRoute = MaintenanceRouteImport.update({
   id: '/maintenance',
   path: '/maintenance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApplyRoute = ApplyRouteImport.update({
+  id: '/apply',
+  path: '/apply',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SplatRoute = SplatRouteImport.update({
@@ -329,6 +335,7 @@ const AdminAuthedChatbotRoute = AdminAuthedChatbotRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
+  '/apply': typeof ApplyRoute
   '/maintenance': typeof MaintenanceRoute
   '/not-found-page': typeof NotFoundPageRoute
   '/programs': typeof ProgramsRouteWithChildren
@@ -383,6 +390,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
+  '/apply': typeof ApplyRoute
   '/maintenance': typeof MaintenanceRoute
   '/not-found-page': typeof NotFoundPageRoute
   '/about/governance': typeof AboutGovernanceRoute
@@ -436,6 +444,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
+  '/apply': typeof ApplyRoute
   '/maintenance': typeof MaintenanceRoute
   '/not-found-page': typeof NotFoundPageRoute
   '/programs': typeof ProgramsRouteWithChildren
@@ -492,6 +501,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$'
+    | '/apply'
     | '/maintenance'
     | '/not-found-page'
     | '/programs'
@@ -546,6 +556,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/$'
+    | '/apply'
     | '/maintenance'
     | '/not-found-page'
     | '/about/governance'
@@ -598,6 +609,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$'
+    | '/apply'
     | '/maintenance'
     | '/not-found-page'
     | '/programs'
@@ -653,6 +665,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SplatRoute: typeof SplatRoute
+  ApplyRoute: typeof ApplyRoute
   MaintenanceRoute: typeof MaintenanceRoute
   NotFoundPageRoute: typeof NotFoundPageRoute
   ProgramsRoute: typeof ProgramsRouteWithChildren
@@ -716,6 +729,13 @@ declare module '@tanstack/react-router' {
       path: '/maintenance'
       fullPath: '/maintenance'
       preLoaderRoute: typeof MaintenanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apply': {
+      id: '/apply'
+      path: '/apply'
+      fullPath: '/apply'
+      preLoaderRoute: typeof ApplyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$': {
@@ -1107,6 +1127,7 @@ const AdminAuthedRouteWithChildren = AdminAuthedRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SplatRoute: SplatRoute,
+  ApplyRoute: ApplyRoute,
   MaintenanceRoute: MaintenanceRoute,
   NotFoundPageRoute: NotFoundPageRoute,
   ProgramsRoute: ProgramsRouteWithChildren,

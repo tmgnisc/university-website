@@ -45,6 +45,7 @@ export async function sendRequestFormMail(input: RequestFormInput) {
     `Name: ${input.name}`,
     `Phone: ${input.phone}`,
     `Email: ${input.email}`,
+    `Subject: ${subject}`,
     programLine.trim(),
     "",
     "Message:",
@@ -58,6 +59,7 @@ export async function sendRequestFormMail(input: RequestFormInput) {
     <p><strong>Name:</strong> ${escapeHtml(input.name)}</p>
     <p><strong>Phone:</strong> ${escapeHtml(input.phone)}</p>
     <p><strong>Email:</strong> ${escapeHtml(input.email)}</p>
+    <p><strong>Subject:</strong> ${escapeHtml(subject)}</p>
     ${input.program ? `<p><strong>Program:</strong> ${escapeHtml(input.program)}</p>` : ""}
     <p><strong>Message:</strong></p>
     <p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>
