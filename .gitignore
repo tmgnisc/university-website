@@ -20,6 +20,9 @@ dist-ssr
 .wrangler/
 .dev.vars
 
+# Static mailer secrets (public/mail-config.php holds a real SMTP password)
+public/mail-config.php
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

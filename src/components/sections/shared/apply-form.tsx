@@ -49,6 +49,7 @@ export function ApplyForm({
   const [teamName, setTeamName] = useState("");
   const [members, setMembers] = useState<TeamMember[]>([{ ...EMPTY_MEMBER }]);
   const [interest, setInterest] = useState("");
+  const [noTeam, setNoTeam] = useState(false);
 
   const isHackathonRegistration = purpose === "Hackathon Registration";
   const isAdmission = purpose === "Admission Query";
@@ -63,6 +64,7 @@ export function ApplyForm({
     setTeamName("");
     setMembers([{ ...EMPTY_MEMBER }]);
     setInterest("");
+    setNoTeam(false);
   }
 
   return (
@@ -105,7 +107,9 @@ export function ApplyForm({
               subject: purpose ? `${purpose} — Website form` : "New website request",
               message: String(formData.get("message") ?? ""),
               program: isAdmission || isScholarship ? interest : undefined,
-              teamName: isHackathonRegistration ? teamName : undefined,
+              teamName: isHackathonRegistration
+                ? teamName || (noTeam ? "No team (solo registration)" : "")
+                : undefined,
               teamMembers: isHackathonRegistration ? teamMembers : undefined,
             })
               .then(() => {
@@ -172,11 +176,22 @@ export function ApplyForm({
               {isHackathonRegistration && (
                 <div className="space-y-4 rounded-2xl border border-dashed border-border p-4">
                   <p className="text-sm font-semibold text-foreground">Team details</p>
+
+                  <label className="flex items-center gap-2 text-sm text-foreground">
+                    <input
+                      type="checkbox"
+                      checked={noTeam}
+                      onChange={(e) => setNoTeam(e.target.checked)}
+                      className="size-4 rounded border-input"
+                    />
+                    I don&apos;t have a team — register solo
+                  </label>
+
                   <input
-                    required
+                    required={!noTeam}
                     value={teamName}
                     onChange={(e) => setTeamName(e.target.value)}
-                    placeholder="Team name"
+                    placeholder={noTeam ? "Team name (optional)" : "Team name"}
                     className={FIELD_CLASS}
                   />
 
@@ -184,17 +199,17 @@ export function ApplyForm({
                     {members.map((member, index) => (
                       <div key={index} className="grid gap-2 sm:grid-cols-[1fr_1fr_auto] sm:gap-3">
                         <input
-                          required
+                          required={!noTeam}
                           value={member.name}
                           onChange={(e) => updateMember(index, "name", e.target.value)}
-                          placeholder={`Member ${index + 1} name`}
+                          placeholder={`Member ${index + 1} name${noTeam ? " (optional)" : ""}`}
                           className={FIELD_CLASS}
                         />
                         <input
-                          required
+                          required={!noTeam}
                           value={member.contact}
                           onChange={(e) => updateMember(index, "contact", e.target.value)}
-                          placeholder={`Member ${index + 1} phone or email`}
+                          placeholder={`Member ${index + 1} phone or email${noTeam ? " (optional)" : ""}`}
                           className={FIELD_CLASS}
                         />
                         <Button

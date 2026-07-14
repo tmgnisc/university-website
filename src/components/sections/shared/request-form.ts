@@ -1,6 +1,7 @@
 // Shared "send request form" submission helper used by ContactSection and
-// ApplicationForm. Front-end only for now (posts to the backend's
-// /api/request-form route); see backend/src/mail.ts for delivery.
+// ApplicationForm. Posts to the static PHP mailer at /mail/send.php (see
+// public/mail/send.php), which ships alongside the static build — no Node
+// backend required.
 
 export const FIELD_CLASS = "w-full h-12 rounded-xl border border-input bg-background px-4 text-sm";
 
@@ -18,8 +19,7 @@ export type RequestFormPayload = {
 };
 
 export async function sendRequestForm(payload: RequestFormPayload) {
-  const apiBase = import.meta.env.VITE_CMS_API_URL?.replace(/\/$/, "") ?? "";
-  const response = await fetch(`${apiBase}/api/request-form`, {
+  const response = await fetch("/mail/send.php", {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(payload),
