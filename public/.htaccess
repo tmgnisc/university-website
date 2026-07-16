@@ -2,8 +2,18 @@
   Require all denied
 </Files>
 
+<Files "lib.php">
+  Require all denied
+</Files>
+
 RewriteEngine On
 RewriteBase /
+
+# Some Apache/PHP setups (mod_php, PHP-FPM via CGI) strip the Authorization
+# header before it reaches PHP. Forward it explicitly so the submissions
+# inbox's Bearer token auth (public/mail/lib.php) works.
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%1]
 
 RewriteRule ^index\.html$ - [L]
 

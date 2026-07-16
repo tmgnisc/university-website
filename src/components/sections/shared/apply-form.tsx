@@ -16,6 +16,14 @@ const PURPOSE_OPTIONS = [
   "Hackathon Registration",
 ];
 
+const ELIGIBILITY_OPTIONS = ["+2 completed", "Bachelor's student", "Other"];
+
+const COURSE_OPTIONS = [
+  "BIT — Bachelor of Information Technology",
+  "B.Tech Ed IT — Technology in Education",
+  "Not sure yet",
+];
+
 type TeamMember = { name: string; contact: string };
 
 const EMPTY_MEMBER: TeamMember = { name: "", contact: "" };
@@ -50,10 +58,14 @@ export function ApplyForm({
   const [members, setMembers] = useState<TeamMember[]>([{ ...EMPTY_MEMBER }]);
   const [interest, setInterest] = useState("");
   const [noTeam, setNoTeam] = useState(false);
+  const [eligibility, setEligibility] = useState("");
 
   const isHackathonRegistration = purpose === "Hackathon Registration";
+  const isHackathonQuery = purpose === "Hackathon Event Query";
+  const isHackathonRelated = isHackathonRegistration || isHackathonQuery;
   const isAdmission = purpose === "Admission Query";
   const isScholarship = purpose === "Scholarship Query";
+  const isIneligible = isHackathonRelated && eligibility !== "" && eligibility !== "+2 completed";
 
   function updateMember(index: number, field: keyof TeamMember, value: string) {
     setMembers((prev) => prev.map((m, i) => (i === index ? { ...m, [field]: value } : m)));
@@ -65,6 +77,7 @@ export function ApplyForm({
     setMembers([{ ...EMPTY_MEMBER }]);
     setInterest("");
     setNoTeam(false);
+    setEligibility("");
   }
 
   return (
@@ -91,6 +104,14 @@ export function ApplyForm({
             e.preventDefault();
             const form = e.currentTarget;
             const formData = new FormData(form);
+
+            if (isIneligible) {
+              setError(
+                "This hackathon is open to +2 completed students only — bachelor's and other students are not eligible to register.",
+              );
+              return;
+            }
+
             setSending(true);
             setError("");
 
@@ -107,6 +128,7 @@ export function ApplyForm({
               subject: purpose ? `${purpose} — Website form` : "New website request",
               message: String(formData.get("message") ?? ""),
               program: isAdmission || isScholarship ? interest : undefined,
+              eligibility: isHackathonRelated ? eligibility : undefined,
               teamName: isHackathonRegistration
                 ? teamName || (noTeam ? "No team (solo registration)" : "")
                 : undefined,
@@ -129,8 +151,7 @@ export function ApplyForm({
               </div>
               <h3 className="mt-5 text-2xl font-semibold">Thank you!</h3>
               <p className="mt-2 text-muted-foreground">
-                We&apos;ve received your submission and our team will be in touch with you
-                shortly.
+                We&apos;ve received your submission and our team will be in touch with you shortly.
               </p>
             </div>
           ) : (
@@ -147,7 +168,9 @@ export function ApplyForm({
                   required
                   name="phone"
                   type="tel"
-                  placeholder={isHackathonRegistration ? "Team leader phone number" : "Phone number"}
+                  placeholder={
+                    isHackathonRegistration ? "Team leader phone number" : "Phone number"
+                  }
                   className={FIELD_CLASS}
                 />
                 <input
@@ -172,6 +195,34 @@ export function ApplyForm({
                   <option key={option}>{option}</option>
                 ))}
               </select>
+
+              {isHackathonRelated && (
+                <div className="space-y-2">
+                  <select
+                    required
+                    value={eligibility}
+                    onChange={(e) => setEligibility(e.target.value)}
+                    className={FIELD_CLASS}
+                  >
+                    <option value="" disabled>
+                      Eligibility — current education level
+                    </option>
+                    {ELIGIBILITY_OPTIONS.map((option) => (
+                      <option key={option}>{option}</option>
+                    ))}
+                  </select>
+                  <p className="text-xs text-muted-foreground">
+                    This hackathon is open to +2 (higher secondary) completed students only.
+                    Bachelor&apos;s students and other applicants are not eligible.
+                  </p>
+                  {isIneligible && (
+                    <p className="text-sm text-destructive">
+                      Sorry, you&apos;re not eligible for this hackathon — only +2 completed
+                      students may register.
+                    </p>
+                  )}
+                </div>
+              )}
 
               {isHackathonRegistration && (
                 <div className="space-y-4 rounded-2xl border border-dashed border-border p-4">
@@ -239,15 +290,21 @@ export function ApplyForm({
               )}
 
               {(isAdmission || isScholarship) && (
-                <input
+                <select
                   required
                   value={interest}
                   onChange={(e) => setInterest(e.target.value)}
-                  placeholder={
-                    isAdmission ? "Program you're interested in" : "Scholarship you're interested in"
-                  }
                   className={FIELD_CLASS}
-                />
+                >
+                  <option value="" disabled>
+                    {isAdmission
+                      ? "Course you're interested in"
+                      : "Course / scholarship you're interested in"}
+                  </option>
+                  {COURSE_OPTIONS.map((option) => (
+                    <option key={option}>{option}</option>
+                  ))}
+                </select>
               )}
 
               <textarea
@@ -260,7 +317,7 @@ export function ApplyForm({
               <Button
                 type="submit"
                 size="lg"
-                disabled={sending}
+                disabled={sending || isIneligible}
                 className="h-12 w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 {sending ? "Sending..." : submitLabel} <ArrowRight className="ml-1 size-4" />

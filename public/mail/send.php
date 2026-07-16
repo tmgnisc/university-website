@@ -1,41 +1,27 @@
 <?php
 // Static-site apply-form mailer. Receives the same JSON payload the old
-// Node backend's /api/request-form accepted and emails it via PHP's local
+// Node backend's /api/request-form accepted, emails it via PHP's local
 // mail() (the server's own Exim/sendmail) — most shared hosts block direct
-// outbound SMTP to external hosts like Gmail, but always allow this.
+// outbound SMTP to external hosts like Gmail, but always allow this — and
+// persists a copy so the admin inbox (see submissions.php) can list it.
 //
-// Config (recipient/from address) lives in mail-config.php (gitignored),
-// one directory up.
+// Config (recipient/from address/admin credentials) lives in mail-config.php
+// (gitignored), one directory up.
 
 declare(strict_types=1);
 
-header('Content-Type: application/json; charset=utf-8');
+require __DIR__ . '/lib.php';
 
-function fail(int $status, string $error) {
-    http_response_code($status);
-    echo json_encode(['error' => $error]);
-    exit;
-}
+header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     fail(405, 'Method not allowed');
 }
 
-$configPath = __DIR__ . '/../mail-config.php';
-if (!is_file($configPath)) {
-    fail(500, 'Email service is not configured yet');
-}
-$config = require $configPath;
-
-$raw = file_get_contents('php://input');
-$body = json_decode($raw ?: '', true);
-if (!is_array($body)) {
+$config = load_mail_config();
+$body = read_json_body();
+if ($body === []) {
     fail(400, 'Invalid request body');
-}
-
-function str_field(array $body, string $key, string $default = ''): string {
-    $value = $body[$key] ?? $default;
-    return is_string($value) ? trim($value) : $default;
 }
 
 $name = str_field($body, 'name');
@@ -46,6 +32,7 @@ $program = str_field($body, 'program');
 $purpose = str_field($body, 'purpose');
 $address = str_field($body, 'address');
 $message = str_field($body, 'message');
+$eligibility = str_field($body, 'eligibility');
 $teamName = str_field($body, 'teamName');
 
 $teamMembers = [];
@@ -67,10 +54,6 @@ if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) fail(400, 'Vali
 $recipient = $config['request_form_to'] ?? '';
 if ($recipient === '') fail(500, 'Email service is not configured yet');
 
-function esc_html(string $value): string {
-    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
-}
-
 $mailSubject = $subject !== '' ? $subject : "New request form submission from $name";
 $mailMessage = $message !== '' ? $message : 'No message provided.';
 
@@ -78,6 +61,7 @@ $lines = ["New request form submission", "", "Name: $name", "Phone: $phone", "Em
 if ($address !== '') $lines[] = "Address: $address";
 if ($purpose !== '') $lines[] = "Purpose: $purpose";
 if ($program !== '') $lines[] = "Program / Area of interest: $program";
+if ($eligibility !== '') $lines[] = "Eligibility: $eligibility";
 if ($teamName !== '') $lines[] = "Team name: $teamName";
 if (count($teamMembers) > 0) {
     $lines[] = "Team members:";
@@ -99,6 +83,7 @@ $htmlParts = [
 if ($address !== '') $htmlParts[] = "<p><strong>Address:</strong> " . esc_html($address) . "</p>";
 if ($purpose !== '') $htmlParts[] = "<p><strong>Purpose:</strong> " . esc_html($purpose) . "</p>";
 if ($program !== '') $htmlParts[] = "<p><strong>Program / Area of interest:</strong> " . esc_html($program) . "</p>";
+if ($eligibility !== '') $htmlParts[] = "<p><strong>Eligibility:</strong> " . esc_html($eligibility) . "</p>";
 if ($teamName !== '') $htmlParts[] = "<p><strong>Team name:</strong> " . esc_html($teamName) . "</p>";
 if (count($teamMembers) > 0) {
     $items = array_map(fn($m) => "<li>" . esc_html($m['name']) . " — " . esc_html($m['contact']) . "</li>", $teamMembers);
@@ -107,48 +92,36 @@ if (count($teamMembers) > 0) {
 $htmlParts[] = "<p><strong>Message:</strong></p><p>" . nl2br(esc_html($mailMessage)) . "</p>";
 $html = implode("\n", $htmlParts);
 
-function send_via_local_mail(array $config, string $to, string $replyTo, string $subject, string $text, string $html): void {
-    $fromAddress = $config['mail_from_address'];
-    $fromName = $config['mail_from_name'] ?? '';
-
-    $boundary = "wcbt-" . bin2hex(random_bytes(12));
-    $encodedSubject = "=?UTF-8?B?" . base64_encode($subject) . "?=";
-    $fromHeader = $fromName !== '' ? "=?UTF-8?B?" . base64_encode($fromName) . "?= <$fromAddress>" : $fromAddress;
-
-    $headers = implode("\r\n", [
-        "From: $fromHeader",
-        "Reply-To: <$replyTo>",
-        "MIME-Version: 1.0",
-        "Content-Type: multipart/alternative; boundary=\"$boundary\"",
-    ]);
-
-    $body = "--$boundary\r\n"
-        . "Content-Type: text/plain; charset=UTF-8\r\n"
-        . "Content-Transfer-Encoding: base64\r\n\r\n"
-        . chunk_split(base64_encode($text))
-        . "--$boundary\r\n"
-        . "Content-Type: text/html; charset=UTF-8\r\n"
-        . "Content-Transfer-Encoding: base64\r\n\r\n"
-        . chunk_split(base64_encode($html))
-        . "--$boundary--";
-
-    $sent = mail($to, $encodedSubject, $body, $headers, "-f$fromAddress");
-    if (!$sent) {
-        $error = error_get_last();
-        throw new RuntimeException($error['message'] ?? 'mail() returned false');
-    }
-}
-
 try {
     send_via_local_mail($config, $recipient, $email, $mailSubject, $text, $html);
 } catch (Throwable $e) {
     fail(502, 'Send failed: ' . $e->getMessage());
 }
 
+// Persist a copy for the admin inbox. Hackathon registrations start out
+// "pending" so they show up for approve/reject; everything else is just a
+// record of the query (no action needed) and is stored as "received".
+$isHackathonRegistration = $purpose === 'Hackathon Registration';
+append_submission([
+    'id' => bin2hex(random_bytes(12)),
+    'createdAt' => date(DATE_ATOM),
+    'status' => $isHackathonRegistration ? 'pending' : 'received',
+    'name' => $name,
+    'phone' => $phone,
+    'email' => $email,
+    'address' => $address,
+    'purpose' => $purpose,
+    'program' => $program,
+    'eligibility' => $eligibility,
+    'teamName' => $teamName,
+    'teamMembers' => $teamMembers,
+    'message' => $message,
+]);
+
 // Best-effort confirmation email back to the applicant for hackathon
 // registrations, sent to the address they entered in the form. Failure here
 // must not fail the request — the admin notification above already went out.
-if ($purpose === 'Hackathon Registration') {
+if ($isHackathonRegistration) {
     try {
         send_hackathon_confirmation($config, $email, $name, $teamName, $teamMembers);
     } catch (Throwable $e) {
@@ -159,12 +132,12 @@ if ($purpose === 'Hackathon Registration') {
 echo json_encode(['ok' => true]);
 
 function send_hackathon_confirmation(array $config, string $to, string $name, string $teamName, array $teamMembers): void {
-    $subject = 'Registration successful — Hackathon at White House College';
+    $subject = 'Registration received — Hackathon at White House College';
 
     $lines = [
         "Hi $name,",
         "",
-        "Thanks for registering for the Hackathon at White House College of Business and Technology. Your registration has been received successfully.",
+        "Thanks for registering for the Hackathon at White House College of Business and Technology. Your registration has been received and is pending review.",
         "",
     ];
     if ($teamName !== '') $lines[] = "Team: $teamName";
@@ -175,21 +148,21 @@ function send_hackathon_confirmation(array $config, string $to, string $name, st
         }
     }
     $lines[] = "";
-    $lines[] = "Our team will reach out to you with further details ahead of the event.";
+    $lines[] = "We'll email you once your team has been reviewed.";
     $lines[] = "";
     $lines[] = "See you there!";
     $text = implode("\r\n", $lines);
 
     $htmlParts = [
         "<p>Hi " . esc_html($name) . ",</p>",
-        "<p>Thanks for registering for the <strong>Hackathon at White House College of Business and Technology</strong>. Your registration has been received successfully.</p>",
+        "<p>Thanks for registering for the <strong>Hackathon at White House College of Business and Technology</strong>. Your registration has been received and is pending review.</p>",
     ];
     if ($teamName !== '') $htmlParts[] = "<p><strong>Team:</strong> " . esc_html($teamName) . "</p>";
     if (count($teamMembers) > 0) {
         $items = array_map(fn($m) => "<li>" . esc_html($m['name']) . " — " . esc_html($m['contact']) . "</li>", $teamMembers);
         $htmlParts[] = "<p><strong>Team members:</strong></p><ol>" . implode('', $items) . "</ol>";
     }
-    $htmlParts[] = "<p>Our team will reach out to you with further details ahead of the event.</p>";
+    $htmlParts[] = "<p>We'll email you once your team has been reviewed.</p>";
     $htmlParts[] = "<p>See you there!</p>";
     $html = implode("\n", $htmlParts);
 

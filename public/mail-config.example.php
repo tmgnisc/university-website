@@ -12,4 +12,15 @@ return [
     'mail_from_address' => 'info@whitehouseeducation.edu.np',
 
     'request_form_to' => 'info@whitehouseeducation.edu.np',
+
+    // Admin credentials for the submissions inbox (/admin/inbox). Verified
+    // server-side on every request — pick a real password and keep this
+    // file private (it's gitignored, but also set restrictive file
+    // permissions on the server, e.g. chmod 600).
+    'admin_username' => 'admin',
+    'admin_password' => 'change-me',
+
+    // Random secret used to sign admin session tokens. Generate one with:
+    // php -r "echo bin2hex(random_bytes(32));"
+    'admin_token_secret' => 'change-me-to-a-long-random-string',
 ];

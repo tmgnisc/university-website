@@ -61,6 +61,7 @@ import { Route as AdminAuthedScholarshipsRouteImport } from './routes/admin/_aut
 import { Route as AdminAuthedProgramsRouteImport } from './routes/admin/_authed/programs'
 import { Route as AdminAuthedOpeningsRouteImport } from './routes/admin/_authed/openings'
 import { Route as AdminAuthedNewsRouteImport } from './routes/admin/_authed/news'
+import { Route as AdminAuthedInboxRouteImport } from './routes/admin/_authed/inbox'
 import { Route as AdminAuthedChatbotRouteImport } from './routes/admin/_authed/chatbot'
 
 const ProgramsRoute = ProgramsRouteImport.update({
@@ -326,6 +327,11 @@ const AdminAuthedNewsRoute = AdminAuthedNewsRouteImport.update({
   path: '/news',
   getParentRoute: () => AdminAuthedRoute,
 } as any)
+const AdminAuthedInboxRoute = AdminAuthedInboxRouteImport.update({
+  id: '/inbox',
+  path: '/inbox',
+  getParentRoute: () => AdminAuthedRoute,
+} as any)
 const AdminAuthedChatbotRoute = AdminAuthedChatbotRouteImport.update({
   id: '/chatbot',
   path: '/chatbot',
@@ -380,6 +386,7 @@ export interface FileRoutesByFullPath {
   '/vision/': typeof VisionIndexRoute
   '/visit/': typeof VisitIndexRoute
   '/admin/chatbot': typeof AdminAuthedChatbotRoute
+  '/admin/inbox': typeof AdminAuthedInboxRoute
   '/admin/news': typeof AdminAuthedNewsRoute
   '/admin/openings': typeof AdminAuthedOpeningsRoute
   '/admin/programs': typeof AdminAuthedProgramsRoute
@@ -433,6 +440,7 @@ export interface FileRoutesByTo {
   '/vision': typeof VisionIndexRoute
   '/visit': typeof VisitIndexRoute
   '/admin/chatbot': typeof AdminAuthedChatbotRoute
+  '/admin/inbox': typeof AdminAuthedInboxRoute
   '/admin/news': typeof AdminAuthedNewsRoute
   '/admin/openings': typeof AdminAuthedOpeningsRoute
   '/admin/programs': typeof AdminAuthedProgramsRoute
@@ -489,6 +497,7 @@ export interface FileRoutesById {
   '/vision/': typeof VisionIndexRoute
   '/visit/': typeof VisitIndexRoute
   '/admin/_authed/chatbot': typeof AdminAuthedChatbotRoute
+  '/admin/_authed/inbox': typeof AdminAuthedInboxRoute
   '/admin/_authed/news': typeof AdminAuthedNewsRoute
   '/admin/_authed/openings': typeof AdminAuthedOpeningsRoute
   '/admin/_authed/programs': typeof AdminAuthedProgramsRoute
@@ -546,6 +555,7 @@ export interface FileRouteTypes {
     | '/vision/'
     | '/visit/'
     | '/admin/chatbot'
+    | '/admin/inbox'
     | '/admin/news'
     | '/admin/openings'
     | '/admin/programs'
@@ -599,6 +609,7 @@ export interface FileRouteTypes {
     | '/vision'
     | '/visit'
     | '/admin/chatbot'
+    | '/admin/inbox'
     | '/admin/news'
     | '/admin/openings'
     | '/admin/programs'
@@ -654,6 +665,7 @@ export interface FileRouteTypes {
     | '/vision/'
     | '/visit/'
     | '/admin/_authed/chatbot'
+    | '/admin/_authed/inbox'
     | '/admin/_authed/news'
     | '/admin/_authed/openings'
     | '/admin/_authed/programs'
@@ -1074,6 +1086,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAuthedNewsRouteImport
       parentRoute: typeof AdminAuthedRoute
     }
+    '/admin/_authed/inbox': {
+      id: '/admin/_authed/inbox'
+      path: '/inbox'
+      fullPath: '/admin/inbox'
+      preLoaderRoute: typeof AdminAuthedInboxRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
     '/admin/_authed/chatbot': {
       id: '/admin/_authed/chatbot'
       path: '/chatbot'
@@ -1102,6 +1121,7 @@ const ProgramsRouteWithChildren = ProgramsRoute._addFileChildren(
 
 interface AdminAuthedRouteChildren {
   AdminAuthedChatbotRoute: typeof AdminAuthedChatbotRoute
+  AdminAuthedInboxRoute: typeof AdminAuthedInboxRoute
   AdminAuthedNewsRoute: typeof AdminAuthedNewsRoute
   AdminAuthedOpeningsRoute: typeof AdminAuthedOpeningsRoute
   AdminAuthedProgramsRoute: typeof AdminAuthedProgramsRoute
@@ -1112,6 +1132,7 @@ interface AdminAuthedRouteChildren {
 
 const AdminAuthedRouteChildren: AdminAuthedRouteChildren = {
   AdminAuthedChatbotRoute: AdminAuthedChatbotRoute,
+  AdminAuthedInboxRoute: AdminAuthedInboxRoute,
   AdminAuthedNewsRoute: AdminAuthedNewsRoute,
   AdminAuthedOpeningsRoute: AdminAuthedOpeningsRoute,
   AdminAuthedProgramsRoute: AdminAuthedProgramsRoute,

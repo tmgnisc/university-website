@@ -10,6 +10,7 @@ import {
   LogOut,
   Menu,
   X,
+  Inbox,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
 
@@ -20,6 +21,7 @@ import { cn } from "@/lib/utils";
 
 const NAV = [
   { label: "Dashboard", to: "/admin", icon: LayoutDashboard, exact: true },
+  { label: "Submissions Inbox", to: "/admin/inbox", icon: Inbox, exact: false },
   { label: "Current Openings", to: "/admin/openings", icon: Briefcase, exact: false },
   { label: "Chatbot Q&A", to: "/admin/chatbot", icon: MessageSquare, exact: false },
   { label: "Programs", to: "/admin/programs", icon: GraduationCap, exact: false },

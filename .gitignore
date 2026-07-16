@@ -23,6 +23,9 @@ dist-ssr
 # Static mailer secrets (public/mail-config.php holds a real SMTP password)
 public/mail-config.php
 
+# Submissions inbox data store (applicant PII, generated at runtime)
+public/mail/data/submissions.php
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

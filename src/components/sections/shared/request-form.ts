@@ -14,6 +14,7 @@ export type RequestFormPayload = {
   purpose?: string;
   address?: string;
   message?: string;
+  eligibility?: string;
   teamName?: string;
   teamMembers?: { name: string; contact: string }[];
 };
