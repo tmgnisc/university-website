@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { PasswordInput } from "@/components/ui/password-input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -91,9 +92,8 @@ function InboxLogin({ onSuccess }: { onSuccess: () => void }) {
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="inbox-password">Password</Label>
-          <Input
+          <PasswordInput
             id="inbox-password"
-            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
