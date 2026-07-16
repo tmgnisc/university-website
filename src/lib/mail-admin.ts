@@ -37,6 +37,13 @@ export function inboxLogout(): void {
   localStorage.removeItem(TOKEN_KEY);
 }
 
+// Server responses are expected to be JSON. If they're not (e.g. a broken
+// mail-config.php causes a PHP fatal error, or a missing endpoint file falls
+// through to the SPA's index.html catch-all), surface a clear message
+// instead of crashing on `data.whatever` of null.
+const UNEXPECTED_RESPONSE =
+  "Server returned an unexpected response — check that the public/mail PHP files were uploaded and mail-config.php has no syntax errors.";
+
 export async function inboxLogin(username: string, password: string): Promise<void> {
   const res = await fetch("/mail/admin-login.php", {
     method: "POST",
@@ -45,6 +52,7 @@ export async function inboxLogin(username: string, password: string): Promise<vo
   });
   const data = await res.json().catch(() => null);
   if (!res.ok) throw new Error(data?.error ?? "Invalid username or password");
+  if (!data?.token) throw new Error(UNEXPECTED_RESPONSE);
   localStorage.setItem(TOKEN_KEY, data.token);
 }
 
@@ -69,6 +77,7 @@ export async function fetchSubmissions(): Promise<Submission[]> {
   const res = await authedFetch("/mail/submissions.php");
   const data = await res.json().catch(() => null);
   if (!res.ok) throw new Error(data?.error ?? "Could not load submissions");
+  if (!Array.isArray(data)) throw new Error(UNEXPECTED_RESPONSE);
   return data as Submission[];
 }
 
@@ -82,5 +91,6 @@ export async function decideSubmission(
   });
   const data = await res.json().catch(() => null);
   if (!res.ok) throw new Error(data?.error ?? "Could not update submission");
+  if (!data?.submission) throw new Error(UNEXPECTED_RESPONSE);
   return data.submission as Submission;
 }
